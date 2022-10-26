@@ -16,20 +16,30 @@
                                 <h4>Register</h4>
                             </div>
 
+                            @if (session('register_fail'))
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    {{ session('register_fail') }}
+                                </div>
+                            @endif
+
                             <div class="card-body">
-                                <form method="POST">
+                                <form method="POST" action="{{ route('staff.postRegister') }}">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="frist_name">User Name</label>
                                         <input id="frist_name" type="text" class="form-control" name="name">
-                                        <div class="invalid-feedback">
-                                        </div>
+                                        @error('name')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input id="email" type="email" class="form-control" name="email">
-                                        <div class="invalid-feedback">
-                                        </div>
+                                        @error('email')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="row">
@@ -37,15 +47,17 @@
                                             <label for="password" class="d-block">Password</label>
                                             <input id="password" type="password" class="form-control pwstrength"
                                                 data-indicator="pwindicator" name="password">
-                                            <div id="pwindicator" class="pwindicator">
-                                                <div class="bar"></div>
-                                                <div class="label"></div>
-                                            </div>
+                                            @error('password')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="password2" class="d-block">Password Confirmation</label>
                                             <input id="password2" type="password" class="form-control"
                                                 name="password-confirm">
+                                            @error('password-confirm')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -56,6 +68,9 @@
                                             <label class="custom-control-label" for="agree">I agree with the terms and
                                                 conditions</label>
                                         </div>
+                                        @error('agree')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
