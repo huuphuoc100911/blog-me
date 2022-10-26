@@ -16,6 +16,13 @@
                                 <h4>Login</h4>
                             </div>
 
+                            @if (session('register_success'))
+                                <div class="alert alert-success mx-3">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    {{ session('register_success') }}
+                                </div>
+                            @endif
+
                             <div class="card-body">
                                 <form method="POST" action="{{ route('staff.postLogin') }}" class="needs-validation"
                                     novalidate="">

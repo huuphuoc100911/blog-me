@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
     public function postRegister(RegisterRequest $requets)
     {
-        $filters = $requets->validate();
+        $filters = $requets->validated();
 
         if ($this->registerService->registerStaff($filters)) {
             return redirect()->route('staff.login')->with('register_success', 'Account registration successful');
