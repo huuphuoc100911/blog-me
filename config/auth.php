@@ -84,11 +84,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Staff::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
