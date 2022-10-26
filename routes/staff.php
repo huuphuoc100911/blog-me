@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
 Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
 // Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
 
