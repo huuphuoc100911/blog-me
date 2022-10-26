@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="{{ route('staff.login') }}">Login</a>
+                            I already have an account! <a href="{{ route('staff.login') }}">Login</a>
                         </div>
                         <div class="simple-footer">
                             Copyright &copy; Stisla 2018
