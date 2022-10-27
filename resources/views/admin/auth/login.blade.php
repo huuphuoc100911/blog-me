@@ -62,21 +62,20 @@
                             </span>
                         </div>
                     @endif
-                    <form id="formAuthentication" class="mb-3" action="{{ route('admin.login') }}" method="POST">
-                        @csrf
+                    {!! Form::open(['method' => 'POST', 'route' => ['admin.login'], 'id' => 'formAuthentication', 'class' => 'mb-3']) !!}
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email or Username</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus />
+                            {{ Form::label('email', 'Email or Username', ['class' => 'form-label']) }}
+                            {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' =>  'Enter your email or username']) }}
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
-                                <label class="form-label" for="password">Password</label>
+                                {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
                                 <a href="{{ route('admin.forgot-password') }}">
                                     <small>Forgot Password?</small>
                                 </a>
                             </div>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                {{ Form::password('password', ['class' => 'form-control', 'placeholder' =>  '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -87,14 +86,14 @@
                         @endif
                         <div class="mb-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="remember-me" />
-                                <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                {!! Form::checkbox('remember-me', null, false, ['class' => 'form-check-input']) !!}
+                                {{ Form::label('remember-me', 'Remember Me', ['class' => 'form-check-label']) }}
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                            {!! Form::submit( 'Sign in', ['class' => 'btn btn-primary d-grid w-100']) !!}
                         </div>
-                    </form>
+                    {!! Form::close() !!}
 
                     <p class="text-center">
                         <span>New on our platform?</span>
