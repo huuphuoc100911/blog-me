@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Enums\UserRole;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -27,6 +28,7 @@ class ResetPasswordController extends Controller
                 'email' => $user->email,
             ], [
                 'token' => Str::random(60),
+                'role' => UserRole::ADMIN
             ]);
     
             if ($passwordReset) {
