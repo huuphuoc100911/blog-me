@@ -117,8 +117,11 @@
                                     <a href="javascript:void(0);">privacy policy & terms</a>
                                 </label>
                             </div>
+                            @error('terms')
+                                <span class="error text-danger ml-2">{{ $message }}</span>
+                            @enderror
                         </div>
-                        {!! Form::submit( 'Sign up', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                        {!! Form::submit('Sign up', ['class' => 'btn btn-primary d-grid w-100']) !!}
                         {!! Form::close() !!}
 
                         <p class="text-center">
