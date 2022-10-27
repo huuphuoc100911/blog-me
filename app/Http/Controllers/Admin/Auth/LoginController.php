@@ -31,7 +31,7 @@ class LoginController extends Controller
 
             return redirect()->route('admin.dashboard.index');
         } else {
-            return redirect()->back()->with('login_fail', 'Email or password is incorrect');
+            return redirect()->back()->with('login_fail', 'Incorrect email or password');
         }
     }
 

@@ -3,10 +3,11 @@
 @section('title', 'Register Admin')
 
 @section('content')
+    <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner py-4">
-                <!-- Forgot Password -->
+            <div class="authentication-inner">
+                <!-- Register Card -->
                 <div class="card">
                     <div class="card-body">
                         <!-- Logo -->
@@ -63,38 +64,58 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Forgot Password? 🔒</h4>
-                        <p class="mb-4">Enter your email and we'll send you instructions to reset your password 🚀</p>
+                        <h4 class="mb-2">Reset Password? 🔒</h4>
+                        <p class="mb-4">Please enter your new password 🚀</p>
+
+                        @if (session('token_invalid'))
+                            <p class="text-danger">{{ session('token_invalid') }}</p>
+                        @endif
+
                         {!! Form::open([
-                            'method' => 'POST',
-                            'route' => ['admin.send-mail'],
+                            'method' => 'PUT',
+                            'route' => ['admin.change-password'],
                             'id' => 'formAuthentication',
                             'class' => 'mb-3',
                         ]) !!}
-                            <div class="mb-3">
-                                {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
-                                {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
+                        {!! Form::hidden('token', request()->token) !!}
+                        <div class="mb-3 form-password-toggle">
+                            {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
+                            <div class="input-group input-group-merge">
+                                {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
-
-                            @if (session('send_message_success'))
-                                <p class="text-success">{{ session('send_message_success') }}</p>
-                            @endif
-                            @if (session('send_message_fail'))
-                                <p class="text-danger">{{ session('send_message_fail') }}</p>
-                            @endif
-
-                            {!! Form::submit('Send Reset Link', ['class' => 'btn btn-primary d-grid w-100']) !!}
-                        {!! Form::close() !!}
-
-                        <div class="text-center">
-                            <a href="{{ route('admin.login') }}" class="d-flex align-items-center justify-content-center">
-                                <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
-                                Back to login
-                            </a>
+                            @error('password')
+                                <span class="error text-danger ml-2">{{ $message }}</span>
+                            @enderror
                         </div>
+
+                        <div class="mb-3 form-password-toggle">
+                            {{ Form::label('confirm_password', 'Confirm Password', ['class' => 'form-label']) }}
+                            <div class="input-group input-group-merge">
+                                {{ Form::password('confirm_password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                            @error('confirm_password')
+                                <span class="error text-danger ml-2">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                {!! Form::checkbox('warning', null, false, ['class' => 'form-check-input']) !!}
+                                <label class="form-check-label" for="terms-conditions">
+                                    Don't forget your password anymore
+                                </label>
+                            </div>
+                            @error('warning')
+                                <span class="error text-danger ml-2">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        {!! Form::submit('Change Password', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                        {!! Form::close() !!}
                     </div>
                 </div>
-                <!-- /Forgot Password -->
+                <!-- Register Card -->
             </div>
         </div>
     </div>
@@ -105,4 +126,5 @@
         <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
             class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
     </div>
+
 @endsection
