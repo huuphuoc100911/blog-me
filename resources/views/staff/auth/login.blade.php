@@ -18,19 +18,22 @@
 
                             @if (session('register_success'))
                                 <div class="alert alert-success mx-3">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <button type="button" data-dismiss="alert">×</button>
                                     {{ session('register_success') }}
                                 </div>
                             @endif
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('staff.postLogin') }}" class="needs-validation"
-                                    novalidate="">
-                                    @csrf
+                                {!! Form::open([
+                                    'method' => 'POST',
+                                    'route' => ['staff.postLogin'],
+                                    'id' => 'formAuthentication',
+                                    'class' => 'needs-validation',
+                                ]) !!}
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1">
+                                        {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
+                                        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
                                         @error('email')
                                             <span class="error text-danger">{{ $message }}</span>
                                         @enderror
@@ -39,14 +42,14 @@
                                     <div class="form-group">
                                         <div class="d-block">
                                             <label for="password" class="control-label">Password</label>
+                                            {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
                                             <div class="float-right">
                                                 <a href="{{ route('staff.forgot-password') }}" class="text-small">
                                                     Forgot Password?
                                                 </a>
                                             </div>
                                         </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2">
+                                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
                                         @error('password')
                                             <span class="error text-danger">{{ $message }}</span>
                                         @enderror
@@ -58,18 +61,15 @@
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="remember" class="custom-control-input"
-                                                tabindex="3" id="remember-me">
-                                            <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                            {!! Form::checkbox('remember-me', null, false, ['class' => 'custom-control-input']) !!}
+                                            {{ Form::label('remember-me', 'Remember Me', ['class' => 'custom-control-label']) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
+                                        {!! Form::submit('Login', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                                 <div class="text-center mt-4 mb-3">
                                     <div class="text-job text-muted">Login With Social</div>
                                 </div>
