@@ -35,11 +35,11 @@ class RegisterRequest extends FormRequest
     public function attributes()
     {
         return [
-            'email' => 'Email',
-            'username' => 'Username',
-            'password' => 'Password',
-            'confirm_password' => 'Confirm Password',
-            'terms' => 'Terms',
+            'email' => 'email',
+            'username' => 'username',
+            'password' => 'password',
+            'confirm_password' => 'confirm password',
+            'terms' => 'terms',
         ];
     }
 }
