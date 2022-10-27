@@ -25,18 +25,21 @@
 
                             <div class="card-body">
                                 <form method="POST" action="{{ route('staff.postRegister') }}">
-                                    @csrf
+                                {!! Form::open([
+                                    'method' => 'POST',
+                                    'route' => ['staff.postRegister'],
+                                ]) !!}
                                     <div class="form-group">
-                                        <label for="frist_name">User Name</label>
-                                        <input id="frist_name" type="text" class="form-control" name="name">
+                                        {{ Form::label('username', 'Username', ['class' => 'form-label']) }}
+                                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter your username']) }}
                                         @error('name')
                                             <span class="error text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email">
+                                        {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
+                                        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
                                         @error('email')
                                             <span class="error text-danger">{{ $message }}</span>
                                         @enderror
@@ -44,17 +47,15 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="password" class="d-block">Password</label>
-                                            <input id="password" type="password" class="form-control pwstrength"
-                                                data-indicator="pwindicator" name="password">
+                                            {{ Form::label('password', 'Password', ['class' => 'form-label d-block']) }}
+                                            {{ Form::password('password', ['class' => 'form-control pwstrength', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
                                             @error('password')
                                                 <span class="error text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="password2" class="d-block">Password Confirmation</label>
-                                            <input id="password2" type="password" class="form-control"
-                                                name="password-confirm">
+                                            {{ Form::label('confirm_password', 'Password Confirmation', ['class' => 'form-label d-block']) }}
+                                            {{ Form::password('password-confirm', ['class' => 'form-control pwstrength', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
                                             @error('password-confirm')
                                                 <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -65,6 +66,7 @@
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="agree" class="custom-control-input"
                                                 id="agree">
+                                            {!! Form::checkbox('agree', null, false, ['class' => 'custom-control-input']) !!}
                                             <label class="custom-control-label" for="agree">I agree with the terms and
                                                 conditions</label>
                                         </div>
@@ -74,11 +76,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            Register
-                                        </button>
+                                        {!! Form::submit('Register', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">

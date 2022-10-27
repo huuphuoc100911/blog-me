@@ -19,13 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
-// Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
 
 Route::group(['middleware' =>  ['auth.staff']], function () {
-    Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
+    Route::get('/dashboard', function () {
+        return view('welcome');
+    })->name('index');
 });
 
 
