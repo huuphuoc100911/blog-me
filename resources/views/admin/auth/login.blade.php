@@ -89,7 +89,7 @@
                             'class' => 'mb-3',
                         ]) !!}
                         <div class="mb-3">
-                            {{ Form::label('email', 'Email or Username', ['class' => 'form-label']) }}
+                            {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
                             {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
                             @error('email')
                                 <span class="error text-danger">{{ $message }}</span>
