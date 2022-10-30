@@ -188,6 +188,12 @@
               <span class="menu-header-text">Pages</span>
             </li>
             <li class="menu-item">
+              <a href="{{ route('admin.category.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -210,6 +216,7 @@
                 </li>
               </ul>
             </li>
+
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>

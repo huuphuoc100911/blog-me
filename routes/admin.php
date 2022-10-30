@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,5 @@ Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])
 
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('category', 'CategoryController');
 });
