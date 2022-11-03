@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>@yield('page-title')</title>
 
     <meta name="description" content="" />
 
@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
+    @stack('styles')
 
     <!-- Page CSS -->
 
@@ -142,7 +143,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
