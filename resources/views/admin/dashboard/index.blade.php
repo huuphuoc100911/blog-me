@@ -1,4 +1,5 @@
 @extends('admin.layouts.layout')
+@section('page-title', 'Dashboard')
 @section('content')
 <!-- Content -->
 
