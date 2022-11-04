@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends BaseService
@@ -14,7 +15,10 @@ class CategoryService extends BaseService
 
     public function getListCategory()
     {
-        return $this->model->orderByDesc('priority')->get();
+        return $this->model
+            ->whereNull('deleted_at')
+            ->orderByDesc('priority')
+            ->get();
     }
 
     public function getCategory($id)
@@ -26,14 +30,13 @@ class CategoryService extends BaseService
     {
         $adminId = auth('admin')->user()->id;
         $path = Storage::put('admin/category', $inputs['url_image']);
-        $urlImage = '/storage/' . $path;
         $categoryHasMaxPriority = $this->model->orderByDesc('priority')->first();
 
         $data = [
             'admin_id' => $adminId,
             'title' => $inputs['title'],
             'description' => $inputs['description'],
-            'url_image' => $urlImage,
+            'url_image' => $path,
             'priority' => $categoryHasMaxPriority ? $categoryHasMaxPriority->priority + 1 : 1,
             'is_active' => $inputs['is_active'],            
         ];
@@ -44,6 +47,7 @@ class CategoryService extends BaseService
     public function updateCategory($inputs, $category)
     {
         $adminId = auth('admin')->user()->id;
+
         $data = [
             'admin_id' => $adminId,
             'title' => $inputs['title'],
@@ -53,10 +57,19 @@ class CategoryService extends BaseService
 
         if (isset($inputs['url_image'])) {
             $path = Storage::put('admin/category', $inputs['url_image']);
-            $urlImage = '/storage/' . $path;
-            $data['url_image'] = $urlImage;
+            $data['url_image'] = $path;
+            Storage::delete($category->url_image);
         }
 
         return $category->update($data);
+    }
+
+    public function deleteCategory($category)
+    {
+        Storage::delete($category->url_image);
+        
+        return $category->update([
+            'deleted_at' => Carbon::now()
+        ]);
     }
 }

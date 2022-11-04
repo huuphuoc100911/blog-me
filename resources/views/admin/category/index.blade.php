@@ -14,6 +14,9 @@
     .cat-header {
         justify-content: space-between;
     }
+    .card-cat-img {
+        height: 500px;
+    }
 </style>
 @endpush
 @section('content')
@@ -36,9 +39,21 @@
         </div>
         @endif
 
-        @if (session('edit_success'))
+        @if (session('update_success'))
         <div class="alert alert-success">
-            {{ session('edit_success') }}
+            {{ session('update_success') }}
+        </div>
+        @endif
+
+        @if (session('delete_success'))
+        <div class="alert alert-success">
+            {{ session('delete_success') }}
+        </div>
+        @endif
+
+        @if (session('delete_fail'))
+        <div class="alert alert-danger">
+            {{ session('delete_fail') }}
         </div>
         @endif
 
@@ -48,18 +63,23 @@
             @if ($key % 2 == 0)
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ $category->url_image }}" alt="Card image cap" />
+                    <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title">{{ $category->title }}</h5>
                         <p class="card-text">
                             {{ $category->description }}
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}</small>
+                            <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }} by {{ $category->admin->name }}</small>
                         </p>
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-cat-del">Delete</a>
+                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
+                                style="display: inline-block;" onsubmit="return confirm('Do you want to delete it?')">
+                                <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                @method('delete')
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -73,19 +93,24 @@
                             {{ $category->description }}
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}</small>
+                            <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }} by {{ $category->admin->name }}</small>
                         </p>
                     </div>
-                    <img class="card-img-bottom pb-3" src="{{ $category->url_image }}" alt="Card image cap" />
+                    <img class="card-cat-img pb-3" src="{{ $category->image_url }}" alt="Card image cap" />
                     <div class="d-flex justify-content-end pb-3">
                         <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-cat-del-2">Delete</a>
+                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
+                            style="display: inline-block;" onsubmit="return confirm('Do you want to delete it?')">
+                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                            @method('delete')
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>
             @endif
             @empty
-            <div class="text-center w-100 mt-5">Khong co record</div>
+            <div class="text-center w-100 mt-5">There are no valid records</div>
             @endforelse
         </div>
         <!-- Examples -->
