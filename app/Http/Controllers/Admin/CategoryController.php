@@ -45,10 +45,10 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         if ($this->categoryService->createCategory($request->all())) {
-            return redirect()->route('admin.category.index')->with('create_success', 'Tao thanh cong');
+            return redirect()->route('admin.category.index')->with('create_success', 'Add successful category');
         }
 
-        return redirect()->route('admin.category.create')->with('create_fail', 'Tao khong thanh cong');
+        return redirect()->route('admin.category.create')->with('create_fail', 'Add category failed');
     }
 
     /**
@@ -86,10 +86,10 @@ class CategoryController extends Controller
     {
         if ($this->categoryService->updateCategory($request->all(), $category))
         {
-            return redirect()->route('admin.category.index')->with('edit_success', 'Sửa thanh cong');
+            return redirect()->route('admin.category.index')->with('edit_success', 'Successfully edited the category');
         }
 
-        return redirect()->route('admin.category.edit')->with('edit_fail', 'Sửa khong thanh cong');
+        return redirect()->route('admin.category.edit')->with('edit_fail', 'Catalog editing failed');
     }
 
     /**

@@ -14,6 +14,9 @@
     .cat-header {
         justify-content: space-between;
     }
+    .card-cat-img {
+        height: 500px;
+    }
 </style>
 @endpush
 @section('content')
@@ -48,7 +51,7 @@
             @if ($key % 2 == 0)
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ $category->url_image }}" alt="Card image cap" />
+                    <img class="card-cat-img" src="{{ $category->url_image }}" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title">{{ $category->title }}</h5>
                         <p class="card-text">
@@ -76,7 +79,7 @@
                             <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}</small>
                         </p>
                     </div>
-                    <img class="card-img-bottom pb-3" src="{{ $category->url_image }}" alt="Card image cap" />
+                    <img class="card-cat-img pb-3" src="{{ $category->url_image }}" alt="Card image cap" />
                     <div class="d-flex justify-content-end pb-3">
                         <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
                         <a href="javascript:void(0)" class="btn btn-danger btn-cat-del-2">Delete</a>

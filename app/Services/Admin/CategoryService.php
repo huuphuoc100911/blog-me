@@ -55,6 +55,7 @@ class CategoryService extends BaseService
             $path = Storage::put('admin/category', $inputs['url_image']);
             $urlImage = '/storage/' . $path;
             $data['url_image'] = $urlImage;
+            Storage::delete('http://localhost:8888' . $category->url_image);
         }
 
         return $category->update($data);
