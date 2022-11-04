@@ -17,6 +17,9 @@
     .card-cat-img {
         height: 500px;
     }
+    .cat-info {
+        min-height: 200px;
+    }
 </style>
 @endpush
 @section('content')
@@ -64,7 +67,7 @@
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
                     <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
-                    <div class="card-body">
+                    <div class="card-body cat-info">
                         <h5 class="card-title">{{ $category->title }}</h5>
                         <p class="card-text">
                             {{ $category->description }}
@@ -87,7 +90,7 @@
             @else
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3">
-                    <div class="card-body">
+                    <div class="card-body cat-info">
                         <h5 class="card-title">{{ $category->title }}</h5>
                         <p class="card-text">
                             {{ $category->description }}
