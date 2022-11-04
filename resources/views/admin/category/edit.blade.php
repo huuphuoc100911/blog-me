@@ -24,10 +24,10 @@
                         <h5 class="mb-0">Category</h5>
                         <small class="text-muted float-end">Edit</small>
                     </div>
-                    @if (session('edit_fail'))
+                    @if (session('update_fail'))
                     <div class="alert alert-danger mx-3">
                         <button type="button" data-dismiss="alert">×</button>
-                        {{ session('edit_fail') }}
+                        {{ session('update_fail') }}
                     </div>
                     @endif
                     <div class="card-body">
@@ -45,7 +45,7 @@
                                 {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
                                 <br/>
                                 @if ($category->url_image)
-                                    <img src="{{ $category->url_image }}" class="category-image m-3"/>
+                                    <img src="{{ $category->image_url }}" class="category-image m-3"/>
                                 @endif
                                 {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your category name']) }}
                             </div>
