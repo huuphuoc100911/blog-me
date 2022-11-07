@@ -30,4 +30,5 @@ Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('category', 'Admin\CategoryController');
+    Route::resource('user', 'Admin\UserController');
 });
