@@ -3,22 +3,35 @@
 namespace App\Services\Admin;
 
 use App\Models\Category;
+use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends BaseService
 {
+    use FilterTrait;
+    
     public function __construct(Category $model)
     {
         $this->model = $model;
     }
 
-    public function getListCategory()
+    public function getListCategory($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
-        return $this->model
+        $limit = $limit ?? config('common.default_per_page');
+
+        $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority')
-            ->get();
+            ->orderByDesc('priority');
+        
+        return $this->filterPaginate(
+            $query,
+            $limit,
+            $filters,
+            $sorts,
+            $filterable,
+            $select
+        );
     }
 
     public function getCategory($id)

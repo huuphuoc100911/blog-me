@@ -18,7 +18,7 @@
         height: 500px;
     }
     .cat-info {
-        min-height: 200px;
+        height: 450px;
     }
 </style>
 @endpush
@@ -64,13 +64,13 @@
         <div class="row mb-5">
             @forelse ($categories as $key => $category)
             @if ($key % 2 == 0)
-            <div class="col-md-6 col-lg-4 mb-3">
+            <div class="col-md-6 col-lg-4 mb-3 category-item">
                 <div class="card h-100">
                     <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
                     <div class="card-body cat-info">
-                        <h5 class="card-title">{{ $category->title }}</h5>
+                        <h4 class="card-title text-danger">{{ $category->title }}</h4>
                         <p class="card-text">
-                            {{ $category->description }}
+                            {{ Str::limit($category->description, 720, '...') }}
                         </p>
                         <p class="card-text">
                             <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }} by {{ $category->admin->name }}</small>
@@ -91,9 +91,9 @@
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3">
                     <div class="card-body cat-info">
-                        <h5 class="card-title">{{ $category->title }}</h5>
+                        <h4 class="card-title text-success">{{ $category->title }}</h4>
                         <p class="card-text">
-                            {{ $category->description }}
+                            {{ Str::limit($category->description, 720, '...') }}
                         </p>
                         <p class="card-text">
                             <small class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }} by {{ $category->admin->name }}</small>
@@ -115,6 +115,9 @@
             @empty
             <div class="text-center w-100 mt-5">There are no valid records</div>
             @endforelse
+        </div>
+        <div class="d-flex justify-content-center demo-inline-spacing">
+            {{ $categories->links('vendor.pagination.custom-pagination') }}
         </div>
         <!-- Examples -->
     </div>
