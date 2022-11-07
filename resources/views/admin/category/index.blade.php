@@ -64,7 +64,7 @@
         <div class="row mb-5">
             @forelse ($categories as $key => $category)
             @if ($key % 2 == 0)
-            <div class="col-md-6 col-lg-4 mb-3 category-item">
+            <div class="col-md-6 col-lg-4 mb-5 category-item">
                 <div class="card h-100">
                     <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
                     <div class="card-body cat-info">
@@ -89,7 +89,7 @@
             </div>
             @else
             <div class="col-md-6 col-xl-4">
-                <div class="card mb-3">
+                <div class="card mb-5">
                     <div class="card-body cat-info">
                         <h4 class="card-title text-success">{{ $category->title }}</h4>
                         <p class="card-text">
