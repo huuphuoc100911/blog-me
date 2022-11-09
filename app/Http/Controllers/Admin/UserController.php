@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         $this->adminService = $adminService;
     }
+
     public function index()
     {
         $admins = $this->adminService->getListAdmin();
@@ -26,6 +27,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -37,6 +39,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -48,6 +51,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
@@ -59,6 +63,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         //
@@ -71,6 +76,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         //
@@ -82,8 +88,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         //
+    }
+
+    public function changeStatusStaff(Request $request)
+    {
+        $statusStaff = $this->adminService->changeStatusStaff($request->staffId);
+
+        if ($statusStaff->is_active == 1) {
+            return response()->json([
+                'status' => '<span class="badge bg-label-danger me-1">Lock</span>'
+            ]);
+        } else {
+            return response()->json([
+                'status' => '<span class="badge bg-label-success me-1">Active</span>'
+            ]);
+        }
     }
 }

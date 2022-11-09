@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('user', 'Admin\UserController');
+    Route::get('change-status-staff', [UserController::class, 'changeStatusStaff'])->name('staff.change-status-staff');
 });
