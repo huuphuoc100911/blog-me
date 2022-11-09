@@ -65,6 +65,10 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/admin/assets/js/config.js"></script>
   </head>
+  @php
+    \Carbon\Carbon::setLocale('en');
+    $now = \Carbon\Carbon::now();
+  @endphp
 
   <body>
     <!-- Layout wrapper -->
@@ -142,7 +146,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item {{ (\Request::segment(2) == 'dashboard') ? 'active' : '' }}">
+            <li class="menu-item {{ \Request::segment(2) == 'dashboard' ? 'active' : '' }}">
               <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -188,10 +192,16 @@
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>
             </li>
-            <li class="menu-item {{ (\Request::segment(2) == 'category') ? 'active' : '' }}">
+            <li class="menu-item {{ \Request::segment(2) == 'category' ? 'active' : '' }}">
               <a href="{{ route('admin.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
+            <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
+              <a href="{{ route('admin.user.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Analytics">User</div>
               </a>
             </li>
             <li class="menu-item">
