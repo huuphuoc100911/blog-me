@@ -66,8 +66,8 @@
     <script src="/assets/admin/assets/js/config.js"></script>
   </head>
   @php
-    \Carbon\Carbon::setLocale('en');
-    $now = \Carbon\Carbon::now();
+      \Carbon\Carbon::setLocale('en');
+      $now = \Carbon\Carbon::now();
   @endphp
 
   <body>

@@ -30,5 +30,3 @@ Route::group(['middleware' =>  ['auth.staff']], function () {
         return view('welcome');
     })->name('index');
 });
-
-

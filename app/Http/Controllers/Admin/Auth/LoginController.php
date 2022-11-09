@@ -19,7 +19,6 @@ class LoginController extends Controller
     public function login()
     {
         return view('admin.auth.login');
-
     }
 
     public function postLogin(LoginRequest $request)
@@ -43,11 +42,11 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
- 
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
-     
+
         return redirect()->route('admin.login');
     }
 }

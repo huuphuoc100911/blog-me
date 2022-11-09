@@ -153,21 +153,25 @@
                 <div class="col-lg-12 p-0">
                     <div class="portfolio-filter">
                         <div class="pf-item set-bg fashion" data-setbg="/assets/user/img/portfolio/pf-1.jpg">
-                            <a href="/assets/user/img/portfolio/pf-1.jpg" class="pf-icon image-popup"><span class="icon_plus"></span></a>
+                            <a href="/assets/user/img/portfolio/pf-1.jpg" class="pf-icon image-popup"><span
+                                    class="icon_plus"></span></a>
                             <div class="pf-text">
                                 <h4>COLORS SPEAK</h4>
                                 <span>Fashion</span>
                             </div>
                         </div>
-                        <div class="pf-item large-width large-height set-bg lifestyle" data-setbg="/assets/user/img/portfolio/pf-2.jpg">
-                            <a href="/assets/user/img/portfolio/pf-2.jpg" class="pf-icon image-popup"><span class="icon_plus"></span></a>
+                        <div class="pf-item large-width large-height set-bg lifestyle"
+                            data-setbg="/assets/user/img/portfolio/pf-2.jpg">
+                            <a href="/assets/user/img/portfolio/pf-2.jpg" class="pf-icon image-popup"><span
+                                    class="icon_plus"></span></a>
                             <div class="pf-text">
                                 <h4>COLORS SPEAK</h4>
                                 <span>Fashion</span>
                             </div>
                         </div>
                         <div class="pf-item large-width set-bg natural" data-setbg="/assets/user/img/portfolio/pf-3.jpg">
-                            <a href="/assets/user/img/portfolio/pf-3.jpg" class="pf-icon image-popup"><span class="icon_plus"></span></a>
+                            <a href="/assets/user/img/portfolio/pf-3.jpg" class="pf-icon image-popup"><span
+                                    class="icon_plus"></span></a>
                             <div class="pf-text">
                                 <h4>COLORS SPEAK</h4>
                                 <span>Fashion</span>
@@ -229,7 +233,8 @@
                                 <span>Fashion</span>
                             </div>
                         </div>
-                        <div class="pf-item large-width large-height set-bg wedding" data-setbg="/assets/user/img/portfolio/pf-9.jpg">
+                        <div class="pf-item large-width large-height set-bg wedding"
+                            data-setbg="/assets/user/img/portfolio/pf-9.jpg">
                             <a href="/assets/user/img/portfolio/pf-9.jpg" class="pf-icon image-popup"><span
                                     class="icon_plus"></span></a>
                             <div class="pf-text">

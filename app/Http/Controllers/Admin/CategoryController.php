@@ -50,8 +50,7 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, Category $category)
     {
-        if ($this->categoryService->updateCategory($request->all(), $category))
-        {
+        if ($this->categoryService->updateCategory($request->all(), $category)) {
             return redirect()->route('admin.category.index')->with('update_success',  __('messages.update_success'));
         }
 

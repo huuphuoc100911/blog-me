@@ -73,14 +73,14 @@
                                 </p>
                             </div>
                         @endif
-                        
+
                         @if (session('change_password_success'))
                             <div class="my-3">
                                 <p class="alert alert-success" role="alert">
                                     <strong>{{ session('change_password_success') }}</strong>
                                 </p>
                             </div>
-                        @endif    
+                        @endif
 
                         {!! Form::open([
                             'method' => 'POST',

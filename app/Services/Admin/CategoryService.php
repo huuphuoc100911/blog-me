@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class CategoryService extends BaseService
 {
     use FilterTrait;
-    
+
     public function __construct(Category $model)
     {
         $this->model = $model;
@@ -23,7 +23,7 @@ class CategoryService extends BaseService
         $query = $this->model
             ->whereNull('deleted_at')
             ->orderByDesc('priority');
-        
+
         return $this->filterPaginate(
             $query,
             $limit,
@@ -51,7 +51,7 @@ class CategoryService extends BaseService
             'description' => $inputs['description'],
             'url_image' => $path,
             'priority' => $categoryHasMaxPriority ? $categoryHasMaxPriority->priority + 1 : 1,
-            'is_active' => $inputs['is_active'],            
+            'is_active' => $inputs['is_active'],
         ];
 
         return $this->model->create($data);
@@ -65,7 +65,7 @@ class CategoryService extends BaseService
             'admin_id' => $adminId,
             'title' => $inputs['title'],
             'description' => $inputs['description'],
-            'is_active' => $inputs['is_active'],            
+            'is_active' => $inputs['is_active'],
         ];
 
         if (isset($inputs['url_image'])) {
@@ -80,7 +80,7 @@ class CategoryService extends BaseService
     public function deleteCategory($category)
     {
         Storage::delete($category->url_image);
-        
+
         return $category->update([
             'deleted_at' => Carbon::now()
         ]);

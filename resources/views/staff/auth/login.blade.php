@@ -30,45 +30,45 @@
                                     'id' => 'formAuthentication',
                                     'class' => 'needs-validation',
                                 ]) !!}
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
-                                        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
-                                        @error('email')
-                                            <span class="error text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
+                                    {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
+                                    @error('email')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
-                                            <div class="float-right">
-                                                <a href="{{ route('staff.forgot-password') }}" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
-                                        @error('password')
-                                            <span class="error text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    @if (session('login_fail'))
-                                        <p class="text-danger">{{ session('login_fail') }}</p>
-                                    @endif
-
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            {!! Form::checkbox('remember-me', null, false, ['class' => 'custom-control-input']) !!}
-                                            {{ Form::label('remember-me', 'Remember Me', ['class' => 'custom-control-label']) }}
+                                <div class="form-group">
+                                    <div class="d-block">
+                                        <label for="password" class="control-label">Password</label>
+                                        {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
+                                        <div class="float-right">
+                                            <a href="{{ route('staff.forgot-password') }}" class="text-small">
+                                                Forgot Password?
+                                            </a>
                                         </div>
                                     </div>
+                                    {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
+                                    @error('password')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        {!! Form::submit('Login', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
+                                @if (session('login_fail'))
+                                    <p class="text-danger">{{ session('login_fail') }}</p>
+                                @endif
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        {!! Form::checkbox('remember-me', null, false, ['class' => 'custom-control-input']) !!}
+                                        {{ Form::label('remember-me', 'Remember Me', ['class' => 'custom-control-label']) }}
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::submit('Login', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
+                                </div>
                                 {!! Form::close() !!}
                                 <div class="text-center mt-4 mb-3">
                                     <div class="text-job text-muted">Login With Social</div>

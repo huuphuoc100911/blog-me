@@ -25,10 +25,10 @@
 
                             <div class="card-body">
                                 <form method="POST" action="{{ route('staff.postRegister') }}">
-                                {!! Form::open([
-                                    'method' => 'POST',
-                                    'route' => ['staff.postRegister'],
-                                ]) !!}
+                                    {!! Form::open([
+                                        'method' => 'POST',
+                                        'route' => ['staff.postRegister'],
+                                    ]) !!}
                                     <div class="form-group">
                                         {{ Form::label('username', 'Username', ['class' => 'form-label']) }}
                                         {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter your username']) }}
@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         {!! Form::submit('Register', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
                                     </div>
-                                {!! Form::close() !!}
+                                    {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">

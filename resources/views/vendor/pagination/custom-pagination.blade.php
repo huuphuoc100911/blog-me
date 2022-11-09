@@ -25,7 +25,7 @@
                     </li> --}}
                     <li class="page-item" class="disabled" aria-disabled="true">
                         <a class="page-link" href="javascript:void(0);">{{ $element }}</a>
-                      </li>
+                    </li>
                 @endif
 
                 {{-- Array Of Links --}}
@@ -47,7 +47,8 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li class="page-item next">
-                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
+                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"
+                        aria-label="@lang('pagination.next')">
                         <i class="tf-icon bx bx-chevrons-right"></i>
                     </a>
                 </li>

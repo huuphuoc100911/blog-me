@@ -71,19 +71,19 @@
                             'id' => 'formAuthentication',
                             'class' => 'mb-3',
                         ]) !!}
-                            <div class="mb-3">
-                                {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
-                                {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
-                            </div>
+                        <div class="mb-3">
+                            {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
+                            {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
+                        </div>
 
-                            @if (session('send_message_success'))
-                                <p class="text-success">{{ session('send_message_success') }}</p>
-                            @endif
-                            @if (session('send_message_fail'))
-                                <p class="text-danger">{{ session('send_message_fail') }}</p>
-                            @endif
+                        @if (session('send_message_success'))
+                            <p class="text-success">{{ session('send_message_success') }}</p>
+                        @endif
+                        @if (session('send_message_fail'))
+                            <p class="text-danger">{{ session('send_message_fail') }}</p>
+                        @endif
 
-                            {!! Form::submit('Send Reset Link', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                        {!! Form::submit('Send Reset Link', ['class' => 'btn btn-primary d-grid w-100']) !!}
                         {!! Form::close() !!}
 
                         <div class="text-center">

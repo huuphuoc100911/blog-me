@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $admins = $this->adminService->getListAdmin();
         $staffs = $this->adminService->getListStaff();
-        $users= $this->adminService->getListUser();
+        $users = $this->adminService->getListUser();
 
         return view('admin.user.index', compact('admins', 'staffs', 'users'));
     }

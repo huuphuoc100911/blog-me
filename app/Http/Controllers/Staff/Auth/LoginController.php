@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function postLogin(LoginRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
-        
+
         if (Auth::guard('staff')->attempt($credentials)) {
             return redirect()->route('staff.index');
         } else {
@@ -33,11 +33,11 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('staff')->logout();
- 
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
-     
+
         return redirect()->route('staff.login');
     }
 }

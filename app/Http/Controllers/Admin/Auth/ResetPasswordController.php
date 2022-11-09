@@ -30,11 +30,11 @@ class ResetPasswordController extends Controller
                 'token' => Str::random(60),
                 'role' => UserRole::ADMIN
             ]);
-    
+
             if ($passwordReset) {
                 $user->notify(new ResetPasswordRequest($passwordReset->token));
             }
-    
+
             return redirect()->back()->with('send_message_success', 'The message was sent to your email');
         }
 
@@ -50,7 +50,7 @@ class ResetPasswordController extends Controller
 
             return redirect()->back()->with('token_invalid', 'This password reset token is invalid.');
         }
-        
+
         $user = Admin::where('email', $passwordReset->email)->firstOrFail();
         $user->update(['password' => bcrypt($request->password)]);
         $passwordReset->delete();
