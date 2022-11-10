@@ -4,6 +4,7 @@ use App\Http\Controllers\Staff\Auth\ForgotPasswordController;
 use App\Http\Controllers\Staff\Auth\LoginController;
 use App\Http\Controllers\Staff\Auth\RegisterController;
 use App\Http\Controllers\Staff\Auth\ResetPasswordController;
+use App\Http\Controllers\Staff\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,5 @@ Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'
 Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
 
 Route::group(['middleware' =>  ['auth.staff']], function () {
-    Route::get('/dashboard', function () {
-        return view('welcome');
-    })->name('index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
