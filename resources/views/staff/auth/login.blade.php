@@ -1,5 +1,5 @@
 @extends('staff.auth.layout')
-@section('title', 'Login')
+@section('title', 'Login Staff')
 @section('content')
     <div id="app">
         <section class="section">
