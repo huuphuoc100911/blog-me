@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         if (Auth::guard('staff')->attempt($credentials)) {
             if ($this->staffService->checkStaffActive($request->email) == AccountStatus::ACTIVE) {
-                return redirect()->route('staff.index');
+                return redirect()->route('staff.dashboard.index');
             } else {
                 return redirect()->back()->with('login_fail', 'Your account has been locked');
             }
