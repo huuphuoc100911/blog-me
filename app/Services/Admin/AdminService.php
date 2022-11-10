@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin;
 
+use App\Enums\AccountStatus;
 use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\User;
@@ -37,5 +38,18 @@ class AdminService extends BaseService
     public function getListUser()
     {
         return $this->user->get();
+    }
+
+    public function changeStatusStaff($staffId)
+    {
+        $statusStaff = $this->staff->where('id', $staffId)->first()->is_active;
+        $isActiveStaff = ($statusStaff == AccountStatus::IN_ACTIVE) ? AccountStatus::ACTIVE : AccountStatus::IN_ACTIVE;
+
+        $this->staff::where('id', $staffId)
+            ->update([
+                'is_active' => $isActiveStaff
+            ]);
+
+        return $this->staff->where('id', $staffId)->first();
     }
 }
