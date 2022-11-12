@@ -20,6 +20,7 @@ class InfoCompanyService extends BaseService
     public function settingInfoCompany($inputs, $id)
     {
         $infoCompany = $this->getInfoCompany($id);
+
         $inputs['admin_id'] = auth('admin')->user()->id;
 
         if (isset($inputs['url_image'])) {
@@ -27,6 +28,10 @@ class InfoCompanyService extends BaseService
             $inputs['url_image'] = $path;
             if ($infoCompany) {
                 Storage::delete($infoCompany->url_image);
+            }
+        } else {
+            if ($infoCompany) {
+                $inputs['url_image'] = $infoCompany->url_image;
             }
         }
 

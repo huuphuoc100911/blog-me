@@ -44,7 +44,8 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        {!! Form::open(['method' => 'PATCH', 'route' => ['admin.info-company.update', $infoCompany ? $infoCompany->id : 1], 'files' => true]) !!}
+                        {!! Form::open(['method' => 'PATCH', 'route' => ['admin.info-company.update', $infoCompany ? $infoCompany->id : 0], 'files' => true]) !!}
+                            {{ Form::hidden('id', $infoCompany ? $infoCompany->id : 0) }}
                         <div class="mb-3">
                             {{ Form::label('name', 'Company Name', ['class' => 'form-label']) }}
                             {{ Form::text('name', $infoCompany ? $infoCompany->name : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company name']) }}

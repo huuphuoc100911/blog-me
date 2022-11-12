@@ -23,14 +23,19 @@ class InfoCompanyRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $validated = [
             'name' => 'required',
-            'url_image' => 'required',
             'description' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'link_facebook' => 'required',
         ];
+
+        if ((int)request()->id === 0) {
+            $validated['url_image'] = 'required';
+        }
+
+        return $validated;
     }
 
     public function attributes()
