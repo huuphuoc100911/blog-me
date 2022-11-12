@@ -24,9 +24,9 @@ class InfoCompanyController extends Controller
     public function update(InfoCompanyRequest $request, $id)
     {
         if ($this->infoCompanyService->settingInfoCompany($request->all(), $id)) {
-            return redirect()->route('admin.info-company.edit', $id + 1)->with('update_success', 'Successfully established company information');
+            return redirect()->route('admin.info-company.edit', $id + 1)->with('update_success', 'Successfully Set Up Company Information');
         }
         
-        return redirect()->route('admin.info-company.edit', $id)->with('update_success', 'Fail established company information');
+        return redirect()->route('admin.info-company.edit', $id)->with('update_error', 'Failed Setup Company Information');
     }
 }
