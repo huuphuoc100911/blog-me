@@ -46,7 +46,7 @@
             @endif
 
             @if (session('update_success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success mx-3">
                     {{ session('update_success') }}
                 </div>
             @endif
@@ -58,7 +58,7 @@
             @endif
 
             @if (session('delete_fail'))
-                <div class="alert alert-danger">
+                <div class="alert alert-danger mx-3">
                     {{ session('delete_fail') }}
                 </div>
             @endif

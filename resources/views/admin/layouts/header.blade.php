@@ -68,6 +68,7 @@
   @php
       \Carbon\Carbon::setLocale('en');
       $now = \Carbon\Carbon::now();
+      $infoCompany = App\Models\InfoCompany::orderByDesc('id')->first();
   @endphp
 
   <body>
@@ -150,6 +151,13 @@
               <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <li class="menu-item {{ \Request::segment(2) == 'info-company' ? 'active' : '' }}">
+              <a href="{{ route('admin.info-company.edit', $infoCompany ? $infoCompany->id : 0) }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div data-i18n="Analytics">Company Information</div>
               </a>
             </li>
 
