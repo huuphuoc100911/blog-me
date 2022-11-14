@@ -28,4 +28,5 @@ Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])-
 
 Route::group(['middleware' =>  ['auth.staff']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('info-staff', 'InfoStaffController');
 });
