@@ -65,7 +65,8 @@
                             @if ($infoStaff)
                                 <img src="{{ $infoStaff->image_url }}" class="category-image m-3" />
                             @endif
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your name']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'id' => 'upload-image', 'placeholder' => 'Enter your name']) }}
+                            <div class="image-upload"></div>
                             @error('url_image')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -120,3 +121,12 @@
     </div>
     <!-- / Content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+    $(function() {
+        $('#upload-image').on('change', function(event) {
+            console.log(1231);
+        });
+    });
+</script>
+@endpush
