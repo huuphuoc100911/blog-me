@@ -34,6 +34,14 @@ class CategoryService extends BaseService
         );
     }
 
+    public function getListCategoryPluck()
+    {
+        return $this->model
+            ->whereNull('deleted_at')
+            ->orderByDesc('priority')
+            ->pluck('title', 'id');
+    }
+
     public function getCategory($id)
     {
         return $this->model->findOrFail($id);

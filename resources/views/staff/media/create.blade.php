@@ -29,13 +29,19 @@
                     <div class="card-body">
                         {!! Form::open(['method' => 'post', 'route' => 'staff.media.store', 'files' => true, 'id' => 'create-form']) !!}
                         <div class="mb-3">
-                            {{ Form::label('title', 'Media Name', ['class' => 'form-label']) }}
-                            {{ Form::text('title', null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your media name']) }}
+                            {{ Form::label('title', 'Title', ['class' => 'form-label']) }}
+                            {{ Form::text('title', null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your title']) }}
                             @error('title')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
                                 </span>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            {{ Form::label('category', 'Category', ['class' => 'form-label']) }}
+                            {!! Form::select('category_id', $categories, $categories ?? null, [
+                                'class' => 'form-select form-control input-width-50',
+                            ]) !!}
                         </div>
                         <div class="mb-3">
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
