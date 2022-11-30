@@ -52,7 +52,7 @@
                         {{ Form::hidden('id', $infoStaff ? $infoStaff->staff_id : 0) }}
                         <div class="mb-3">
                             {{ Form::label('name', 'Staff Name', ['class' => 'form-label']) }}
-                            {{ Form::text('name', $infoStaff ? $infoStaff->name : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your staff name']) }}
+                            {{ Form::text('name', $staff ? $staff->name : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your staff name']) }}
                             @error('name')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -65,7 +65,7 @@
                             @if ($infoStaff)
                                 <img src="{{ $infoStaff->image_url }}" class="category-image m-3" />
                             @endif
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'id' => 'upload-image', 'placeholder' => 'Enter your name']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your name']) }}
                             <div class="image-upload"></div>
                             @error('url_image')
                                 <span class="error text-danger" role="alert">
@@ -87,7 +87,7 @@
                         </div>
                         <div class="mb-3">
                             {{ Form::label('email', 'Staff Email', ['class' => 'form-label']) }}
-                            {{ Form::text('email', $infoStaff ? $infoStaff->email : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your staff email']) }}
+                            {{ Form::text('email', $staff ? $staff->email : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your staff email', 'readonly']) }}
                             @error('email')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -123,10 +123,27 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
-    $(function() {
-        $('#upload-image').on('change', function(event) {
-            console.log(1231);
-        });
-    });
+    $(function(){
+        $(".upload-image").change(showPreviewImage);
+    })
+
+    function showPreviewImage(e) {
+        var $input = $(this);
+        var inputFiles = this.files;
+        if (inputFiles == undefined || inputFiles.length == 0) return;
+        var inputFile = inputFiles[0];
+        console.log(inputFile);
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            let base64data = event.target.result;
+            let html_append = `<img src="${base64data}" class="category-image m-3" />`;
+            $('.image-upload').append(html_append);
+        };
+        reader.onerror = function(event) {
+            alert("I AM ERROR: " + event.target.error.code);
+        };
+        reader.readAsDataURL(inputFile);
+    }
 </script>
 @endpush

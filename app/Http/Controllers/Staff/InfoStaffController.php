@@ -17,8 +17,9 @@ class InfoStaffController extends Controller
     public function edit($staffId)
     {
         $infoStaff = $this->infoStaffService->getInfoStaff($staffId);
+        $staff = $this->infoStaffService->getStaff($staffId);
 
-        return view('staff.info-staff.index', compact('infoStaff'));
+        return view('staff.info-staff.index', compact('infoStaff', 'staff'));
     }
 
     public function update(InfoStaffRequest $request, $staffId)

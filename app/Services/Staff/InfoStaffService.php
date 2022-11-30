@@ -3,13 +3,15 @@
 namespace App\Services\Staff;
 
 use App\Models\InfoStaff;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Storage;
 
 class InfoStaffService extends BaseService
 {
-    public function __construct(InfoStaff $model)
+    public function __construct(InfoStaff $model, Staff $staff)
     {
         $this->model = $model;
+        $this->staff = $staff;
     }
 
     public function getInfoStaff($staffId)
@@ -17,9 +19,15 @@ class InfoStaffService extends BaseService
         return $this->model->where('staff_id', $staffId)->first();
     }
 
+    public function getStaff($staffId)
+    {
+        return $this->staff->where('id', $staffId)->first();
+    }
+
     public function settingInfoStaff($inputs, $id)
     {
         $infoStaff = $this->getInfoStaff($id);
+        $this->staff->where('id', $id)->update(['name' => $inputs['name']]);
 
         $inputs['staff_id'] = auth('staff')->user()->id;
 
