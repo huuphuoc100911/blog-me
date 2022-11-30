@@ -29,7 +29,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryService->getListCategory();
+        $categories = $this->categoryService->getListCategoryPluck();
 
         return view('staff.media.create', compact('categories'));
     }
@@ -42,7 +42,7 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
