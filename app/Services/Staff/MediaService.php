@@ -2,6 +2,7 @@
 
 namespace App\Services\Staff;
 
+use App\Enums\MediaType;
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
@@ -37,23 +38,33 @@ class MediaService extends BaseService
 
     public function getMedia($id)
     {
-        return $this->model->findOrFail($id);
+        return $this->model->where('id', $id)->first();
     }
 
-    public function createCategory($inputs)
+    public function createMedia($inputs)
     {
-        $adminId = auth('admin')->user()->id;
-        $path = Storage::put('admin/category', $inputs['url_image']);
-        $categoryHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $mime = $inputs['url_image']->getMimeType();
+        $staffId = auth('staff')->user()->id;
+        $path = Storage::put('staff/media', $inputs['url_image']);
+        $mediaHasMaxPriority = $this->model->orderByDesc('priority')->first();
 
         $data = [
-            'admin_id' => $adminId,
+            'staff_id' => $staffId,
+            'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
             'description' => $inputs['description'],
             'url_image' => $path,
-            'priority' => $categoryHasMaxPriority ? $categoryHasMaxPriority->priority + 1 : 1,
+            'priority' => $mediaHasMaxPriority ? $mediaHasMaxPriority->priority + 1 : 1,
             'is_active' => $inputs['is_active'],
         ];
+
+        if (str_contains($mime, "video/")){
+            $data['type'] = MediaType::VIDEO;
+        } else if(str_contains($mime, "image/")){
+            $data['type'] = MediaType::IMAGE;
+        } else if(str_contains($mime, "audio/")){
+            $data['type'] = MediaType::AUDIO;
+        }
 
         return $this->model->create($data);
     }

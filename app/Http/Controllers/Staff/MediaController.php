@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Staff\MediaRequest;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
 use Illuminate\Http\Request;
@@ -40,9 +41,13 @@ class MediaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MediaRequest $request)
     {
-        
+        if ($this->mediaService->createMedia($request->all())) {
+            return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
+        }
+
+        return redirect()->back()->with('create_fail',  __('messages.create_success'));
     }
 
     /**
@@ -64,7 +69,10 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = $this->categoryService->getListCategoryPluck();
+        $media = $this->mediaService->getMedia($id);
+
+        return view('staff.media.edit', compact('media', 'categories'));
     }
 
     /**

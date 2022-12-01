@@ -38,14 +38,14 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('category', 'Category', ['class' => 'form-label']) }}
+                            {{ Form::label('category_id', 'Category', ['class' => 'form-label']) }}
                             {!! Form::select('category_id', $categories, $categories ?? null, [
                                 'class' => 'form-select form-control input-width-50',
                             ]) !!}
                         </div>
                         <div class="mb-3">
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your media name']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50']) }}
                             @error('url_image')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -59,6 +59,15 @@
                                 'placeholder' => 'Enter your description',
                             ]) !!}
                             @error('description')
+                                <span class="error text-danger" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            {{ Form::label('list_media', 'List Media', ['class' => 'form-label']) }}
+                            {{ Form::file('list_media', ['class' => 'form-control input-width-50', 'multiple']) }}
+                            @error('list_media')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
                                 </span>

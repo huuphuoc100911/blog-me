@@ -78,7 +78,7 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->media->name }}</small>
+                                            by {{ $media->staff->name }}</small>
                                     </p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('staff.media.edit', $media->id) }}"
@@ -105,7 +105,7 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->media->name }}</small>
+                                            by {{ $media->staff->name }}</small>
                                     </p>
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
