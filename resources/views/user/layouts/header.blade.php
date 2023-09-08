@@ -35,26 +35,33 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="{{ route('index') }}">
                             <img src="/assets/user/img/logo.png" alt="">
                         </a>
                     </div>
                     <nav class="nav-menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./about.html">About</a></li>
-                            <li><a href="./services.html">Services</a></li>
-                            <li><a href="./pricing.html">Pricing</a></li>
-                            <li><a href="./portfolio.html">Portfolio</a></li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="{{ \Request::segment(1) === null ? 'active' : '' }}"><a
+                                    href="{{ route('index') }}">Home</a></li>
+                            <li class="{{ \Request::segment(1) === 'about' ? 'active' : '' }}"><a
+                                    href="{{ route('about') }}">About</a></li>
+                            <li class="{{ \Request::segment(1) === 'service' ? 'active' : '' }}"><a
+                                    href="{{ route('service') }}">Services</a></li>
+                            <li class="{{ \Request::segment(1) === 'pricing' ? 'active' : '' }}"><a
+                                    href="{{ route('pricing') }}">Pricing</a></li>
+                            <li class="{{ \Request::segment(1) === 'portfolio' ? 'active' : '' }}"><a
+                                    href="{{ route('portfolio') }}">Portfolio</a></li>
+                            <li class="{{ \Request::segment(1) === 'blog' ? 'active' : '' }}"><a
+                                    href="{{ route('blog') }}">Blog</a></li>
+                            {{-- <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./gallery.html">Gallery</a></li>
                                     <li><a href="./portfolio-details.html">Portfolio Details</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            </li> --}}
+                            <li class="{{ \Request::segment(1) === 'contact' ? 'active' : '' }}"><a
+                                    href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                     <div class="top-search search-switch">
