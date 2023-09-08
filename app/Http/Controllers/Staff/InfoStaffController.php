@@ -27,7 +27,7 @@ class InfoStaffController extends Controller
         if ($this->infoStaffService->settingInfoStaff($request->all(), $staffId)) {
             return redirect()->route('staff.info-staff.edit', $staffId)->with('update_success', 'Successfully Set Up Company Information');
         }
-        
+
         return redirect()->route('staff.info-staff.edit', $staffId)->with('update_error', 'Failed Setup Company Information');
     }
 }

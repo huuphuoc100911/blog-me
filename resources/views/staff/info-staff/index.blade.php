@@ -9,7 +9,6 @@
         .category-image {
             width: 200px;
             height: 200px;
-            ;
         }
     </style>
 @endpush
@@ -122,28 +121,29 @@
     <!-- / Content -->
 @endsection
 @push('scripts')
-<script type="text/javascript">
-    $(function(){
-        $(".upload-image").change(showPreviewImage);
-    })
+    <script type="text/javascript">
+        $(function() {
+            $(".upload-image").change(showPreviewImage);
+        })
 
-    function showPreviewImage(e) {
-        var $input = $(this);
-        var inputFiles = this.files;
-        if (inputFiles == undefined || inputFiles.length == 0) return;
-        var inputFile = inputFiles[0];
-        console.log(inputFile);
+        function showPreviewImage(e) {
+            $('.image-upload').html('');
+            var $input = $(this);
+            var inputFiles = this.files;
+            if (inputFiles == undefined || inputFiles.length == 0) return;
+            var inputFile = inputFiles[0];
+            console.log(inputFile);
 
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            let base64data = event.target.result;
-            let html_append = `<img src="${base64data}" class="category-image m-3" />`;
-            $('.image-upload').append(html_append);
-        };
-        reader.onerror = function(event) {
-            alert("I AM ERROR: " + event.target.error.code);
-        };
-        reader.readAsDataURL(inputFile);
-    }
-</script>
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                let base64data = event.target.result;
+                let html_append = `<img src="${base64data}" class="category-image m-3" />`;
+                $('.image-upload').append(html_append);
+            };
+            reader.onerror = function(event) {
+                alert("I AM ERROR: " + event.target.error.code);
+            };
+            reader.readAsDataURL(inputFile);
+        }
+    </script>
 @endpush
