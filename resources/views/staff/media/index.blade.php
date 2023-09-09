@@ -72,13 +72,14 @@
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-danger">{{ $media->title }}</h4>
+                                    <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
                                         {{ Str::limit($media->description, 720, '...') }}
                                     </p>
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->media->name }}</small>
+                                        </small>
                                     </p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('staff.media.edit', $media->id) }}"
@@ -99,19 +100,19 @@
                             <div class="card mb-5">
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-success">{{ $media->title }}</h4>
+                                    <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
                                         {{ Str::limit($media->description, 720, '...') }}
                                     </p>
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->media->name }}</small>
+                                        </small>
                                     </p>
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="d-flex justify-content-end pb-3">
-                                    <a href="{{ route('staff.media.edit', $media->id) }}"
-                                        class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('staff.media.edit', $media->id) }}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Do you want to delete it?')">

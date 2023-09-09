@@ -16,12 +16,11 @@ class MediaService extends BaseService
         $this->model = $model;
     }
 
-    public function getListMedia($staffId, $filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
+    public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
-        $limit = $limit ?? config('common.default_per_page');
+        // $limit = $limit ?? config('common.default_per_page');
 
         $query = $this->model
-            ->where('staff_id', $staffId)
             ->whereNull('deleted_at')
             ->orderByDesc('priority');
 
@@ -40,49 +39,52 @@ class MediaService extends BaseService
         return $this->model->findOrFail($id);
     }
 
-    public function createCategory($inputs)
+    public function mediaCreate($inputs)
     {
-        $adminId = auth('admin')->user()->id;
-        $path = Storage::put('admin/category', $inputs['url_image']);
-        $categoryHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $path = Storage::put('admin/media', $inputs['url_image']);
+        $mediaHasMaxPriority = $this->model->orderByDesc('priority')->first();
 
         $data = [
-            'admin_id' => $adminId,
+            'staff_id' => 11111111,
+            'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
             'description' => $inputs['description'],
             'url_image' => $path,
-            'priority' => $categoryHasMaxPriority ? $categoryHasMaxPriority->priority + 1 : 1,
+            'priority' => $mediaHasMaxPriority ? $mediaHasMaxPriority->priority + 1 : 1,
             'is_active' => $inputs['is_active'],
         ];
 
         return $this->model->create($data);
     }
 
-    public function updateCategory($inputs, $category)
+    public function mediaUpdate($inputs, $mediaId)
     {
-        $adminId = auth('admin')->user()->id;
+        $media = Media::whereId($mediaId)->first();
 
         $data = [
-            'admin_id' => $adminId,
+            'staff_id' => 11111111,
+            'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
             'description' => $inputs['description'],
             'is_active' => $inputs['is_active'],
         ];
 
         if (isset($inputs['url_image'])) {
-            $path = Storage::put('admin/category', $inputs['url_image']);
+            $path = Storage::put('admin/media', $inputs['url_image']);
             $data['url_image'] = $path;
-            Storage::delete($category->url_image);
+            Storage::delete($media->url_image);
         }
 
-        return $category->update($data);
+        return $media->update($data);
     }
 
-    public function deleteCategory($category)
+    public function deleteMedia($mediaId)
     {
-        Storage::delete($category->url_image);
+        $media = Media::whereId($mediaId)->first();
 
-        return $category->update([
+        Storage::delete($media->url_image);
+
+        return $media->update([
             'deleted_at' => Carbon::now()
         ]);
     }

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
-use App\Models\Media;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\MediaService;
-use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {

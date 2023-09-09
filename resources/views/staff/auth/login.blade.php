@@ -31,7 +31,6 @@
                                     'class' => 'needs-validation',
                                 ]) !!}
                                 <div class="form-group">
-                                    <label for="email">Email</label>
                                     {{ Form::label('email', 'Email', ['class' => 'form-label']) }}
                                     {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) }}
                                     @error('email')
@@ -41,7 +40,6 @@
 
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">Password</label>
                                         {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
                                         <div class="float-right">
                                             <a href="{{ route('staff.forgot-password') }}" class="text-small">

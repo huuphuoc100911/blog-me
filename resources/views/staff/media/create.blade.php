@@ -5,6 +5,11 @@
         .input-width-50 {
             width: 50%;
         }
+
+        .add-image {
+            width: 200px;
+            height: 200px;
+        }
     </style>
 @endpush
 @section('content')
@@ -45,7 +50,8 @@
                         </div>
                         <div class="mb-3">
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your media name']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your media name']) }}
+                            <div class="image-upload"></div>
                             @error('url_image')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -79,3 +85,29 @@
     </div>
     <!-- / Content -->
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            $(".upload-image").change(showPreviewImage);
+        })
+
+        function showPreviewImage(e) {
+            $('.image-upload').html('');
+            var $input = $(this);
+            var inputFiles = this.files;
+            if (inputFiles == undefined || inputFiles.length == 0) return;
+            var inputFile = inputFiles[0];
+
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                let base64data = event.target.result;
+                let html_append = `<img src="${base64data}" class="add-image my-3" />`;
+                $('.image-upload').append(html_append);
+            };
+            reader.onerror = function(event) {
+                alert("I AM ERROR: " + event.target.error.code);
+            };
+            reader.readAsDataURL(inputFile);
+        }
+    </script>
+@endpush

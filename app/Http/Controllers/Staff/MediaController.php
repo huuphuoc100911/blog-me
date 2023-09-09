@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MediaRequest;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
-use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
@@ -16,17 +16,11 @@ class MediaController extends Controller
     }
     public function index()
     {
-        $staffId = auth('staff')->user()->id;
-        $medias = $this->mediaService->getListMedia($staffId);
+        $medias = $this->mediaService->getListMedia();
 
         return view('staff.media.index', compact('medias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = $this->categoryService->getListCategoryPluck();
@@ -34,15 +28,13 @@ class MediaController extends Controller
         return view('staff.media.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(MediaRequest $request)
     {
-        
+        if ($this->mediaService->mediaCreate($request->all())) {
+            return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
+        }
+
+        return redirect()->back()->with('create_fail',  __('messages.create_success'));
     }
 
     /**
@@ -64,7 +56,10 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $media = $this->mediaService->getMedia($id);
+        $categories = $this->categoryService->getListCategoryPluck();
+
+        return view("staff.media.edit", compact('media', 'categories'));
     }
 
     /**
@@ -74,9 +69,13 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MediaRequest $request, $mediaId)
     {
-        //
+        if ($this->mediaService->mediaUpdate($request->all(), $mediaId)) {
+            return redirect()->route('staff.media.index')->with('update_success',  __('messages.update_success'));
+        }
+
+        return redirect()->back()->with('update_fail',  __('messages.update_fail'));
     }
 
     /**
@@ -85,8 +84,12 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($mediaId)
     {
-        //
+        if ($this->mediaService->deleteMedia($mediaId)) {
+            return redirect()->back()->with('delete_success',  __('messages.delete_success'));
+        }
+
+        return redirect()->back()->with('delete_fail',  __('messages.delete_fail'));
     }
 }
