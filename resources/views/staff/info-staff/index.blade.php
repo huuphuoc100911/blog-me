@@ -6,7 +6,7 @@
             width: 50%;
         }
 
-        .category-image {
+        .add-image {
             width: 200px;
             height: 200px;
         }
@@ -62,7 +62,7 @@
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
                             <br />
                             @if ($infoStaff)
-                                <img src="{{ $infoStaff->image_url }}" class="category-image m-3" />
+                                <img src="{{ $infoStaff->image_url }}" class="add-image my-3" />
                             @endif
                             {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your name']) }}
                             <div class="image-upload"></div>
@@ -137,7 +137,7 @@
             var reader = new FileReader();
             reader.onload = function(event) {
                 let base64data = event.target.result;
-                let html_append = `<img src="${base64data}" class="category-image m-3" />`;
+                let html_append = `<img src="${base64data}" class="add-image my-3" />`;
                 $('.image-upload').append(html_append);
             };
             reader.onerror = function(event) {

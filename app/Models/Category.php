@@ -29,4 +29,9 @@ class Category extends Model
     {
         return $this->hasOne(Admin::class, 'id', 'admin_id');
     }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class, 'category_id', 'id');
+    }
 }

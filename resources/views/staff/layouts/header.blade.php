@@ -166,12 +166,6 @@
                 <div data-i18n="Analytics">Media</div>
               </a>
             </li>
-            <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
-              <a href="{{ route('admin.user.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">User</div>
-              </a>
-            </li>
           </ul>
         </aside>
         <!-- / Menu -->

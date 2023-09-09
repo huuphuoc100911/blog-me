@@ -6,7 +6,7 @@
             width: 50%;
         }
 
-        .category-image {
+        .add-image {
             width: 200px;
             height: 200px;
             ;
@@ -47,7 +47,7 @@
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
                             <br />
                             @if ($category->url_image)
-                                <img src="{{ $category->image_url }}" class="category-image m-3" />
+                                <img src="{{ $category->image_url }}" class="add-image my-3" />
                             @endif
                             {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your category name']) }}
                         </div>

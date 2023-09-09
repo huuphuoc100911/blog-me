@@ -6,7 +6,7 @@
             width: 50%;
         }
 
-        .category-image {
+        .add-image {
             width: 200px;
             height: 200px;
             ;
@@ -47,9 +47,10 @@
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
                             <br />
                             @if ($category->url_image)
-                                <img src="{{ $category->image_url }}" class="category-image m-3" />
+                                <img src="{{ $category->image_url }}" class="add-image my-3" />
                             @endif
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your category name']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your category name']) }}
+                            <div class="image-upload"></div>
                         </div>
                         <div class="mb-3">
                             {{ Form::label('description', 'Description', ['class' => 'form-label']) }}
@@ -79,3 +80,30 @@
     </div>
     <!-- / Content -->
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            $(".upload-image").change(showPreviewImage);
+        })
+
+        function showPreviewImage(e) {
+            $('.image-upload').html('');
+            var $input = $(this);
+            var inputFiles = this.files;
+            if (inputFiles == undefined || inputFiles.length == 0) return;
+            var inputFile = inputFiles[0];
+            console.log(inputFile);
+
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                let base64data = event.target.result;
+                let html_append = `<img src="${base64data}" class="add-image my-3" />`;
+                $('.image-upload').append(html_append);
+            };
+            reader.onerror = function(event) {
+                alert("I AM ERROR: " + event.target.error.code);
+            };
+            reader.readAsDataURL(inputFile);
+        }
+    </script>
+@endpush

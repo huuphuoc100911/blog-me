@@ -31,6 +31,7 @@ Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('category', 'Admin\CategoryController');
+    Route::resource('media', 'Admin\MediaController');
     Route::resource('user', 'Admin\UserController');
     Route::resource('info-company', 'Admin\InfoCompanyController');
     Route::get('change-status-staff', [UserController::class, 'changeStatusStaff'])->name('staff.change-status-staff');
