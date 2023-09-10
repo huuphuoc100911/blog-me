@@ -64,10 +64,10 @@
             @endif
 
             <!-- Examples -->
-            <div class="row mb-5">
+            <div class="row mb-5" id="sortable">
                 @forelse ($medias as $key => $media)
                     @if ($key % 2 == 0)
-                        <div class="col-md-6 col-lg-4 mb-5 media-item">
+                        <div class="col-md-6 col-lg-4 mb-5 media-item" id="sort-{{ $media->id }}">
                             <div class="card h-100">
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-md-6 col-xl-4">
+                        <div class="col-md-6 col-xl-4" id="sort-{{ $media->id }}">
                             <div class="card mb-5">
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-success">{{ $media->title }}
@@ -147,3 +147,27 @@
         </div>
         <!-- / Content -->
     @endsection
+    @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#sortable').sortable({
+                    update: function(event, ui) {
+                        var data = $(this).sortable("serialize");
+                        console.log(data);
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('admin.media.sort') }}",
+                            data: data,
+                            type: 'POST',
+                            success: function(response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    @endpush

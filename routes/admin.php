@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::get('forgot-password', [LoginController::class, 'forgotPassword'])->name(
 Route::post('forgot-password', [ResetPasswordController::class, 'sendMail'])->name('send-mail');
 Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
 Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])->name('change-password');
+Route::post('media/sort', [MediaController::class, 'sortMedia'])->name('media.sort');
 
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

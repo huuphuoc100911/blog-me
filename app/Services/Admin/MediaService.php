@@ -5,6 +5,9 @@ namespace App\Services\Admin;
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class MediaService extends BaseService
@@ -104,5 +107,32 @@ class MediaService extends BaseService
         return $media->update([
             'deleted_at' => Carbon::now()
         ]);
+    }
+
+    public function sortMedia($sortData)
+    {
+        DB::beginTransaction();
+
+        try {
+            $i = count($sortData['sort']);
+
+            foreach ($sortData['sort'] as $value) {
+                $mediaSort = $this->model->whereId($value)->first();
+                $mediaSort->update([
+                    'priority' => $i
+                ]);
+
+                $i--;
+            }
+
+            DB::commit();
+
+            return true;
+        } catch (Exception $e) {
+            Log::error($e);
+            DB::rollBack();
+
+            return false;
+        }
     }
 }

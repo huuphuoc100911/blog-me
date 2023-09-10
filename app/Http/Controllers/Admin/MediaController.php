@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\MediaService;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class MediaController extends Controller
 {
@@ -92,5 +95,16 @@ class MediaController extends Controller
         }
 
         return redirect()->back()->with('delete_fail',  __('messages.delete_fail'));
+    }
+
+    public function sortMedia(Request $request)
+    {
+        if ($this->mediaService->sortMedia($request->all())) {
+            return response()->apiSuccess([
+                'code' => Response::HTTP_OK,
+                'message' => __('messages.edit_success'),
+                'status' => true,
+            ]);
+        }
     }
 }
