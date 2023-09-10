@@ -27,4 +27,8 @@ class InfoStaff extends Model
         return $this->url_image ? Storage::url($this->url_image) : '';
     }
 
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class, 'staff_id');
+    }
 }

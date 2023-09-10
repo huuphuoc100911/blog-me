@@ -43,7 +43,8 @@ class InfoStaffService extends BaseService
             }
         }
 
-        return $this->model->updateOrCreate(['staff_id' => $id],
+        return $this->model->updateOrCreate(
+            ['staff_id' => $id],
             $inputs
         );
     }

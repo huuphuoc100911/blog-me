@@ -159,10 +159,17 @@
                 <div data-i18n="Analytics">Staff Information</div>
               </a>
             </li>
+
+            <li class="menu-item {{ \Request::segment(2) == 'category' ? 'active' : '' }}">
+              <a href="{{ route('staff.category.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
             
             <li class="menu-item {{ \Request::segment(2) == 'media' ? 'active' : '' }}">
               <a href="{{ route('staff.media.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class="menu-icon tf-icons bx bx-image"></i>
                 <div data-i18n="Analytics">Media</div>
               </a>
             </li>

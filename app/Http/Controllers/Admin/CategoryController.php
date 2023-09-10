@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Services\Admin\CategoryService;
+use App\Services\Admin\MediaService;
 
 class CategoryController extends Controller
 {
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryService $categoryService, MediaService $mediaService)
     {
         $this->categoryService = $categoryService;
+        $this->mediaService = $mediaService;
     }
 
     public function index()
@@ -24,6 +26,13 @@ class CategoryController extends Controller
     public function create()
     {
         return view('admin.category.create');
+    }
+
+    public function show($categoryId)
+    {
+        $medias = $this->mediaService->getListMediaCategory($categoryId);
+
+        return view('admin.media.index', compact('medias'));
     }
 
     public function store(CategoryRequest $request)

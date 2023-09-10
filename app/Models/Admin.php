@@ -24,4 +24,9 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function infoCompany()
+    {
+        return $this->hasOne(InfoCompany::class, 'admin_id', 'id');
+    }
 }

@@ -71,7 +71,13 @@
                             <div class="card h-100">
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
-                                    <h4 class="card-title text-danger">{{ $media->title }}</h4>
+                                    <h4 class="card-title text-danger">{{ $media->title }}
+                                        @if ($media->is_active === 2)
+                                            <span class="badge bg-success" style="float: right">Active</span>
+                                        @else
+                                            <span class="badge bg-danger" style="float: right">Inactive</span>
+                                        @endif
+                                    </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
                                         {{ Str::limit($media->description, 720, '...') }}
@@ -99,7 +105,13 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="card mb-5">
                                 <div class="card-body cat-info">
-                                    <h4 class="card-title text-success">{{ $media->title }}</h4>
+                                    <h4 class="card-title text-success">{{ $media->title }}
+                                        @if ($media->is_active === 2)
+                                            <span class="badge bg-success" style="float: right">Active</span>
+                                        @else
+                                            <span class="badge bg-danger" style="float: right">Inactive</span>
+                                        @endif
+                                    </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
                                         {{ Str::limit($media->description, 720, '...') }}

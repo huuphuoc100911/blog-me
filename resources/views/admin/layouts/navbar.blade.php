@@ -35,18 +35,29 @@
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                 data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="/assets/admin/assets/img/avatars/1.png" alt
-                                        class="w-px-40 h-auto rounded-circle" />
+                                    @if (auth('admin')->user()->infoCompany)
+                                        <img src="{{ auth('admin')->user()->infoCompany->imageUrl }}" alt
+                                            class="w-px-40 h-auto rounded-circle" />
+                                    @else
+                                        <img src="/assets/admin/assets/img/avatars/1.png" alt
+                                            class="w-px-40 h-auto rounded-circle" />
+                                    @endif
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.info-company.edit', auth('admin')->user()->id) }}">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="/assets/admin/assets/img/avatars/1.png" alt
-                                                        class="w-px-40 h-auto rounded-circle" />
+                                                    @if (auth('admin')->user()->infoCompany)
+                                                        <img src="{{ auth('admin')->user()->infoCompany->imageUrl }}"
+                                                            alt class="w-px-40 h-auto rounded-circle" />
+                                                    @else
+                                                        <img src="/assets/admin/assets/img/avatars/1.png" alt
+                                                            class="w-px-40 h-auto rounded-circle" />
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
@@ -61,7 +72,8 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.info-company.edit', auth('admin')->user()->id) }}">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
                                     </a>

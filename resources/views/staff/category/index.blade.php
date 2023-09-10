@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('staff.layouts.layout')
 @section('page-title', 'Category')
 @push('styles')
     <style>
@@ -35,8 +35,6 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Category</h4>
-                <a href="{{ route('admin.category.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Category</button></a>
             </div>
 
             @if (session('create_success'))
@@ -80,23 +78,10 @@
                                         by {{ $category->admin->name }}</small>
                                 </p>
                                 <div class="row">
-                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9"></div>
                                     <div class="col-sm-3">
-                                        <a href="{{ route('admin.category.show', $category->id) }}"
+                                        <a href="{{ route('staff.category.show', $category->id) }}"
                                             class="btn btn-success">Show</a>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <a href="{{ route('admin.category.edit', $category->id) }}"
-                                            class="btn btn-primary">Edit</a>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
-                                            style="display: inline-block;"
-                                            onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
-                                            @method('delete')
-                                            @csrf
-                                        </form>
                                     </div>
                                 </div>
                             </div>

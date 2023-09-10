@@ -34,6 +34,25 @@ class MediaService extends BaseService
         );
     }
 
+    public function getListMediaCategory($categoryId, $filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
+    {
+        $limit = $limit ?? config('common.default_per_page');
+
+        $query = $this->model
+            ->where('category_id', $categoryId)
+            ->whereNull('deleted_at')
+            ->orderByDesc('priority');
+
+        return $this->filterPaginate(
+            $query,
+            $limit,
+            $filters,
+            $sorts,
+            $filterable,
+            $select
+        );
+    }
+
     public function getMedia($id)
     {
         return $this->model->findOrFail($id);
@@ -45,7 +64,6 @@ class MediaService extends BaseService
         $mediaHasMaxPriority = $this->model->orderByDesc('priority')->first();
 
         $data = [
-            'staff_id' => 11111111,
             'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
             'description' => $inputs['description'],
@@ -62,7 +80,6 @@ class MediaService extends BaseService
         $media = Media::whereId($mediaId)->first();
 
         $data = [
-            'staff_id' => 11111111,
             'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
             'description' => $inputs['description'],

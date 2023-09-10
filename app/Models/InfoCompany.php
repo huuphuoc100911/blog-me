@@ -24,4 +24,9 @@ class InfoCompany extends Model
     {
         return $this->url_image ? Storage::url($this->url_image) : '';
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
 }

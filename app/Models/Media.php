@@ -13,7 +13,6 @@ class Media extends Model
     protected $table = 'medias';
 
     protected $fillable = [
-        'staff_id',
         'category_id',
         'type',
         'title',
