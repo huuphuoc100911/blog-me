@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,11 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
+mix.js("resources/js/app.js", "public/js")
+    .vue()
+    .postCss("resources/css/app.css", "public/css", [
         //
     ]);
 
-mix.copyDirectory('resources/assets/admin', 'public/assets/admin');
-mix.copyDirectory('resources/assets/staff', 'public/assets/staff');
-mix.copyDirectory('resources/assets/user', 'public/assets/user');
+mix.copyDirectory("resources/assets/admin", "public/assets/admin");
+mix.copyDirectory("resources/assets/staff", "public/assets/staff");
+mix.copyDirectory("resources/assets/user", "public/assets/user");
+
+mix.js("resources/admin/src/main.js", "public/");

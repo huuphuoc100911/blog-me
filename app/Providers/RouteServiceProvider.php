@@ -34,21 +34,23 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdminRoutes();
 
         $this->mapStaffRoutes();
+
+        $this->mapVueRoutes();
     }
 
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     protected function mapAdminRoutes()
@@ -65,7 +67,15 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('staff')
             ->middleware('web')
             ->as('staff.')
-            ->namespace($this->namespace.'\Staff')
+            ->namespace($this->namespace . '\Staff')
             ->group(base_path('routes/staff.php'));
+    }
+
+    protected function mapVueRoutes()
+    {
+        Route::prefix('vue')
+            ->as('vue.')
+            ->namespace($this->namespace . '\Vue')
+            ->group(base_path('routes/vue.php'));
     }
 }
