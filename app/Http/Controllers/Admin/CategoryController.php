@@ -31,8 +31,9 @@ class CategoryController extends Controller
     public function show($categoryId)
     {
         $medias = $this->mediaService->getListMediaCategory($categoryId);
+        session(['check' => $categoryId]);
 
-        return view('admin.media.index', compact('medias'));
+        return view('admin.category.show', compact('medias'));
     }
 
     public function store(CategoryRequest $request)

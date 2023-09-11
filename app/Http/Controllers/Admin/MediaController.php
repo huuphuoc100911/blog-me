@@ -8,7 +8,6 @@ use App\Services\Admin\CategoryService;
 use App\Services\Admin\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class MediaController extends Controller
 {
@@ -20,6 +19,9 @@ class MediaController extends Controller
 
     public function index()
     {
+        if (session()->has('check')) {
+            session()->pull('check');
+        }
         $medias = $this->mediaService->getListMedia();
 
         return view('admin.media.index', compact('medias'));
@@ -76,7 +78,13 @@ class MediaController extends Controller
     public function update(MediaRequest $request, $mediaId)
     {
         if ($this->mediaService->mediaUpdate($request->all(), $mediaId)) {
-            return redirect()->route('admin.media.index')->with('update_success',  __('messages.update_success'));
+            if (session()->get('check')) {
+                $categoryId = session()->get('check');
+                session()->pull('check');
+                return redirect()->route('admin.category.show', $categoryId)->with('update_success',  __('messages.update_success'));
+            } else {
+                return redirect()->route('admin.media.index')->with('update_success',  __('messages.update_success'));
+            }
         }
 
         return redirect()->back()->with('update_fail',  __('messages.update_fail'));

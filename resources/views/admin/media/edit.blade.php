@@ -80,6 +80,7 @@
                                 'class' => 'form-select form-control input-width-50',
                             ]) !!}
                         </div>
+                        {{ Form::hidden('check', session()->get('check')) }}
                         {{ Form::submit('Edit Media', ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}
                     </div>
