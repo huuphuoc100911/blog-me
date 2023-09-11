@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Services\Admin;
+namespace App\Services\User;
 
 use App\Enums\MediaStatus;
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
-use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class MediaService extends BaseService
@@ -22,10 +19,9 @@ class MediaService extends BaseService
 
     public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
-        $limit = $limit ?? config('common.default_per_page');
-
         $query = $this->model
             ->whereNull('deleted_at')
+            ->where('is_active', MediaStatus::ACTIVE)
             ->orderByDesc('priority');
 
         return $this->filterPaginate(
@@ -108,42 +104,5 @@ class MediaService extends BaseService
         return $media->update([
             'deleted_at' => Carbon::now()
         ]);
-    }
-
-    public function sortMedia($sortData)
-    {
-        DB::beginTransaction();
-
-        try {
-            $i = count($sortData['sort']);
-
-            foreach ($sortData['sort'] as $value) {
-                $mediaSort = $this->model->whereId($value)->first();
-                $mediaSort->update([
-                    'priority' => $i
-                ]);
-
-                $i--;
-            }
-
-            DB::commit();
-
-            return true;
-        } catch (Exception $e) {
-            Log::error($e);
-            DB::rollBack();
-
-            return false;
-        }
-    }
-
-    public function changeStatusMedia($mediaId)
-    {
-        $media = $this->model->findOrFail($mediaId);
-
-        $media->is_active = $media->is_active === MediaStatus::ACTIVE ? MediaStatus::INACTIVE : MediaStatus::ACTIVE;
-        $media->save();
-
-        return $this->model->findOrFail($mediaId);
     }
 }

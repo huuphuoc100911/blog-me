@@ -3,18 +3,33 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Services\User\CategoryService;
+use App\Services\User\MediaService;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function __construct(MediaService $mediaService, CategoryService $categoryService, UserService $userService)
+    {
+        $this->mediaService = $mediaService;
+        $this->categoryService = $categoryService;
+        $this->userService = $userService;
+    }
+
     public function index()
     {
-        return view('user.index');
+        $medias = $this->mediaService->getListMedia();
+        $categories = $this->categoryService->getListCategory();
+
+        return view('user.index', compact('medias', 'categories'));
     }
 
     public function about()
     {
-        return view('user.about');
+        $staffs = $this->userService->getListStaff();
+
+        return view('user.about', compact('staffs'));
     }
 
     public function blog()
@@ -39,11 +54,16 @@ class HomeController extends Controller
 
     public function portfolio()
     {
-        return view("user.portfolio");
+        $medias = $this->mediaService->getListMedia();
+        $categories = $this->categoryService->getListCategory();
+
+        return view("user.portfolio", compact("medias", "categories"));
     }
 
     public function contact()
     {
-        return view('user.contact');
+        $infoCompany = $this->userService->getInfoCompany();
+
+        return view('user.contact', compact("infoCompany"));
     }
 }

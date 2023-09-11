@@ -45,7 +45,8 @@
                                     <td class="text-text-info">
                                         Staff
                                     </td>
-                                    <td class="user-status" onclick="changeStatusStaff({{ $staff->id }})" id="status-staff-{{ $staff->id }}">
+                                    <td class="user-status" onclick="changeStatusStaff({{ $staff->id }})"
+                                        id="status-staff-{{ $staff->id }}">
                                         @if ($staff->is_active == 2)
                                             <span class="badge bg-label-success me-1">Active</span>
                                         @else
@@ -81,7 +82,6 @@
     @push('scripts')
         <script>
             function changeStatusStaff(staffId) {
-                console.log(staffId);
                 $.ajax({
                     url: "{{ route('admin.staff.change-status-staff') }}",
                     method: "GET",

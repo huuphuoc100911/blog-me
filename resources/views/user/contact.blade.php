@@ -27,16 +27,15 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="contact-text">
-                        <h3>Get in touch</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
+                        <h3>Introduce</h3>
+                        <p>{{ $infoCompany->description }}</p>
                         <div class="ct-item">
                             <div class="ct-icon">
                                 <i class="fa fa-map-marker"></i>
                             </div>
                             <div class="ct-text">
                                 <h5>Address</h5>
-                                <p>333 Middle Winchendon Rd, Rindge, NH 03461</p>
+                                <p>{{ $infoCompany->address }}</p>
                             </div>
                         </div>
                         <div class="ct-item">
@@ -46,8 +45,7 @@
                             <div class="ct-text">
                                 <h5>Phone</h5>
                                 <ul>
-                                    <li>125-711-811</li>
-                                    <li>125-668-886</li>
+                                    <li>{{ $infoCompany->phone }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -57,7 +55,7 @@
                             </div>
                             <div class="ct-text">
                                 <h5>Email</h5>
-                                <p>Support.photography@ gmail.com</p>
+                                <p>{{ $infoCompany->email }}</p>
                             </div>
                         </div>
                     </div>

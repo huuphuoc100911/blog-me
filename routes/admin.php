@@ -37,4 +37,5 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::resource('user', 'Admin\UserController');
     Route::resource('info-company', 'Admin\InfoCompanyController');
     Route::get('change-status-staff', [UserController::class, 'changeStatusStaff'])->name('staff.change-status-staff');
+    Route::get('change-status-media', [MediaController::class, 'changeStatusMedia'])->name('media.change-status-media');
 });

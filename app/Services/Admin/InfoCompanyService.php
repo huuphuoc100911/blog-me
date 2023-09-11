@@ -14,7 +14,7 @@ class InfoCompanyService extends BaseService
 
     public function getInfoCompany($id)
     {
-        return $this->model->where('id', $id)->orderByDesc('id')->first() ?? null;
+        return $this->model->where('id', $id)->first() ?? null;
     }
 
     public function settingInfoCompany($inputs, $id)
@@ -35,7 +35,8 @@ class InfoCompanyService extends BaseService
             }
         }
 
-        return $this->model->create(
+        return $this->model->updateOrCreate(
+            ['id' => 1],
             $inputs
         );
     }

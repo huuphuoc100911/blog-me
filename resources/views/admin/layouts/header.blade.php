@@ -156,7 +156,7 @@
             </li>
 
             <li class="menu-item {{ \Request::segment(2) == 'info-company' ? 'active' : '' }}">
-              <a href="{{ route('admin.info-company.edit', auth('admin')->user()->id) }}" class="menu-link">
+              <a href="{{ route('admin.info-company.edit', 1) }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-buildings"></i>
                 <div data-i18n="Analytics">Company Information</div>
               </a>

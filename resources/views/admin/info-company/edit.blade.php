@@ -73,6 +73,15 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            {{ Form::label('address', 'Address', ['class' => 'form-label']) }}
+                            {{ Form::text('address', $infoCompany ? $infoCompany->address : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company address']) }}
+                            @error('address')
+                                <span class="error text-danger" role="alert">
+                                    <p>{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             {{ Form::label('description', 'Description', ['class' => 'form-label']) }}
                             {!! Form::textarea('description', $infoCompany ? $infoCompany->description : null, [
                                 'class' => 'form-control input-width-50',

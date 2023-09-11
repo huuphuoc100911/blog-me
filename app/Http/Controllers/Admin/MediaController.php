@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\MediaStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class MediaController extends Controller
 {
@@ -112,6 +114,21 @@ class MediaController extends Controller
                 'code' => Response::HTTP_OK,
                 'message' => __('messages.edit_success'),
                 'status' => true,
+            ]);
+        }
+    }
+
+    public function changeStatusMedia(Request $request)
+    {
+        $media = $this->mediaService->changeStatusMedia($request->mediaId);
+
+        if ($media->is_active === MediaStatus::ACTIVE) {
+            return response()->json([
+                'status' => '<span class="badge bg-success">Active</span>'
+            ]);
+        } else {
+            return response()->json([
+                'status' => '<span class="badge bg-danger">Inactive</span>'
             ]);
         }
     }

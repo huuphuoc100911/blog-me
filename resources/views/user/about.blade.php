@@ -106,66 +106,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-item">
-                        <img src="/assets/user/img/team/team-1.jpg" alt="">
-                        <div class="ti-text">
-                            <h5>Alan walker</h5>
-                            <span>Photographer</span>
-                            <div class="ti-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                @foreach ($staffs as $staff)
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="team-item">
+                            @if ($staff->infoStaff->imageUrl)
+                                <img src="{{ $staff->infoStaff->imageUrl }}" alt="">
+                            @else
+                                <img src="/assets/admin/assets/img/avatars/1.png" alt="">
+                            @endif
+                            <div class="ti-text">
+                                <h5>{{ $staff->name }}</h5>
+                                <span>Photographer</span>
+                                <div class="ti-social">
+                                    <a href="{{ $staff->infoStaff ? $staff->infoStaff->link_facebook : '' }}"
+                                        target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-item">
-                        <img src="/assets/user/img/team/team-2.jpg" alt="">
-                        <div class="ti-text">
-                            <h5>Ava Max</h5>
-                            <span>Director</span>
-                            <div class="ti-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-item">
-                        <img src="/assets/user/img/team/team-3.jpg" alt="">
-                        <div class="ti-text">
-                            <h5>Anne-Marie</h5>
-                            <span>Manager</span>
-                            <div class="ti-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-item">
-                        <img src="/assets/user/img/team/team-4.jpg" alt="">
-                        <div class="ti-text">
-                            <h5>Billie Eilish</h5>
-                            <span>Assistant</span>
-                            <div class="ti-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

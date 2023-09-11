@@ -26,6 +26,7 @@ class InfoCompanyRequest extends FormRequest
         $validated = [
             'name' => 'required',
             'description' => 'required',
+            'address' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'link_facebook' => 'required',
@@ -44,6 +45,7 @@ class InfoCompanyRequest extends FormRequest
             'name' => 'name',
             'url_image' => 'url_image',
             'description' => 'description',
+            'address' => 'description',
             'email' => 'email',
             'phone' => 'phone',
             'link_facebook' => 'link_facebook',

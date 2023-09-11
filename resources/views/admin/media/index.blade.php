@@ -72,11 +72,14 @@
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-danger">{{ $media->title }}
-                                        @if ($media->is_active === 2)
-                                            <span class="badge bg-success" style="float: right">Active</span>
-                                        @else
-                                            <span class="badge bg-danger" style="float: right">Inactive</span>
-                                        @endif
+                                        <span onclick="changeStatusMedia({{ $media->id }})"
+                                            id="status-media--{{ $media->id }}" style="float: right">
+                                            @if ($media->is_active === 2)
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </span>
                                     </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
@@ -106,11 +109,14 @@
                             <div class="card mb-5">
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-success">{{ $media->title }}
-                                        @if ($media->is_active === 2)
-                                            <span class="badge bg-success" style="float: right">Active</span>
-                                        @else
-                                            <span class="badge bg-danger" style="float: right">Inactive</span>
-                                        @endif
+                                        <span onclick="changeStatusMedia({{ $media->id }})"
+                                            id="status-media--{{ $media->id }}" style="float: right">
+                                            @if ($media->is_active === 2)
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </span>
                                     </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
@@ -169,5 +175,19 @@
                     }
                 });
             });
+
+            function changeStatusMedia(mediaId) {
+                $.ajax({
+                    url: "{{ route('admin.media.change-status-media') }}",
+                    method: "GET",
+                    data: {
+                        mediaId: mediaId
+                    },
+                    success: function(data) {
+                        console.log(data.status);
+                        $("#status-media--" + mediaId).html(data.status)
+                    }
+                });
+            }
         </script>
     @endpush

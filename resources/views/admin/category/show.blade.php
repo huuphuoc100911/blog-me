@@ -72,11 +72,14 @@
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-danger">{{ $media->title }}
-                                        @if ($media->is_active === 2)
-                                            <span class="badge bg-success" style="float: right">Active</span>
-                                        @else
-                                            <span class="badge bg-danger" style="float: right">Inactive</span>
-                                        @endif
+                                        <span onclick="changeStatusMedia({{ $media->id }})"
+                                            id="status-media--{{ $media->id }}" style="float: right">
+                                            @if ($media->is_active === 2)
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </span>
                                     </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
@@ -88,7 +91,7 @@
                                         </small>
                                     </p>
                                     <div class="d-flex justify-content-end">
-                                        <a href="{{ route('admin.media.edit', $media->id) }}"
+                                        <a href="{{ route('admin.media.edit', $media->id) }}" style="height: 41px"
                                             class="btn btn-primary">Edit</a>
                                         <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                             style="display: inline-block;"
@@ -106,11 +109,14 @@
                             <div class="card mb-5">
                                 <div class="card-body cat-info">
                                     <h4 class="card-title text-success">{{ $media->title }}
-                                        @if ($media->is_active === 2)
-                                            <span class="badge bg-success" style="float: right">Active</span>
-                                        @else
-                                            <span class="badge bg-danger" style="float: right">Inactive</span>
-                                        @endif
+                                        <span onclick="changeStatusMedia({{ $media->id }})"
+                                            id="status-media--{{ $media->id }}" style="float: right">
+                                            @if ($media->is_active === 2)
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </span>
                                     </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
@@ -123,8 +129,9 @@
                                     </p>
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
-                                <div class="d-flex justify-content-end pb-3">
-                                    <a href="{{ route('admin.media.edit', $media->id) }}" class="btn btn-primary">Edit</a>
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('admin.media.edit', $media->id) }}" style="height: 41px"
+                                        class="btn btn-primary">Edit</a>
                                     <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Do you want to delete it?')">
@@ -147,3 +154,18 @@
         </div>
         <!-- / Content -->
     @endsection
+    <script>
+        function changeStatusMedia(mediaId) {
+            $.ajax({
+                url: "{{ route('admin.media.change-status-media') }}",
+                method: "GET",
+                data: {
+                    mediaId: mediaId
+                },
+                success: function(data) {
+                    console.log(data.status);
+                    $("#status-media--" + mediaId).html(data.status)
+                }
+            });
+        }
+    </script>

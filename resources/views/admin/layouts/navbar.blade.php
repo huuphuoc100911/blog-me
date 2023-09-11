@@ -46,8 +46,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('admin.info-company.edit', auth('admin')->user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('admin.info-company.edit', 1) }}">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
@@ -72,8 +71,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('admin.info-company.edit', auth('admin')->user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('admin.info-company.edit', 1) }}">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
                                     </a>

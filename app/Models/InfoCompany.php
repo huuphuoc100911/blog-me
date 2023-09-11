@@ -15,6 +15,7 @@ class InfoCompany extends Model
         'name',
         'url_image',
         'description',
+        'address',
         'email',
         'phone',
         'link_facebook',
