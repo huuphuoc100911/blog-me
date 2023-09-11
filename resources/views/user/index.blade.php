@@ -124,7 +124,7 @@
                                 <a href="{{ $media->imageUrl }}" class="pf-icon image-popup"><span
                                         class="icon_plus"></span></a>
                                 <div class="pf-text">
-                                    <h4>COLORS SPEAK</h4>
+                                    <h4>{{ $media->category->title }}</h4>
                                     <span>{{ $media->title }}</span>
                                 </div>
                             </div>
