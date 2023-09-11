@@ -39,7 +39,14 @@ class MediaController extends Controller
     public function store(MediaRequest $request)
     {
         if ($this->mediaService->mediaCreate($request->all())) {
-            return redirect()->route('admin.media.index')->with('create_success', __('messages.create_success'));
+            if (session()->get('check')) {
+                $categoryId = session()->get('check');
+                session()->pull('check');
+
+                return redirect()->route('admin.category.show', $categoryId)->with('update_success',  __('messages.update_success'));
+            } else {
+                return redirect()->route('admin.media.index')->with('update_success',  __('messages.update_success'));
+            }
         }
 
         return redirect()->back()->with('create_fail',  __('messages.create_success'));
