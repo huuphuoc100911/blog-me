@@ -21,4 +21,4 @@ mix.copyDirectory("resources/assets/admin", "public/assets/admin");
 mix.copyDirectory("resources/assets/staff", "public/assets/staff");
 mix.copyDirectory("resources/assets/user", "public/assets/user");
 
-mix.js("resources/admin/src/main.js", "public/");
+mix.js("resources/vue/src/main.js", "public/");

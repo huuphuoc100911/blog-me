@@ -73,13 +73,11 @@
                 </div>
             </div>
         </section>
-
-        <router-link to="/vue/school">School</router-link>
     </div>
 </template>
 <script>
 export default {
-    name: "CompanyIndex"
+    name: "ContactIndex"
 }
 </script>
 
