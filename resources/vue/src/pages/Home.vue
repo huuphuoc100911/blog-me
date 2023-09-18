@@ -171,7 +171,16 @@
             <div class="row">
                 <div class="col-lg-12 p-0">
                     <div class="portfolio-filter">
-                        <div class="pf-item set-bg fashion" data-setbg="/assets/user/img/portfolio/pf-1.jpg">
+                        <!-- <div v-for="(media, index) in listMedia.data" :key="index" class="pf-item set-bg fashion"
+                            :style="{ backgroundImage: 'url(/assets/user/img/portfolio/pf-1.jpg)' }">
+                            <a :href="media.url_image" class="pf-icon image-popup"><span class="icon_plus"></span></a>
+                            <div class="pf-text">
+                                <h4>{{ media.title }}</h4>
+                                <span>{{ media.title }}</span>
+                            </div>
+                        </div> -->
+                        <div class="pf-item set-bg fashion"
+                            :style="{ backgroundImage: 'url(/assets/user/img/portfolio/pf-1.jpg)' }">
                             <a href="/assets/user/img/portfolio/pf-1.jpg" class="pf-icon image-popup"><span
                                     class="icon_plus"></span></a>
                             <div class="pf-text">
@@ -272,8 +281,20 @@
     <!-- Portfolio Section End -->
 </template>
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
-    name: "Home"
+    name: "Home",
+    setup() {
+        const store = useStore();
+        store.dispatch("media/getListMediaAction");
+        const listMedia = computed(() => store.state.media.listMedia);
+
+        return {
+            listMedia
+        }
+    }
 }
 </script>
 
