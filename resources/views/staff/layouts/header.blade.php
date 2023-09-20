@@ -173,6 +173,12 @@
                 <div data-i18n="Analytics">Media</div>
               </a>
             </li>
+            <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
+              <a href="{{ route('staff.blog.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-image"></i>
+                <div data-i18n="Analytics">Blog</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->

@@ -31,4 +31,5 @@ Route::group(['middleware' =>  ['auth.staff']], function () {
     Route::resource('category', 'CategoryController');
     Route::resource('info-staff', 'InfoStaffController');
     Route::resource('media', 'MediaController');
+    Route::resource('blog', 'BlogController');
 });
