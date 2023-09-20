@@ -34,4 +34,9 @@ class Category extends Model
     {
         return $this->hasMany(Media::class, 'category_id', 'id');
     }
+
+    public function blog()
+    {
+        return $this->hasMany(Blog::class, 'category_id', 'id');
+    }
 }

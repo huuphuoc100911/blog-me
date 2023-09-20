@@ -75,6 +75,7 @@
                             {!! Form::textarea('content', null, [
                                 'class' => 'form-control input-width-50',
                                 'placeholder' => 'Enter your content',
+                                'id' => 'content',
                             ]) !!}
                             @error('content')
                                 <span class="error text-danger" role="alert">
@@ -98,10 +99,14 @@
     <!-- / Content -->
 @endsection
 @push('scripts')
+    <script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
     <script type="text/javascript">
         $(function() {
             $(".upload-image").change(showPreviewImage);
         })
+
+        CKEDITOR.replace('content');
 
         function showPreviewImage(e) {
             $('.image-upload').html('');

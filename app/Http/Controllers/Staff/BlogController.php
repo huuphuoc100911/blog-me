@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Staff\BlogRequets;
+use App\Models\Blog;
 use App\Services\Admin\CategoryService;
+use App\Services\Staff\BlogService;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function __construct(CategoryService $categoryService)
+    public function __construct(BlogService $blogService, CategoryService $categoryService)
     {
         $this->categoryService = $categoryService;
+        $this->blogService = $blogService;
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +23,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view("staff.blog.index");
+        $blogs = $this->blogService->getListBlogs();
+
+        return view("staff.blog.index", compact('blogs'));
     }
 
     /**
@@ -40,9 +46,13 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequets $request)
     {
-        //
+        if ($this->blogService->blogCreate($request->all())) {
+            return redirect()->route('staff.blog.index')->with('create_success', __('messages.create_success'));
+        }
+
+        return redirect()->back()->with('create_fail',  __('messages.create_success'));
     }
 
     /**
@@ -64,7 +74,10 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = $this->blogService->getBlog($id);
+        $categories = $this->categoryService->getListCategoryPluck();
+
+        return view('staff.blog.edit', compact('blog', 'categories'));
     }
 
     /**
@@ -74,9 +87,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogRequets $request, Blog $blog)
     {
-        //
+        if ($this->blogService->blogUpdate($request->all(), $blog)) {
+            return redirect()->route('staff.blog.index')->with('update_success',  __('messages.update_success'));
+        }
+
+        return redirect()->back()->with('update_fail',  __('messages.update_fail'));
     }
 
     /**
@@ -85,8 +102,12 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Blog $blog)
     {
-        //
+        if ($this->blogService->blogDelete($blog)) {
+            return redirect()->back()->with('delete_success',  __('messages.delete_success'));
+        }
+
+        return redirect()->back()->with('delete_fail',  __('messages.delete_fail'));
     }
 }

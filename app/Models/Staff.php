@@ -45,4 +45,9 @@ class Staff extends Authenticatable
     {
         return $this->hasOne(InfoStaff::class, 'staff_id', 'id');
     }
+
+    public function blog()
+    {
+        return $this->hasMany(Blog::class, 'staff_id', 'id');
+    }
 }
