@@ -91,7 +91,6 @@
             var inputFiles = this.files;
             if (inputFiles == undefined || inputFiles.length == 0) return;
             var inputFile = inputFiles[0];
-            console.log(inputFile);
 
             var reader = new FileReader();
             reader.onload = function(event) {

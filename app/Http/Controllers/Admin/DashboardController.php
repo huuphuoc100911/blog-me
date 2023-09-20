@@ -12,4 +12,9 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard.index');
     }
+
+    public function jquery()
+    {
+        return view('admin.dashboard.jquery');
+    }
 }

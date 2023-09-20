@@ -155,6 +155,13 @@
               </a>
             </li>
 
+            <li class="menu-item {{ \Request::segment(2) == 'jquery' ? 'active' : '' }}">
+              <a href="{{ route('admin.dashboard.jquery') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Test Jquery</div>
+              </a>
+            </li>
+
             <li class="menu-item {{ \Request::segment(2) == 'info-company' ? 'active' : '' }}">
               <a href="{{ route('admin.info-company.edit', 1) }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-buildings"></i>

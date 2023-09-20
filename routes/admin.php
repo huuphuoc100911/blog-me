@@ -32,6 +32,7 @@ Route::post('media/sort', [MediaController::class, 'sortMedia'])->name('media.so
 
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('jquery', [DashboardController::class, 'jquery'])->name('dashboard.jquery');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('media', 'Admin\MediaController');
     Route::resource('user', 'Admin\UserController');
