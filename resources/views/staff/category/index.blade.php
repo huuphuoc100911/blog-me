@@ -64,7 +64,7 @@
             <!-- Examples -->
             <div class="row mb-5">
                 @forelse ($categories as $key => $category)
-                    <div class="col-md-6 col-lg-4 mb-5 category-item">
+                    <div class="col-12 col-md-6 mb-5 category-item">
                         <div class="card h-100">
                             <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
                             <div class="card-body cat-info">

@@ -175,7 +175,7 @@
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
               <a href="{{ route('staff.blog.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-image"></i>
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Analytics">Blog</div>
               </a>
             </li>

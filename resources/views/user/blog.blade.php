@@ -21,123 +21,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-1.jpg" alt="">
+                    @foreach ($blogs as $blog)
+                        <div class="blog-item">
+                            <div class="bi-pic">
+                                <img src="{{ $blog->image_url }}" style="width: 420px; height: 280px" alt="">
+                            </div>
+                            <div class="bi-text">
+                                <div class="label">{{ $blog->category->title }}</div>
+                                <h5>
+                                    <a
+                                        href="{{ route('blog-detail', [create_slug($blog->title), $blog->id]) }}">{{ Str::limit($blog->title, 720, '...') }}</a>
+                                </h5>
+                                <ul>
+                                    <li>by <span>{{ $blog->staff->name }}</span></li>
+                                    <li>{{ \Carbon\Carbon::parse($blog->updated_at)->format('M, d, Y') }}</li>
+                                    <li>20 Comment</li>
+                                </ul>
+                                <p>{{ Str::limit($blog->description, 720, '...') }}</p>
+                            </div>
                         </div>
-                        <div class="bi-text">
-                            <div class="label">Typography</div>
-                            <h5><a href="{{ route('blog-detail') }}">Women were photography pioneers yet gender inequality
-                                    persists
-                                    in the...</a>
-                            </h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <div class="label">Stoties</div>
-                            <h5><a href="./blog-details.html">Photography is more than a casual hobby for Gophers wide
-                                    receiver...</a>
-                            </h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <div class="label">Guides</div>
-                            <h5><a href="./blog-details.html">5 tips for improving low light smartphone photography</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-4.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <div class="label">Stoties</div>
-                            <h5><a href="./blog-details.html">Your Guide to Finding Crazy Instagram Photography Hashtags</a>
-                            </h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-5.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <div class="label">Typography</div>
-                            <h5><a href="./blog-details.html">St. Paul photographer uses 1800s technology to create stunning
-                                    portraits</a>
-                            </h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="/assets/user/img/blog/blog-6.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <div class="label">Guides</div>
-                            <h5><a href="./blog-details.html">Interview With Wedding And Landscape Photographer Zach Nichols
-                                    | SLR
-                                    Lounge...</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
+                        <hr class="pb-5">
+                    @endforeach
                     <div class="blog-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next</a>
+                        {{ $blogs->links('vendor.pagination.custom-pagination-user') }}
                     </div>
                 </div>
                 <div class="col-lg-3">

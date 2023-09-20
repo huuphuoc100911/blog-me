@@ -34,12 +34,17 @@ class HomeController extends Controller
 
     public function blog()
     {
-        return view('user.blog');
+        $blogs = $this->userService->getListBlog();
+
+        return view('user.blog', compact('blogs'));
     }
 
-    public function blogDetail()
+    public function blogDetail($slug, $id)
     {
-        return view('user.blog-detail');
+        $blogs = $this->userService->getBlogOther(array($id));
+        $blogDetail = $this->userService->getBlogDetail($id);
+
+        return view('user.blog-detail', compact('blogDetail', 'blogs'));
     }
 
     public function service()

@@ -89,7 +89,7 @@
                                 'class' => 'form-select form-control input-width-50',
                             ]) !!}
                         </div>
-                        {{ Form::submit('Create Media', ['class' => 'btn btn-info mt-3']) }}
+                        {{ Form::submit('Create Blog', ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}
                     </div>
                 </div>

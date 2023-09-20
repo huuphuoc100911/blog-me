@@ -67,7 +67,7 @@
             <!-- Examples -->
             <div class="row mb-5">
                 @forelse ($blogs as $key => $blog)
-                    <div class="col-md-6 col-lg-4 mb-5 blog-item">
+                    <div class="col-12 col-md-6 mb-5 blog-item">
                         <div class="card h-100">
                             <img class="card-cat-img" src="{{ $blog->image_url }}" alt="Card image cap" />
                             <div class="card-body cat-info">
