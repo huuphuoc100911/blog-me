@@ -22,6 +22,16 @@
         .cat-info {
             height: 450px;
         }
+
+        .notify-danger {
+            position: fixed;
+            top: 100px;
+            right: 100px;
+        }
+
+        .hidden-danger {
+            display: none;
+        }
     </style>
 @endpush
 @section('content')
@@ -34,7 +44,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
+                <h4 class="fw-bold py-3 mb-4 sss"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
                 <a href="{{ route('staff.blog.create') }}" class="pt-3">
                     <button class="btn btn-success">Add Blog</button>
                 </a>
@@ -82,16 +92,25 @@
                                         by {{ $blog->staff->name }}
                                     </small>
                                 </p>
-                                <div class="d-flex justify-content-end">
-                                    <a href="{{ route('staff.blog.edit', $blog->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('staff.blog.destroy', $blog->id) }}" method="post"
-                                        style="display: inline-block;"
-                                        onsubmit="return confirm('Do you want to delete it?')">
-                                        <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
-                                        @method('delete')
-                                        @csrf
-                                    </form>
-                                </div>
+                                @if (auth('staff')->user()->id === $blog->staff_id)
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ route('staff.blog.edit', $blog->id) }}"
+                                            class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('staff.blog.destroy', $blog->id) }}" method="post"
+                                            style="display: inline-block;"
+                                            onsubmit="return confirm('Do you want to delete it?')">
+                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                            @method('delete')
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="d-flex justify-content-end">
+                                        <span class="error-access btn btn-primary">Edit</span>
+                                        <span class="error-access btn btn-danger btn-cat-del-2">Delete</span>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -102,7 +121,20 @@
             <div class="d-flex justify-content-center demo-inline-spacing">
                 {{ $blogs->links('vendor.pagination.custom-pagination') }}
             </div>
+            <div class="alert alert-danger notify-danger hidden-danger">
+                <strong>Không thực hiện được!</strong> Bạn không phải là người tạo blog.
+            </div>
             <!-- Examples -->
         </div>
         <!-- / Content -->
     @endsection
+    @push('scripts')
+        <script>
+            $(".error-access").click(function() {
+                $(".notify-danger").removeClass("hidden-danger");
+                setTimeout(() => {
+                    $(".notify-danger").addClass("hidden-danger");
+                }, 2000);
+            })
+        </script>
+    @endpush
