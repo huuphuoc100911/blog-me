@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Staff\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\RegisterRequest;
+use App\Models\Admin;
+use App\Models\Staff;
+use App\Notifications\RegisterStaffRequest;
 use App\Services\Staff\RegisterService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -24,6 +28,12 @@ class RegisterController extends Controller
         $filters = $requets->validated();
 
         if ($this->registerService->registerStaff($filters)) {
+            $admin = Admin::whereId(1)->first();
+
+            if ($admin) {
+                $admin->notify(new RegisterStaffRequest($filters['email']));
+            }
+
             return redirect()->route('staff.login')->with('register_success', 'Account registration successful');
         }
 

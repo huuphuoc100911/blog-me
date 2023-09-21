@@ -17,36 +17,37 @@
                             </div>
 
                             <div class="card-body">
-                                <p class="text-muted">We will send a link to reset your password</p>
-                                <form method="POST">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
+                                {!! Form::open([
+                                    'method' => 'PUT',
+                                    'route' => ['staff.change-password'],
+                                    'id' => 'formAuthentication',
+                                    'class' => 'mb-3',
+                                ]) !!}
+                                {!! Form::hidden('token', request()->token) !!}
+                                <div class="form-group">
+                                    <label for="password">New Password</label>
+                                    <input id="password" type="password" class="form-control pwstrength"
+                                        data-indicator="pwindicator" name="password" tabindex="2" required>
+                                    <div id="pwindicator" class="pwindicator">
+                                        <div class="bar"></div>
+                                        <div class="label"></div>
                                     </div>
+                                    @error('password')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="password">New Password</label>
-                                        <input id="password" type="password" class="form-control pwstrength"
-                                            data-indicator="pwindicator" name="password" tabindex="2" required>
-                                        <div id="pwindicator" class="pwindicator">
-                                            <div class="bar"></div>
-                                            <div class="label"></div>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="password-confirm">Confirm Password</label>
+                                    <input id="password-confirm" type="password" class="form-control"
+                                        name="confirm_password" tabindex="2" required>
+                                    @error('confirm_password')
+                                        <span class="error text-danger ml-2">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="password-confirm">Confirm Password</label>
-                                        <input id="password-confirm" type="password" class="form-control"
-                                            name="confirm-password" tabindex="2" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Reset Password
-                                        </button>
-                                    </div>
-                                </form>
+                                {!! Form::submit('Change Password', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="simple-footer">

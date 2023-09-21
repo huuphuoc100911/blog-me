@@ -98,9 +98,9 @@
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
                                 {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
-                                <a href="{{ route('admin.forgot-password') }}">
+                                {{-- <a href="{{ route('admin.forgot-password') }}">
                                     <small>Forgot Password?</small>
-                                </a>
+                                </a> --}}
                             </div>
                             <div class="input-group input-group-merge">
                                 {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) }}
@@ -128,9 +128,9 @@
 
                         <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="{{ route('admin.register') }}">
+                            {{-- <a href="{{ route('admin.register') }}">
                                 <span>Create an account</span>
-                            </a>
+                            </a> --}}
                         </p>
                     </div>
                 </div>

@@ -2,8 +2,10 @@
 
 namespace App\Services\Staff;
 
+use App\Enums\AccountStatus;
 use App\Models\Staff;
 use App\Services\Staff\BaseService;
+use Illuminate\Support\Facades\Log;
 
 class RegisterService extends BaseService
 {
@@ -17,6 +19,7 @@ class RegisterService extends BaseService
         return $this->model->create([
             'name' => $inputs['name'],
             'email' => $inputs['email'],
+            'is_active' => AccountStatus::IN_ACTIVE,
             'password' => bcrypt($inputs['password']),
         ]);
     }

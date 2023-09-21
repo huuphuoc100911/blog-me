@@ -24,7 +24,9 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendMail'])->name('send-mail');
 Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])->name('change-password');
 
 Route::group(['middleware' =>  ['auth.staff']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

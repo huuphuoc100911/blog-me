@@ -18,19 +18,26 @@
 
                             <div class="card-body">
                                 <p class="text-muted">We will send a link to reset your password</p>
-                                <form method="POST">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
-                                    </div>
+                                {!! Form::open([
+                                    'method' => 'POST',
+                                    'route' => ['staff.send-mail'],
+                                    'id' => 'formAuthentication',
+                                    'class' => 'mb-3',
+                                ]) !!}
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control" name="email" tabindex="1"
+                                        required autofocus>
+                                </div>
+                                @if (session('send_message_success'))
+                                    <p class="text-success">{{ session('send_message_success') }}</p>
+                                @endif
+                                @if (session('send_message_fail'))
+                                    <p class="text-danger">{{ session('send_message_fail') }}</p>
+                                @endif
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Forgot Password
-                                        </button>
-                                    </div>
-                                </form>
+                                {!! Form::submit('Send Reset Link', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="simple-footer">

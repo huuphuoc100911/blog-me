@@ -17,9 +17,18 @@
                             </div>
 
                             @if (session('register_success'))
-                                <div class="alert alert-success mx-3">
-                                    <button type="button" data-dismiss="alert">×</button>
-                                    {{ session('register_success') }}
+                                <div class="my-3">
+                                    <p class="alert alert-success" role="alert">
+                                        <strong>{{ session('register_success') }}</strong>
+                                    </p>
+                                </div>
+                            @endif
+
+                            @if (session('change_password_success'))
+                                <div class="my-3">
+                                    <p class="alert alert-success" role="alert">
+                                        <strong>{{ session('change_password_success') }}</strong>
+                                    </p>
                                 </div>
                             @endif
 
