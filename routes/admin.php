@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
@@ -34,9 +36,13 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('jquery', [DashboardController::class, 'jquery'])->name('dashboard.jquery');
     Route::resource('category', 'Admin\CategoryController');
+    Route::resource('blog', 'Admin\BlogController');
+    Route::resource('blog-category', 'Admin\BlogCategoryController');
     Route::resource('media', 'Admin\MediaController');
     Route::resource('user', 'Admin\UserController');
     Route::resource('info-company', 'Admin\InfoCompanyController');
     Route::get('change-status-staff', [UserController::class, 'changeStatusStaff'])->name('staff.change-status-staff');
     Route::get('change-status-media', [MediaController::class, 'changeStatusMedia'])->name('media.change-status-media');
+    Route::get('change-status-blog', [BlogController::class, 'changeStatusBlog'])->name('blog.change-status-blog');
+    Route::get('change-status-blog-category', [BlogCategoryController::class, 'changeStatusBlogCategory'])->name('blog-category.change-status-blog-category');
 });

@@ -73,7 +73,9 @@
                             {{ Form::label('is_active', 'Active', ['class' => 'form-label']) }}
                             {!! Form::select('is_active', \App\Enums\CategoryStatus::toSelectArray(), $blogCategory->is_active, [
                                 'class' => 'form-select form-control input-width-50',
+                                'disabled' => 'disabled',
                             ]) !!}
+                            {{ Form::hidden('is_active', $blogCategory->is_active) }}
                         </div>
                         {{ Form::submit('Edit Blog Category', ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}

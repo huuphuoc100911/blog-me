@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Staff\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\RegisterRequest;
 use App\Models\Admin;
-use App\Models\Staff;
 use App\Notifications\RegisterStaffRequest;
 use App\Services\Staff\RegisterService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {

@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\Enums\BlogStatus;
 use App\Models\Blog;
 use App\Models\InfoCompany;
 use App\Models\Staff;
@@ -28,11 +29,12 @@ class UserService extends BaseService
         return $this->infoCompany->findOrFail(1);
     }
 
-    public function getListBlog($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
+    public function getListBlogActive($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
         $limit = $limit ?? config('common.default_per_page');
 
         $query = $this->blog->whereNull('deleted_at')
+            ->where('is_active', BlogStatus::ACTIVE)
             ->orderByDesc('priority');
 
         return $this->filterPaginate(
@@ -51,6 +53,7 @@ class UserService extends BaseService
 
         return $this->blog->whereNull('deleted_at')
             ->where('id', '!=', $filters)
+            ->where('is_active', BlogStatus::ACTIVE)
             ->orderByDesc('priority')->take(6)->get();
     }
 

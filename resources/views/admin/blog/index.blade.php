@@ -1,4 +1,4 @@
-@extends('staff.layouts.layout')
+@extends('admin.layouts.layout')
 @section('page-title', 'Blog')
 @push('styles')
 @endpush
@@ -12,10 +12,10 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4 sss"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
-                <a href="{{ route('staff.blog.create') }}" class="pt-3">
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
+                {{-- <a href="{{ route('staff.blog.create') }}" class="pt-3">
                     <button class="btn btn-success">Add Blog</button>
-                </a>
+                </a> --}}
             </div>
 
             @if (session('create_success'))
@@ -49,9 +49,10 @@
                         <div class="card h-100">
                             <img class="card-cat-img" src="{{ $blog->image_url }}" alt="Card image cap" />
                             <div class="card-body cat-info">
-                                <h4 class="card-title text-danger">{{ $blog->title }}</h4>
+                                <h4 class="card-title text-danger">{{ $blog->title }} </h4>
                                 <p class="text-success">{{ $blog->blogCategory->title }}
-                                    <span style="float: right">
+                                    <span onclick="changeStatusBlog({{ $blog->id }})"
+                                        id="status-blog--{{ $blog->id }}" style="float: right">
                                         @if ($blog->is_active === 2)
                                             <span class="badge bg-success">Active</span>
                                         @else
@@ -68,7 +69,7 @@
                                         by {{ $blog->staff->name }}
                                     </small>
                                 </p>
-                                @if (auth('staff')->user()->id === $blog->staff_id)
+                                {{-- @if (auth('staff')->user()->id === $blog->staff_id)
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('staff.blog.edit', $blog->id) }}"
                                             class="btn btn-primary">Edit</a>
@@ -85,8 +86,7 @@
                                         <span class="error-access btn btn-primary">Edit</span>
                                         <span class="error-access btn btn-danger btn-cat-del-2">Delete</span>
                                     </div>
-                                @endif
-
+                                @endif --}}
                             </div>
                         </div>
                     </div>
@@ -98,23 +98,21 @@
                 {{ $blogs->links('vendor.pagination.custom-pagination') }}
             </div>
         </div>
-        <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 end-0 hide" role="alert"
-            aria-live="assertive" aria-atomic="true" data-delay="2000">
-            <div class="toast-header">
-                <i class="bx bx-bell me-2"></i>
-                <div class="me-auto fw-semibold">Cảnh báo</div>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body"><strong>Không thực hiện được!</strong> Bạn không phải là người tạo blog.</div>
-        </div>
-        <div id="showToastPlacement"></div>
         <!-- / Content -->
     @endsection
     @push('scripts')
-        <script src="/assets/admin/assets/js/ui-toasts.js"></script>
         <script>
-            $(".error-access").click(function() {
-                document.getElementById("showToastPlacement").click();
-            })
+            function changeStatusBlog(blogId) {
+                $.ajax({
+                    url: "{{ route('admin.blog.change-status-blog') }}",
+                    method: "GET",
+                    data: {
+                        blogId: blogId
+                    },
+                    success: function(data) {
+                        $("#status-blog--" + blogId).html(data.status)
+                    }
+                });
+            }
         </script>
     @endpush

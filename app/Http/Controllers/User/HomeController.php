@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function blog()
     {
-        $blogs = $this->userService->getListBlog();
+        $blogs = $this->userService->getListBlogActive();
 
         return view('user.blog', compact('blogs'));
     }

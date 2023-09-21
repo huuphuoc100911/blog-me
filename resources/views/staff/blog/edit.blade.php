@@ -91,8 +91,10 @@
                             {{ Form::label('is_active', 'Status', ['class' => 'form-label']) }}
                             {!! Form::select('is_active', \App\Enums\BlogStatus::toSelectArray(), $blog->is_active, [
                                 'class' => 'form-select form-control input-width-50',
+                                'disabled' => 'disabled',
                             ]) !!}
                         </div>
+                        {{ Form::hidden('is_active', $blog->is_active) }}
                         {{ Form::submit('Edit blog', ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}
                     </div>
