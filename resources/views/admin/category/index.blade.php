@@ -66,7 +66,7 @@
             <!-- Examples -->
             <div class="row mb-5">
                 @forelse ($categories as $key => $category)
-                    <div class="col-md-6 col-lg-4 mb-5 category-item">
+                    <div class="col-md-6 col-12 mb-5 category-item">
                         <div class="card h-100">
                             <img class="card-cat-img" src="{{ $category->image_url }}" alt="Card image cap" />
                             <div class="card-body cat-info">
@@ -80,8 +80,8 @@
                                         by {{ $category->admin->name }}</small>
                                 </p>
                                 <div class="row">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-5"></div>
+                                    <div class="col-sm-2">
                                         <a href="{{ route('admin.category.show', $category->id) }}"
                                             class="btn btn-success">Show</a>
                                     </div>

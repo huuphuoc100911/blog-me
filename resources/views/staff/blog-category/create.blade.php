@@ -1,5 +1,5 @@
-@extends('admin.layouts.layout')
-@section('page-title', 'Edit Media')
+@extends('staff.layouts.layout')
+@section('page-title', 'Create Category')
 @push('styles')
     <style>
         .input-width-50 {
@@ -16,26 +16,31 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Edit Media</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Create Blog Category</h4>
         <!-- Basic Layout -->
         <div class="row">
             <div class="col-xl">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Media</h5>
-                        <small class="text-muted float-end">Edit</small>
+                        <h5 class="mb-0">Category</h5>
+                        <small class="text-muted float-end">Create</small>
                     </div>
-                    @if (session('update_fail'))
+                    @if (session('create_fail'))
                         <div class="alert alert-danger mx-3">
                             <button type="button" data-dismiss="alert">×</button>
-                            {{ session('update_fail') }}
+                            {{ session('create_fail') }}
                         </div>
                     @endif
                     <div class="card-body">
-                        {!! Form::open(['method' => 'PATCH', 'route' => ['admin.media.update', $media->id], 'files' => true]) !!}
+                        {!! Form::open([
+                            'method' => 'post',
+                            'route' => 'staff.blog-category.store',
+                            'files' => true,
+                            'id' => 'create-form',
+                        ]) !!}
                         <div class="mb-3">
-                            {{ Form::label('title', 'Title', ['class' => 'form-label']) }}
-                            {{ Form::text('title', $media->title, ['class' => 'form-control input-width-50', 'disabled' => 'disabled', 'placeholder' => 'Enter your title']) }}
+                            {{ Form::label('title', 'Blog Category Name', ['class' => 'form-label']) }}
+                            {{ Form::text('title', null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your blog category name']) }}
                             @error('title')
                                 <span class="error text-danger" role="alert">
                                     <p>{{ $message }}</p>
@@ -43,19 +48,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('category', 'Category', ['class' => 'form-label']) }}
-                            {!! Form::select('category_id', $categories, $media->category_id ?? null, [
-                                'class' => 'form-select form-control input-width-50',
-                                'disabled' => 'disabled',
-                            ]) !!}
-                        </div>
-                        <div class="mb-3">
                             {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
-                            <br />
-                            @if ($media->url_image)
-                                <img src="{{ $media->image_url }}" class="add-image my-3" />
-                            @endif
-                            {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your media name', 'disabled' => 'disabled']) }}
+                            {{ Form::file('url_image', ['class' => 'form-control input-width-50 upload-image', 'placeholder' => 'Enter your category name']) }}
                             <div class="image-upload"></div>
                             @error('url_image')
                                 <span class="error text-danger" role="alert">
@@ -65,10 +59,9 @@
                         </div>
                         <div class="mb-3">
                             {{ Form::label('description', 'Description', ['class' => 'form-label']) }}
-                            {!! Form::textarea('description', $media->description, [
+                            {!! Form::textarea('description', null, [
                                 'class' => 'form-control input-width-50',
                                 'placeholder' => 'Enter your description',
-                                'disabled' => 'disabled',
                             ]) !!}
                             @error('description')
                                 <span class="error text-danger" role="alert">
@@ -78,13 +71,11 @@
                         </div>
                         <div class="mb-3">
                             {{ Form::label('is_active', 'Status', ['class' => 'form-label']) }}
-                            {!! Form::select('is_active', \App\Enums\MediaStatus::toSelectArray(), $media->is_active, [
+                            {!! Form::select('is_active', \App\Enums\BlogCategoryStatus::toSelectArray(), 2, [
                                 'class' => 'form-select form-control input-width-50',
-                                'disabled' => 'disabled',
                             ]) !!}
                         </div>
-                        {{ Form::hidden('check', session()->get('check')) }}
-                        {{-- {{ Form::submit('Edit Media', ['class' => 'btn btn-info mt-3']) }} --}}
+                        {{ Form::submit('Create Blog Category', ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}
                     </div>
                 </div>

@@ -28,9 +28,9 @@ class Blog extends Model
         return $this->url_image ? Storage::url($this->url_image) : '';
     }
 
-    public function category()
+    public function blogCategory()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
     public function staff()

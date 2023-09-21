@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="blog-details-text">
+                    <div class="blog-details-text" style="border-right: 1px solid #ebebeb; border-left: 1px solid #ebebeb">
                         <div class="bd-title">
                             <div class="bt-bread">
                                 <a href="{{ route('index') }}"><i class="fa fa-home"></i> Home</a>
@@ -54,7 +54,7 @@
                                                 style="width: 135px; height: 90px;">
                                         </div>
                                         <div class="pi-text">
-                                            <div class="label">{{ $blog->category->title }}</div>
+                                            <div class="label">{{ $blog->blogCategory->title }}</div>
                                             <p>{{ Str::limit($blog->title, 100, '...') }}</p>
                                         </div>
                                     </a>

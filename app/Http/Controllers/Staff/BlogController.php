@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\BlogRequets;
 use App\Models\Blog;
 use App\Services\Admin\CategoryService;
+use App\Services\Staff\BlogCategoryService;
 use App\Services\Staff\BlogService;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function __construct(BlogService $blogService, CategoryService $categoryService)
+    public function __construct(BlogService $blogService, CategoryService $categoryService, BlogCategoryService $blogCategoryService)
     {
         $this->categoryService = $categoryService;
         $this->blogService = $blogService;
+        $this->blogCategoryService = $blogCategoryService;
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +37,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryService->getListCategoryPluck();
+        $categories = $this->blogCategoryService->getListBlogCategoryPluck();
 
         return view('staff.blog.create', compact('categories'));
     }
@@ -75,7 +77,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = $this->blogService->getBlog($id);
-        $categories = $this->categoryService->getListCategoryPluck();
+        $categories = $this->blogCategoryService->getListBlogCategoryPluck();
 
         return view('staff.blog.edit', compact('blog', 'categories'));
     }

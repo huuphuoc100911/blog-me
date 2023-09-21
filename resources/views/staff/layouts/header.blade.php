@@ -54,6 +54,38 @@
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <style>
+      .btn-cat-del {
+          margin-left: 10px;
+      }
+
+      .btn-cat-del-2 {
+          margin-right: 20px;
+          margin-left: 10px;
+      }
+
+      .cat-header {
+          justify-content: space-between;
+      }
+
+      .card-cat-img {
+          height: 500px;
+      }
+
+      .cat-info {
+          height: 450px;
+      }
+
+      .notify-danger {
+          position: fixed;
+          top: 100px;
+          right: 100px;
+      }
+
+      .hidden-danger {
+          display: none;
+      }
+  </style>
     @stack('styles')
 
     <!-- Page CSS -->
@@ -164,6 +196,13 @@
               <a href="{{ route('staff.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
+
+            <li class="menu-item {{ \Request::segment(2) == 'blog-category' ? 'active' : '' }}">
+              <a href="{{ route('staff.blog-category.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Analytics">Category Blog</div>
               </a>
             </li>
             

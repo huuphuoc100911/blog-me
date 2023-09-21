@@ -27,7 +27,7 @@
                                 <img src="{{ $blog->image_url }}" style="width: 420px; height: 280px" alt="">
                             </div>
                             <div class="bi-text">
-                                <div class="label">{{ $blog->category->title }}</div>
+                                <div class="label">{{ $blog->blogCategory->title }}</div>
                                 <h5>
                                     <a
                                         href="{{ route('blog-detail', [create_slug($blog->title), $blog->id]) }}">{{ Str::limit($blog->title, 720, '...') }}</a>

@@ -1,38 +1,6 @@
 @extends('staff.layouts.layout')
 @section('page-title', 'Blog')
 @push('styles')
-    <style>
-        .btn-cat-del {
-            margin-left: 10px;
-        }
-
-        .btn-cat-del-2 {
-            margin-right: 20px;
-            margin-left: 10px;
-        }
-
-        .cat-header {
-            justify-content: space-between;
-        }
-
-        .card-cat-img {
-            height: 500px;
-        }
-
-        .cat-info {
-            height: 450px;
-        }
-
-        .notify-danger {
-            position: fixed;
-            top: 100px;
-            right: 100px;
-        }
-
-        .hidden-danger {
-            display: none;
-        }
-    </style>
 @endpush
 @section('content')
     @php
@@ -82,7 +50,7 @@
                             <img class="card-cat-img" src="{{ $blog->image_url }}" alt="Card image cap" />
                             <div class="card-body cat-info">
                                 <h4 class="card-title text-danger">{{ $blog->title }}</h4>
-                                <p class="text-success">{{ $blog->category->title }}</p>
+                                <p class="text-success">{{ $blog->blogCategory->title }}</p>
                                 <p class="card-text">
                                     {{ Str::limit($blog->description, 720, '...') }}
                                 </p>
@@ -121,20 +89,24 @@
             <div class="d-flex justify-content-center demo-inline-spacing">
                 {{ $blogs->links('vendor.pagination.custom-pagination') }}
             </div>
-            <div class="alert alert-danger notify-danger hidden-danger">
-                <strong>Không thực hiện được!</strong> Bạn không phải là người tạo blog.
-            </div>
-            <!-- Examples -->
         </div>
+        <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 end-0 hide" role="alert"
+            aria-live="assertive" aria-atomic="true" data-delay="2000">
+            <div class="toast-header">
+                <i class="bx bx-bell me-2"></i>
+                <div class="me-auto fw-semibold">Cảnh báo</div>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"><strong>Không thực hiện được!</strong> Bạn không phải là người tạo blog.</div>
+        </div>
+        <div id="showToastPlacement"></div>
         <!-- / Content -->
     @endsection
     @push('scripts')
+        <script src="/assets/admin/assets/js/ui-toasts.js"></script>
         <script>
             $(".error-access").click(function() {
-                $(".notify-danger").removeClass("hidden-danger");
-                setTimeout(() => {
-                    $(".notify-danger").addClass("hidden-danger");
-                }, 2000);
+                document.getElementById("showToastPlacement").click();
             })
         </script>
     @endpush

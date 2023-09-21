@@ -1,28 +1,6 @@
 @extends('staff.layouts.layout')
 @section('page-title', 'Media')
 @push('styles')
-    <style>
-        .btn-cat-del {
-            margin-left: 10px;
-        }
-
-        .btn-cat-del-2 {
-            margin-right: 20px;
-            margin-left: 10px;
-        }
-
-        .cat-header {
-            justify-content: space-between;
-        }
-
-        .card-cat-img {
-            height: 500px;
-        }
-
-        .cat-info {
-            height: 450px;
-        }
-    </style>
 @endpush
 @section('content')
     @php
@@ -71,7 +49,15 @@
                             <div class="card h-100">
                                 <img class="card-cat-img" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="card-body cat-info">
-                                    <h4 class="card-title text-danger">{{ $media->title }}</h4>
+                                    <h4 class="card-title text-danger">{{ $media->title }}
+                                        <span style="float: right">
+                                            @if ($media->is_active === 2)
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </span>
+                                    </h4>
                                     <p class="text-success">{{ $media->category->title }}</p>
                                     <p class="card-text">
                                         {{ Str::limit($media->description, 720, '...') }}
@@ -79,19 +65,28 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
+                                            by {{ $media->staff->name }}
                                         </small>
                                     </p>
-                                    <div class="d-flex justify-content-end">
-                                        <a href="{{ route('staff.media.edit', $media->id) }}"
-                                            class="btn btn-primary">Edit</a>
-                                        <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
-                                            style="display: inline-block;"
-                                            onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
-                                            @method('delete')
-                                            @csrf
-                                        </form>
-                                    </div>
+                                    @if (auth('staff')->user()->id === $media->staff_id)
+                                        <div class="d-flex justify-content-end">
+                                            <a href="{{ route('staff.media.edit', $media->id) }}"
+                                                class="btn btn-primary">Edit</a>
+                                            <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
+                                                style="display: inline-block;"
+                                                onsubmit="return confirm('Do you want to delete it?')">
+                                                <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                                @method('delete')
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="d-flex justify-content-end">
+                                            <button class="error-access btn btn-primary"
+                                                style="margin-right: 20px">Edit</button>
+                                            <button class="error-access btn btn-danger">Delete</button>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -107,20 +102,30 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
+                                            by {{ $media->staff->name }}
                                         </small>
                                     </p>
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
-                                <div class="d-flex justify-content-end pb-3">
-                                    <a href="{{ route('staff.media.edit', $media->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
-                                        style="display: inline-block;"
-                                        onsubmit="return confirm('Do you want to delete it?')">
-                                        <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
-                                        @method('delete')
-                                        @csrf
-                                    </form>
-                                </div>
+                                @if (auth('staff')->user()->id === $media->staff_id)
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ route('staff.media.edit', $media->id) }}"
+                                            class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
+                                            style="display: inline-block;"
+                                            onsubmit="return confirm('Do you want to delete it?')">
+                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                            @method('delete')
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="d-flex justify-content-end">
+                                        <button class="error-access btn btn-primary"
+                                            style="margin-right: 20px">Edit</button>
+                                        <button class="error-access btn btn-danger">Delete</button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -131,7 +136,23 @@
             <div class="d-flex justify-content-center demo-inline-spacing">
                 {{ $medias->links('vendor.pagination.custom-pagination') }}
             </div>
-            <!-- Examples -->
-        </div>
-        <!-- / Content -->
-    @endsection
+            <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 end-0 hide" role="alert"
+                aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                    <i class="bx bx-bell me-2"></i>
+                    <div class="me-auto fw-semibold">Cảnh báo</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body"><strong>Không thực hiện được!</strong> Bạn không phải là người tạo media.</div>
+            </div>
+            <div id="showToastPlacement"></div>
+            <!-- / Content -->
+        @endsection
+        @push('scripts')
+            <script src="/assets/admin/assets/js/ui-toasts.js"></script>
+            <script>
+                $(".error-access").click(function() {
+                    document.getElementById("showToastPlacement").click();
+                })
+            </script>
+        @endpush
