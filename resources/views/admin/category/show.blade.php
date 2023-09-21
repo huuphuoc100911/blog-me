@@ -34,9 +34,9 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Media</h4>
-                <a href="{{ route('admin.media.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Media</button></a>
+                <h4 class="fw-bold py-3 mb-4">Hình ảnh</h4>
+                <a href="{{ route('admin.media.create') }}" class="pt-3">
+                    <button class="btn btn-success">Thêm hình ảnh</button></a>
             </div>
 
             @if (session('create_success'))
@@ -88,15 +88,16 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
+                                            bởi {{ $media->staff->name }}
                                         </small>
                                     </p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('admin.media.edit', $media->id) }}" style="height: 41px"
-                                            class="btn btn-primary">Edit</a>
+                                            class="btn btn-primary">Cập nhật</a>
                                         <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                             style="display: inline-block;"
                                             onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Xóa</button>
                                             @method('delete')
                                             @csrf
                                         </form>
@@ -125,17 +126,18 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
+                                            bởi {{ $media->staff->name }}
                                         </small>
                                     </p>
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="d-flex justify-content-end">
                                     <a href="{{ route('admin.media.edit', $media->id) }}" style="height: 41px"
-                                        class="btn btn-primary">Edit</a>
+                                        class="btn btn-primary">Cập nhật</a>
                                     <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Do you want to delete it?')">
-                                        <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-cat-del-2">Xóa</button>
                                         @method('delete')
                                         @csrf
                                     </form>

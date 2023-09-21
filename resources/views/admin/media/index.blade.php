@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Media')
+@section('page-title', 'Hình ánh')
 @push('styles')
     <style>
         .btn-cat-del {
@@ -34,7 +34,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Media</h4>
+                <h4 class="fw-bold py-3 mb-4">Hình ảnh</h4>
                 {{-- <a href="{{ route('admin.media.create') }}" class="pt-3"><button class="btn btn-success">Add
                         Media</button></a> --}}
             </div>
@@ -92,8 +92,8 @@
                                         </small>
                                     </p>
                                     <div class="d-flex justify-content-end">
-                                        <a href="{{ route('admin.media.edit', $media->id) }}"
-                                            class="btn btn-primary">Show</a>
+                                        <a href="{{ route('admin.media.edit', $media->id) }}" class="btn btn-primary">Xem
+                                            chi tiết</a>
                                         {{-- <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                             style="display: inline-block;"
                                             onsubmit="return confirm('Do you want to delete it?')">
@@ -132,7 +132,8 @@
                                 </div>
                                 <img class="card-cat-img pb-3" src="{{ $media->image_url }}" alt="Card image cap" />
                                 <div class="d-flex justify-content-end pb-3">
-                                    <a href="{{ route('admin.media.edit', $media->id) }}" class="btn btn-primary">Show</a>
+                                    <a href="{{ route('admin.media.edit', $media->id) }}" class="btn btn-primary">Xem chi
+                                        tiết</a>
                                     {{-- <form action="{{ route('admin.media.destroy', $media->id) }}" method="post"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Do you want to delete it?')">

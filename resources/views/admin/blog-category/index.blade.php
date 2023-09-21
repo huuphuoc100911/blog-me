@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Category')
+@section('page-title', 'Danh mục blog')
 @push('styles')
     <style>
         .btn-cat-del {
@@ -44,7 +44,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Blog Category</h4>
+                <h4 class="fw-bold py-3 mb-4">Danh mục blog</h4>
                 {{-- <a href="{{ route('staff.blog-category.create') }}" class="pt-3"><button class="btn btn-success">Add Blog
                         Category</button></a> --}}
             </div>

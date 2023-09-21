@@ -1,6 +1,6 @@
 @extends('admin.auth.layouts')
 
-@section('title', 'Login Admin')
+@section('title', 'Đăng nhập')
 
 @section('content')
     <!-- Content -->
@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
-                            <a href="index.html" class="app-brand-link gap-2">
+                            <a href="" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
                                     <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -64,8 +64,8 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-2">Chào mừng đã đến với Sneat! 👋</h4>
+                        <p class="mb-4">Vui lòng đăng nhập vào tài khoản của bạn để quản lý trang Admin</p>
                         @if (session('register_success'))
                             <div class="my-3">
                                 <p class="alert alert-success" role="alert">
@@ -97,7 +97,7 @@
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
-                                {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
+                                {{ Form::label('password', 'Mật khẩu', ['class' => 'form-label']) }}
                                 {{-- <a href="{{ route('admin.forgot-password') }}">
                                     <small>Forgot Password?</small>
                                 </a> --}}
@@ -118,29 +118,17 @@
                         <div class="mb-3">
                             <div class="form-check">
                                 {!! Form::checkbox('remember-me', null, false, ['class' => 'form-check-input']) !!}
-                                {{ Form::label('remember-me', 'Remember Me', ['class' => 'form-check-label']) }}
+                                {{ Form::label('remember-me', 'Lưu đăng nhập', ['class' => 'form-check-label']) }}
                             </div>
                         </div>
                         <div class="mb-3">
-                            {!! Form::submit('Sign in', ['class' => 'btn btn-primary d-grid w-100']) !!}
+                            {!! Form::submit('Đăng nhập', ['class' => 'btn btn-primary d-grid w-100']) !!}
                         </div>
                         {!! Form::close() !!}
-
-                        <p class="text-center">
-                            <span>New on our platform?</span>
-                            {{-- <a href="{{ route('admin.register') }}">
-                                <span>Create an account</span>
-                            </a> --}}
-                        </p>
                     </div>
                 </div>
                 <!-- /Register -->
             </div>
         </div>
-    </div>
-    <!-- / Content -->
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
-            class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
     </div>
 @endsection

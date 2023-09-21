@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Category')
+@section('page-title', 'Danh mục hình ảnh')
 @push('styles')
     <style>
         .btn-cat-del {
@@ -34,9 +34,9 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Category</h4>
-                <a href="{{ route('admin.category.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Category</button></a>
+                <h4 class="fw-bold py-3 mb-4">Danh mục hình ảnh</h4>
+                <a href="{{ route('admin.category.create') }}" class="pt-3"><button class="btn btn-success">Thêm danh
+                        mục</button></a>
             </div>
 
             @if (session('create_success'))
@@ -77,23 +77,23 @@
                                 <p class="card-text">
                                     <small
                                         class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}
-                                        by {{ $category->admin->name }}</small>
+                                        bởi {{ $category->admin->name }}</small>
                                 </p>
                                 <div class="row">
-                                    <div class="col-sm-5"></div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3">
                                         <a href="{{ route('admin.category.show', $category->id) }}"
-                                            class="btn btn-success">Show</a>
+                                            class="btn btn-success">Xem hình ảnh</a>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <a href="{{ route('admin.category.edit', $category->id) }}"
-                                            class="btn btn-primary">Edit</a>
+                                            class="btn btn-primary">Cập nhật</a>
                                     </div>
                                     <div class="col-sm-2">
                                         <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
                                             style="display: inline-block;"
                                             onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Xóa</button>
                                             @method('delete')
                                             @csrf
                                         </form>

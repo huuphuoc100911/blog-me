@@ -1,10 +1,10 @@
 <?php
 return [
-    'create_success' => 'Create success',
-    'create_fail' => 'Create fail',
-    'update_success' => 'Update successful',
-    'update_fail' => 'Update failed',
-    'delete_success' => 'Delete successful',
-    'delete_fail' => 'Delete failed',
-    'no_record' => 'There is no data',
+    'create_success' => 'Tạo thành công',
+    'create_fail' => 'Tạo thất bại',
+    'update_success' => 'Cập nhật thành công',
+    'update_fail' => 'Cập nhật thất bại',
+    'delete_success' => 'Xóa thành công',
+    'delete_fail' => 'Xóa thất bại',
+    'no_record' => 'Không có dữ liệu',
 ];

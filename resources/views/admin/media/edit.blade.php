@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Edit Media')
+@section('page-title', 'Cập nhật hình ảnh')
 @push('styles')
     <style>
         .input-width-50 {
@@ -16,14 +16,14 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Edit Media</h4>
+        <h4 class="fw-bold py-3 mb-4">Cập nhật hình ảnh</h4>
         <!-- Basic Layout -->
         <div class="row">
             <div class="col-xl">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Media</h5>
-                        <small class="text-muted float-end">Edit</small>
+                        <h5 class="mb-0">Hình ảnh</h5>
+                        <small class="text-muted float-end">Cập nhật</small>
                     </div>
                     @if (session('update_fail'))
                         <div class="alert alert-danger mx-3">
@@ -34,7 +34,7 @@
                     <div class="card-body">
                         {!! Form::open(['method' => 'PATCH', 'route' => ['admin.media.update', $media->id], 'files' => true]) !!}
                         <div class="mb-3">
-                            {{ Form::label('title', 'Title', ['class' => 'form-label']) }}
+                            {{ Form::label('title', 'Tiêu đề', ['class' => 'form-label']) }}
                             {{ Form::text('title', $media->title, ['class' => 'form-control input-width-50', 'disabled' => 'disabled', 'placeholder' => 'Enter your title']) }}
                             @error('title')
                                 <span class="error text-danger" role="alert">
@@ -43,14 +43,14 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('category', 'Category', ['class' => 'form-label']) }}
+                            {{ Form::label('category', 'Danh mục hình ảnh', ['class' => 'form-label']) }}
                             {!! Form::select('category_id', $categories, $media->category_id ?? null, [
                                 'class' => 'form-select form-control input-width-50',
                                 'disabled' => 'disabled',
                             ]) !!}
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('url_image', 'Photo', ['class' => 'form-label']) }}
+                            {{ Form::label('url_image', 'Hình ảnh', ['class' => 'form-label']) }}
                             <br />
                             @if ($media->url_image)
                                 <img src="{{ $media->image_url }}" class="add-image my-3" />
@@ -64,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('description', 'Description', ['class' => 'form-label']) }}
+                            {{ Form::label('description', 'Mô tả', ['class' => 'form-label']) }}
                             {!! Form::textarea('description', $media->description, [
                                 'class' => 'form-control input-width-50',
                                 'placeholder' => 'Enter your description',
@@ -77,7 +77,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('is_active', 'Status', ['class' => 'form-label']) }}
+                            {{ Form::label('is_active', 'Trạng thái', ['class' => 'form-label']) }}
                             {!! Form::select('is_active', \App\Enums\MediaStatus::toSelectArray(), $media->is_active, [
                                 'class' => 'form-select form-control input-width-50',
                                 'disabled' => 'disabled',

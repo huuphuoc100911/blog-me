@@ -12,7 +12,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
+                <h4 class="fw-bold py-3 mb-4">Blogs</h4>
                 {{-- <a href="{{ route('staff.blog.create') }}" class="pt-3">
                     <button class="btn btn-success">Add Blog</button>
                 </a> --}}

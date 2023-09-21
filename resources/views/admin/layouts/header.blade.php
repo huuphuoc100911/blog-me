@@ -183,7 +183,7 @@
             <li class="menu-item {{ \Request::segment(2) == 'dashboard' ? 'active' : '' }}">
               <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Trang chủ</div>
               </a>
             </li>
 
@@ -197,28 +197,28 @@
             <li class="menu-item {{ \Request::segment(2) == 'info-company' ? 'active' : '' }}">
               <a href="{{ route('admin.info-company.edit', 1) }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-buildings"></i>
-                <div data-i18n="Analytics">Company Information</div>
+                <div data-i18n="Analytics">Thông tin cơ quan</div>
               </a>
             </li>
             <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Pages</span>
+              <span class="menu-header-text">Trang</span>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'category' ? 'active' : '' }}">
               <a href="{{ route('admin.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Analytics">Category</div>
+                <div data-i18n="Analytics">Danh mục hình ảnh</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog-category' ? 'active' : '' }}">
               <a href="{{ route('admin.blog-category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Analytics">Category Blog</div>
+                <div data-i18n="Analytics">Danh mục Blog</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'media' ? 'active' : '' }}">
               <a href="{{ route('admin.media.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-image"></i>
-                <div data-i18n="Analytics">Media</div>
+                <div data-i18n="Analytics">Hình ảnh</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
@@ -230,7 +230,7 @@
             <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
               <a href="{{ route('admin.user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">User</div>
+                <div data-i18n="Analytics">Người dùng</div>
               </a>
             </li>
           </ul>
