@@ -6,6 +6,7 @@ use App\Enums\CategoryAccept;
 use App\Models\Category;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends BaseService
@@ -33,6 +34,36 @@ class CategoryService extends BaseService
             $filterable,
             $select
         );
+    }
+
+    public function getListSuggestCategory($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
+    {
+        $limit = $limit ?? config('common.default_per_page');
+
+        $query = $this->model->where('is_accept', CategoryAccept::INACCEPT);
+
+        return $this->filterPaginate(
+            $query,
+            $limit,
+            $filters,
+            $sorts,
+            $filterable,
+            $select
+        );
+    }
+
+    public function approveCategory($inputs)
+    {
+        $category = $this->model->findOrFail($inputs);
+        $category->is_accept = CategoryAccept::ACCEPT;
+        $category->save();
+
+        return $category;
+    }
+
+    public function countCategorySuggest()
+    {
+        return $this->model->where('is_accept', CategoryAccept::INACCEPT)->count();
     }
 
     public function getListCategoryPluck()

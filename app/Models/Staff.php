@@ -50,4 +50,9 @@ class Staff extends Authenticatable
     {
         return $this->hasMany(Blog::class, 'staff_id', 'id');
     }
+
+    public function category()
+    {
+        return $this->hasMany(Category::class, 'staff_id', 'id');
+    }
 }

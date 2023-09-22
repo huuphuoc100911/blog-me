@@ -52,4 +52,9 @@ class AdminService extends BaseService
 
         return $this->staff->where('id', $staffId)->first();
     }
+
+    public function countStaffLock()
+    {
+        return $this->staff->where('is_active', AccountStatus::IN_ACTIVE)->count();
+    }
 }

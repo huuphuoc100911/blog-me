@@ -41,4 +41,9 @@ class Category extends Model
     {
         return $this->hasMany(Blog::class, 'category_id', 'id');
     }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class, 'staff_id');
+    }
 }

@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center w-100 mt-5">There are no valid records</div>
+                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
@@ -35,6 +37,7 @@ Route::post('media/sort', [MediaController::class, 'sortMedia'])->name('media.so
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('jquery', [DashboardController::class, 'jquery'])->name('dashboard.jquery');
+    Route::get('/list-suggest-category', [ContactController::class, 'listSuggestCategory'])->name('list-suggest-category');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('blog', 'Admin\BlogController');
     Route::resource('blog-category', 'Admin\BlogCategoryController');
@@ -45,4 +48,5 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('change-status-media', [MediaController::class, 'changeStatusMedia'])->name('media.change-status-media');
     Route::get('change-status-blog', [BlogController::class, 'changeStatusBlog'])->name('blog.change-status-blog');
     Route::get('change-status-blog-category', [BlogCategoryController::class, 'changeStatusBlogCategory'])->name('blog-category.change-status-blog-category');
+    Route::get('category-approve', [ContactController::class, 'approveCategory'])->name('category.approve');
 });

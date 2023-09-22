@@ -89,7 +89,13 @@
                         staffId: staffId
                     },
                     success: function(data) {
-                        $("#status-staff-" + staffId).html(data.status)
+                        $("#status-staff-" + staffId).html(data.status);
+                        if (data.count > 0) {
+                            $("#user-lock-count").removeClass('hidden-danger');
+                            $("#user-lock-count").html(data.count);
+                        } else {
+                            $("#user-lock-count").addClass('hidden-danger');
+                        }
                     }
                 });
             }

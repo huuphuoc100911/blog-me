@@ -102,6 +102,8 @@
       \Carbon\Carbon::setLocale('en');
       $now = \Carbon\Carbon::now();
       $infoCompany = App\Models\InfoCompany::orderByDesc('id')->first();
+      $countCategorySuggest = App\Models\Category::where('is_accept', App\Enums\CategoryAccept::INACCEPT)->count();
+      $countUserLock = App\Models\Staff::where('is_active', App\Enums\AccountStatus::IN_ACTIVE)->count();
   @endphp
 
   <body>
@@ -230,7 +232,22 @@
             <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
               <a href="{{ route('admin.user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">Người dùng</div>
+                <div data-i18n="Analytics">Người dùng
+                  @if ($countUserLock > 0)
+<span class="mx-1 badge badge-center rounded-pill bg-danger" id="user-lock-count">{{ $countUserLock }}</span>
+@endif
+                </div>
+              </a>
+            </li>
+            <li class="menu-item {{ \Request::segment(2) == 'list-suggest-category' ? 'active' : '' }}">
+              <a href="{{ route('admin.list-suggest-category') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-offer"></i>
+                <div data-i18n="Analytics">
+                  Đề xuất danh mục
+                  @if ($countCategorySuggest > 0)
+<span class="mx-1 badge badge-center rounded-pill bg-danger" id="category-suggest-count">{{ $countCategorySuggest }}</span>
+@endif
+                </div>
               </a>
             </li>
           </ul>
