@@ -34,7 +34,7 @@ class MediaController extends Controller
             return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
         }
 
-        return redirect()->back()->with('create_fail',  __('messages.create_success'));
+        return redirect()->back()->with('create_fail',  __('messages.create_fail'));
     }
 
     /**

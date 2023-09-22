@@ -49,7 +49,7 @@ class MediaController extends Controller
             }
         }
 
-        return redirect()->back()->with('create_fail',  __('messages.create_success'));
+        return redirect()->back()->with('create_fail',  __('messages.create_fail'));
     }
 
     /**

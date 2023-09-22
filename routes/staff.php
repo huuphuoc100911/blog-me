@@ -4,6 +4,7 @@ use App\Http\Controllers\Staff\Auth\ForgotPasswordController;
 use App\Http\Controllers\Staff\Auth\LoginController;
 use App\Http\Controllers\Staff\Auth\RegisterController;
 use App\Http\Controllers\Staff\Auth\ResetPasswordController;
+use App\Http\Controllers\Staff\ContactController;
 use App\Http\Controllers\Staff\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,9 @@ Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])
 
 Route::group(['middleware' =>  ['auth.staff']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/contact-admin', [ContactController::class, 'contactAdmin'])->name('contact-admin');
+    Route::get('/list-suggest-category', [ContactController::class, 'listSuggestCategory'])->name('list-suggest-category');
+    Route::post('/contact-admin', [ContactController::class, 'postContactAdmin'])->name('post-contact-admin');
     Route::resource('category', 'CategoryController');
     Route::resource('blog-category', 'BlogCategoryController');
     Route::resource('info-staff', 'InfoStaffController');

@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin;
 
+use App\Enums\CategoryAccept;
 use App\Models\Category;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class CategoryService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->where('is_accept', CategoryAccept::ACCEPT);
 
         return $this->filterPaginate(
             $query,

@@ -12,11 +12,13 @@ class Category extends Model
 
     protected $fillable = [
         'admin_id',
+        'staff_id',
         'title',
         'url_image',
         'description',
         'priority',
         'is_active',
+        'is_accept',
         'deleted_at'
     ];
 

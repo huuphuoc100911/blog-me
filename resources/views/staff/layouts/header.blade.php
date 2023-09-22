@@ -55,6 +55,37 @@
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
     <style>
+      .ml-1 {
+            margin-left: .25rem
+        }
+
+        .mt-2 {
+            margin-top: .5rem
+        }
+
+        .mr-2 {
+            margin-right: .5rem
+        }
+
+        .ml-2 {
+            margin-left: .5rem
+        }
+
+        .mt-4 {
+            margin-top: 1rem
+        }
+
+        .ml-4 {
+            margin-left: 1rem
+        }
+
+        .mt-8 {
+            margin-top: 2rem
+        }
+
+        .ml-12 {
+            margin-left: 3rem
+        }
       .btn-cat-del {
           margin-left: 10px;
       }
@@ -217,6 +248,24 @@
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Analytics">Blog</div>
               </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Liên hệ</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('staff.list-suggest-category') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Với Admin</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Với người dùng</div>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </aside>
