@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     @php
-        \Carbon\Carbon::setLocale('en');
+        \Carbon\Carbon::setLocale('vi');
         $now = \Carbon\Carbon::now();
     @endphp
     <!-- Content wrapper -->
@@ -65,7 +65,7 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->staff->name }}
+                                            bởi {{ $media->staff->name }}
                                         </small>
                                     </p>
                                     @if (auth('staff')->user()->id === $media->staff_id)
@@ -102,7 +102,7 @@
                                     <p class="card-text">
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($media->updated_at)->diffForHumans($now) }}
-                                            by {{ $media->staff->name }}
+                                            bởi {{ $media->staff->name }}
                                         </small>
                                     </p>
                                 </div>

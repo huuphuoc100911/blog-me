@@ -99,7 +99,7 @@
     <script src="/assets/admin/assets/js/config.js"></script>
   </head>
   @php
-      \Carbon\Carbon::setLocale('en');
+      \Carbon\Carbon::setLocale('vi');
       $now = \Carbon\Carbon::now();
       $infoCompany = App\Models\InfoCompany::orderByDesc('id')->first();
       $countCategorySuggest = App\Models\Category::where('is_accept', App\Enums\CategoryAccept::INACCEPT)->count();

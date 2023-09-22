@@ -26,7 +26,7 @@
 @endpush
 @section('content')
     @php
-        \Carbon\Carbon::setLocale('en');
+        \Carbon\Carbon::setLocale('vi');
         $now = \Carbon\Carbon::now();
     @endphp
     <!-- Content wrapper -->

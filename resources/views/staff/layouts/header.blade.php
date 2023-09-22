@@ -129,7 +129,7 @@
     <script src="/assets/admin/assets/js/config.js"></script>
   </head>
   @php
-      \Carbon\Carbon::setLocale('en');
+      \Carbon\Carbon::setLocale('vi');
       $now = \Carbon\Carbon::now();
   @endphp
 
@@ -249,15 +249,15 @@
                 <div data-i18n="Analytics">Blog</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ \Request::segment(2) == 'list-suggest-category' ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Liên hệ</div>
+                <div data-i18n="Form Layouts">Đề xuất</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="{{ route('staff.list-suggest-category') }}" class="menu-link">
-                    <div data-i18n="Vertical Form">Với Admin</div>
+                    <div data-i18n="Vertical Form">Danh mục hình ảnh</div>
                   </a>
                 </li>
                 <li class="menu-item">

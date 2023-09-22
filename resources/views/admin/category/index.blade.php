@@ -26,7 +26,7 @@
 @endpush
 @section('content')
     @php
-        \Carbon\Carbon::setLocale('en');
+        \Carbon\Carbon::setLocale('vi');
         $now = \Carbon\Carbon::now();
     @endphp
     <!-- Content wrapper -->
@@ -77,7 +77,7 @@
                                 <p class="card-text">
                                     <small
                                         class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}
-                                        bởi {{ $category->admin->name }}</small>
+                                        bởi {{ $category->staff ? $category->staff->name : $category->admin->name }}</small>
                                 </p>
                                 <div class="row">
                                     <div class="col-sm-3"></div>

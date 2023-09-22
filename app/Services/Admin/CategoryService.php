@@ -70,7 +70,7 @@ class CategoryService extends BaseService
     {
         return $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority')
+            ->where('is_accept', CategoryAccept::ACCEPT)
             ->pluck('title', 'id');
     }
 
