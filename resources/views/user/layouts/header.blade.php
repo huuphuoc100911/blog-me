@@ -53,21 +53,39 @@
                                     href="{{ route('portfolio') }}">Portfolio</a></li>
                             <li class="{{ \Request::segment(1) === 'blog' ? 'active' : '' }}"><a
                                     href="{{ route('blog') }}">Blog</a></li>
-                            {{-- <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./portfolio-details.html">Portfolio Details</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li> --}}
                             <li class="{{ \Request::segment(1) === 'contact' ? 'active' : '' }}"><a
                                     href="{{ route('contact') }}">Contact</a></li>
+                            @if (auth('user')->user())
+                                <li>
+                                    <a href="#" class="ci-pic">
+                                        <img src="/assets/user/img/blog/details/comment/comment-3.jpg"
+                                            style="width: 40px; border-radius: 50%" alt="">
+                                    </a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{ route('info-account') }}">Thông tin cá nhân</a></li>
+                                        <li>
+                                            <a href="#"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                                xuất</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="#">Trang</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+
+
                         </ul>
                     </nav>
-                    <div class="top-search search-switch">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div id="mobile-menu-wrap"></div>
                 </div>
             </div>
         </div>

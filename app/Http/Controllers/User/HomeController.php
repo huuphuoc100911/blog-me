@@ -71,4 +71,9 @@ class HomeController extends Controller
 
         return view('user.contact', compact("infoCompany"));
     }
+
+    public function infoAccount()
+    {
+        return view('user.info-account');
+    }
 }

@@ -6,22 +6,33 @@ use App\Enums\BlogStatus;
 use App\Models\Blog;
 use App\Models\InfoCompany;
 use App\Models\Staff;
+use App\Models\User;
 use App\Services\Helper\FilterTrait;
 
 class UserService extends BaseService
 {
     use FilterTrait;
 
-    public function __construct(Staff $model, InfoCompany $infoCompany, Blog $blog)
+    public function __construct(User $model, Staff $staff, InfoCompany $infoCompany, Blog $blog)
     {
         $this->model = $model;
+        $this->staff = $staff;
         $this->infoCompany = $infoCompany;
         $this->blog = $blog;
     }
 
+    public function registerUser($inputs)
+    {
+        return $this->model->create([
+            'name' => $inputs['username'],
+            'email' => $inputs['email'],
+            'password' => bcrypt($inputs['password']),
+        ]);
+    }
+
     public function getListStaff()
     {
-        return $this->model->get();
+        return $this->staff->get();
     }
 
     public function getInfoCompany()

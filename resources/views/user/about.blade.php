@@ -109,7 +109,7 @@
                 @foreach ($staffs as $staff)
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="team-item">
-                            @if ($staff->infoStaff->imageUrl)
+                            @if ($staff->infoStaff)
                                 <img src="{{ $staff->infoStaff->imageUrl }}" alt="">
                             @else
                                 <img src="/assets/admin/assets/img/avatars/1.png" alt="">
