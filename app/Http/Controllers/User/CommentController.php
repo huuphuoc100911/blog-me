@@ -78,4 +78,19 @@ class CommentController extends Controller
             'status' => false
         ]);
     }
+
+    public function commentFavorite(Request $request)
+    {
+        $favoriteComment = $this->commentService->postCommentFavorite($request->all());
+
+        if ($favoriteComment === true) {
+            return response()->json([
+                'status' => 'not_favorite'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'is_favorite'
+        ]);
+    }
 }

@@ -43,4 +43,5 @@ Route::group(['middleware' => ['auth.user']], function () {
     Route::post('/update-avatar', [HomeController::class, 'updateAvatar'])->name('update-avatar');
     Route::post('/blog-comment', [CommentController::class, 'blogComment'])->name('blog-comment');
     Route::post('/reply-comment', [CommentController::class, 'replyComment'])->name('reply-comment');
+    Route::post('/comment-favorite', [CommentController::class, 'commentFavorite'])->name('comment-favorite');
 });

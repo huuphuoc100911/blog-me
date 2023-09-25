@@ -227,9 +227,13 @@
             border-radius: 3px;
         }
 
+        .favorite-comment {
+            color: red !important;
+        }
+
         /** =====================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Responsive
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ========================*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Responsive
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ========================*/
         @media only screen and (max-width: 766px) {
             .comments-container {
                 width: 480px;
@@ -340,9 +344,31 @@
                                                 <div class="comment-head">
                                                     <h6 class="comment-name by-author">{{ $comment->user->name }} </h6>
                                                     <span>{{ \Carbon\Carbon::parse($comment->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
-                                                    <i class="fa fa-reply"
-                                                        onclick="handleAddReply({{ $comment->id }})"></i>
-                                                    <i class="fa fa-heart"></i>
+                                                    @if (auth('user')->user())
+                                                        <i class="fa fa-reply reply-icon-{{ $comment->id }}"
+                                                            onclick="handleAddReply({{ $comment->id }})"></i>
+                                                        @if (count($comment->commentFavorite) > 0)
+                                                            @foreach ($comment->commentFavorite as $item)
+                                                                @php
+                                                                    $check = false;
+                                                                    if ($item->user_id === auth('user')->user()->id) {
+                                                                        $check = true;
+                                                                        break;
+                                                                    }
+                                                                @endphp
+                                                            @endforeach
+                                                            @if ($check)
+                                                                <i class="fa fa-heart favorite-{{ $comment->id }} favorite-comment"
+                                                                    onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                            @else
+                                                                <i class="fa fa-heart favorite-{{ $comment->id }}"
+                                                                    onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                            @endif
+                                                        @else
+                                                            <i class="fa fa-heart favorite-{{ $comment->id }}"
+                                                                onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                        @endif
+                                                    @endif
                                                 </div>
                                                 <div class="comment-content">
                                                     {{ $comment->comment }}
@@ -360,7 +386,9 @@
                                                             <h6 class="comment-name">{{ $reply->user->name }}
                                                             </h6>
                                                             <span>{{ \Carbon\Carbon::parse($reply->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
-                                                            <i class="fa fa-heart"></i>
+                                                            @if (auth('user')->user())
+                                                                <i class="fa fa-heart"></i>
+                                                            @endif
                                                         </div>
                                                         <div class="comment-content">
                                                             {{ $reply->reply }}
@@ -447,7 +475,7 @@
         function handleAddReply(commentId) {
             comment_div = `<div class="d-flex flex-row add-comment-section ml-5 mt-4 mb-4">
                                         <img class="img-fluid img-responsive rounded-circle mr-2"
-                                            src="{{ auth('user')->user()->image_url }}"
+                                            src="{{ auth('user')->user() ? auth('user')->user()->image_url : null }}"
                                             width="38">
                                         <input type="text" name="reply[${commentId}]" class="form-control mr-3"
                                             placeholder="Phản hồi">
@@ -458,6 +486,7 @@
                             <span class="ml-5 text-danger hidden alert-reply">Ban chua nhap binh luan</span>
                         </div>`;
             $(".comment-id-" + commentId).append(comment_div);
+            $(".reply-icon-" + commentId).addClass('hidden');
         }
 
         function handleReply(comment) {
@@ -483,6 +512,25 @@
                     }
                 });
             }
+        }
+
+        function handleCommentFavorite(commentId) {
+            $.ajax({
+                url: "{{ route('comment-favorite') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    comment_id: commentId,
+                },
+                success: function(data) {
+                    console.log(data.status);
+                    if (data.status === 'is_favorite') {
+                        $('.favorite-' + commentId).addClass('favorite-comment');
+                    } else {
+                        $('.favorite-' + commentId).removeClass('favorite-comment');
+                    }
+                }
+            });
         }
     </script>
 @endpush
