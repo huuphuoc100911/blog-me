@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="/assets/user/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/assets/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/user/css/style.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @stack('styles')
 </head>
 
 <body>
@@ -28,6 +33,12 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
+    @php
+        \Carbon\Carbon::setLocale('vi');
+        if (auth('user')->user()) {
+            $userLogin = App\Models\User::whereId(auth('user')->user()->id)->first();
+        }
+    @endphp
 
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -58,8 +69,13 @@
                             @if (auth('user')->user())
                                 <li>
                                     <a href="#" class="ci-pic">
-                                        <img src="/assets/user/img/blog/details/comment/comment-3.jpg"
-                                            style="width: 40px; border-radius: 50%" alt="">
+                                        @if ($userLogin && $userLogin->image_url)
+                                            <img src="{{ $userLogin->image_url }}"
+                                                style="width: 40px; border-radius: 50%" alt="">
+                                        @else
+                                            <img src="/assets/user/img/blog/details/comment/comment-3.jpg"
+                                                style="width: 40px; border-radius: 50%" alt="">
+                                        @endif
                                     </a>
                                     <ul class="dropdown">
                                         <li><a href="{{ route('info-account') }}">Thông tin cá nhân</a></li>

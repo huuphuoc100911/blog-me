@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserProfileRequest;
 use App\Services\User\CategoryService;
 use App\Services\User\MediaService;
 use App\Services\User\UserService;
@@ -74,6 +75,26 @@ class HomeController extends Controller
 
     public function infoAccount()
     {
-        return view('user.info-account');
+        $userProfile = $this->userService->getUserProfile();
+
+        return view('user.info-account', compact('userProfile'));
+    }
+
+    public function updateProfile(UserProfileRequest $request)
+    {
+        if ($this->userService->updateUserProfile($request->all())) {
+            return redirect()->back()->with('update_success',  __('messages.update_success'));
+        }
+
+        return redirect()->back()->with('update_fail',  __('messages.update_fail'));
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        if ($this->userService->updateAvatar($request->all())) {
+            return redirect()->back()->with('update_avatar_success', "Cập nhật hình nền thành công");
+        }
+
+        return redirect()->back()->with('update_fail',  __('messages.update_fail'));
     }
 }

@@ -8,6 +8,8 @@ use App\Models\InfoCompany;
 use App\Models\Staff;
 use App\Models\User;
 use App\Services\Helper\FilterTrait;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class UserService extends BaseService
 {
@@ -71,5 +73,38 @@ class UserService extends BaseService
     public function getBlogDetail($id)
     {
         return $this->blog->findOrFail($id);
+    }
+
+    public function getUserProfile()
+    {
+        return $this->model->findOrFail(auth('user')->user()->id);
+    }
+
+    public function updateUserProfile($inputs)
+    {
+        $userId = auth('user')->user()->id;
+        $user = $this->model->findOrFail($userId);
+
+        $data = [
+            'name' => $inputs['name'],
+            'phone_number' => $inputs['phone_number'],
+            'birth_day' => Carbon::parse($inputs['birth_day']),
+            'address' => $inputs['address'],
+        ];
+
+        return $user->update($data);
+    }
+
+    public function updateAvatar($inputs)
+    {
+        $user = $this->model->findOrFail(auth('user')->user()->id);
+        $path = Storage::put('user/avatar', $inputs['url_image']);
+        $data['url_image'] = $path;
+
+        if ($user->url_image) {
+            Storage::delete($user->url_image);
+        }
+
+        return $user->update($data);
     }
 }

@@ -95,6 +95,8 @@
     <script src="/assets/user/js/jquery.slicknav.js"></script>
     <script src="/assets/user/js/owl.carousel.min.js"></script>
     <script src="/assets/user/js/main.js"></script>
+    <script src="/assets/staff/assets/modules/jquery.min.js"></script>
+    @stack('scripts')
     </body>
 
     </html>
