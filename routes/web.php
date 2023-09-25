@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +36,10 @@ Route::get('/service', [HomeController::class, 'service'])->name('service');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
 Route::group(['middleware' => ['auth.user']], function () {
     Route::get('/info-account', [HomeController::class, 'infoAccount'])->name('info-account');
     Route::post('/update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
     Route::post('/update-avatar', [HomeController::class, 'updateAvatar'])->name('update-avatar');
+    Route::post('/blog-comment', [CommentController::class, 'blogComment'])->name('blog-comment');
 });

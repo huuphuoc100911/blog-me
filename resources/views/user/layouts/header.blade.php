@@ -26,6 +26,11 @@
         integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('styles')
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
