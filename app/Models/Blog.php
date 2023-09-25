@@ -37,4 +37,9 @@ class Blog extends Model
     {
         return $this->belongsTo(Staff::class, 'staff_id');
     }
+
+    public function comment()
+    {
+        return $this->hasMany(CommentBlog::class, 'blog_id', 'id');
+    }
 }

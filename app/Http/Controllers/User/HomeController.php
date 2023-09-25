@@ -5,17 +5,23 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserProfileRequest;
 use App\Services\User\CategoryService;
+use App\Services\User\CommentService;
 use App\Services\User\MediaService;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __construct(MediaService $mediaService, CategoryService $categoryService, UserService $userService)
-    {
+    public function __construct(
+        MediaService $mediaService,
+        CategoryService $categoryService,
+        UserService $userService,
+        CommentService $commentService
+    ) {
         $this->mediaService = $mediaService;
         $this->categoryService = $categoryService;
         $this->userService = $userService;
+        $this->commentService = $commentService;
     }
 
     public function index()
@@ -44,8 +50,9 @@ class HomeController extends Controller
     {
         $blogs = $this->userService->getBlogOther(array($id));
         $blogDetail = $this->userService->getBlogDetail($id);
+        $commentBlog = $this->commentService->getListCommentBlog($id);
 
-        return view('user.blog-detail', compact('blogDetail', 'blogs'));
+        return view('user.blog-detail', compact('blogDetail', 'blogs', 'commentBlog'));
     }
 
     public function service()

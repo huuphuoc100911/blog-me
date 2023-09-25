@@ -22,7 +22,7 @@ class CommentController extends Controller
 
         if ($comment) {
             return response()->json([
-                'comment' => '<li>
+                'comment' => '<li class="mt-4 comment-id-' . $comment->id . '">
                 <div class="comment-main-level">
                     <div class="comment-avatar"><img
                             src="' . $comment->user->image_url . '"
@@ -31,11 +31,43 @@ class CommentController extends Controller
                         <div class="comment-head">
                             <h6 class="comment-name">' . $comment->user->name . '</h6>
                             <span>' . Carbon::parse($comment->updated_at)->diffForHumans(Carbon::now()) . '</span>
-                            <i class="fa fa-reply"></i>
+                            <i class="fa fa-reply" onclick=handleAddReply(' . $comment->id . ')></i>
                             <i class="fa fa-heart"></i>
                         </div>
                         <div class="comment-content">' . $comment->comment . '
                         </div>
+                    </div>
+                </div>
+                <ul class="comments-list reply-list reply-' . $comment->id . '">
+                </ul>
+            </li>'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false
+        ]);
+    }
+
+    public function replyComment(Request $request)
+    {
+        $replyComment = $this->commentService->postReplyComment($request->all());
+        Carbon::setLocale('vi');
+
+        if ($replyComment) {
+            return response()->json([
+                'reply' => '<li>
+                <div class="comment-avatar"><img
+                        src="' . $replyComment->user->image_url . '"
+                        alt=""></div>
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name">' . $replyComment->user->name . '</h6>
+                        <span>' . Carbon::parse($replyComment->updated_at)->diffForHumans(Carbon::now()) . '</span>
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="comment-content">
+                    ' . $replyComment->reply . '
                     </div>
                 </div>
             </li>'

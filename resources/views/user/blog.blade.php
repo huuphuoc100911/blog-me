@@ -35,7 +35,13 @@
                                 <ul>
                                     <li>by <span>{{ $blog->staff->name }}</span></li>
                                     <li>{{ \Carbon\Carbon::parse($blog->updated_at)->format('M, d, Y') }}</li>
-                                    <li>20 Comment</li>
+                                    @php
+                                        $countReply = 0;
+                                        foreach ($blog->comment as $comment) {
+                                            $countReply += count($comment->replyComment);
+                                        }
+                                    @endphp
+                                    <li>{{ count($blog->comment) + $countReply }} Comment</li>
                                 </ul>
                                 <p>{{ Str::limit($blog->description, 720, '...') }}</p>
                             </div>

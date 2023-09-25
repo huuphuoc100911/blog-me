@@ -154,7 +154,7 @@
         }
 
         .comment-box .comment-head {
-            background: #FCFCFC;
+            background: #d7d6d6;
             padding: 10px 12px;
             border-bottom: 1px solid #E5E5E5;
             overflow: hidden;
@@ -228,8 +228,8 @@
         }
 
         /** =====================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * Responsive
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ========================*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Responsive
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ========================*/
         @media only screen and (max-width: 766px) {
             .comments-container {
                 width: 480px;
@@ -325,182 +325,56 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bd-comment-form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h4>Comment</h4>
-                                    <div class="comment-item">
-                                        <div class="ci-pic">
-                                            <img src="/assets/user/img/blog/details/comment/comment-1.jpg" alt="">
-                                        </div>
-                                        <div class="ci-text">
-                                            <h5>Brandon Kelley</h5>
-                                            <p>Consectetur adipiscing eiusmod tempor incididunt t labore et dolore magna
-                                                aliqua. Quis ipsum suspendisse ultrices.</p>
-                                            <ul>
-                                                <li><i class="fa fa-clock-o"></i> Aug,15, 2019</li>
-                                                <li><i class="fa fa-heart-o"></i> Like</li>
-                                                <li><i class="fa fa-share-square-o"></i> Reply</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="comment-item">
-                                        <div class="ci-pic">
-                                            <img src="/assets/user/img/blog/details/comment/comment-2.jpg" alt="">
-                                        </div>
-                                        <div class="ci-text">
-                                            <h5>Brandon Kelley</h5>
-                                            <p>Consectetur adipiscing eiusmod tempor incididunt t labore et dolore magna
-                                                aliqua. Quis ipsum suspendisse ultrices.</p>
-                                            <ul>
-                                                <li><i class="fa fa-clock-o"></i> Aug,15, 2019</li>
-                                                <li><i class="fa fa-heart-o"></i> Like</li>
-                                                <li><i class="fa fa-share-square-o"></i> Reply</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="comment-item">
-                                        <div class="ci-pic">
-                                            <img src="/assets/user/img/blog/details/comment/comment-3.jpg" alt="">
-                                        </div>
-                                        <div class="ci-text">
-                                            <h5>Brandon Kelley</h5>
-                                            <p>Consectetur adipiscing eiusmod tempor incididunt t labore et dolore magna
-                                                aliqua. Quis ipsum suspendisse ultrices.</p>
-                                            <ul>
-                                                <li><i class="fa fa-clock-o"></i> Aug,15, 2019</li>
-                                                <li><i class="fa fa-heart-o"></i> Like</li>
-                                                <li><i class="fa fa-share-square-o"></i> Reply</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="leave-form">
-                                        <h4>Leave a comment</h4>
-                                        <form action="#">
-                                            <input type="text" placeholder="Name">
-                                            <input type="text" placeholder="Email">
-                                            <input type="text" placeholder="Website">
-                                            <textarea placeholder="Comment"></textarea>
-                                            <button type="submit" class="site-btn">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @php
+                            \Carbon\Carbon::setLocale('vi');
+                        @endphp
                         <div class="comments-container">
                             <h1>Comments</h1>
-
                             <ul id="comments-list" class="comments-list">
-                                <li>
-                                    <div class="comment-main-level">
-
-                                        <div class="comment-avatar"><img
-                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                                alt=""></div>
-
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name by-author"><a href="#">Agustin Ortiz</a>
-                                                </h6>
-                                                <span>20 minutes ago</span>
-                                                <i class="fa fa-reply"></i>
-                                                <i class="fa fa-heart"></i>
-                                            </div>
-                                            <div class="comment-content">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi
-                                                et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <ul class="comments-list reply-list">
-                                        <li>
-
-                                            <div class="comment-avatar"><img
-                                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                @forelse ($commentBlog as $comment)
+                                    <li class="mt-4 comment-id-{{ $comment->id }}">
+                                        <div class="comment-main-level">
+                                            <div class="comment-avatar"><img src="{{ $comment->user->image_url }}"
                                                     alt=""></div>
-
                                             <div class="comment-box">
                                                 <div class="comment-head">
-                                                    <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6>
-                                                    <span>10 minutes ago</span>
-                                                    <i class="fa fa-reply"></i>
+                                                    <h6 class="comment-name by-author">{{ $comment->user->name }} </h6>
+                                                    <span>{{ \Carbon\Carbon::parse($comment->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
+                                                    <i class="fa fa-reply"
+                                                        onclick="handleAddReply({{ $comment->id }})"></i>
                                                     <i class="fa fa-heart"></i>
                                                 </div>
                                                 <div class="comment-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis
-                                                    animi et iure laudantium vitae, praesentium optio, sapiente distinctio
-                                                    illo?
+                                                    {{ $comment->comment }}
                                                 </div>
-                                            </div>
-                                        </li>
-
-                                        <li>
-
-                                            <div class="comment-avatar"><img
-                                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                                    alt=""></div>
-
-                                            <div class="comment-box">
-                                                <div class="comment-head">
-                                                    <h6 class="comment-name by-author"><a href="#">Agustin Ortiz</a>
-                                                    </h6>
-                                                    <span>10 minutes ago</span>
-                                                    <i class="fa fa-reply"></i>
-                                                    <i class="fa fa-heart"></i>
-                                                </div>
-                                                <div class="comment-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis
-                                                    animi et iure laudantium vitae, praesentium optio, sapiente distinctio
-                                                    illo?
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <div class="comment-main-level">
-                                        <div class="comment-avatar"><img
-                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                                                alt=""></div>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6>
-                                                <span>10 minutes ago</span>
-                                                <i class="fa fa-reply"></i>
-                                                <i class="fa fa-heart"></i>
-                                            </div>
-                                            <div class="comment-content">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi
-                                                et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
 
-                                <li>
-                                    <div class="comment-main-level">
-                                        <div class="comment-avatar"><img
-                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                                                alt=""></div>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name">Lorena Rojero</h6>
-                                                <span>10 minutes ago</span>
-                                                <i class="fa fa-reply"></i>
-                                                <i class="fa fa-heart"></i>
-                                            </div>
-                                            <div class="comment-content">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi
-                                                et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                        <ul class="comments-list reply-list reply-{{ $comment->id }}">
+                                            @foreach ($comment->replyComment as $reply)
+                                                <li>
+                                                    <div class="comment-avatar"><img src="{{ $reply->user->image_url }}"
+                                                            alt=""></div>
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name">{{ $reply->user->name }}
+                                                            </h6>
+                                                            <span>{{ \Carbon\Carbon::parse($reply->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
+                                                            <i class="fa fa-heart"></i>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            {{ $reply->reply }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @empty
+                                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                                @endforelse
                             </ul>
+
                             <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                 @if (auth('user')->user())
                                     <img class="img-fluid img-responsive rounded-circle mr-2"
@@ -518,7 +392,6 @@
                                     <button class="btn btn-primary" onclick="handleAlertLogin()"
                                         type="button">Comment</button>
                                 @endif
-
                             </div>
                             <div>
                                 <span class="ml-5 text-danger hidden alert-comment">Ban chua nhap binh luan</span>
@@ -569,6 +442,47 @@
 
         function handleAlertLogin() {
             $(".alert-login").removeClass('hidden');
+        }
+
+        function handleAddReply(commentId) {
+            comment_div = `<div class="d-flex flex-row add-comment-section ml-5 mt-4 mb-4">
+                                        <img class="img-fluid img-responsive rounded-circle mr-2"
+                                            src="{{ auth('user')->user()->image_url }}"
+                                            width="38">
+                                        <input type="text" name="reply[${commentId}]" class="form-control mr-3"
+                                            placeholder="Phản hồi">
+                                        <button class="btn btn-primary" onclick="handleReply(${commentId})"
+                                            type="button">Reply</button>
+                                    </div>
+                                    <div class="ml-5">
+                            <span class="ml-5 text-danger hidden alert-reply">Ban chua nhap binh luan</span>
+                        </div>`;
+            $(".comment-id-" + commentId).append(comment_div);
+        }
+
+        function handleReply(comment) {
+            if ($("input[name='reply[" + comment +
+                    "]']").val() === '') {
+                $(".alert-reply").removeClass('hidden');
+            } else {
+                $(".alert-reply").addClass('hidden');
+                $.ajax({
+                    url: "{{ route('reply-comment') }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        comment_id: comment,
+                        reply: $("input[name='reply[" + comment +
+                            "]']").val()
+                    },
+                    success: function(data) {
+                        console.log(comment);
+                        $('.reply-' + comment).append(data.reply);
+                        $("input[name='reply[" + comment +
+                            "]']").val('')
+                    }
+                });
+            }
         }
     </script>
 @endpush
