@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:staffs',
+            'email' => 'required|email|unique:staffs|unique:admins|unique:users',
             'password' => 'required|min:6',
             'password-confirm' => 'required|same:password',
             'agree' => 'required',
@@ -40,6 +40,13 @@ class RegisterRequest extends FormRequest
             'password' => 'password',
             'password-confirm' => 'confirm password',
             'agree' => 'agree',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'Email đã tồn tại',
         ];
     }
 }

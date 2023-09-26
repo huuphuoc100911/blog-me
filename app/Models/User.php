@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,7 +24,9 @@ class User extends Authenticatable
         'phone_number',
         'birth_day',
         'address',
-        'url_image'
+        'url_image',
+        'role',
+        'is_active'
     ];
 
     /**

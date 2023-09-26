@@ -3,9 +3,12 @@
 namespace App\Services\Admin;
 
 use App\Enums\AccountStatus;
+use App\Enums\UserRole;
 use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdminService extends BaseService
 {
@@ -18,11 +21,38 @@ class AdminService extends BaseService
 
     public function registerAdmin($inputs)
     {
-        return $this->model->create([
-            'name' => $inputs['username'],
-            'email' => $inputs['email'],
-            'password' => bcrypt($inputs['password']),
-        ]);
+        DB::beginTransaction();
+
+        try {
+            $this->user->create([
+                'name' => $inputs['username'],
+                'email' => $inputs['email'],
+                'is_active' => AccountStatus::ACTIVE,
+                'password' => bcrypt($inputs['password']),
+                'role' => UserRole::ADMIN
+            ]);
+
+            $this->staff->create([
+                'name' => $inputs['username'],
+                'email' => $inputs['email'],
+                'is_active' => AccountStatus::ACTIVE,
+                'password' => bcrypt($inputs['password']),
+            ]);
+
+            $this->model->create([
+                'name' => $inputs['username'],
+                'email' => $inputs['email'],
+                'password' => bcrypt($inputs['password']),
+            ]);
+
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e);
+
+            DB::rollback();
+            return false;
+        }
     }
 
     public function getListAdmin()
