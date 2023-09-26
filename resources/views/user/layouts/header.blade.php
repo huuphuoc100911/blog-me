@@ -78,7 +78,7 @@
                                             <img src="{{ $userLogin->image_url }}"
                                                 style="width: 40px; border-radius: 50%" alt="">
                                         @else
-                                            <img src="/assets/user/img/blog/details/comment/comment-3.jpg"
+                                            <img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
                                                 style="width: 40px; border-radius: 50%" alt="">
                                         @endif
                                     </a>

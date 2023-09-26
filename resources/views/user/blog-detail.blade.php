@@ -215,7 +215,7 @@
         }
 
         .comment-box .comment-name.by-author:after {
-            content: 'autor';
+            content: 'Người viết bài';
             background: #03658c;
             color: #FFF;
             font-size: 12px;
@@ -232,8 +232,8 @@
         }
 
         /** =====================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Responsive
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ========================*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Responsive
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ========================*/
         @media only screen and (max-width: 766px) {
             .comments-container {
                 width: 480px;
@@ -338,11 +338,16 @@
                                 @forelse ($commentBlog as $comment)
                                     <li class="mt-4 comment-id-{{ $comment->id }}">
                                         <div class="comment-main-level">
-                                            <div class="comment-avatar"><img src="{{ $comment->user->image_url }}"
+                                            <div class="comment-avatar"><img
+                                                    src="{{ $comment->user->image_url != '' ? $comment->user->image_url : 'https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg' }}"
                                                     alt=""></div>
                                             <div class="comment-box">
                                                 <div class="comment-head">
-                                                    <h6 class="comment-name by-author">{{ $comment->user->name }} </h6>
+                                                    @if ($blogDetail->staff->email == $comment->user->email)
+                                                        <h6 class="comment-name by-author">{{ $comment->user->name }} </h6>
+                                                    @else
+                                                        <h6 class="comment-name">{{ $comment->user->name }} </h6>
+                                                    @endif
                                                     <span>{{ \Carbon\Carbon::parse($comment->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
                                                     @if (auth('user')->user())
                                                         <i class="fa fa-reply reply-icon-{{ $comment->id }}"
@@ -359,15 +364,22 @@
                                                             @endforeach
                                                             @if ($check)
                                                                 <i class="fa fa-heart favorite-{{ $comment->id }} favorite-comment"
-                                                                    onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                                    onclick="handleCommentFavorite({{ $comment->id }})"><span
+                                                                        class="heart-comment-{{ $comment->id }}">{{ count($comment->commentFavorite) > 0 ? count($comment->commentFavorite) : '' }}</span></i>
                                                             @else
                                                                 <i class="fa fa-heart favorite-{{ $comment->id }}"
-                                                                    onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                                    onclick="handleCommentFavorite({{ $comment->id }})"><span
+                                                                        class="heart-comment-{{ $comment->id }}">{{ count($comment->commentFavorite) > 0 ? count($comment->commentFavorite) : '' }}</span></i>
                                                             @endif
                                                         @else
                                                             <i class="fa fa-heart favorite-{{ $comment->id }}"
-                                                                onclick="handleCommentFavorite({{ $comment->id }})"></i>
+                                                                onclick="handleCommentFavorite({{ $comment->id }})"><span
+                                                                    class="heart-comment-{{ $comment->id }}">{{ count($comment->commentFavorite) > 0 ? count($comment->commentFavorite) : '' }}</span></i>
                                                         @endif
+                                                    @else
+                                                        <i class="fa fa-reply"></i>
+                                                        <i class="fa fa-heart"><span
+                                                                class="heart-comment-{{ $comment->id }}">{{ count($comment->commentFavorite) > 0 ? count($comment->commentFavorite) : '' }}</span></i>
                                                     @endif
                                                 </div>
                                                 <div class="comment-content">
@@ -379,14 +391,21 @@
                                         <ul class="comments-list reply-list reply-{{ $comment->id }}">
                                             @foreach ($comment->replyComment as $reply)
                                                 <li>
-                                                    <div class="comment-avatar"><img src="{{ $reply->user->image_url }}"
+                                                    <div class="comment-avatar"><img
+                                                            src="{{ $reply->user->image_url != '' ? $reply->user->image_url : 'https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg' }}"
                                                             alt=""></div>
                                                     <div class="comment-box">
                                                         <div class="comment-head">
-                                                            <h6 class="comment-name">{{ $reply->user->name }}
-                                                            </h6>
+                                                            @if ($blogDetail->staff->email == $reply->user->email)
+                                                                <h6 class="comment-name by-author">
+                                                                    {{ $reply->user->name }} </h6>
+                                                            @else
+                                                                <h6 class="comment-name">{{ $reply->user->name }} </h6>
+                                                            @endif
                                                             <span>{{ \Carbon\Carbon::parse($reply->updated_at)->diffForHumans(\Carbon\Carbon::now()) }}</span>
                                                             @if (auth('user')->user())
+                                                                <i class="fa fa-heart"></i>
+                                                            @else
                                                                 <i class="fa fa-heart"></i>
                                                             @endif
                                                         </div>
@@ -406,17 +425,18 @@
                             <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                 @if (auth('user')->user())
                                     <img class="img-fluid img-responsive rounded-circle mr-2"
-                                        src="{{ auth('user')->user()->image_url }}" width="38">
+                                        src="{{ auth('user')->user()->image_url != '' ? auth('user')->user()->image_url : 'https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg' }}"
+                                        width="38" style="height: 38px;">
                                     <input type="text" name="comment" class="form-control mr-3"
-                                        placeholder="Add comment">
+                                        placeholder="Viết bình luận">
                                     <button class="btn btn-primary" onclick="handleBlogComment({{ $blogDetail->id }})"
                                         type="button">Comment</button>
                                 @else
                                     <img class="img-fluid img-responsive rounded-circle mr-2"
                                         src="https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                        width="38">
+                                        width="38" style="height: 38px;">
                                     <input type="text" name="comment" class="form-control mr-3"
-                                        placeholder="Add comment">
+                                        placeholder="Viết bình luận">
                                     <button class="btn btn-primary" onclick="handleAlertLogin()"
                                         type="button">Comment</button>
                                 @endif
@@ -475,8 +495,8 @@
         function handleAddReply(commentId) {
             comment_div = `<div class="d-flex flex-row add-comment-section ml-5 mt-4 mb-4">
                                         <img class="img-fluid img-responsive rounded-circle mr-2"
-                                            src="{{ auth('user')->user() ? auth('user')->user()->image_url : null }}"
-                                            width="38">
+                                            src="{{ auth('user')->user() ? (auth('user')->user()->image_url != '' ? auth('user')->user()->image_url : 'https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg') : 'https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg' }}"
+                                            width="38" style="height: 38px;">
                                         <input type="text" name="reply[${commentId}]" class="form-control mr-3"
                                             placeholder="Phản hồi">
                                         <button class="btn btn-primary" onclick="handleReply(${commentId})"
@@ -523,11 +543,18 @@
                     comment_id: commentId,
                 },
                 success: function(data) {
-                    console.log(data.status);
+                    let heartCount = $('.heart-comment-' + commentId).html();
+                    heartCount = heartCount != '' ? heartCount : 0;
                     if (data.status === 'is_favorite') {
                         $('.favorite-' + commentId).addClass('favorite-comment');
+                        $('.heart-comment-' + commentId).html(parseInt(heartCount) + 1);
                     } else {
                         $('.favorite-' + commentId).removeClass('favorite-comment');
+                        if (parseInt(heartCount) == 1) {
+                            $('.heart-comment-' + commentId).html('');
+                        } else {
+                            $('.heart-comment-' + commentId).html(parseInt(heartCount) - 1)
+                        }
                     }
                 }
             });
