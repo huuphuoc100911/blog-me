@@ -59,7 +59,7 @@ class CommentController extends Controller
         $replyComment = $this->commentService->postReplyComment($request->all());
         Carbon::setLocale('vi');
         $urlImage = $replyComment->user->image_url == '' ? "https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" : $replyComment->user->image_url;
-        $checkAutor = auth('user')->user()->email === $replyComment->user->email;
+        $checkAutor = $replyComment->comment->blog->staff->email === $replyComment->user->email;
 
         $classByAutor =  $checkAutor ? 'by-author' : '';
 
