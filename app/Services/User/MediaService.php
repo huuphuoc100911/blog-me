@@ -21,7 +21,7 @@ class MediaService extends BaseService
     {
         $query = $this->model
             ->whereNull('deleted_at')
-            ->where('is_active', MediaStatus::ACTIVE)
+            ->isActive()
             ->orderByDesc('priority');
 
         return $this->filterPaginate(

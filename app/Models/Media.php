@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\MediaStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -37,5 +38,10 @@ class Media extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class, 'staff_id');
+    }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', MediaStatus::ACTIVE);
     }
 }
