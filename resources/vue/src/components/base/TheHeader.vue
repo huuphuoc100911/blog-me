@@ -1,44 +1,29 @@
 <template>
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo">
-                        <a href="#">
-                            <img src="/assets/user/img/logo.png" alt="">
-                        </a>
-                    </div>
-                    <nav class="nav-menu mobile-menu">
-                        <ul>
-                            <li class="{{ \Request::segment(1) === null ? 'active' : '' }}">
-                                <router-link :to="{ name: 'home' }">Home</router-link>
-                            </li>
-                            <li class="{{ \Request::segment(1) === 'about' ? 'active' : '' }}">
-                                <router-link :to="{ name: 'about' }">About</router-link>
-                            </li>
-                            <li class="{{ \Request::segment(1) === 'service' ? 'active' : '' }}"><a
-                                    href="{{ route('service') }}">Services</a></li>
-                            <li class="{{ \Request::segment(1) === 'pricing' ? 'active' : '' }}"><a
-                                    href="{{ route('pricing') }}">Pricing</a></li>
-                            <li class="{{ \Request::segment(1) === 'portfolio' ? 'active' : '' }}">
-                                <router-link :to="{ name: 'portfolio' }">Portfolio</router-link>
-                            </li>
-                            <li class="{{ \Request::segment(1) === 'blog' ? 'active' : '' }}">
-                                <router-link :to="{ name: 'blog' }">Blog</router-link>
-                            </li>
-                            <li class="{{ \Request::segment(1) === 'contact' ? 'active' : '' }}">
-                                <router-link :to="{ name: 'contact' }">Contact</router-link>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="top-search search-switch">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div id="mobile-menu-wrap"></div>
-                </div>
+    <!-- Navbar Start -->
+    <nav style="display: flex;" class="navbar navbar-expand-lg bg-white navbar-light fixed-top shadow py-lg-0 px-4 px-lg-5"
+        data-wow-delay="0.1s">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="text-primary">Photozone</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between py-4 py-lg-0" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+            </div>
+            <a href="index.html" class="navbar-brand bg-primary py-2 px-4 mx-3 d-none d-lg-block">
+                <h1 class="text-white">Photozone</h1>
+            </a>
+            <div class="navbar-nav me-auto py-0">
+                <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
         </div>
-    </header>
+    </nav>
+    <!-- Navbar End -->
 </template>
 
 <script>

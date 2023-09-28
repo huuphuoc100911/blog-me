@@ -1,48 +1,66 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Phozogy Template">
-    <meta name="keywords" content="Phozogy, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Phozogy | Template</title>
+    <meta charset="utf-8">
+    <title>Photozone - Photo Studio Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="assets/vue/img/favicon.ico" rel="icon">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="/assets/user/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/user/css/style.css" type="text/css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- assets/vue/libraries Stylesheet -->
+    <link href="assets/vue/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="assets/vue/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vue/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="assets/vue/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="assets/vue/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
     </div>
+    <!-- Spinner End -->
 
     <div id="app">
         <router-view />
     </div>
 
-    <!-- Js Plugins -->
-    <script src="/main.js"></script>
-    <script src="/assets/user/js/jquery-3.3.1.min.js"></script>
-    <script src="/assets/user/js/bootstrap.min.js"></script>
-    <script src="/assets/user/js/jquery.magnific-popup.min.js"></script>
-    <script src="/assets/user/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/user/js/masonry.pkgd.min.js"></script>
-    <script src="/assets/user/js/jquery.slicknav.js"></script>
-    <script src="/assets/user/js/owl.carousel.min.js"></script>
-    <script src="/assets/user/js/main.js"></script>
+    <!-- JavaScript assets/vue/libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vue/lib/wow/wow.min.js"></script>
+    <script src="assets/vue/assets/vue/lib/easing/easing.min.js"></script>
+    <script src="assets/vue/lib/waypoints/waypoints.min.js"></script>
+    <script src="assets/vue/lib/counterup/counterup.min.js"></script>
+    <script src="assets/vue/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="assets/vue/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="assets/vue/js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
