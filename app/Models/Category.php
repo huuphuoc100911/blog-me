@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CategoryStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -45,5 +46,10 @@ class Category extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class, 'staff_id');
+    }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', CategoryStatus::ACTIVE);
     }
 }

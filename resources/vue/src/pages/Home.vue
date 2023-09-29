@@ -151,59 +151,18 @@
                 <h1 class="display-6 mb-4">We Provide Best Professional Services</h1>
             </div>
             <div class="row g-3">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
+                    v-for="(category, index) in listCategory.data" :key="index">
                     <div class="service-item d-flex flex-column bg-white p-3 pb-0">
                         <div class="position-relative">
-                            <img class="img-fluid" src="assets/vue/img/service-1.jpg" alt="">
+                            <img class="img-fluid" :src="category.url_image" alt="" style="height: 340px;">
                             <div class="service-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" :href="category.url_image"><i
                                         class="fa fa-link text-primary"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">
-                            <h4>Weddings</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 pt-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item d-flex flex-column bg-white p-3 pb-0">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="assets/vue/img/service-2.jpg" alt="">
-                            <div class="service-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
-                                        class="fa fa-link text-primary"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4>Portraits</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item d-flex flex-column bg-white p-3 pb-0">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="assets/vue/img/service-3.jpg" alt="">
-                            <div class="service-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
-                                        class="fa fa-link text-primary"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4>Fashion</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 pt-lg-5 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item d-flex flex-column bg-white p-3 pb-0">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="assets/vue/img/service-4.jpg" alt="">
-                            <div class="service-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i
-                                        class="fa fa-link text-primary"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4>Editorial</h4>
+                            <h4>{{ category.title }}</h4>
                         </div>
                     </div>
                 </div>
@@ -421,11 +380,14 @@ export default {
     name: "Home",
     setup() {
         const store = useStore();
+        store.dispatch("category/getListCategoryAction");
         store.dispatch("media/getListMediaAction");
         const listMedia = computed(() => store.state.media.listMedia);
+        const listCategory = computed(() => store.state.category.listCategory);
 
         return {
-            listMedia
+            listMedia,
+            listCategory
         }
     }
 }
