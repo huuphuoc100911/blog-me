@@ -36,6 +36,7 @@ class AdminService extends BaseService
                 'name' => $inputs['username'],
                 'email' => $inputs['email'],
                 'is_active' => AccountStatus::ACTIVE,
+                'role' => UserRole::ADMIN,
                 'password' => bcrypt($inputs['password']),
             ]);
 

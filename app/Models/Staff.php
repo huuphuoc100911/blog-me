@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\AccountStatus;
+use App\Enums\UserRole;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class Staff extends Authenticatable
@@ -41,6 +44,11 @@ class Staff extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getImageUrlAttribute()
+    {
+        return $this->url_image ? Storage::url($this->url_image) : '';
+    }
+
     public function infoStaff()
     {
         return $this->hasOne(InfoStaff::class, 'staff_id', 'id');
@@ -54,5 +62,15 @@ class Staff extends Authenticatable
     public function category()
     {
         return $this->hasMany(Category::class, 'staff_id', 'id');
+    }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', AccountStatus::ACTIVE);
+    }
+
+    public function scopeIsStaff($query)
+    {
+        return $query->where('role', UserRole::STAFF);
     }
 }

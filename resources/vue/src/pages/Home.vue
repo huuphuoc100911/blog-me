@@ -203,21 +203,24 @@
             <h1 class="display-6 mb-0">Creative Photograher And Videographer</h1>
         </div>
         <div class="row g-0">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0 flex-sm-row">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" v-for="(staff, index) in listStaff.data" :key="index">
+                <div class="row g-0 flex-sm-row" v-if="index % 4 == 0 || index % 4 == 1">
                     <div class="col-sm-6">
                         <div class="team-img position-relative">
-                            <img class="img-fluid" src="assets/vue/img/team-1.jpg" alt="">
+                            <img class="img-fluid" :src="staff.infoStaff ? staff.image_url : 'assets/vue/img/team-2.jpg'"
+                                alt="" style="height: 400px; width: 330px">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="h-100 p-5 d-flex flex-column justify-content-between">
                             <div class="mb-3">
-                                <h4>Lucifer Jhones</h4>
-                                <span>Photographer</span>
+                                <h4>{{ staff.name }}</h4>
+                                <span>Nhân viên</span>
                             </div>
-                            <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                duo</p>
+                            <p>
+                                {{ staff.infoStaff ?
+                                    staff.infoStaff.description.substring(0, 100) + '...' : 'Chưa cập nhật mô tả' }}
+                            </p>
                             <div class="d-flex">
                                 <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
                                         class="fab fa-facebook-f"></i></a>
@@ -229,76 +232,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-                <div class="row g-0 flex-sm-row-reverse flex-lg-row">
+                <div class="row g-0 flex-lg-row-reverse" v-else>
                     <div class="col-sm-6">
                         <div class="team-img position-relative">
-                            <img class="img-fluid" src="assets/vue/img/team-2.jpg" alt="">
+                            <img class="img-fluid" :src="staff.infoStaff ? staff.image_url : 'assets/vue/img/team-2.jpg'"
+                                alt="" style="height: 400px; width: 330px">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="h-100 p-5 d-flex flex-column justify-content-between">
                             <div class="mb-3">
-                                <h4>Jesse Joslin</h4>
-                                <span>Videographer</span>
+                                <h4>{{ staff.name }}</h4>
+                                <span>Nhân viên</span>
                             </div>
-                            <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                duo</p>
-                            <div class="d-flex">
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0 flex-lg-row-reverse">
-                    <div class="col-sm-6">
-                        <div class="team-img position-relative">
-                            <img class="img-fluid" src="assets/vue/img/team-3.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="h-100 p-5 d-flex flex-column justify-content-between">
-                            <div class="mb-3">
-                                <h4>Richard Archer</h4>
-                                <span>Retoucher</span>
-                            </div>
-                            <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                duo</p>
-                            <div class="d-flex">
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-                <div class="row g-0 flex-sm-row-reverse">
-                    <div class="col-sm-6">
-                        <div class="team-img position-relative">
-                            <img class="img-fluid" src="assets/vue/img/team-4.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="h-100 p-5 d-flex flex-column justify-content-between">
-                            <div class="mb-3">
-                                <h4>April Ryan</h4>
-                                <span>Editor</span>
-                            </div>
-                            <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                duo</p>
+                            <p>{{ staff.infoStaff ?
+                                staff.infoStaff.description.substring(0, 100) + '...' : 'Chưa cập nhật mô tả' }}
+                            </p>
                             <div class="d-flex">
                                 <a class="btn btn-square btn-outline-primary rounded-circle me-2" href=""><i
                                         class="fab fa-facebook-f"></i></a>
@@ -380,14 +329,17 @@ export default {
     name: "Home",
     setup() {
         const store = useStore();
-        store.dispatch("category/getListCategoryAction");
         store.dispatch("media/getListMediaAction");
+        store.dispatch("category/getListCategoryAction");
+        store.dispatch("staff/getListStaffAction");
         const listMedia = computed(() => store.state.media.listMedia);
         const listCategory = computed(() => store.state.category.listCategory);
+        const listStaff = computed(() => store.state.staff.listStaff);
 
         return {
             listMedia,
-            listCategory
+            listCategory,
+            listStaff
         }
     }
 }

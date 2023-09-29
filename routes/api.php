@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('medias', 'Api\MediaController');
 Route::get('categories', [CategoryController::class, 'getListCategory']);
+Route::get('staffs', [ApiController::class, 'getListStaff']);

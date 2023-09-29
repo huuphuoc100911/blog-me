@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import media from "./modules/media";
 import category from "./modules/category";
+import staff from "./modules/staff";
 
 export default createStore({
     state: {},
@@ -10,5 +11,6 @@ export default createStore({
     modules: {
         media,
         category,
+        staff,
     },
 });
