@@ -109,26 +109,20 @@
             <div class="row g-3">
                 <div class="col-lg-4 col-md-6 pt-lg-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="fact-item bg-light text-center h-100 p-5">
-                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">35</h1>
-                        <h4 class="mb-3">Award Winning</h4>
-                        <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                            duo justo</span>
+                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">{{ amountBlog.data }}</h1>
+                        <h4 class="mb-3">Blogs</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="fact-item bg-light text-center h-100 p-5">
-                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">45</h1>
-                        <h4 class="mb-3">Years Experience</h4>
-                        <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                            duo justo</span>
+                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">{{ amountMedia.data }}</h1>
+                        <h4 class="mb-3">Hình ảnh</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 pt-lg-5 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="fact-item bg-light text-center h-100 p-5">
-                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">12345</h1>
-                        <h4 class="mb-3">Happy Clients</h4>
-                        <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                            duo justo</span>
+                        <h1 class="display-2 text-primary mb-3" data-toggle="counter-up">{{ amountUser.data }}</h1>
+                        <h4 class="mb-3">Người dùng</h4>
                     </div>
                 </div>
             </div>
@@ -327,16 +321,25 @@ export default {
         store.dispatch("category/getListCategoryAction");
         store.dispatch("staff/getListStaffAction");
         store.dispatch("infoCompany/getInfoCompanyAction");
+        store.dispatch("amount/getAmountUserAction");
+        store.dispatch("amount/getAmountMediaAction");
+        store.dispatch("amount/getAmountBlogAction");
         const listMedia = computed(() => store.state.media.listMedia);
         const listCategory = computed(() => store.state.category.listCategory);
         const listStaff = computed(() => store.state.staff.listStaff);
         const infoCompany = computed(() => store.state.infoCompany.infoCompany);
+        const amountUser = computed(() => store.state.amount.amountUser);
+        const amountMedia = computed(() => store.state.amount.amountMedia);
+        const amountBlog = computed(() => store.state.amount.amountBlog);
 
         return {
             listMedia,
             listCategory,
             listStaff,
-            infoCompany
+            infoCompany,
+            amountUser,
+            amountMedia,
+            amountBlog
         }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\AccountStatus;
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,5 +53,10 @@ class User extends Authenticatable
     public function getImageUrlAttribute()
     {
         return $this->url_image ? Storage::url($this->url_image) : '';
+    }
+
+    public function scopeIsUser($query)
+    {
+        return $query->where('role', UserRole::USER);
     }
 }

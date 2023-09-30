@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Resources\InfoCompanyResource;
 use App\Http\Resources\StaffResource;
 use App\Services\Api\ApiService;
+use Illuminate\Http\Response;
 
-class ApiController extends Controller
+class ApiController extends BaseController
 {
     public function __construct(ApiService $apiService)
     {
@@ -26,5 +26,35 @@ class ApiController extends Controller
         $infoCompany = $this->apiService->getInfoCompany();
 
         return InfoCompanyResource::collection($infoCompany);
+    }
+
+    public function getUserAmount()
+    {
+        $amountUser = $this->apiService->getUserAmount();
+
+        return response()->json([
+            'code' => Response::HTTP_OK,
+            'data' => $amountUser
+        ]);
+    }
+
+    public function getMediaAmount()
+    {
+        $amountNedia = $this->apiService->getMediaAmount();
+
+        return response()->json([
+            'code' => Response::HTTP_OK,
+            'data' => $amountNedia
+        ]);
+    }
+
+    public function getBlogAmount()
+    {
+        $amountBlog = $this->apiService->getBlogAmount();
+
+        return response()->json([
+            'code' => Response::HTTP_OK,
+            'data' => $amountBlog
+        ]);
     }
 }

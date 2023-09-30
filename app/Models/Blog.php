@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BlogStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -41,5 +42,10 @@ class Blog extends Model
     public function comment()
     {
         return $this->hasMany(CommentBlog::class, 'blog_id', 'id');
+    }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', BlogStatus::ACTIVE);
     }
 }

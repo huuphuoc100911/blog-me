@@ -24,3 +24,6 @@ Route::apiResource('medias', 'Api\MediaController');
 Route::get('categories', [CategoryController::class, 'getListCategory']);
 Route::get('staffs', [ApiController::class, 'getListStaff']);
 Route::get('info-company', [ApiController::class, 'getInfoCompany']);
+Route::get('amount-user', [ApiController::class, 'getUserAmount']);
+Route::get('amount-media', [ApiController::class, 'getMediaAmount']);
+Route::get('amount-blog', [ApiController::class, 'getBlogAmount']);

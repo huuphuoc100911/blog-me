@@ -3,6 +3,7 @@ import media from "./modules/media";
 import category from "./modules/category";
 import staff from "./modules/staff";
 import infoCompany from "./modules/info-company";
+import amount from "./modules/amount";
 
 export default createStore({
     state: {},
@@ -14,5 +15,6 @@ export default createStore({
         category,
         staff,
         infoCompany,
+        amount,
     },
 });
