@@ -16,10 +16,10 @@
                 <div class="col-lg-6 animated fadeIn">
                     <div class="row g-3">
                         <div class="col-6 text-end">
-                            <img class="img-fluid bg-white p-3 w-100" src="img/hero-1.jpg" alt="">
+                            <img class="img-fluid bg-white p-3 w-100" src="/assets/vue/img/hero-1.jpg" alt="">
                         </div>
                         <div class="col-6">
-                            <img class="img-fluid bg-white p-3 w-100" src="img/hero-2.jpg" alt="">
+                            <img class="img-fluid bg-white p-3 w-100" src="/assets/vue/img/hero-2.jpg" alt="">
                         </div>
                     </div>
                 </div>
