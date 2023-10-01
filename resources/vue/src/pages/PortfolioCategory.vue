@@ -33,11 +33,11 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="text-primary text-uppercase mb-2">Hình ảnh của chúng tôi</p>
-                <h1 class="display-6 mb-0">Khám phá buổi chụp ảnh độc đáo và sáng tạo của chúng tôi</h1>
+                <p class="text-primary text-uppercase mb-2">Danh mục hình ảnh</p>
+                <h1 class="display-6 mb-0">{{ categoryInfo.data ? categoryInfo.data.title : null }}</h1>
             </div>
             <div class="row g-3" data-wow-delay="0.5s">
-                <div class="col-4" v-for="(media, index) in listMedia.data" :key="index">
+                <div class="col-4" v-for="(media, index) in listMediaCategory.data" :key="index">
                     <div class="project-item">
                         <img class="img-fluid" :src="media.url_image" alt="" style="width: 100%; height: 500px">
                         <a class="project-title h5 mb-0" :href="media.url_image" data-lightbox="project">
@@ -55,16 +55,21 @@
 </template>
 <script>
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex'
 export default {
     name: "Home",
     setup() {
         const store = useStore();
-        store.dispatch('media/getListMediaAction');
-        const listMedia = computed(() => store.state.media.listMedia);
+        const route = useRoute();
+        store.dispatch('media/getListMediaCategoryAction', route.params.categoryId);
+        store.dispatch('category/getCategoryInfoAction', route.params.categoryId);
+        const listMediaCategory = computed(() => store.state.media.listMediaCategory);
+        const categoryInfo = computed(() => store.state.category.categoryInfo);
 
         return {
-            listMedia
+            listMediaCategory,
+            categoryInfo
         }
     }
 }

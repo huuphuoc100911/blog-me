@@ -19,4 +19,11 @@ class MediaController extends BaseController
 
         return MediaResource::collection($medias);
     }
+
+    public function getListMediaOfCategory($catgoryId)
+    {
+        $listMediaCategory = $this->mediaService->getListMediaCategory($catgoryId);
+
+        return MediaResource::collection($listMediaCategory);
+    }
 }

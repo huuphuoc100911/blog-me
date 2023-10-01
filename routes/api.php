@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\MediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('medias', 'Api\MediaController');
 Route::get('categories', [CategoryController::class, 'getListCategory']);
+Route::get('category/{category}', [CategoryController::class, 'getCategory']);
+Route::get('categories/{categoryId}', [MediaController::class, 'getListMediaOfCategory']);
 Route::get('staffs', [ApiController::class, 'getListStaff']);
 Route::get('info-company', [ApiController::class, 'getInfoCompany']);
 Route::get('amount-user', [ApiController::class, 'getUserAmount']);

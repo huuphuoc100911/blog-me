@@ -18,4 +18,11 @@ class CategoryController extends BaseController
 
         return CategoryResource::collection($listCategory);
     }
+
+    public function getCategory($categoryId)
+    {
+        $category = $this->categoryService->getCategory($categoryId);
+
+        return new CategoryResource($category);
+    }
 }

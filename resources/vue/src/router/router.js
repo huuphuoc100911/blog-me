@@ -1,6 +1,7 @@
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Portfolio from "../pages/Portfolio";
+import PortfolioCategory from "../pages/PortfolioCategory";
 import Contact from "../pages/Contact";
 import Blog from "../pages/Blog";
 
@@ -19,6 +20,11 @@ const routes = [
         path: "/vue/portfolio",
         name: "portfolio",
         component: Portfolio,
+    },
+    {
+        path: "/vue/portfolio/:categoryId",
+        name: "portfolioCategory",
+        component: PortfolioCategory,
     },
     {
         path: "/vue/contact",

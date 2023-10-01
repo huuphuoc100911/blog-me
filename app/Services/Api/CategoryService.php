@@ -36,4 +36,9 @@ class CategoryService extends BaseService
             $select
         );
     }
+
+    public function getCategory($categoryId)
+    {
+        return $this->model->findOrFail($categoryId);
+    }
 }

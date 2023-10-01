@@ -2,7 +2,7 @@
     <!-- Navbar Start -->
     <nav style="display: flex;" class="navbar navbar-expand-lg bg-white navbar-light fixed-top shadow py-lg-0 px-4 px-lg-5"
         data-wow-delay="0.1s">
-        <router-link to="/vue" class="navbar-brand d-block d-lg-none">
+        <router-link to="/vue" active-class="active" class="navbar-brand d-block d-lg-none">
             <h1 class="text-primary">Photozone</h1>
         </router-link>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -10,15 +10,15 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between py-4 py-lg-0" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <router-link to="/vue" class="nav-item nav-link active">Home</router-link>
-                <router-link to="/vue/about" class="nav-item nav-link">About</router-link>
+                <router-link to="/vue" active-class="active" class="nav-item nav-link">Trang chủ</router-link>
+                <router-link to="/vue/about" active-class="active" class="nav-item nav-link">Về chúng tôi</router-link>
             </div>
-            <router-link to="/vue" class="navbar-brand bg-primary py-2 px-4 mx-3 d-none d-lg-block">
+            <router-link to="/vue" active-class="active" class="navbar-brand bg-primary py-2 px-4 mx-3 d-none d-lg-block">
                 <h1 class="text-white">Photozone</h1>
             </router-link>
             <div class="navbar-nav me-auto py-0">
-                <router-link to="/vue/portfolio" class="nav-item nav-link">Projects</router-link>
-                <router-link to="/vue/contact" class="nav-item nav-link">Contact</router-link>
+                <router-link to="/vue/portfolio" active-class="active" class="nav-item nav-link">Dự án</router-link>
+                <router-link to="/vue/contact" active-class="active" class="nav-item nav-link">Liên hệ</router-link>
             </div>
         </div>
     </nav>
