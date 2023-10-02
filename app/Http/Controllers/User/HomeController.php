@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserProfileRequest;
+use App\Jobs\QueueTest;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
 use App\Services\User\MediaService;
@@ -48,6 +49,7 @@ class HomeController extends Controller
 
     public function blogDetail($slug, $id)
     {
+        QueueTest::dispatch($slug);
         $blogs = $this->userService->getBlogOther(array($id));
         $blogDetail = $this->userService->getBlogDetail($id);
         $commentBlog = $this->commentService->getListCommentBlog($id);
