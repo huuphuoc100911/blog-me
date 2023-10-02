@@ -34,9 +34,31 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4">Hình ảnh</h4>
+                <h4 class="fw-bold py-3 mb-1">Hình ảnh</h4>
                 {{-- <a href="{{ route('admin.media.create') }}" class="pt-3"><button class="btn btn-success">Add
                         Media</button></a> --}}
+            </div>
+            <div class="mb-5">
+                <form class="d-flex row" action="{{ route('admin.media.index') }}">
+                    <div class="col-4">
+                        <input class="form-control me-2" value="{{ request()->search ?? '' }}" type="text"
+                            placeholder="Tiêu đề, danh mục" name="search" />
+                    </div>
+                    <div class="col-3">
+                        <select class="form-control rounded" name="category" onchange="this.form.submit()">
+                            <option value="">
+                                Tất cả
+                            </option>
+                            @forelse ($categories as $key => $category)
+                                <option value="{{ $key }}" @if (isset(request()->category) && request()->category == $key) selected @endif>
+                                    {{ Str::limit($category, 20, '...') }}
+                                </option>
+                            @empty
+                            @endforelse
+                        </select>
+                    </div>
+                    <button class="btn btn-info col-2" type="submit">Tìm kiếm</button>
+                </form>
             </div>
 
             @if (session('create_success'))

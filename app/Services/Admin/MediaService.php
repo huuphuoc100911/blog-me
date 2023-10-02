@@ -26,7 +26,17 @@ class MediaService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderBy('priority');
+        if (isset($filters['category'])) {
+            $query->where('category_id', $filters['category']);;
+        }
+
+        if (isset($filters['search'])) {
+            $query->where('title', 'like', "%{$filters['search']}%")
+                ->orWhereHas('category', function ($subQuery) use ($filters) {
+                    $subQuery->where('title', 'like', "%{$filters['search']}%");
+                });
+        }
 
         return $this->filterPaginate(
             $query,

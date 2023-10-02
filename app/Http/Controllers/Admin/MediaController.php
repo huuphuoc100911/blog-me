@@ -19,14 +19,15 @@ class MediaController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if (session()->has('check')) {
             session()->pull('check');
         }
-        $medias = $this->mediaService->getListMedia();
+        $medias = $this->mediaService->getListMedia($request->all());
+        $categories = $this->categoryService->getListCategoryPluck();
 
-        return view('admin.media.index', compact('medias'));
+        return view('admin.media.index', compact('medias', 'categories'));
     }
 
     public function create()
