@@ -2,14 +2,8 @@
 
 namespace App\Services\Api;
 
-use App\Enums\MediaStatus;
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
-use Carbon\Carbon;
-use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class MediaService extends BaseService
 {
@@ -22,7 +16,7 @@ class MediaService extends BaseService
 
     public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
-        $limit = $limit ?? config('common.default_per_page');
+        $limit = config('common.default_per_page');
 
         $query = $this->model
             ->whereNull('deleted_at')->with('category')
@@ -40,7 +34,7 @@ class MediaService extends BaseService
 
     public function getListMediaCategory($categoryId, $filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
-        $limit = $limit ?? config('common.default_per_page');
+        $limit = config('common.default_per_page');
 
         $query = $this->model
             ->where('category_id', $categoryId)

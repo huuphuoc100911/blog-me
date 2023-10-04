@@ -158,6 +158,10 @@
                     </div>
                 </div>
             </div>
+            <div class="intro-y mt-5 col-span-12 flex flex-wrap sm:flex-row sm:flex-no-wrap items-center">
+                <PaginationComponent v-if="listMedia.meta && listMedia.meta.last_page > 1" :pagination="listMedia.meta"
+                    :offset="3" @paginate="getMedia(listMedia.meta)" />
+            </div>
         </div>
     </div>
     <!-- Project End -->
@@ -231,14 +235,21 @@
     <!-- Team End -->
 </template>
 <script>
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
 import { useStore } from 'vuex';
+import PaginationComponent from './PaginationComponent.vue';
 
 export default {
     name: "Home",
+    components: {
+        PaginationComponent
+    },
     setup() {
+        const sort = reactive({
+            page: 1
+        });
         const store = useStore();
-        store.dispatch("media/getListMediaAction");
+        store.dispatch("media/getListMediaAction", sort);
         store.dispatch("category/getListCategoryAction");
         store.dispatch("staff/getListStaffAction");
         store.dispatch("infoCompany/getInfoCompanyAction");
@@ -253,6 +264,10 @@ export default {
         const amountMedia = computed(() => store.state.amount.amountMedia);
         const amountBlog = computed(() => store.state.amount.amountBlog);
 
+        function getMedia(pagination) {
+            store.dispatch("media/getListMediaAction", { page: pagination.current_page || 1 });
+        }
+
         return {
             listMedia,
             listCategory,
@@ -260,7 +275,8 @@ export default {
             infoCompany,
             amountUser,
             amountMedia,
-            amountBlog
+            amountBlog,
+            getMedia
         }
     }
 }

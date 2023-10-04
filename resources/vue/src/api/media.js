@@ -1,9 +1,11 @@
 import axiosAPI from ".";
 
-export const getListMediaApi = () => {
-    return axiosAPI.get("/api/medias");
+export const getListMediaApi = (response) => {
+    return axiosAPI.get(`/api/medias?page=${response.page}`);
 };
 
-export const getMediaCategoryApi = (categoryId) => {
-    return axiosAPI.get(`/api/categories/${categoryId}`);
+export const getMediaCategoryApi = (response) => {
+    return axiosAPI.get(
+        `/api/categories/${response.categoryId}?page=${response.page}`
+    );
 };

@@ -49,27 +49,45 @@
                     </div>
                 </div>
             </div>
+            <div class="intro-y mt-5 col-span-12 flex flex-wrap sm:flex-row sm:flex-no-wrap items-center">
+                <PaginationComponent v-if="listMediaCategory.meta && listMediaCategory.meta.last_page > 1"
+                    :pagination="listMediaCategory.meta" :offset="3" @paginate="getMedia(listMediaCategory.meta)" />
+            </div>
         </div>
     </div>
     <!-- Project End -->
 </template>
 <script>
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex'
+import { useStore } from 'vuex';
+import PaginationComponent from './PaginationComponent.vue';
+
 export default {
     name: "Home",
+    components: {
+        PaginationComponent
+    },
     setup() {
         const store = useStore();
         const route = useRoute();
-        store.dispatch('media/getListMediaCategoryAction', route.params.categoryId);
+        const sort = reactive({
+            page: 1,
+            categoryId: route.params.categoryId
+        });
+        store.dispatch('media/getListMediaCategoryAction', sort);
         store.dispatch('category/getCategoryInfoAction', route.params.categoryId);
         const listMediaCategory = computed(() => store.state.media.listMediaCategory);
         const categoryInfo = computed(() => store.state.category.categoryInfo);
 
+        function getMedia(pagination) {
+            store.dispatch("media/getListMediaCategoryAction", { page: pagination.current_page || 1, categoryId: route.params.categoryId });
+        }
+
         return {
             listMediaCategory,
-            categoryInfo
+            categoryInfo,
+            getMedia
         }
     }
 }

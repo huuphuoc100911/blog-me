@@ -2,7 +2,7 @@
 
 return [
     'pagination' => [
-        'default' => 20,
+        'default' => 12,
     ],
-    'default_per_page' => 20,
+    'default_per_page' => 12,
 ];
