@@ -23,7 +23,7 @@ class BlogService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -43,7 +43,7 @@ class BlogService extends BaseService
     public function blogCreate($inputs)
     {
         $path = Storage::put('staff/blog', $inputs['url_image']);
-        $blogHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $blogHasMaxPriority = $this->model->orderByDesc('id')->first();
 
         $data = [
             'category_id' => $inputs['category_id'],

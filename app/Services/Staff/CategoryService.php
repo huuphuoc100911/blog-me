@@ -24,7 +24,7 @@ class CategoryService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -55,7 +55,7 @@ class CategoryService extends BaseService
     public function categorySuggestCreate($inputs)
     {
         $path = Storage::put('admin/category', $inputs['url_image']);
-        $categoryHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $categoryHasMaxPriority = $this->model->orderByDesc('id')->first();
 
         $data = [
             'admin_id' => 1,

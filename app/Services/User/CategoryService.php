@@ -21,7 +21,7 @@ class CategoryService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderBy('id');
 
         return $this->filterPaginate(
             $query,

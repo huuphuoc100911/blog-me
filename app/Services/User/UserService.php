@@ -48,7 +48,7 @@ class UserService extends BaseService
 
         $query = $this->blog->whereNull('deleted_at')
             ->where('is_active', BlogStatus::ACTIVE)
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -67,7 +67,7 @@ class UserService extends BaseService
         return $this->blog->whereNull('deleted_at')
             ->where('id', '!=', $filters)
             ->where('is_active', BlogStatus::ACTIVE)
-            ->orderByDesc('priority')->take(6)->get();
+            ->orderByDesc('id')->take(6)->get();
     }
 
     public function getBlogDetail($id)

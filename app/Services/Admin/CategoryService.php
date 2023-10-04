@@ -83,7 +83,7 @@ class CategoryService extends BaseService
     {
         $adminId = auth('admin')->user()->id;
         $path = Storage::put('admin/category', $inputs['url_image']);
-        $categoryHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $categoryHasMaxPriority = $this->model->orderByDesc('id')->first();
 
         $data = [
             'admin_id' => $adminId,

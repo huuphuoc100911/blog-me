@@ -22,7 +22,7 @@ class MediaService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -41,7 +41,7 @@ class MediaService extends BaseService
         $query = $this->model
             ->where('category_id', $categoryId)
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -61,7 +61,7 @@ class MediaService extends BaseService
     public function mediaCreate($inputs)
     {
         $path = Storage::put('admin/media', $inputs['url_image']);
-        $mediaHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $mediaHasMaxPriority = $this->model->orderByDesc('id')->first();
 
         $data = [
             'category_id' => $inputs['category_id'],

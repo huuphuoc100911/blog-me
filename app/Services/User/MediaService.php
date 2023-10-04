@@ -17,21 +17,21 @@ class MediaService extends BaseService
         $this->model = $model;
     }
 
-    public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
+    public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 10, $select = ['*'], $filterable = [])
     {
-        $query = $this->model
+        return $this->model
             ->whereNull('deleted_at')
             ->isActive()
-            ->orderByDesc('priority');
+            ->orderByDesc('id')->get();
 
-        return $this->filterPaginate(
-            $query,
-            $limit,
-            $filters,
-            $sorts,
-            $filterable,
-            $select
-        );
+        // return $this->filterPaginate(
+        //     $query,
+        //     $limit,
+        //     $filters,
+        //     $sorts,
+        //     $filterable,
+        //     $select
+        // );
     }
 
     public function getListMediaCategory($categoryId, $filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
@@ -41,7 +41,7 @@ class MediaService extends BaseService
         $query = $this->model
             ->where('category_id', $categoryId)
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -61,7 +61,7 @@ class MediaService extends BaseService
     public function mediaCreate($inputs)
     {
         $path = Storage::put('admin/media', $inputs['url_image']);
-        $mediaHasMaxPriority = $this->model->orderByDesc('priority')->first();
+        $mediaHasMaxPriority = $this->model->orderByDesc('id')->first();
 
         $data = [
             'category_id' => $inputs['category_id'],

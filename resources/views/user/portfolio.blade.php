@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="load-more-btn portfolio-btn">
-            <a href="#">Load More</a>
+            {{-- <a href="#">Load More</a> --}}
         </div>
     </section>
     <!-- Portfolio Section End -->
