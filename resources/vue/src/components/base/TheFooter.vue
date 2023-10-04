@@ -5,18 +5,17 @@
         <div class="row g-5 py-5">
             <div class="col-lg-6 pe-lg-5">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="display-5 text-primary">Photozone</h1>
+                    <h1 class="display-5 text-primary">{{ infoCompany.name }}</h1>
                 </a>
-                <p>Aliquyam sed elitr elitr erat sed diam ipsum eirmod eos lorem nonumy. Tempor sea ipsum diam sed clita
-                    dolore eos dolores magna erat dolore sed stet justo et dolor.</p>
-                <p><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt me-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope me-2"></i>info@example.com</p>
+                <p>{{ infoCompany.description }}</p>
+                <p><i class="fa fa-map-marker-alt me-2"></i>{{ infoCompany.address }}</p>
+                <p><i class="fa fa-phone-alt me-2"></i>{{ infoCompany.phone }}</p>
+                <p><i class="fa fa-envelope me-2"></i>{{ infoCompany.email }}</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-square btn-outline-primary rounded-circle me-2" href="#"><i
                             class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-primary rounded-circle me-2" href="#"><i
-                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-primary rounded-circle me-2" target="_blank"
+                        :href="infoCompany.link_facebook"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-square btn-outline-primary rounded-circle me-2" href="#"><i
                             class="fab fa-linkedin-in"></i></a>
                     <a class="btn btn-square btn-outline-primary rounded-circle me-2" href="#"><i
@@ -79,7 +78,18 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex'
 export default {
+    setup() {
+        const store = useStore();
+        store.dispatch("infoCompany/getInfoCompanyAction");
+        const infoCompany = computed(() => store.state.infoCompany.infoCompany);
+
+        return {
+            infoCompany
+        }
+    }
 
 }
 </script>

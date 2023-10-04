@@ -20,7 +20,7 @@ class MediaService extends BaseService
 
         $query = $this->model
             ->whereNull('deleted_at')->with('category')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,
@@ -39,7 +39,7 @@ class MediaService extends BaseService
         $query = $this->model
             ->where('category_id', $categoryId)
             ->whereNull('deleted_at')
-            ->orderByDesc('priority');
+            ->orderByDesc('id');
 
         return $this->filterPaginate(
             $query,

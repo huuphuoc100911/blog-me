@@ -4,12 +4,12 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="display-4 mb-3 animated slideInDown">Contact Us</h1>
+                    <h1 class="display-4 mb-3 animated slideInDown">Liên hệ với chúng tôi</h1>
                     <nav aria-label="breadcrumb animated slideInDown">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                            <li class="breadcrumb-item"><router-link to="/vue" active-class="active">Trang chủ</router-link>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
                         </ol>
                     </nav>
                 </div>
