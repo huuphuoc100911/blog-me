@@ -9,6 +9,7 @@ use App\Services\User\CommentService;
 use App\Services\User\MediaService;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        Log::info(132312312);
+        Log::debug('Slack Log ', ['Slack' => 'Hello']);
         $medias = $this->mediaService->getListMedia();
         $categories = $this->categoryService->getListCategory();
 
