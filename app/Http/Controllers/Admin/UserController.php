@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Mail;
 
 class UserController extends Controller
@@ -44,6 +45,18 @@ class UserController extends Controller
     public function sendMailStaff()
     {
         if ($this->adminService->sendEmail()) {
+            return redirect()->back()->with('send_email_success', __('messages.send_email_success'));
+        } else {
+            return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
+        }
+    }
+
+    public function sendSMS()
+    {
+        $activeCode = $this->adminService->generateSmsCode();
+        $content = "Your activate code is: $activeCode";
+
+        if ($this->adminService->send('+84799130624', $content, null)) {
             return redirect()->back()->with('send_email_success', __('messages.send_email_success'));
         } else {
             return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));

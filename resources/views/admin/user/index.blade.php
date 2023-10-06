@@ -35,6 +35,7 @@
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Status</th>
+                                <th>Send Phone</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -48,6 +49,7 @@
                                     <td>
                                         <span class="badge bg-label-success me-1">Active</span>
                                     </td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                             @foreach ($staffs as $staff)
@@ -65,6 +67,11 @@
                                             <span class="badge bg-label-danger me-1">Lock</span>
                                         @endif
                                     </td>
+                                    <td>
+                                        <form action="{{ route('admin.send-sms') }}" method="get">
+                                            <button class="btn btn-success">Send SMS</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             @foreach ($users as $user)
@@ -81,6 +88,7 @@
                                             <span class="badge bg-label-danger me-1">Lock</span>
                                         @endif
                                     </td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>
