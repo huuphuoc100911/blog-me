@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Staff;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Mail;
+use PDF;
 
 class UserController extends Controller
 {
@@ -22,6 +22,16 @@ class UserController extends Controller
         $users = $this->adminService->getListUser();
 
         return view('admin.user.index', compact('admins', 'staffs', 'users'));
+    }
+
+    public function downloadPdf()
+    {
+        $data['title'] = 'Danh sách nhân viên';
+        $data['staffs'] =  Staff::get();
+
+        $pdf = PDF::loadView('admin.user.pdf', $data);
+
+        return $pdf->download('tuts_notes.pdf');
     }
 
     public function changeStatusStaff(Request $request)

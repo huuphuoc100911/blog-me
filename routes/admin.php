@@ -51,4 +51,5 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('category-approve', [ContactController::class, 'approveCategory'])->name('category.approve');
     Route::get('send-mail-staff', [UserController::class, 'sendMailStaff'])->name('send-mail-staff');
     Route::get('send-sms', [UserController::class, 'sendSMS'])->name('send-sms');
+    Route::get('download-pdf', [UserController::class, 'downloadPdf'])->name('downloadPdf');
 });

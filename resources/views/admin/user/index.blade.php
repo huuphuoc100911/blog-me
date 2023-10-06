@@ -21,9 +21,20 @@
                     {{ session('send_email_fail') }}
                 </div>
             @endif
-            <form action="{{ route('admin.send-mail-staff') }}" method="get" class="my-3">
-                <button class="btn btn-success" type="submit">Gửi email cho nhân viên</button>
-            </form>
+            <div class="row">
+                <div class="col-3">
+                    <form action="{{ route('admin.send-mail-staff') }}" method="get" class="my-3">
+                        <button class="btn btn-success" type="submit">Gửi email cho nhân viên</button>
+                    </form>
+                </div>
+                <div class="col-7"></div>
+                <div class="col-2">
+                    <form action="{{ route('admin.downloadPdf') }}" method="get" class="my-3">
+                        <button class="btn btn-info" type="submit">Download PDF</button>
+                    </form>
+                </div>
+            </div>
+
             <!-- Basic Bootstrap Table -->
             <div class="card">
                 <h5 class="card-header">User</h5>
