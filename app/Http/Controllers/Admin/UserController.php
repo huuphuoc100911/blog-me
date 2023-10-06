@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Staff;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\Request;
+use Mail;
 
 class UserController extends Controller
 {
@@ -38,6 +38,15 @@ class UserController extends Controller
                 'status' => '<span class="badge bg-label-success me-1">Active</span>',
                 'count' => $countStaffLock,
             ]);
+        }
+    }
+
+    public function sendMailStaff()
+    {
+        if ($this->adminService->sendEmail()) {
+            return redirect()->back()->with('send_email_success', __('messages.send_email_success'));
+        } else {
+            return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
         }
     }
 }

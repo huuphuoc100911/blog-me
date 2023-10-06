@@ -49,4 +49,5 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('change-status-blog', [BlogController::class, 'changeStatusBlog'])->name('blog.change-status-blog');
     Route::get('change-status-blog-category', [BlogCategoryController::class, 'changeStatusBlogCategory'])->name('blog-category.change-status-blog-category');
     Route::get('category-approve', [ContactController::class, 'approveCategory'])->name('category.approve');
+    Route::get('send-mail-staff', [UserController::class, 'sendMailStaff'])->name('send-mail-staff');
 });

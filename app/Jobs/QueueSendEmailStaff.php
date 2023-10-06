@@ -2,28 +2,29 @@
 
 namespace App\Jobs;
 
+use App\Mail\SendMailStaff;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Mail;
 
-class QueueTest implements ShouldQueue
+class QueueSendEmailStaff implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $title;
+    protected $staffs;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($title)
+    public function __construct($staffs)
     {
-        $this->title = $title;
+        $this->staffs = $staffs;
     }
 
     /**
@@ -33,6 +34,15 @@ class QueueTest implements ShouldQueue
      */
     public function handle()
     {
-        Log::info($this->title);
+        $staffs = $this->staffs;
+
+        foreach ($staffs as $staff) {
+            $dataMail = [
+                'name' => $staff->name,
+                'email' => $staff->email,
+            ];
+
+            Mail::to($staff->email)->send(new SendMailStaff($dataMail));
+        }
     }
 }

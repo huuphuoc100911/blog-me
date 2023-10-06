@@ -11,7 +11,19 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> User management</h4>
-
+            @if (session('send_email_success'))
+                <div class="alert alert-success mx-3">
+                    {{ session('send_email_success') }}
+                </div>
+            @endif
+            @if (session('send_email_fail'))
+                <div class="alert alert-danger mx-3">
+                    {{ session('send_email_fail') }}
+                </div>
+            @endif
+            <form action="{{ route('admin.send-mail-staff') }}" method="get" class="my-3">
+                <button class="btn btn-success" type="submit">Gửi email cho nhân viên</button>
+            </form>
             <!-- Basic Bootstrap Table -->
             <div class="card">
                 <h5 class="card-header">User</h5>

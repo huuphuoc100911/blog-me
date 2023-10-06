@@ -4,9 +4,14 @@ namespace App\Services\Admin;
 
 use App\Enums\AccountStatus;
 use App\Enums\UserRole;
+use App\Jobs\QueueSendEmailStaff;
+use App\Jobs\QueueTest;
+use App\Mail\SendMailStaff;
 use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\User;
+use Exception;
+use Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -87,5 +92,21 @@ class AdminService extends BaseService
     public function countStaffLock()
     {
         return $this->staff->where('is_active', AccountStatus::IN_ACTIVE)->count();
+    }
+
+    public function sendEmail()
+    {
+        try {
+            $staffs = $this->staff->isActive()
+                ->isStaff()->get();
+
+            QueueSendEmailStaff::dispatch($staffs)->onQueue('emails');
+
+            return true;
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return false;
+        }
     }
 }
