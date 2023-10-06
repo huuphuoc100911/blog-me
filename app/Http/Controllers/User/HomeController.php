@@ -106,4 +106,13 @@ class HomeController extends Controller
 
         return redirect()->back()->with('update_fail',  __('messages.update_fail'));
     }
+
+    public function sendEmail(Request $request)
+    {
+        if ($this->userService->sendEmail($request->all())) {
+            return redirect()->back()->with('send_email_success', __('messages.send_email_success'));
+        } else {
+            return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
+        }
+    }
 }

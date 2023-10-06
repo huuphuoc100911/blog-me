@@ -36,6 +36,7 @@ Route::get('/service', [HomeController::class, 'service'])->name('service');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/send-email', [HomeController::class, 'sendEmail'])->name('send-email');
 
 Route::group(['middleware' => ['auth.user']], function () {
     Route::get('/info-account', [HomeController::class, 'infoAccount'])->name('info-account');

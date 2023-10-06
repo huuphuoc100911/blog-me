@@ -64,11 +64,19 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="contact-form">
                         <h3>Work with Me!</h3>
-                        <form action="#">
-                            <input type="text" placeholder="Name">
-                            <input type="text" placeholder="Email">
-                            <input type="text" placeholder="Website">
-                            <textarea placeholder="Message"></textarea>
+                        @if (session('send_email_success'))
+                            <div class="alert alert-success mx-3">
+                                {{ session('send_email_success') }}
+                            </div>
+                        @endif
+                        @if (session('send_email_fail'))
+                            <div class="alert alert-danger mx-3">
+                                {{ session('send_email_fail') }}
+                            </div>
+                        @endif
+                        <form method="get" action="{{ route('send-email') }}">
+                            <input type="text" placeholder="Name" name="name">
+                            <input type="text" placeholder="Email" name="email">
                             <button type="submit" class="site-btn">Submit</button>
                         </form>
                     </div>

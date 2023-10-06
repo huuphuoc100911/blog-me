@@ -9,7 +9,10 @@ use App\Models\Staff;
 use App\Models\User;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class UserService extends BaseService
 {
@@ -106,5 +109,34 @@ class UserService extends BaseService
         }
 
         return $user->update($data);
+    }
+
+    public function sendEmail($inputs)
+    {
+        try {
+            //Send mail
+            $dataMail = [
+                'name' => $inputs['name'],
+                'email' => $inputs['email'],
+                'url' => url('contact'),
+            ];
+
+            $name = $inputs['name'];
+            $mail = $inputs['email'];
+
+
+            Mail::send('user.mail', $dataMail, function ($message) use ($mail) {
+                $message->to($mail);
+                $subject = "Xin chào";
+
+                $message->subject($subject);
+            });
+
+            return true;
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return false;
+        }
     }
 }
