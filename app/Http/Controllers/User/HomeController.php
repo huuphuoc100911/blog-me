@@ -27,8 +27,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        Log::info(132312312);
-        Log::debug('Slack Log ', ['Slack' => 'Hello']);
         $medias = $this->mediaService->getListMedia();
         $categories = $this->categoryService->getListCategory();
 
