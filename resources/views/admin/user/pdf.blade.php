@@ -5,17 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/user/css/bootstrap.min.css" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Be%20Vietnam' rel='stylesheet'>
 </head>
 <style>
+    @font-face {
+        font-family: 'Aozora_Mincho_Medium';
+        src: url({{ public_path('fonts/Aozora_Mincho_Medium.ttf') }}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
     body,
     html {
-        font-family: 'Be Vietnam';
+        font-family: 'Aozora_Mincho_Medium';
     }
 </style>
 
 <body>
+    <p>請求書</p>
     <table class="table table-bordered" id="laravel_crud">
         <thead>
             <tr>
