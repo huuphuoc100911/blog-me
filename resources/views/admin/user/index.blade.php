@@ -39,34 +39,23 @@
             <div class="card">
                 <h5 class="card-header">User</h5>
                 <div class="table-responsive text-nowrap">
-                    <table class="table">
+                    <table class="table" id="table-user">
                         <thead>
                             <tr>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Ngày tạo</th>
                                 <th>Role</th>
                                 <th>Status</th>
                                 <th>Send Phone</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($admins as $admin)
-                                <tr>
-                                    <td><strong>{{ $admin->name }}</strong></td>
-                                    <td>{{ $admin->email }}</td>
-                                    <td class="text-primary">
-                                        Admin
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-label-success me-1">Active</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            @endforeach
                             @foreach ($staffs as $staff)
                                 <tr>
                                     <td><strong>{{ $staff->name }}</strong></td>
                                     <td>{{ $staff->email }}</td>
+                                    <td>{{ $staff->created_time }}</td>
                                     <td class="text-text-info">
                                         Staff
                                     </td>
@@ -85,23 +74,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td><strong>{{ $user->name }}</strong></td>
-                                    <td>{{ $user->email }}</td>
-                                    <td class="text-warning">
-                                        User
-                                    </td>
-                                    <td>
-                                        @if ($user->is_active == 2)
-                                            <span class="badge bg-label-success me-1">Active</span>
-                                        @else
-                                            <span class="badge bg-label-danger me-1">Lock</span>
-                                        @endif
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -112,6 +84,30 @@
     @endsection
     @push('scripts')
         <script>
+            $(function() {
+                new DataTable('#table-user', {
+                    paging: false,
+                    info: false,
+                    // ordering: false,
+                    // searching: false,
+                    // scrollX: true,
+                    // scrollY: 200,
+                    columnDefs: [{
+                        target: 3,
+                        orderable: false,
+                        searchable: false
+                    }, {
+                        target: 4,
+                        orderable: false,
+                        searchable: false
+                    }, {
+                        target: 5,
+                        orderable: false,
+                        searchable: false
+                    }]
+                });
+            })
+
             function changeStatusStaff(staffId) {
                 $.ajax({
                     url: "{{ route('admin.staff.change-status-staff') }}",

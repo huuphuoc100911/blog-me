@@ -17,11 +17,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $admins = $this->adminService->getListAdmin();
         $staffs = $this->adminService->getListStaff();
-        $users = $this->adminService->getListUser();
 
-        return view('admin.user.index', compact('admins', 'staffs', 'users'));
+        return view('admin.user.index', compact('staffs'));
     }
 
     public function downloadPdf()

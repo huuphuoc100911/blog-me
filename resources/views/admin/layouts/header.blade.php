@@ -55,6 +55,7 @@
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
       .btn-cat-del {
           margin-left: 10px;
@@ -232,7 +233,7 @@
             <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
               <a href="{{ route('admin.user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">Người dùng
+                <div data-i18n="Analytics">Nhân viên
                   @if ($countUserLock > 0)
 <span class="mx-1 badge badge-center rounded-pill bg-danger" id="user-lock-count">{{ $countUserLock }}</span>
 @endif

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\AccountStatus;
 use App\Enums\UserRole;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -47,6 +48,11 @@ class Staff extends Authenticatable
     public function getImageUrlAttribute()
     {
         return $this->url_image ? Storage::url($this->url_image) : '';
+    }
+
+    public function getCreatedTimeAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('Y-m-d H:i');
     }
 
     public function infoStaff()
