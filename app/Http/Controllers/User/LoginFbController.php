@@ -13,18 +13,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Mail;
 
-class LoginGoogleController extends Controller
+class LoginFbController extends Controller
 {
-    public function redirectToGoogle()
+    public function redirectToFacebook()
     {
-        Log::info('huuphuoc');
-        return Socialite::driver('google')->redirect();
+        Log::info(1322222222222);
+
+        return Socialite::driver('facebook')->redirect();
     }
 
-    public function handleGoogleCallback(Request $request)
+    public function handleFacebookCallback(Request $request)
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('facebook')->user();
 
             $userExist = User::where('email', $user->email)->first();
 

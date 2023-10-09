@@ -5,6 +5,7 @@ use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\LoginFbController;
 use App\Http\Controllers\User\LoginGoogleController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +39,12 @@ Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/send-email', [HomeController::class, 'sendEmail'])->name('send-email');
+//login google
 Route::get('auth/google', [LoginGoogleController::class, 'redirectToGoogle'])->name('login-by-google');
 Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
+//login facebook
+Route::get('auth/facebook', [LoginFbController::class, 'redirectToFacebook'])->name('login-by-facebook');
+Route::get('auth/facebook/callback', [LoginFbController::class, 'handleFacebookCallback']);
 
 Route::group(['middleware' => ['auth.user']], function () {
     Route::get('/info-account', [HomeController::class, 'infoAccount'])->name('info-account');

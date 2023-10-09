@@ -128,7 +128,7 @@
                         <div class="logon-more mb-3">
                             <div class="text-center">
                                 <p>Sử dụng tài khoản khác để đăng nhập</p>
-                                <a href="{{ route('login-by-google') }}">
+                                <a href="{{ route('login-by-facebook') }}">
                                     <button type="submit" class="btn btn-warning extaccnav" name="provider" value="Google"
                                         title="Sử dụng tài khoản Google">Facebook</button>
                                 </a>
