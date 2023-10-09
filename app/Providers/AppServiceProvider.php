@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $huuphuoc = 'Huu Phuoc dep trai';
+
+        View::share([
+            'huuphuoc' => $huuphuoc
+        ]);
     }
 }
