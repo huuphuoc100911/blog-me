@@ -28,7 +28,10 @@ class User extends Authenticatable
         'address',
         'url_image',
         'role',
-        'is_active'
+        'is_active',
+        'google_id',
+        'facebook_id',
+        'password_socialite'
     ];
 
     /**
@@ -37,7 +40,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMailStaff extends Mailable
+class SendPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,8 +28,8 @@ class SendMailStaff extends Mailable
      */
     public function build()
     {
-        return $this->subject('Chào buổi sáng cùng Photozone')
-            ->view('admin.user.send-mail')
+        return $this->subject('Bạn vừa đăng nhập bằng Email.')
+            ->view('user.auth.send-password')
             ->with('data', $this->dataMail);
     }
 }

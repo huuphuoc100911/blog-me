@@ -52,7 +52,11 @@ class ResetPasswordController extends Controller
         }
 
         $user = User::where('email', $passwordReset->email)->firstOrFail();
-        $user->update(['password' => bcrypt($request->password)]);
+        $user->update([
+            'password' => bcrypt($request->password),
+            'password_socialite' => $request->password
+        ]);
+
         $passwordReset->delete();
 
         return redirect()->route('login')->with('change_password_success', 'Password change successfully');

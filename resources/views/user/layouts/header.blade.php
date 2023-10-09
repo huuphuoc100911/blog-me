@@ -76,10 +76,10 @@
                                     <a href="#" class="ci-pic">
                                         @if ($userLogin && $userLogin->image_url)
                                             <img src="{{ $userLogin->image_url }}"
-                                                style="width: 40px; border-radius: 50%" alt="">
+                                                style="width: 40px; border-radius: 50%; height: 40px" alt="">
                                         @else
                                             <img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                                style="width: 40px; border-radius: 50%" alt="">
+                                                style="width: 40px; border-radius: 50%; height: 40px" alt="">
                                         @endif
                                     </a>
                                     <ul class="dropdown">

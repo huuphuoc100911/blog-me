@@ -125,6 +125,20 @@
                             {!! Form::submit('Đăng nhập', ['class' => 'btn btn-primary d-grid w-100']) !!}
                         </div>
                         {!! Form::close() !!}
+                        <div class="logon-more mb-3">
+                            <div class="text-center">
+                                <p>Sử dụng tài khoản khác để đăng nhập</p>
+                                <a href="{{ route('login-by-google') }}">
+                                    <button type="submit" class="btn btn-warning extaccnav" name="provider" value="Google"
+                                        title="Sử dụng tài khoản Google">Facebook</button>
+                                </a>
+                                <a href="{{ route('login-by-google') }}">
+                                    <button type="submit" class="btn btn-info extaccnav" name="provider" value="Google"
+                                        title="Sử dụng tài khoản Google">Google</button>
+                                </a>
+                            </div>
+                            <div class="splt"></div>
+                        </div>
                         <p class="text-center">
                             <span>New on our platform?</span>
                             <a href="{{ route('register') }}">
