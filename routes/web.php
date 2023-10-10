@@ -54,3 +54,5 @@ Route::group(['middleware' => ['auth.user']], function () {
     Route::post('/reply-comment', [CommentController::class, 'replyComment'])->name('reply-comment');
     Route::post('/comment-favorite', [CommentController::class, 'commentFavorite'])->name('comment-favorite');
 });
+
+Route::get('/locale/{locale}', [HomeController::class, 'locale']);

@@ -14,7 +14,7 @@
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Media</h4>
                 <a href="{{ route('staff.media.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Media</button></a>
+                        Media {{ session('locale') }}</button></a>
             </div>
 
             @if (session('create_success'))

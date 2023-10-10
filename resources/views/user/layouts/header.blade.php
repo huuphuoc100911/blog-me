@@ -25,6 +25,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
         integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css">
     @stack('styles')
     <style>
         .hidden {
@@ -58,19 +59,19 @@
                     <nav class="nav-menu mobile-menu">
                         <ul>
                             <li class="{{ \Request::segment(1) === null ? 'active' : '' }}"><a
-                                    href="{{ route('index') }}">Home</a></li>
+                                    href="{{ route('index') }}">{{ __('lang.home') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'about' ? 'active' : '' }}"><a
-                                    href="{{ route('about') }}">About</a></li>
+                                    href="{{ route('about') }}">{{ __('lang.about') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'service' ? 'active' : '' }}"><a
-                                    href="{{ route('service') }}">Services</a></li>
+                                    href="{{ route('service') }}">{{ __('lang.service') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'pricing' ? 'active' : '' }}"><a
-                                    href="{{ route('pricing') }}">Pricing</a></li>
+                                    href="{{ route('pricing') }}">{{ __('lang.pricing') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'portfolio' ? 'active' : '' }}"><a
-                                    href="{{ route('portfolio') }}">Portfolio</a></li>
+                                    href="{{ route('portfolio') }}">{{ __('lang.portfolio') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'blog' ? 'active' : '' }}"><a
-                                    href="{{ route('blog') }}">Blog</a></li>
+                                    href="{{ route('blog') }}">{{ __('lang.blog') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'contact' ? 'active' : '' }}"><a
-                                    href="{{ route('contact') }}">Contact</a></li>
+                                    href="{{ route('contact') }}">{{ __('lang.contact') }}</a></li>
                             @if (auth('user')->user())
                                 <li>
                                     <a href="#" class="ci-pic">
@@ -83,11 +84,12 @@
                                         @endif
                                     </a>
                                     <ul class="dropdown">
-                                        <li><a href="{{ route('info-account') }}">Thông tin cá nhân</a></li>
+                                        <li>
+                                            <a href="{{ route('info-account') }}">{{ __('lang.info_account') }}</a>
+                                        </li>
                                         <li>
                                             <a href="#"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                                xuất</a>
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('lang.logout') }}</a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                 style="display: none;">
                                                 {{ csrf_field() }}
@@ -96,15 +98,24 @@
                                     </ul>
                                 </li>
                             @else
-                                <li><a href="#">Trang</a>
+                                <li><a href="#">{{ __('lang.page') }}</a>
                                     <ul class="dropdown">
-                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
-                                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                                        <li><a href="{{ route('login') }}">{{ __('lang.login') }}</a></li>
+                                        <li><a href="{{ route('register') }}">{{ __('lang.register') }}</a></li>
                                     </ul>
                                 </li>
                             @endif
-
-
+                            <li><a href="#">{{ __('lang.language') }}</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ url('locale/en') }}"><span><span class="fi fi-gb"></span>
+                                                {{ __('lang.language_en') }}</span></a>
+                                    </li>
+                                    <li><a href="{{ url('locale/vi') }}"><span><span class="fi fi-vn"></span>
+                                                {{ __('lang.language_vi') }}</span></a></li>
+                                    <li><a href="{{ url('locale/ja') }}"><span><span class="fi fi-jp"></span>
+                                                {{ __('lang.language_ja') }}</span></a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>

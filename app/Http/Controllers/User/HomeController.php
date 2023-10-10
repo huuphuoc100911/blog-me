@@ -9,7 +9,9 @@ use App\Services\User\CommentService;
 use App\Services\User\MediaService;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
+use Session;
 
 class HomeController extends Controller
 {
@@ -113,5 +115,17 @@ class HomeController extends Controller
         } else {
             return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
         }
+    }
+
+    public function locale($locale)
+    {
+        if (!in_array($locale, ['en', 'vi', 'ja'])) {
+            abort(400);
+        }
+
+        App::setLocale($locale);
+        Session::put('locale', $locale);
+
+        return redirect()->back();
     }
 }

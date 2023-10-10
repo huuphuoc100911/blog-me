@@ -13,7 +13,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et<br /> dolore magna aliqua. Quis ipsum suspendisse ultrices
                                     gravida accumsan lacus vel facilisis.</p>
-                                <a href="{{ route('contact') }}" class="primary-btn">Contact us</a>
+                                <a href="{{ route('contact') }}" class="primary-btn">{{ __('lang.contact_us') }}</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="section-title">
-                        <h2>Categories</h2>
+                        <h2>{{ __('lang.category') }}</h2>
                     </div>
                 </div>
             </div>
@@ -102,11 +102,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Our latest works</h2>
+                        <h2>{{ __('lang.our_lastest_works') }}</h2>
                     </div>
                     <div class="filter-controls">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
+                            <li class="active" data-filter="*">{{ __('lang.all') }}</li>
                             @foreach ($categories as $category)
                                 <li data-filter=".{{ $category->id }}">{{ $category->title }}</li>
                             @endforeach

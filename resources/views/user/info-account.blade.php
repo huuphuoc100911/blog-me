@@ -18,8 +18,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bo-links">
-                        <a href="{{ route('index') }}"><i class="fa fa-home"></i> Home</a>
-                        <span>Thông tin người dùng</span>
+                        <a href="{{ route('index') }}"><i class="fa fa-home"></i>{{ __('lang.home') }}</a>
+                        <span>{{ __('lang.info_account') }}</span>
                     </div>
                 </div>
             </div>
