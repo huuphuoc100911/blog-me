@@ -39,7 +39,7 @@ class LoginGoogleController extends Controller
                     $dataMail = [
                         'name' => $userExist->name,
                         'email' => $userExist->email,
-                        'password' => $userExist->password_socialite
+                        'password' => $randomString
                     ];
 
                     Mail::to($userExist->email)->send(new SendPassword($dataMail));
@@ -76,7 +76,7 @@ class LoginGoogleController extends Controller
                 $dataMail = [
                     'name' => $newUser->name,
                     'email' => $newUser->email,
-                    'password' => $newUser->password_socialite
+                    'password' => $randomString
                 ];
 
                 Mail::to($newUser->email)->send(new SendPassword($dataMail));
