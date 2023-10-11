@@ -20555,10 +20555,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"breadcrumb-option spad\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-12\"><div class=\"bo-links\"><a href=\"./index.html\"><i class=\"fa fa-home\"></i> Home</a><span>Blog</span></div></div></div></div></div>", 1);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"blog-section spad\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-9\"><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-1.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Typography</div><h5><a href=\"./blog-details.html\">Women were photography pioneers yet gender inequality persists in the...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-2.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Stoties</div><h5><a href=\"./blog-details.html\">Photography is more than a casual hobby for Gophers wide receiver...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-3.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Guides</div><h5><a href=\"./blog-details.html\">5 tips for improving low light smartphone photography</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-4.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Stoties</div><h5><a href=\"./blog-details.html\">Your Guide to Finding Crazy Instagram Photography Hashtags</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-5.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Typography</div><h5><a href=\"./blog-details.html\">St. Paul photographer uses 1800s technology to create stunning portraits</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-6.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Guides</div><h5><a href=\"./blog-details.html\">Interview With Wedding And Landscape Photographer Zach Nichols | SLR Lounge...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-pagination\"><a href=\"#\">1</a><a href=\"#\">2</a><a href=\"#\">3</a><a href=\"#\">Next</a></div></div><div class=\"col-lg-3\"><div class=\"blog-sidebar\"><div class=\"bs-item s-mb\"><h5>Feature posts</h5><div class=\"bi-feature-post\"><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-1.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>This Photograph Has Elderly Couples...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-2.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Budget Gear Guide: The Best Cheap Off...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-3.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Know Before You Go: Guide to Disney...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-4.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Budget Gear Guide: The Best Cheap Off...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-5.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Know Before You Go: Guide to Disney...</h6><span>Aug,15, 2019</span></div></a></div></div><div class=\"bs-item s-mb\"><h5>Subscribe</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p><div class=\"bi-subscribe\"><form action=\"#\"><input type=\"text\" placeholder=\"Name\"><input type=\"text\" placeholder=\"Email\"><button type=\"submit\" class=\"site-btn\">Subscribe</button></form></div></div><div class=\"bs-item\"><h5>Instagram</h5><div class=\"bi-insta\"><img src=\"/assets/user/img/blog/insta-1.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-2.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-3.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-4.jpg\" alt=\"\"></div></div></div></div></div></div></section>", 1);
+var _hoisted_1 = {
+  "class": "breadcrumb-option spad"
+};
+var _hoisted_2 = {
+  "class": "container"
+};
+var _hoisted_3 = {
+  "class": "row"
+};
+var _hoisted_4 = {
+  "class": "col-lg-12"
+};
+var _hoisted_5 = {
+  "class": "bo-links"
+};
+var _hoisted_6 = {
+  href: "./index.html"
+};
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-home"
+}, null, -1 /* HOISTED */);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Blog", -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"blog-section spad\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-9\"><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-1.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Typography</div><h5><a href=\"./blog-details.html\">Women were photography pioneers yet gender inequality persists in the...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-2.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Stoties</div><h5><a href=\"./blog-details.html\">Photography is more than a casual hobby for Gophers wide receiver...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-3.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Guides</div><h5><a href=\"./blog-details.html\">5 tips for improving low light smartphone photography</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-4.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Stoties</div><h5><a href=\"./blog-details.html\">Your Guide to Finding Crazy Instagram Photography Hashtags</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-5.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Typography</div><h5><a href=\"./blog-details.html\">St. Paul photographer uses 1800s technology to create stunning portraits</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-item\"><div class=\"bi-pic\"><img src=\"/assets/user/img/blog/blog-6.jpg\" alt=\"\"></div><div class=\"bi-text\"><div class=\"label\">Guides</div><h5><a href=\"./blog-details.html\">Interview With Wedding And Landscape Photographer Zach Nichols | SLR Lounge...</a></h5><ul><li>by <span>Admin</span></li><li>Aug,15, 2019</li><li>20 Comment</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p></div></div><div class=\"blog-pagination\"><a href=\"#\">1</a><a href=\"#\">2</a><a href=\"#\">3</a><a href=\"#\">Next</a></div></div><div class=\"col-lg-3\"><div class=\"blog-sidebar\"><div class=\"bs-item s-mb\"><h5>Feature posts</h5><div class=\"bi-feature-post\"><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-1.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>This Photograph Has Elderly Couples...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-2.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Budget Gear Guide: The Best Cheap Off...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-3.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Know Before You Go: Guide to Disney...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-4.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Budget Gear Guide: The Best Cheap Off...</h6><span>Aug,15, 2019</span></div></a><a href=\"#\" class=\"fp-item\"><div class=\"fp-pic\"><img src=\"/assets/user/img/blog/fp-5.jpg\" alt=\"\"></div><div class=\"fp-text\"><h6>Know Before You Go: Guide to Disney...</h6><span>Aug,15, 2019</span></div></a></div></div><div class=\"bs-item s-mb\"><h5>Subscribe</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p><div class=\"bi-subscribe\"><form action=\"#\"><input type=\"text\" placeholder=\"Name\"><input type=\"text\" placeholder=\"Email\"><button type=\"submit\" class=\"site-btn\">Subscribe</button></form></div></div><div class=\"bs-item\"><h5>Instagram</h5><div class=\"bi-insta\"><img src=\"/assets/user/img/blog/insta-1.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-2.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-3.jpg\" alt=\"\"><img src=\"/assets/user/img/blog/insta-4.jpg\" alt=\"\"></div></div></div></div></div></div></section>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Breadcrumb Begin "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Breadcrumb End "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Blog Section Begin "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Blog Section End ")], 64 /* STABLE_FRAGMENT */);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Breadcrumb Begin "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__('lang.home')), 1 /* TEXT */)]), _hoisted_8])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Breadcrumb End "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Blog Section Begin "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Blog Section End ")], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -21443,13 +21464,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/vue/src/api/index.js");
 
 var getAmountUserApi = function getAmountUserApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/amount-user");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/amount-user");
 };
 var getAmountMediaApi = function getAmountMediaApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/amount-media");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/amount-media");
 };
 var getAmountBlogApi = function getAmountBlogApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/amount-blog");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/amount-blog");
 };
 
 /***/ }),
@@ -21469,10 +21490,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/vue/src/api/index.js");
 
 var getListCategoryApi = function getListCategoryApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/categories");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/categories");
 };
 var getCategoryApi = function getCategoryApi(categoryId) {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/category/".concat(categoryId));
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/category/".concat(categoryId));
 };
 
 /***/ }),
@@ -21531,7 +21552,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/vue/src/api/index.js");
 
 var getInfoCompanyApi = function getInfoCompanyApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/info-company");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/info-company");
 };
 
 /***/ }),
@@ -21551,10 +21572,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/vue/src/api/index.js");
 
 var getListMediaApi = function getListMediaApi(response) {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/medias?page=".concat(response.page));
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/medias?page=".concat(response.page));
 };
 var getMediaCategoryApi = function getMediaCategoryApi(response) {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/categories/".concat(response.categoryId, "?page=").concat(response.page));
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/categories/".concat(response.categoryId, "?page=").concat(response.page));
 };
 
 /***/ }),
@@ -21573,7 +21594,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/vue/src/api/index.js");
 
 var getListStaffApi = function getListStaffApi() {
-  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/staffs");
+  return ___WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/staffs");
 };
 
 /***/ }),
