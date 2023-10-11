@@ -80,12 +80,12 @@ class UserService extends BaseService
 
     public function getUserProfile()
     {
-        return $this->model->findOrFail(auth('user')->user()->id);
+        return $this->model->findOrFail(auth()->user()->id);
     }
 
     public function updateUserProfile($inputs)
     {
-        $userId = auth('user')->user()->id;
+        $userId = auth()->user()->id;
         $user = $this->model->findOrFail($userId);
 
         $data = [
@@ -100,7 +100,7 @@ class UserService extends BaseService
 
     public function updateAvatar($inputs)
     {
-        $user = $this->model->findOrFail(auth('user')->user()->id);
+        $user = $this->model->findOrFail(auth()->user()->id);
         $path = Storage::put('user/avatar', $inputs['url_image']);
         $data['url_image'] = $path;
 

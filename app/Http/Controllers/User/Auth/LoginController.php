@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     protected function guard()
     {
-        return Auth::guard('user');
+        return Auth::guard();
     }
 
     public function login()
@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only(['email', 'password']);
 
-        if (Auth::guard('user')->attempt($credentials)) {
+        if (Auth::guard()->attempt($credentials)) {
 
             $request->session()->regenerate();
 
@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('user')->logout();
+        Auth::guard()->logout();
 
         $request->session()->invalidate();
 

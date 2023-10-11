@@ -52,7 +52,7 @@ class LoginFbController extends Controller
                     'password' => $userExist->password_socialite,
                 ];
 
-                if (Auth::guard('user')->attempt($credentials)) {
+                if (Auth::guard()->attempt($credentials)) {
                     $request->session()->regenerate();
 
                     return redirect()->intended('/');
@@ -83,7 +83,7 @@ class LoginFbController extends Controller
 
                 Mail::to($newUser->email)->send(new SendPassword($dataMail));
 
-                if (Auth::guard('user')->attempt($credentials)) {
+                if (Auth::guard()->attempt($credentials)) {
                     $request->session()->regenerate();
 
                     return redirect()->intended('/');

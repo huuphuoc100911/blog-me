@@ -46,8 +46,8 @@
     </div>
     @php
         \Carbon\Carbon::setLocale('vi');
-        if (auth('user')->user()) {
-            $userLogin = App\Models\User::whereId(auth('user')->user()->id)->first();
+        if (auth()->user()) {
+            $userLogin = App\Models\User::whereId(auth()->user()->id)->first();
         }
     @endphp
 
@@ -77,7 +77,7 @@
                                     href="{{ route('blog') }}">{{ __('lang.blog') }}</a></li>
                             <li class="{{ \Request::segment(1) === 'contact' ? 'active' : '' }}"><a
                                     href="{{ route('contact') }}">{{ __('lang.contact') }}</a></li>
-                            @if (auth('user')->user())
+                            @if (auth()->user())
                                 <li>
                                     <a href="#" class="ci-pic">
                                         @if ($userLogin && $userLogin->image_url)
@@ -91,6 +91,9 @@
                                     <ul class="dropdown">
                                         <li>
                                             <a href="{{ route('info-account') }}">{{ __('lang.info_account') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('chatify') }}">Chat</a>
                                         </li>
                                         <li>
                                             <a href="#"

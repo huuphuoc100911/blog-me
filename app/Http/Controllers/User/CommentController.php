@@ -21,7 +21,7 @@ class CommentController extends Controller
         Carbon::setLocale('vi');
         $urlImage = $comment->user->image_url == '' ? "https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" : $comment->user->image_url;
 
-        $checkAutor = auth('user')->user()->email === $comment->user->email;
+        $checkAutor = auth()->user()->email === $comment->user->email;
 
         $classByAutor =  $checkAutor ? 'by-author' : '';
 

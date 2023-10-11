@@ -23,7 +23,7 @@ class CommentService extends BaseService
     {
         $data = [
             'blog_id' => $inputs['blogId'],
-            'user_id' => auth('user')->user()->id,
+            'user_id' => auth()->user()->id,
             'comment' => $inputs['comment']
         ];
 
@@ -34,7 +34,7 @@ class CommentService extends BaseService
     {
         $data = [
             'comment_id' => $inputs['comment_id'],
-            'user_id' => auth('user')->user()->id,
+            'user_id' => auth()->user()->id,
             'reply' => $inputs['reply']
         ];
 
@@ -45,7 +45,7 @@ class CommentService extends BaseService
     {
         $data = [
             'comment_id' => $inputs['comment_id'],
-            'user_id' => auth('user')->user()->id,
+            'user_id' => auth()->user()->id,
         ];
 
         $favoriteComment = $this->commentFavorite->where($data)->first();

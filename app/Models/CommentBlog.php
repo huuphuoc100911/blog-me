@@ -38,6 +38,6 @@ class CommentBlog extends Model
 
     public function favorite()
     {
-        return $this->hasMany(CommentFavorite::class, 'comment_id', 'id')->where('user_id', auth('user')->user()->id);
+        return $this->hasMany(CommentFavorite::class, 'comment_id', 'id')->where('user_id', auth()->user()->id);
     }
 }

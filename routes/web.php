@@ -46,7 +46,7 @@ Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleC
 Route::get('auth/facebook', [LoginFbController::class, 'redirectToFacebook'])->name('login-by-facebook');
 Route::get('auth/facebook/callback', [LoginFbController::class, 'handleFacebookCallback']);
 
-Route::group(['middleware' => ['auth.user']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/info-account', [HomeController::class, 'infoAccount'])->name('info-account');
     Route::post('/update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
     Route::post('/update-avatar', [HomeController::class, 'updateAvatar'])->name('update-avatar');
