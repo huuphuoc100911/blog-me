@@ -20,5 +20,6 @@ return [
     'our_lastest_works' => 'Tác phẩm mới nhất của chúng tôi',
     'all' => 'Tất cả',
     'contact_us' => 'Liên hệ với chúng tôi',
+    'quick_link' => 'LIÊN KẾT NHANH',
 
 ];

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\InfoCompany;
+use App\Services\User\UserService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,9 +14,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function register()
     {
-        //
     }
 
     /**
@@ -24,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $huuphuoc = 'Huu Phuoc dep trai';
+        $infoCompany = InfoCompany::findOrFail(1);
 
         View::share([
-            'huuphuoc' => $huuphuoc
+            'infoCompanyShare' => $infoCompany,
         ]);
     }
 }

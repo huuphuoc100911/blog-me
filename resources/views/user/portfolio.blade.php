@@ -22,11 +22,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Our latest works</h2>
+                        <h2>{{ __('lang.our_lastest_works') }}</h2>
                     </div>
                     <div class="filter-controls">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
+                            <li class="active" data-filter="*">{{ __('lang.all') }}</li>
                             @foreach ($categories as $category)
                                 <li data-filter=".{{ $category->id }}">{{ $category->title }}</li>
                             @endforeach

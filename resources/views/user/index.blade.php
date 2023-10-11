@@ -9,10 +9,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="hs-text">
-                                <h2>Photography Studio</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et<br /> dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                    gravida accumsan lacus vel facilisis.</p>
+                                <h2>{{ $infoCompanyShare->name }}</h2>
+                                <p>{{ $infoCompanyShare->description }}</p>
                                 <a href="{{ route('contact') }}" class="primary-btn">{{ __('lang.contact_us') }}</a>
                             </div>
                         </div>
@@ -24,11 +22,9 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="hs-text">
-                                <h2>Photography Studio</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et<br /> dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                    gravida accumsan lacus vel facilisis.</p>
-                                <a href="#" class="primary-btn">Contact us</a>
+                                <h2>{{ $infoCompanyShare->name }}</h2>
+                                <p>{{ $infoCompanyShare->description }}</p>
+                                <a href="#" class="primary-btn">{{ __('lang.contact_us') }}</a>
                             </div>
                         </div>
                     </div>
@@ -133,9 +129,9 @@
                 </div>
             </div>
         </div>
-        <div class="load-more-btn">
+        {{-- <div class="load-more-btn">
             <a href="#">Load More</a>
-        </div>
+        </div> --}}
     </section>
     <!-- Portfolio Section End -->
 @endsection

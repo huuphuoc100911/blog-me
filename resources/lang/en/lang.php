@@ -20,6 +20,7 @@ return [
     'our_lastest_works' => 'OUR LATEST WORKS',
     'all' => 'All',
     'contact_us' => 'Contact Us',
+    'quick_link' => 'QUICK LINKS',
 
 
 

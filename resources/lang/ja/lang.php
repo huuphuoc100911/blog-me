@@ -20,7 +20,7 @@ return [
     'our_lastest_works' => '私たちの最新作',
     'all' => '全て',
     'contact_us' => '連絡',
-
+    'quick_link' => 'クイックリンク',
 
 
 ];

@@ -24,12 +24,17 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
         integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css">
     @stack('styles')
     <style>
         .hidden {
             display: none;
+        }
+
+        .active-language {
+            color: #00ff37;
         }
     </style>
 </head>
@@ -107,12 +112,18 @@
                             @endif
                             <li><a href="#">{{ __('lang.language') }}</a>
                                 <ul class="dropdown">
-                                    <li><a href="{{ url('locale/en') }}"><span><span class="fi fi-gb"></span>
+                                    <li><a href="{{ url('locale/en') }}"><span
+                                                class="{{ session('locale') == 'en' ? 'active-language' : '' }}"><span
+                                                    class="fi fi-gb"></span>
                                                 {{ __('lang.language_en') }}</span></a>
                                     </li>
-                                    <li><a href="{{ url('locale/vi') }}"><span><span class="fi fi-vn"></span>
+                                    <li><a href="{{ url('locale/vi') }}"><span
+                                                class="{{ session('locale') == 'vi' ? 'active-language' : '' }}"><span
+                                                    class="fi fi-vn"></span>
                                                 {{ __('lang.language_vi') }}</span></a></li>
-                                    <li><a href="{{ url('locale/ja') }}"><span><span class="fi fi-jp"></span>
+                                    <li><a href="{{ url('locale/ja') }}"><span
+                                                class="{{ session('locale') == 'ja' ? 'active-language' : '' }}"><span
+                                                    class="fi fi-jp"></span>
                                                 {{ __('lang.language_ja') }}</span></a></li>
                                 </ul>
                             </li>

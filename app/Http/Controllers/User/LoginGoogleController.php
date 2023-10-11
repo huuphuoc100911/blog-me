@@ -17,7 +17,6 @@ class LoginGoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        Log::info('huuphuoc');
         return Socialite::driver('google')->redirect();
     }
 
