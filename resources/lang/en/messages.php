@@ -1,13 +1,12 @@
 <?php
 return [
-    'create_success' => 'Tạo thành công',
-    'create_fail' => 'Tạo thất bại',
-    'update_success' => 'Update Success',
-    'update_fail' => 'Cập nhật thất bại',
-    'delete_success' => 'Xóa thành công',
-    'delete_fail' => 'Xóa thất bại',
-    'no_record' => 'Không có dữ liệu',
-    'send_email_success' => 'Gửi email thành công',
-    'send_email_fail' => 'Gửi email thất bại',
-
+    'create_success' => 'Create successful',
+    'create_fail' => 'Create failed',
+    'update_success' => 'Update successful',
+    'update_fail' => 'Update failed',
+    'delete_success' => 'Delete successful',
+    'delete_fail' => 'Delete failed',
+    'no_record' => 'No data available',
+    'send_email_success' => 'Successfully sent email',
+    'send_email_fail' => 'Sending email failed',
 ];

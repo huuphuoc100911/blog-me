@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Danh mục blog')
+@section('page-title', __('lang.admin.blog_categories.index'))
 @push('styles')
     <style>
         .btn-cat-del {
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                    <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">

@@ -21,7 +21,55 @@ return [
     'all' => 'All',
     'contact_us' => 'Contact Us',
     'quick_link' => 'QUICK LINKS',
-
+    'image' => 'Image',
+    'address' => 'Address',
+    'description' => 'Description',
+    'email' => 'Email',
+    'phone' => 'Phone Number',
+    'facebook' => 'Facebook',
+    'create' => 'Create',
+    'update' => 'Update',
+    'delete' => 'Delete',
+    'show' => 'Show',
+    'by' => 'by',
+    'no_record' => 'No data available',
+    'status' => 'Status',
+    'enter_name' => 'Enter a name',
+    'enter_description' => 'Enter a description',
+    'admin' => [
+        'admin' => 'Admin',
+        'homes' => [
+            'index' => 'Home'
+        ],
+        'info_companies' => [
+            'index' => 'Company Information',
+            'company_info_update' => 'Company information updates',
+            'company_name' => 'Company name',
+        ],
+        'image_categories' => [
+            'index' => 'Image Category',
+            'image_category_create' => 'Create an image category',
+            'category_name' => 'Category Name',
+        ],
+        'blog_categories' => [
+            'index' => 'Blog Category'
+        ],
+        'medias' => [
+            'index' => 'Media'
+        ],
+        'blogs' => [
+            'index' => 'Blog'
+        ],
+        'staffs' => [
+            'index' => 'Staff'
+        ],
+        'proposals' => [
+            'index' => 'Proposal'
+        ],
+        'my_profile' => [
+            'index' => 'My Profile'
+        ],
+    ],
 
 
 ];

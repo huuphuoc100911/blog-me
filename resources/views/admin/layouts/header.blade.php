@@ -56,6 +56,7 @@
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css">
     <style>
       .btn-cat-del {
           margin-left: 10px;
@@ -186,7 +187,7 @@
             <li class="menu-item {{ \Request::segment(2) == 'dashboard' ? 'active' : '' }}">
               <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Trang chủ</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.homes.index') }}</div>
               </a>
             </li>
 
@@ -200,40 +201,40 @@
             <li class="menu-item {{ \Request::segment(2) == 'info-company' ? 'active' : '' }}">
               <a href="{{ route('admin.info-company.edit', 1) }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-buildings"></i>
-                <div data-i18n="Analytics">Thông tin cơ quan</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.info_companies.index') }}</div>
               </a>
             </li>
             <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Trang</span>
+              <span class="menu-header-text">{{ __('lang.page') }}</span>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'category' ? 'active' : '' }}">
               <a href="{{ route('admin.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Analytics">Danh mục hình ảnh</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.image_categories.index') }}</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog-category' ? 'active' : '' }}">
               <a href="{{ route('admin.blog-category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Analytics">Danh mục Blog</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.blog_categories.index') }}</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'media' ? 'active' : '' }}">
               <a href="{{ route('admin.media.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-image"></i>
-                <div data-i18n="Analytics">Hình ảnh</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.medias.index') }}</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
               <a href="{{ route('admin.blog.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Analytics">Blog</div>
+                <div data-i18n="Analytics">{{ __('lang.admin.blogs.index') }}</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
               <a href="{{ route('admin.user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">Nhân viên
+                <div data-i18n="Analytics">{{ __('lang.admin.staffs.index') }}
                   @if ($countUserLock > 0)
 <span class="mx-1 badge badge-center rounded-pill bg-danger" id="user-lock-count">{{ $countUserLock }}</span>
 @endif
@@ -244,12 +245,38 @@
               <a href="{{ route('admin.list-suggest-category') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-offer"></i>
                 <div data-i18n="Analytics">
-                  Đề xuất danh mục
+                  {{ __('lang.admin.proposals.index') }}
                   @if ($countCategorySuggest > 0)
 <span class="mx-1 badge badge-center rounded-pill bg-danger" id="category-suggest-count">{{ $countCategorySuggest }}</span>
 @endif
                 </div>
               </a>
+            </li>
+            <li class="menu-item {{ \Request::segment(2) == 'list' ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-spa"></i>
+                <div data-i18n="Form Layouts">{{ __('lang.language') }}</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ url('locale/en') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">
+                      <span class="fi fi-gb"></span> {{ __('lang.language_en') }}</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{ url('locale/vi') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">
+                      <span class="fi fi-vn"></span> {{ __('lang.language_vi') }}</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{ url('locale/ja') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">
+                      <span class="fi fi-jp"></span> {{ __('lang.language_ja') }}</div>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </aside>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Category')
+@section('page-title', __('lang.admin.staffs.index'))
 @push('styles')
     <style>
 

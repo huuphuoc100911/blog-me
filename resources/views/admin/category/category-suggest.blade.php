@@ -50,7 +50,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                                <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
                             @endforelse
                         </tbody>
                     </table>

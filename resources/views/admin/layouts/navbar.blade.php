@@ -62,7 +62,7 @@
                                             <div class="flex-grow-1">
                                                 <span
                                                     class="fw-semibold d-block">{{ auth('admin')->user()->name }}</span>
-                                                <small class="text-muted">Admin</small>
+                                                <small class="text-muted">{{ __('lang.admin.admin') }}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -73,7 +73,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin.info-company.edit', 1) }}">
                                         <i class="bx bx-user me-2"></i>
-                                        <span class="align-middle">Hồ sơ của tôi</span>
+                                        <span class="align-middle">{{ __('lang.admin.my_profile.index') }}</span>
                                     </a>
                                 </li>
                                 <li>
@@ -83,7 +83,7 @@
                                     <a class="dropdown-item" href="#"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="bx bx-power-off me-2"></i>
-                                        <span class="align-middle">Log Out</span>
+                                        <span class="align-middle">{{ __('lang.logout') }}</span>
                                     </a>
                                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                                         style="display: none;">

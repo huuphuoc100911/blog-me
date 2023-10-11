@@ -146,7 +146,7 @@
                         </div>
                     @endif
                 @empty
-                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                    <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">

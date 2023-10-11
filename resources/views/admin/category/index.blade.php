@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Danh mục hình ảnh')
+@section('page-title', __('lang.admin.image_categories.index'))
 @push('styles')
     <style>
         .btn-cat-del {
@@ -26,7 +26,7 @@
 @endpush
 @section('content')
     @php
-        \Carbon\Carbon::setLocale('vi');
+        \Carbon\Carbon::setLocale(session('locale'));
         $now = \Carbon\Carbon::now();
     @endphp
     <!-- Content wrapper -->
@@ -34,9 +34,9 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
-                <h4 class="fw-bold py-3 mb-4">Danh mục hình ảnh</h4>
-                <a href="{{ route('admin.category.create') }}" class="pt-3"><button class="btn btn-success">Thêm danh
-                        mục</button></a>
+                <h4 class="fw-bold py-3 mb-4">{{ __('lang.admin.image_categories.index') }}</h4>
+                <a href="{{ route('admin.category.create') }}" class="pt-3"><button
+                        class="btn btn-success">{{ __('lang.create') }}</button></a>
             </div>
 
             @if (session('create_success'))
@@ -77,23 +77,25 @@
                                 <p class="card-text">
                                     <small
                                         class="text-muted">{{ \Carbon\Carbon::parse($category->updated_at)->diffForHumans($now) }}
-                                        bởi {{ $category->staff ? $category->staff->name : $category->admin->name }}</small>
+                                        {{ __('lang.by') }}
+                                        {{ $category->staff ? $category->staff->name : $category->admin->name }}</small>
                                 </p>
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-3">
                                         <a href="{{ route('admin.category.show', $category->id) }}"
-                                            class="btn btn-success">Xem hình ảnh</a>
+                                            class="btn btn-success">{{ __('lang.show') }}</a>
                                     </div>
                                     <div class="col-sm-3">
                                         <a href="{{ route('admin.category.edit', $category->id) }}"
-                                            class="btn btn-primary">Cập nhật</a>
+                                            class="btn btn-primary">{{ __('lang.update') }}</a>
                                     </div>
                                     <div class="col-sm-2">
                                         <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
                                             style="display: inline-block;"
                                             onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Xóa</button>
+                                            <button type="submit"
+                                                class="btn btn-danger btn-cat-del-2">{{ __('lang.delete') }}</button>
                                             @method('delete')
                                             @csrf
                                         </form>
@@ -103,7 +105,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                    <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">

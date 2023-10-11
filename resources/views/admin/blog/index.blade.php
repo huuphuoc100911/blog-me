@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Blog')
+@section('page-title', __('lang.admin.blogs.index'))
 @push('styles')
 @endpush
 @section('content')
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center w-100 mt-5">Không có dữ liệu.</div>
+                    <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">

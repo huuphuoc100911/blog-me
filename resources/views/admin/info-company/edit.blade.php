@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('page-title', 'Thông tin cơ quan')
+@section('page-title', __('lang.admin.info_companies.index'))
 @push('styles')
     <style>
         .input-width-50 {
@@ -16,18 +16,18 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Cập nhật thông tin cơ quan</h4>
+        <h4 class="fw-bold py-3 mb-4">{{ __('lang.admin.info_companies.company_info_update') }}</h4>
         <!-- Basic Layout -->
         <div class="row">
             <div class="col-xl">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Thông tin cơ quan</h5>
+                        <h5 class="mb-0">{{ __('lang.admin.info_companies.index') }}</h5>
                         <small class="text-muted float-end">
                             @if (!$infoCompany)
-                                Tạo
+                                {{ __('lang.create') }}
                             @else
-                                Cập nhật
+                                {{ __('lang.update') }}
                             @endif
                         </small>
                     </div>
@@ -50,7 +50,7 @@
                         ]) !!}
                         {{ Form::hidden('id', $infoCompany ? $infoCompany->id : 0) }}
                         <div class="mb-3">
-                            {{ Form::label('name', 'Tên cơ quan', ['class' => 'form-label']) }}
+                            {{ Form::label('name', __('lang.admin.info_companies.company_name'), ['class' => 'form-label']) }}
                             {{ Form::text('name', $infoCompany ? $infoCompany->name : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company name']) }}
                             @error('name')
                                 <span class="error text-danger" role="alert">
@@ -59,7 +59,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('url_image', 'Hình ảnh', ['class' => 'form-label']) }}
+                            {{ Form::label('url_image', __('lang.image'), ['class' => 'form-label']) }}
                             <br />
                             @if ($infoCompany)
                                 <img src="{{ $infoCompany->image_url }}" class="add-image my-3" />
@@ -73,7 +73,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('address', 'Địa chỉ', ['class' => 'form-label']) }}
+                            {{ Form::label('address', __('lang.address'), ['class' => 'form-label']) }}
                             {{ Form::text('address', $infoCompany ? $infoCompany->address : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company address']) }}
                             @error('address')
                                 <span class="error text-danger" role="alert">
@@ -82,7 +82,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('description', 'Mô tả ', ['class' => 'form-label']) }}
+                            {{ Form::label('description', __('lang.description'), ['class' => 'form-label']) }}
                             {!! Form::textarea('description', $infoCompany ? $infoCompany->description : null, [
                                 'class' => 'form-control input-width-50',
                                 'placeholder' => 'Enter your description',
@@ -94,7 +94,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('email', 'Email cơ quan', ['class' => 'form-label']) }}
+                            {{ Form::label('email', __('lang.email'), ['class' => 'form-label']) }}
                             {{ Form::text('email', $infoCompany ? $infoCompany->email : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company email']) }}
                             @error('email')
                                 <span class="error text-danger" role="alert">
@@ -103,7 +103,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('Phone', 'Số điện thoại cơ quan', ['class' => 'form-label']) }}
+                            {{ Form::label('Phone', __('lang.phone'), ['class' => 'form-label']) }}
                             {{ Form::text('phone', $infoCompany ? $infoCompany->phone : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your company phone number']) }}
                             @error('phone')
                                 <span class="error text-danger" role="alert">
@@ -112,7 +112,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            {{ Form::label('link_facebook', 'Facebook cơ quan', ['class' => 'form-label']) }}
+                            {{ Form::label('link_facebook', __('lang.facebook'), ['class' => 'form-label']) }}
                             {{ Form::text('link_facebook', $infoCompany ? $infoCompany->link_facebook : null, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your facebook company link']) }}
                             @error('link_facebook')
                                 <span class="error text-danger" role="alert">
@@ -120,7 +120,7 @@
                                 </span>
                             @enderror
                         </div>
-                        {{ Form::submit('Cập nhật', ['class' => 'btn btn-info mt-3']) }}
+                        {{ Form::submit(__('lang.update'), ['class' => 'btn btn-info mt-3']) }}
                         {!! Form::close() !!}
                     </div>
                 </div>
