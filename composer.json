@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.3",
         "nesbot/carbon": "^2.62",
-        "nexmo/client": "^2.4"
+        "nexmo/client": "^2.4",
+        "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

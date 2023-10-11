@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\PusherController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('send-mail-staff', [UserController::class, 'sendMailStaff'])->name('send-mail-staff');
     Route::get('send-sms', [UserController::class, 'sendSMS'])->name('send-sms');
     Route::get('download-pdf', [UserController::class, 'downloadPdf'])->name('downloadPdf');
+    Route::get('chat', [PusherController::class, 'index'])->name('chat');
+    Route::post('broadcast', [PusherController::class, 'broadcast'])->name('broadcast');
+    Route::post('receive', [PusherController::class, 'receive'])->name('receive');
 });

@@ -225,6 +225,12 @@
                 <div data-i18n="Analytics">{{ __('lang.admin.medias.index') }}</div>
               </a>
             </li>
+            <li class="menu-item {{ \Request::segment(2) == 'chat' ? 'active' : '' }}">
+              <a href="{{ route('admin.chat') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Analytics">Chat</div>
+              </a>
+            </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
               <a href="{{ route('admin.blog.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
