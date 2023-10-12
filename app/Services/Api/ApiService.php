@@ -5,6 +5,7 @@ namespace App\Services\Api;
 use App\Models\Blog;
 use App\Models\InfoCompany;
 use App\Models\Media;
+use App\Models\Province;
 use App\Models\Staff;
 use App\Models\User;
 use App\Services\Helper\FilterTrait;
@@ -18,13 +19,15 @@ class ApiService extends BaseService
         InfoCompany $infoCompany,
         User $user,
         Media $media,
-        Blog $blog
+        Blog $blog,
+        Province $province
     ) {
         $this->model = $model;
         $this->infoCompany = $infoCompany;
         $this->user = $user;
         $this->media = $media;
         $this->blog = $blog;
+        $this->province = $province;
     }
 
     public function getListStaff($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
@@ -35,6 +38,11 @@ class ApiService extends BaseService
             ->isActive()
             ->isStaff()
             ->with('infoStaff')->get();
+    }
+
+    public function getPlaceVn()
+    {
+        return $this->province->get();
     }
 
     public function getInfoCompany()

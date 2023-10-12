@@ -29,6 +29,9 @@ class UserProfileRequest extends FormRequest
             'phone_number' => 'required|numeric',
             'birth_day' => 'required|date',
             'address' => 'required',
+            'province' => 'required',
+            'district' => 'required',
+            'ward' => 'required',
         ];
     }
 
@@ -39,6 +42,9 @@ class UserProfileRequest extends FormRequest
             'address' => 'Địa chỉ',
             'phone_number' => 'Số điện thoại',
             'birth_day' => 'Sinh nhật',
+            'province' => 'Tỉnh thành phố',
+            'district' => 'Quận huyện',
+            'ward' => 'Phường xã',
         ];
     }
 

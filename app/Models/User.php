@@ -32,7 +32,10 @@ class User extends Authenticatable
         'is_active',
         'google_id',
         'facebook_id',
-        'password_socialite'
+        'password_socialite',
+        'province_id',
+        'district_id',
+        'ward_id'
     ];
 
     /**

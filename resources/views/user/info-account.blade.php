@@ -63,6 +63,11 @@
                 </div>
                 <div class="col-8 border-right">
                     <div class="p-3 py-5">
+                        @if (session('update_success'))
+                            <div class="alert alert-success">
+                                {{ session('update_success') }}
+                            </div>
+                        @endif
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Cập nhật thông tin</h4>
                         </div>
@@ -111,9 +116,63 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        {{ Form::label('address', 'Khu vực', ['class' => 'margin-label mt-3']) }}
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <select class="form-select form-control" name="province" id="province">
+                                    <option value="" selected>Chọn tỉnh thành</option>
+                                    @foreach ($provinces as $index => $province)
+                                        @if ($index == $userProfile->province_id)
+                                            <option selected value="{{ $index }}">{{ $province }}</option>
+                                        @else
+                                            <option value="{{ $index }}">{{ $province }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('province')
+                                    <span>
+                                        <p class="error text-danger" role="alert">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select form-control" name="district" id="district">
+                                    <option value="" selected>Chọn quận huyện</option>
+                                    @foreach ($districts as $index => $district)
+                                        @if ($index == $userProfile->district_id)
+                                            <option selected value="{{ $index }}">{{ $district }}</option>
+                                        @else
+                                            <option value="{{ $index }}">{{ $district }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('district')
+                                    <span>
+                                        <p class="error text-danger" role="alert">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select form-control" name="ward" id="ward">
+                                    <option value="" selected>Chọn phường xã</option>
+                                    @foreach ($wards as $index => $ward)
+                                        @if ($index == $userProfile->ward_id)
+                                            <option selected value="{{ $index }}">{{ $ward }}</option>
+                                        @else
+                                            <option value="{{ $index }}">{{ $ward }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('ward')
+                                    <span>
+                                        <p class="error text-danger" role="alert">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12">
-                                {{ Form::label('address', 'Địa chỉ', ['class' => 'margin-label']) }}
+                                {{ Form::label('address', 'Địa chỉ cụ thể', ['class' => 'margin-label']) }}
                                 {{ Form::text('address', $userProfile->address ?? null, ['class' => 'form-control', 'placeholder' => 'Vui lòng nhập địa chỉ']) }}
                                 @error('address')
                                     <span>
@@ -122,38 +181,14 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="row mt-3">
-                            <div class="col-4">
-                                <select class="form-select form-control mb-3" name="city" id="city"
-                                    aria-label=".form-select-sm">
-                                    <option value="" selected>Chọn tỉnh thành</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <select class="form-select form-control mb-3" name="district" id="district"
-                                    aria-label=".form-select-sm">
-                                    <option value="" selected>Chọn quận huyện</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <select class="form-select form-control" name="ward" id="ward"
-                                    aria-label=".form-select-sm">
-                                    <option value="" selected>Chọn phường xã</option>
-                                </select>
-                            </div>
-                        </div> --}}
-                        @if (session('update_success'))
-                            <div class="alert alert-success mt-3">
-                                {{ session('update_success') }}
-                            </div>
-                        @endif
-                        <div class="text-center mt-5">
-                            {{ Form::submit('Cập nhật thông tin', ['class' => 'btn btn-primary profile-button']) }}
-                        </div>
-                        {!! Form::close() !!}
                     </div>
+                    <div class="text-center">
+                        {{ Form::submit('Cập nhật thông tin', ['class' => 'btn btn-primary profile-button']) }}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
+        </div>
     </section>
     <!-- Contact Section End -->
 @endsection
@@ -174,43 +209,42 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
-        var citis = document.getElementById("city");
+        var provinces = document.getElementById("province");
         var districts = document.getElementById("district");
         var wards = document.getElementById("ward");
         var Parameter = {
-            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            url: "http://127.0.0.1:8000/api/v1/place-vn",
             method: "GET",
             responseType: "application/json",
         };
         var promise = axios(Parameter);
         promise.then(function(result) {
-            renderCity(result.data);
+            renderCity(result.data.data);
         });
 
         function renderCity(data) {
             for (const x of data) {
-                citis.options[citis.options.length] = new Option(x.Name, x.Id);
+                provinces.options[provinces.options.length] = new Option(x.name, x.id);
             }
-            citis.onchange = function() {
-                console.log(this.value);
+            provinces.onchange = function() {
                 district.length = 1;
                 ward.length = 1;
                 if (this.value != "") {
-                    const result = data.filter(n => n.Id === this.value);
+                    const result = data.filter(n => n.id === this.value);
 
-                    for (const k of result[0].Districts) {
-                        district.options[district.options.length] = new Option(k.Name, k.Id);
+                    for (const k of result[0].districts) {
+                        district.options[district.options.length] = new Option(k.name, k.id);
                     }
                 }
             };
             district.onchange = function() {
                 ward.length = 1;
-                const dataCity = data.filter((n) => n.Id === citis.value);
+                const dataCity = data.filter((n) => n.id === provinces.value);
                 if (this.value != "") {
-                    const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+                    const dataWards = dataCity[0].districts.filter(n => n.id === this.value)[0].wards;
 
                     for (const w of dataWards) {
-                        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                        wards.options[wards.options.length] = new Option(w.name, w.id);
                     }
                 }
             };
