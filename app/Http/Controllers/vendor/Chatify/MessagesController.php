@@ -44,6 +44,10 @@ class MessagesController extends Controller
      */
     public function index($id = null)
     {
+        if (!Auth::user()) {
+            return redirect()->route('login');
+        }
+
         $messenger_color = Auth::user()->messenger_color;
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,
