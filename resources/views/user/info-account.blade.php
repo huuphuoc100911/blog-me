@@ -140,9 +140,13 @@
                                     <option value="" selected>Chọn quận huyện</option>
                                     @foreach ($districts as $index => $district)
                                         @if ($index == $userProfile->district_id)
-                                            <option selected value="{{ $index }}">{{ $district }}</option>
+                                            <option selected value="{{ $index }}">{{ $district['name_with_type'] }}
+                                            </option>
                                         @else
-                                            <option value="{{ $index }}">{{ $district }}</option>
+                                            @if ($district['parent_code'] == $userProfile->province_id)
+                                                <option value="{{ $index }}">{{ $district['name_with_type'] }}
+                                                </option>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </select>
@@ -157,9 +161,13 @@
                                     <option value="" selected>Chọn phường xã</option>
                                     @foreach ($wards as $index => $ward)
                                         @if ($index == $userProfile->ward_id)
-                                            <option selected value="{{ $index }}">{{ $ward }}</option>
+                                            <option selected value="{{ $index }}">{{ $ward['name_with_type'] }}
+                                            </option>
                                         @else
-                                            <option value="{{ $index }}">{{ $ward }}</option>
+                                            @if ($ward['parent_code'] == $userProfile->district_id)
+                                                <option value="{{ $index }}">{{ $ward['name_with_type'] }}
+                                                </option>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </select>
@@ -223,12 +231,14 @@
         });
 
         function renderCity(data) {
-            for (const x of data) {
-                provinces.options[provinces.options.length] = new Option(x.name, x.id);
-            }
+            // for (const x of data) {
+            //     provinces.options[provinces.options.length] = new Option(x.name, x.id);
+            // }
             provinces.onchange = function() {
                 district.length = 1;
                 ward.length = 1;
+                console.log(district.length);
+                console.log(district);
                 if (this.value != "") {
                     const result = data.filter(n => n.id === this.value);
 
@@ -240,6 +250,7 @@
             district.onchange = function() {
                 ward.length = 1;
                 const dataCity = data.filter((n) => n.id === provinces.value);
+                console.log(dataCity);
                 if (this.value != "") {
                     const dataWards = dataCity[0].districts.filter(n => n.id === this.value)[0].wards;
 

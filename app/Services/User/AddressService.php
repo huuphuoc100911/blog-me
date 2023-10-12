@@ -22,11 +22,33 @@ class AddressService extends BaseService
 
     public function getAllDistrictPluck()
     {
-        return $this->district->pluck('name_with_type', 'code');
+        $districts = $this->district->get();
+        $arrayDistrict = [];
+        foreach ($districts as $value) {
+            $arrayDistrict += [
+                $value->code => [
+                    'name_with_type' => $value->name_with_type,
+                    'parent_code' => $value->parent_code
+                ]
+            ];
+        }
+
+        return $arrayDistrict;
     }
 
     public function getAllWardPluck()
     {
-        return $this->ward->pluck('name_with_type', 'code');
+        $wards = $this->ward->get();
+        $arrayWard = [];
+        foreach ($wards as $value) {
+            $arrayWard += [
+                $value->code => [
+                    'name_with_type' => $value->name_with_type,
+                    'parent_code' => $value->parent_code
+                ]
+            ];
+        }
+
+        return $arrayWard;
     }
 }
