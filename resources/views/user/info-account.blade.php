@@ -213,7 +213,7 @@
         var districts = document.getElementById("district");
         var wards = document.getElementById("ward");
         var Parameter = {
-            url: "http://127.0.0.1:8000/api/v1/place-vn",
+            url: @json(config('app.url')) + "/api/v1/place-vn",
             method: "GET",
             responseType: "application/json",
         };
