@@ -9,6 +9,8 @@ use App\Models\Province;
 use App\Models\Staff;
 use App\Models\User;
 use App\Services\Helper\FilterTrait;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ApiService extends BaseService
 {
@@ -69,5 +71,19 @@ class ApiService extends BaseService
             ->whereNull('deleted_at')
             ->isActive()
             ->count();
+    }
+
+    public function stasticMedia()
+    {
+        $range = Carbon::now()->subDays(60);
+
+        return DB::table('medias')
+            ->whereDate('created_at', '>=', $range)
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get([
+                DB::raw('Date(created_at) as date'),
+                DB::raw('COUNT(*) as value')
+            ])->toJSON();
     }
 }

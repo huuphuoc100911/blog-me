@@ -33,4 +33,5 @@ Route::prefix('v1')->group(function () {
     Route::get('amount-media', [ApiController::class, 'getMediaAmount']);
     Route::get('amount-blog', [ApiController::class, 'getBlogAmount']);
     Route::get('place-vn', [ApiController::class, 'getPlaceVn']);
+    Route::get('stastic-media', [ApiController::class, 'stasticMedia']);
 });
