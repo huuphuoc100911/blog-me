@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Stripe\StripeController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
@@ -56,3 +57,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/locale/{locale}', [HomeController::class, 'locale']);
+Route::get('/stripe/index', [StripeController::class, 'index'])->name('stripe.index');
+Route::post('/stripe/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
