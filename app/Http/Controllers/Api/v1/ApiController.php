@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Resources\InfoCompanyResource;
+use App\Http\Resources\ProvinceResource;
 use App\Http\Resources\StaffResource;
 use App\Services\Api\ApiService;
 use Illuminate\Http\Response;
@@ -56,5 +57,12 @@ class ApiController extends BaseController
             'code' => Response::HTTP_OK,
             'data' => $amountBlog
         ]);
+    }
+
+    public function getPlaceVn()
+    {
+        $placeVn = $this->apiService->getPlaceVn();
+
+        return ProvinceResource::collection($placeVn);
     }
 }

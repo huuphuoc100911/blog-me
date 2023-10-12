@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserProfileRequest;
+use App\Services\User\AddressService;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
 use App\Services\User\MediaService;
@@ -20,12 +21,14 @@ class HomeController extends Controller
         MediaService $mediaService,
         CategoryService $categoryService,
         UserService $userService,
-        CommentService $commentService
+        CommentService $commentService,
+        AddressService $addressService
     ) {
         $this->mediaService = $mediaService;
         $this->categoryService = $categoryService;
         $this->userService = $userService;
         $this->commentService = $commentService;
+        $this->addressService = $addressService;
     }
 
     public function index()
@@ -86,9 +89,12 @@ class HomeController extends Controller
 
     public function infoAccount()
     {
+        $provinces = $this->addressService->getAllProvincePluck();
+        $districts = $this->addressService->getAllDistrictPluck();
+        $wards = $this->addressService->getAllWardPluck();
         $userProfile = $this->userService->getUserProfile();
 
-        return view('user.info-account', compact('userProfile'));
+        return view('user.info-account', compact('userProfile', 'provinces', 'districts', 'wards'));
     }
 
     public function updateProfile(UserProfileRequest $request)

@@ -985,6 +985,8 @@
         };
         var promise = axios(Parameter);
         promise.then(function(result) {
+            console.log(123132);
+            console.log(result.data);
             renderCity(result.data);
         });
 

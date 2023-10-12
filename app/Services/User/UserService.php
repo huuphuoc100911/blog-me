@@ -93,6 +93,9 @@ class UserService extends BaseService
             'phone_number' => $inputs['phone_number'],
             'birth_day' => Carbon::parse($inputs['birth_day']),
             'address' => $inputs['address'],
+            'province_id' => $inputs['province'],
+            'district_id' => $inputs['district'],
+            'ward_id' => $inputs['ward'],
         ];
 
         return $user->update($data);
