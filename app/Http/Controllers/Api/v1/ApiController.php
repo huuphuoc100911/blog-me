@@ -65,4 +65,9 @@ class ApiController extends BaseController
 
         return ProvinceResource::collection($placeVn);
     }
+
+    public function stasticMedia()
+    {
+        return $this->apiService->stasticMedia();
+    }
 }
