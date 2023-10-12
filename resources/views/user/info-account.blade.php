@@ -33,7 +33,8 @@
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <div class="avatar-image mb-2">
                             @if ($userProfile->image_url)
-                                <img class="rounded-circle mt-3" width="150px" src="{{ $userProfile->image_url }}">
+                                <img class="rounded-circle mt-3" style="width: 150px; max-height: 150px"
+                                    src="{{ $userProfile->image_url }}">
                             @else
                                 <img class="rounded-circle mt-3" width="150px"
                                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
@@ -121,6 +122,26 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="row mt-3">
+                            <div class="col-4">
+                                <select class="form-select form-control mb-3" name="city" id="city"
+                                    aria-label=".form-select-sm">
+                                    <option value="" selected>Chọn tỉnh thành</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select form-control mb-3" name="district" id="district"
+                                    aria-label=".form-select-sm">
+                                    <option value="" selected>Chọn quận huyện</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select form-control" name="ward" id="ward"
+                                    aria-label=".form-select-sm">
+                                    <option value="" selected>Chọn phường xã</option>
+                                </select>
+                            </div>
+                        </div> --}}
                         @if (session('update_success'))
                             <div class="alert alert-success mt-3">
                                 {{ session('update_success') }}
@@ -150,5 +171,49 @@
                 language: 'vi',
             })
         })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        var citis = document.getElementById("city");
+        var districts = document.getElementById("district");
+        var wards = document.getElementById("ward");
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            method: "GET",
+            responseType: "application/json",
+        };
+        var promise = axios(Parameter);
+        promise.then(function(result) {
+            renderCity(result.data);
+        });
+
+        function renderCity(data) {
+            for (const x of data) {
+                citis.options[citis.options.length] = new Option(x.Name, x.Id);
+            }
+            citis.onchange = function() {
+                console.log(this.value);
+                district.length = 1;
+                ward.length = 1;
+                if (this.value != "") {
+                    const result = data.filter(n => n.Id === this.value);
+
+                    for (const k of result[0].Districts) {
+                        district.options[district.options.length] = new Option(k.Name, k.Id);
+                    }
+                }
+            };
+            district.onchange = function() {
+                ward.length = 1;
+                const dataCity = data.filter((n) => n.Id === citis.value);
+                if (this.value != "") {
+                    const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                    for (const w of dataWards) {
+                        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                    }
+                }
+            };
+        }
     </script>
 @endpush
