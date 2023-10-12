@@ -32,6 +32,7 @@ return [
     'delete' => 'Xóa',
     'show' => 'Xem chi tiết',
     'by' => 'bởi',
+    'chat' => 'Trò chuyện',
     'no_record' => 'Không có dữ liệu',
     'status' => 'Trạng thái',
     'enter_name' => 'Nhập tên',

@@ -32,6 +32,7 @@ return [
     'delete' => 'Delete',
     'show' => 'Show',
     'by' => 'by',
+    'chat' => 'Chatting',
     'no_record' => 'No data available',
     'status' => 'Status',
     'enter_name' => 'Enter a name',

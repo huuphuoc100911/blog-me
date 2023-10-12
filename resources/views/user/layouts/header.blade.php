@@ -93,7 +93,7 @@
                                             <a href="{{ route('info-account') }}">{{ __('lang.info_account') }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ url('chatify') }}">Chat</a>
+                                            <a href="{{ url('chatify') }}">{{ __('lang.chat') }}</a>
                                         </li>
                                         <li>
                                             <a href="#"

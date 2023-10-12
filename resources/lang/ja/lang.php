@@ -32,6 +32,7 @@ return [
     'delete' => '消す',
     'show' => '詳細を見る',
     'by' => 'による',
+    'chat' => 'チャット',
     'no_record' => 'データなし',
     'status' => 'ステータス',
     'enter_name' => '名前を入力してください',
