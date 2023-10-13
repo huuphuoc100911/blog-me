@@ -36,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapStaffRoutes();
 
         $this->mapVueRoutes();
+
+        $this->mapAdminVueRoutes();
     }
 
     protected function mapWebRoutes()
@@ -77,5 +79,13 @@ class RouteServiceProvider extends ServiceProvider
             ->as('vue.')
             ->namespace($this->namespace . '\Vue')
             ->group(base_path('routes/vue.php'));
+    }
+
+    protected function mapAdminVueRoutes()
+    {
+        Route::prefix('admin-vue')
+            ->as('admin-vue.')
+            ->namespace($this->namespace . '\AdminVue')
+            ->group(base_path('routes/admin-vue.php'));
     }
 }

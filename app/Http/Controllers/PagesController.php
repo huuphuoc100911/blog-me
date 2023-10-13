@@ -10,4 +10,9 @@ class PagesController extends Controller
     {
         return view('app');
     }
+
+    public function viewAdmin($any = null)
+    {
+        return view('app-admin');
+    }
 }
