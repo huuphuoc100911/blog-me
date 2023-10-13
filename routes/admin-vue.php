@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any?}', [PagesController::class, 'view'])->where('any', '.*');
+Route::get('/{any?}', [PagesController::class, 'viewAdmin'])->where('any', '.*');
