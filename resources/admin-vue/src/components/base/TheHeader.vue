@@ -59,15 +59,15 @@
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-                <a href="index.html" class="menu-link">
+                <router-link :to="{ name: 'home' }" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
-                </a>
+                </router-link>
             </li>
 
             <!-- Layouts -->
             <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <a href="javascript:void(0);" v-on:click="path()" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Layouts">Layouts</div>
                 </a>
@@ -104,16 +104,16 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Pages</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item open">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                    <div data-i18n="Account Settings">Account Settings</div>
+                    <div data-i18n="Account Settings">Media</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="pages-account-settings-account.html" class="menu-link">
-                            <div data-i18n="Account">Account</div>
-                        </a>
+                        <router-link :to="{ name: 'media-create' }" class="menu-link">
+                            <div data-i18n="Account">Media</div>
+                        </router-link>
                     </li>
                     <li class="menu-item">
                         <a href="pages-account-settings-notifications.html" class="menu-link">
@@ -331,7 +331,7 @@
                 </ul>
             </li>
             <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <a href="javascript:void(0);" v-on:click="path()" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-detail"></i>
                     <div data-i18n="Form Layouts">Form Layouts</div>
                 </a>

@@ -1,9 +1,5 @@
 <template>
-    <the-header></the-header>
-    <div class="layout-page">
-        <the-navbar></the-navbar>
-        <router-view />
-    </div>
+    <router-view />
 </template>
   
 <script>
