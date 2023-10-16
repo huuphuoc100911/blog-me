@@ -26,4 +26,9 @@ class MediaController extends BaseController
 
         return MediaResource::collection($listMediaCategory);
     }
+
+    public function get()
+    {
+        return 12331232;
+    }
 }
