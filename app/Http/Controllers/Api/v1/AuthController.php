@@ -25,16 +25,18 @@ class AuthController extends Controller
                 throw new \Exception('Error in Login');
             }
 
+            $tokenResult = $admin->createToken('authToken')->plainTextToken;
+
             return response()->json([
                 'status_code' => 200,
-                'isAuthenticated' => true,
+                'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
                 'adminLogin' => $admin,
             ]);
         } catch (\Exception $error) {
             return response()->json([
                 'status_code' => 500,
-                'message' => 'Mật khẩu không đúng.',
+                'message' => 'Unauthorized'
             ]);
         }
     }

@@ -12,7 +12,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel-lang/lang": "^12.17",
         "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.3",
