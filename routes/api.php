@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\ApiController;
+use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\v1\MediaController;
 use Illuminate\Http\Request;
@@ -34,4 +35,5 @@ Route::prefix('v1')->group(function () {
     Route::get('amount-blog', [ApiController::class, 'getBlogAmount']);
     Route::get('place-vn', [ApiController::class, 'getPlaceVn']);
     Route::get('stastic-media', [ApiController::class, 'stasticMedia']);
+    Route::post('admin-vue/login', [AuthController::class, 'login']);
 });

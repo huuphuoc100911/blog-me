@@ -18,13 +18,15 @@ const routes = [
                 name: "media-create",
                 component: CreateMedia,
             },
+            { path: "*", redirec: "/" },
         ],
+        meta: { requiresAuth: true },
     },
     {
         path: "/admin-vue/sign-in",
         name: "SignIn",
         component: SignIn,
-        meta: { guest: true },
+        meta: { requiresAuth: false },
     },
 ];
 

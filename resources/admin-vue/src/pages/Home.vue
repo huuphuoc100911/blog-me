@@ -491,8 +491,13 @@
     <!-- / Content -->
 </template>
 <script>
+import { useStore } from 'vuex';
 export default {
     name: "Home",
+    setup() {
+        const store = useStore();
+        store.dispatch("auth/loadUserLoginFromLocalStorageAction");
+    }
 }
 </script>
 
