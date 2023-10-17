@@ -24,5 +24,5 @@ mix.copyDirectory("resources/assets/vue", "public/assets/vue");
 mix.copyDirectory("resources/fonts", "public/fonts");
 mix.copyDirectory("resources/css/style-chat.css", "public/css/style-chat.css");
 
-mix.js("resources/vue/src/main.js", "public/");
-mix.js("resources/admin-vue/src/main-admin.js", "public/");
+mix.js("resources/vue/src/main.js", "public/js");
+mix.js("resources/admin-vue/src/main-admin.js", "public/js");
