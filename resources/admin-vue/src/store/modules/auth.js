@@ -2,30 +2,33 @@ import { signInAPI } from "../../api/auth";
 
 const state = () => {
     return {
-        isAuthenticated: false,
         adminLogin: {},
     };
 };
 
 const mutations = {
     setUserLoginMutation(state, payload) {
-        state.isAuthenticated = payload.isAuthenticated;
         state.adminLogin = payload.adminLogin;
-        localStorage.setItem("adminLogin", JSON.stringify(payload));
+        console.log(payload);
+        localStorage.setItem(
+            "adminLogin",
+            JSON.stringify(payload.access_token)
+        );
     },
     loadAdminLoginFromLocalStorage(state, payload) {
         state.adminLogin = payload.adminLogin;
     },
     setAdminLogOutMutation(state, payload) {
         state.adminLogin = {};
-        state.isAuthenticated = false;
     },
 };
 
 const actions = {
     async signInAction({ commit }, { data, router }) {
         try {
+            console.log(21333333);
             const userLogin = await signInAPI(data);
+            console.log(userLogin);
             if (userLogin.status_code == 200) {
                 commit("setUserLoginMutation", userLogin);
                 router.push("/admin-vue");
