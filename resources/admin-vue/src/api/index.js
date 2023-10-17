@@ -3,7 +3,7 @@ import axios from "axios";
 
 const axiosAPI = axios.create({
     baseURL: configs.baseURL,
-    headers: configs.headers,
+    // headers: configs.headers,
 });
 
 // Add a request interceptor
