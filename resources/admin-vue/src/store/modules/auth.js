@@ -9,11 +9,7 @@ const state = () => {
 const mutations = {
     setUserLoginMutation(state, payload) {
         state.adminLogin = payload.adminLogin;
-        console.log(payload);
-        localStorage.setItem(
-            "adminLogin",
-            JSON.stringify(payload.access_token)
-        );
+        localStorage.setItem("adminLogin", JSON.stringify(payload.adminLogin));
     },
     loadAdminLoginFromLocalStorage(state, payload) {
         state.adminLogin = payload.adminLogin;
@@ -26,9 +22,7 @@ const mutations = {
 const actions = {
     async signInAction({ commit }, { data, router }) {
         try {
-            console.log(21333333);
             const userLogin = await signInAPI(data);
-            console.log(userLogin);
             if (userLogin.status_code == 200) {
                 commit("setUserLoginMutation", userLogin);
                 router.push("/admin-vue");
@@ -36,10 +30,10 @@ const actions = {
                 alert("tài khoản hoặc mất khẩu không chính xác");
             }
         } catch (error) {
-            alert("tài khoản hoặc mất khẩu không chính xác");
+            alert("tài khoản hoặc mất khẩu không chính xác 132");
         }
     },
-    loadUserLoginFromLocalStorageAction({ commit }) {
+    loadAdminLoginFromLocalStorageAction({ commit }) {
         let adminLogin = {};
         if (localStorage.getItem("adminLogin")) {
             adminLogin = JSON.parse(localStorage.getItem("adminLogin"));

@@ -100,7 +100,6 @@ export default {
     setup() {
         const store = useStore();
         const router = useRouter();
-
         const adminLogin = computed(() => store.state.auth.adminLogin);
 
         function handleLogout() {

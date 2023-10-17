@@ -3,14 +3,13 @@ import axios from "axios";
 
 const axiosAPI = axios.create({
     baseURL: configs.baseURL,
-    // headers: configs.headers,
+    headers: configs.headers,
 });
 
 // Add a request interceptor
 axiosAPI.interceptors.request.use(
     function (config) {
         // config.headers.tokenByClass = configs.tokenByClass;
-
         return config;
     },
     function (error) {

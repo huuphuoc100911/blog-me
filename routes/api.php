@@ -35,14 +35,16 @@ Route::prefix('v1')->group(function () {
     Route::get('amount-blog', [ApiController::class, 'getBlogAmount']);
     Route::get('place-vn', [ApiController::class, 'getPlaceVn']);
     Route::get('stastic-media', [ApiController::class, 'stasticMedia']);
-    Route::post('admin-vue/login', [AuthController::class, 'login']);
 
-    // Route::group(['middleware' => ['auth:sanctum']], function () {
-    //     Route::group(['prefix' => 'media', 'as' => 'media.'], function () {
-    //         Route::get('/', [MediaController::class, 'get'])->name('index');
-    //         Route::post('/', [MediaController::class, 'store'])->name('store');
-    //         Route::put('/{media}', [MediaController::class, 'update'])->name('update');
-    //         Route::delete('/{media}', [MediaController::class, 'destroy'])->name('destroy');
-    //     });
-    // });
+    Route::group(['prefix' => 'admin-vue'], function () {
+        Route::post('login', [AuthController::class, 'login']);
+        Route::group(['middleware' => ['auth:sanctum']], function () {
+            Route::group(['prefix' => 'media', 'as' => 'media.'], function () {
+                Route::get('/', [MediaController::class, 'get'])->name('index');
+                Route::post('/', [MediaController::class, 'store'])->name('store');
+                Route::put('/{media}', [MediaController::class, 'update'])->name('update');
+                Route::delete('/{media}', [MediaController::class, 'destroy'])->name('destroy');
+            });
+        });
+    });
 });

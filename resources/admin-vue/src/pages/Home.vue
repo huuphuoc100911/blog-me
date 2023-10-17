@@ -496,7 +496,7 @@ export default {
     name: "Home",
     setup() {
         const store = useStore();
-        store.dispatch("auth/loadUserLoginFromLocalStorageAction");
+        // store.dispatch("auth/loadAdminLoginFromLocalStorageAction");
     }
 }
 </script>
