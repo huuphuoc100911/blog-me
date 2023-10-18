@@ -23,6 +23,8 @@
             height: 450px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 @endpush
 @section('content')
     @php
@@ -90,15 +92,10 @@
                                         <a href="{{ route('admin.category.edit', $category->id) }}"
                                             class="btn btn-primary">{{ __('lang.update') }}</a>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
-                                            style="display: inline-block;"
-                                            onsubmit="return confirm('Do you want to delete it?')">
-                                            <button type="submit"
-                                                class="btn btn-danger btn-cat-del-2">{{ __('lang.delete') }}</button>
-                                            @method('delete')
-                                            @csrf
-                                        </form>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-danger" data-id="{{ $category->id }}"
+                                            data-toggle="modal"
+                                            data-target="#delete-course-modal">{{ __('lang.delete') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -114,4 +111,57 @@
             <!-- Examples -->
         </div>
         <!-- / Content -->
+        <form class="hidden" name="delete-course-form" method="post">
+            @method('delete')
+            @csrf
+        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="delete-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn xóa khóa học không?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="delete-course">Xóa bỏ</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endsection
+    @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
+        <script>
+            $(function() {
+                var courseId;
+                var btnDeleteCourse = document.getElementById('delete-course');
+                var deleteCourseForm = document.forms['delete-course-form'];
+
+                $('#delete-course-modal').on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget)
+                    courseId = button.data('id')
+                })
+
+                btnDeleteCourse.onclick = function() {
+                    deleteCourseForm.action = '/admin/category/' + courseId;
+                    deleteCourseForm.submit();
+                }
+            })
+        </script>
+    @endpush
