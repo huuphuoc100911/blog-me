@@ -121,13 +121,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Xóa danh mục hình ảnh?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Bạn có chắc chắn muốn xóa khóa học không?
+                        Bạn có chắc chắn muốn xóa danh mục hình ảnh không?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" id="delete-course">Xóa bỏ</button>

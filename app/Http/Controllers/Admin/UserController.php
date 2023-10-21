@@ -70,4 +70,47 @@ class UserController extends Controller
             return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
         }
     }
+
+    public function handleDeleteStaff(Request $request)
+    {
+        $inputs = $request->all();
+
+        switch ($inputs['action']) {
+            case 'delete':
+                if ($this->adminService->deleteStaff($inputs['staffIds'])) {
+                    return redirect()->back()->with('delete_success', __('messages.delete_success'));
+                } else {
+                    return redirect()->back()->with('delete_fail', __('messages.delete_fail'));
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    public function handleRestoreStaff(Request $request)
+    {
+        $inputs = $request->all();
+
+        switch ($inputs['action']) {
+            case 'restore':
+                if ($this->adminService->restoreStaff($inputs['staffIds'])) {
+                    return redirect()->back()->with('restore_success', __('messages.delete_success'));
+                } else {
+                    return redirect()->back()->with('restore_fail', __('messages.delete_fail'));
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    public function staffDelete()
+    {
+        $staffs = $this->adminService->getListStaffDelete();
+
+        return view('admin.user.staff-delete', compact('staffs'));
+    }
 }

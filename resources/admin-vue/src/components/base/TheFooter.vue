@@ -12,8 +12,7 @@
                 <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank"
                     class="footer-link me-4">Documentation</a>
 
-                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
-                    class="footer-link me-4">Support</a>
+                <a href="/issues" target="_blank" class="footer-link me-4">Support</a>
             </div>
         </div>
     </footer>

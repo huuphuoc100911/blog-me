@@ -71,6 +71,11 @@ class AdminService extends BaseService
         return $this->staff->get();
     }
 
+    public function getListStaffDelete()
+    {
+        return $this->staff->onlyTrashed()->get();
+    }
+
     public function getListUser()
     {
         return $this->user->get();
@@ -133,5 +138,27 @@ class AdminService extends BaseService
     public function generateSmsCode($length = 6)
     {
         return substr(sha1(rand()), 0, $length);
+    }
+
+    public function deleteStaff($staffIds)
+    {
+        try {
+            foreach ($staffIds as $staffId) {
+                $this->staff->find($staffId)->delete();
+            }
+        } catch (Exception $e) {
+            Log::error($e);
+        }
+    }
+
+    public function restoreStaff($staffIds)
+    {
+        try {
+            foreach ($staffIds as $staffId) {
+                $this->staff->where('id', $staffId)->restore();
+            }
+        } catch (Exception $e) {
+            Log::error($e);
+        }
     }
 }

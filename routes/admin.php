@@ -56,4 +56,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('chat', [PusherController::class, 'index'])->name('chat');
     Route::post('broadcast', [PusherController::class, 'broadcast'])->name('broadcast');
     Route::post('receive', [PusherController::class, 'receive'])->name('receive');
+    Route::post('handle-delete-staff', [UserController::class, 'handleDeleteStaff'])->name('handle-delete-staff');
+    Route::get('staff-delete', [UserController::class, 'staffDelete'])->name('staff-delete');
+    Route::post('handle-restores-staff', [UserController::class, 'handleRestoreStaff'])->name('handle-restores-staff');
 });
