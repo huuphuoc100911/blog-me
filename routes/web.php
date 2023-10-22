@@ -60,3 +60,4 @@ Route::get('/locale/{locale}', [HomeController::class, 'locale']);
 Route::get('/stripe/index', [StripeController::class, 'index'])->name('stripe.index');
 Route::post('/stripe/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
 Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
+Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-query');

@@ -4,12 +4,15 @@ namespace App\Services\User;
 
 use App\Enums\BlogStatus;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\InfoCompany;
+use App\Models\Media;
 use App\Models\Staff;
 use App\Models\User;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Mail;
@@ -18,12 +21,20 @@ class UserService extends BaseService
 {
     use FilterTrait;
 
-    public function __construct(User $model, Staff $staff, InfoCompany $infoCompany, Blog $blog)
-    {
+    public function __construct(
+        User $model,
+        Staff $staff,
+        InfoCompany $infoCompany,
+        Blog $blog,
+        Category $category,
+        Media $media
+    ) {
         $this->model = $model;
         $this->staff = $staff;
         $this->infoCompany = $infoCompany;
         $this->blog = $blog;
+        $this->category = $category;
+        $this->media = $media;
     }
 
     public function registerUser($inputs)
@@ -141,5 +152,33 @@ class UserService extends BaseService
 
             return false;
         }
+    }
+
+    public function testQuery()
+    {
+        $userCount = DB::table('users')
+            ->select(DB::raw('count(*) as user_count, is_active'))
+            ->where('is_active', '=', 2)
+            ->groupBy('is_active')
+            ->get();
+
+        $categoryMedia = DB::table('categories')
+            ->selectRaw('categories.title as category_title, count(*) as media_count')
+            ->join('medias', 'medias.category_id', '=', 'categories.id')
+            ->groupBy('categories.id', 'categories.title')
+            ->get();
+
+        $mediaByDay = Media::selectRaw('DAY(created_at) as c, COUNT(id) as amount')
+            ->groupByRaw('DAY(created_at)')
+            // ->havingRaw('DAY(created_at) > 10')
+            ->orderByDesc('DAY(created_at)', 'desc')
+            ->get();
+
+        dd($mediaByDay);
+
+        return [
+            'userCount' => $userCount,
+            'categoryMedia' => $categoryMedia,
+        ];
     }
 }

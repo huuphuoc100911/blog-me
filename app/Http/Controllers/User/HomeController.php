@@ -135,4 +135,12 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function testQuery()
+    {
+        $data = $this->userService->testQuery();
+        // dd($data);
+
+        return view('user.test-query', compact('data'));
+    }
 }
