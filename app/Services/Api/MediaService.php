@@ -4,6 +4,10 @@ namespace App\Services\Api;
 
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
+use Exception;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class MediaService extends BaseService
 {
@@ -49,5 +53,34 @@ class MediaService extends BaseService
             $filterable,
             $select
         );
+    }
+
+    public function updateOrCreateMedia($inputs)
+    {
+        try {
+            $path = Storage::put('admin/media', $inputs['url_image']);
+            $mediaHasMaxPriority = $this->model->orderByDesc('id')->first();
+
+            $data = [
+                'category_id' => $inputs['category'],
+                'title' => $inputs['title'],
+                'description' => $inputs['description'],
+                'url_image' => $path,
+                'priority' => $mediaHasMaxPriority ? $mediaHasMaxPriority->priority + 1 : 1,
+                'is_active' => $inputs['status'],
+            ];
+
+            $this->model->create($data);
+
+            return [
+                'status' => Response::HTTP_OK,
+            ];
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return [
+                'status' => Response::HTTP_FORBIDDEN,
+            ];
+        }
     }
 }

@@ -3,6 +3,7 @@ import { signInAPI } from "../../api/auth";
 const state = () => {
     return {
         adminLogin: {},
+        token: "",
     };
 };
 
@@ -10,6 +11,8 @@ const mutations = {
     setUserLoginMutation(state, payload) {
         state.adminLogin = payload.adminLogin;
         localStorage.setItem("adminLogin", JSON.stringify(payload.adminLogin));
+        localStorage.setItem("_token", JSON.stringify(payload.access_token));
+        console.log(payload.access_token);
     },
     loadAdminLoginFromLocalStorage(state, payload) {
         state.adminLogin = payload.adminLogin;
@@ -42,6 +45,7 @@ const actions = {
     },
     signUpAction({ commit }, { router }) {
         localStorage.removeItem("adminLogin");
+        localStorage.removeItem("_token");
         commit("setAdminLogOutMutation");
         router.push("/admin-vue/sign-in");
     },
