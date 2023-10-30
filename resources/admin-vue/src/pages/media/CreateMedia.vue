@@ -10,58 +10,60 @@
                         <small class="text-muted float-end">Create</small>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form @submit.prevent="createMedia" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+                                <label class="form-label" for="basic-icon-default-fullname">Title</label>
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        placeholder="John Doe" aria-label="John Doe"
-                                        aria-describedby="basic-icon-default-fullname2" />
+                                            class="bx bx-layer"></i></span>
+                                    <input type="text" class="form-control" v-model="media.title" placeholder="Title" />
                                 </div>
+                                <p class="text-danger" v-if="errors && errors.title">{{
+                                    errors.title[0] }}</p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-company">Company</label>
+                                <label class="form-label" for="basic-icon-default-company">Category</label>
                                 <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-company2" class="input-group-text"><i
-                                            class="bx bx-buildings"></i></span>
-                                    <input type="text" id="basic-icon-default-company" class="form-control"
-                                        placeholder="ACME Inc." aria-label="ACME Inc."
-                                        aria-describedby="basic-icon-default-company2" />
+                                    <select class="form-select" v-model="media.category">
+                                        <option value="">Chọn danh mục</option>
+                                        <option v-for="(category, index) in listCategory.data" :key="index"
+                                            :value="category.id">
+                                            {{ category.title }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <p class="text-danger" v-if="errors && errors.category">{{
+                                    errors.category[0] }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-icon-default-email">PHOTO</label>
+                                <input class="form-control" type="file" @change="chooseImage" />
+                                <p class="text-danger" v-if="errors && errors.url_image">{{
+                                    errors.url_image[0] }}</p>
+                                <div class="col-md-3" v-if="media.image_preview">
+                                    <img :src="media.image_preview" class="img-responsive" height="70" width="90">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-email">Email</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                    <input type="text" id="basic-icon-default-email" class="form-control"
-                                        placeholder="john.doe" aria-label="john.doe"
-                                        aria-describedby="basic-icon-default-email2" />
-                                    <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                                </div>
-                                <div class="form-text">You can use letters, numbers & periods</div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-phone">Phone No</label>
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                            class="bx bx-phone"></i></span>
-                                    <input type="text" id="basic-icon-default-phone" class="form-control phone-mask"
-                                        placeholder="658 799 8941" aria-label="658 799 8941"
-                                        aria-describedby="basic-icon-default-phone2" />
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-message">Message</label>
+                                <label class="form-label" for="basic-icon-default-phone">DESCRIPTION</label>
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-message2" class="input-group-text"><i
                                             class="bx bx-comment"></i></span>
-                                    <textarea id="basic-icon-default-message" class="form-control"
-                                        placeholder="Hi, Do you have a moment to talk Joe?"
-                                        aria-label="Hi, Do you have a moment to talk Joe?"
-                                        aria-describedby="basic-icon-default-message2"></textarea>
+                                    <textarea id="basic-icon-default-message" class="form-control" placeholder="Description"
+                                        v-model="media.description"></textarea>
                                 </div>
+                                <p class="text-danger" v-if="errors && errors.description">{{
+                                    errors.description[0] }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-icon-default-message">STATUS</label>
+                                <select class="form-select" v-model="media.status">
+                                    <option value="">Status</option>
+                                    <option value="2">Active</option>
+                                    <option value="1">Inactive</option>
+                                </select>
+                                <p class="text-danger" v-if="errors && errors.status">{{
+                                    errors.status[0] }}</p>
                             </div>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </form>
@@ -73,8 +75,64 @@
 </template>
 
 <script>
+import { computed, reactive } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 export default {
     name: 'CreateMedia',
+    setup() {
+        const store = useStore();
+        const router = useRouter();
+        const media = reactive({
+            title: "",
+            category: "",
+            description: "",
+            url_image: "",
+            status: "",
+            image_preview: ''
+        });
+
+        const errors = computed(() => store.state.media.errors);
+
+        function chooseImage(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return;
+            createImage(files[0]);
+            media.url_image = e.target.files[0];
+        }
+
+        function createImage(file) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                media.image_preview = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function createMedia() {
+            let data = new FormData();
+
+            data.append('url_image', media.url_image);
+            data.append('title', media.title);
+            data.append('category', media.category);
+            data.append('description', media.description);
+            data.append('status', media.status);
+
+            store.dispatch('media/updateOrCreateMediaAction', { data, router });
+        }
+
+        store.dispatch('category/getListCategoryAction');
+        const listCategory = computed(() => store.state.category.listCategory);
+
+        return {
+            media,
+            errors,
+            listCategory,
+            chooseImage,
+            createMedia,
+        }
+    }
 }
 </script>
 

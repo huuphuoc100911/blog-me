@@ -3,13 +3,20 @@ import axios from "axios";
 
 const axiosAPI = axios.create({
     baseURL: configs.baseURL,
-    // headers: configs.headers,
+    headers: {
+        Accept: "application/json",
+    },
 });
 
 // Add a request interceptor
 axiosAPI.interceptors.request.use(
     function (config) {
-        // config.headers.tokenByClass = configs.tokenByClass;
+        const token = localStorage.getItem("_token") ?? "";
+        config.headers.Authorization = token ? `Bearer ${token}` : "";
+
+        console.log(config);
+        console.log("login");
+
         return config;
     },
     function (error) {

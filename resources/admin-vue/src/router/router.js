@@ -1,6 +1,7 @@
 import Layout from "../components/base/TheBody.vue";
 import Home from "../pages/Home.vue";
 import CreateMedia from "../pages/media/CreateMedia.vue";
+import Media from "../pages/media/Media.vue";
 import SignIn from "../pages/auth/SignIn.vue";
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
                 path: "",
                 name: "home",
                 component: Home,
+            },
+            {
+                path: "media",
+                name: "media",
+                component: Media,
             },
             {
                 path: "media/create",

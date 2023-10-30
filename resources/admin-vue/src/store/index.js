@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import auth from "./modules/auth";
+import media from "./modules/media";
+import category from "./modules/category";
 
 export default createStore({
     state: {},
@@ -8,5 +10,7 @@ export default createStore({
     actions: {},
     modules: {
         auth,
+        media,
+        category,
     },
 });
