@@ -1,4 +1,9 @@
-import { getListMediaApi, getMediaApi, postMediaApi } from "../../api/media";
+import {
+    deleteMediaApi,
+    getListMediaApi,
+    getMediaApi,
+    postMediaApi,
+} from "../../api/media";
 
 const state = () => {
     return {
@@ -36,6 +41,21 @@ const actions = {
         await postMediaApi(payload.data)
             .then((res) => {
                 console.log(res);
+                if (res.status == 200) {
+                    router.push(`/admin-vue/media`);
+                }
+            })
+            .catch((error) => {
+                console.log("loi");
+                context.commit("ADD_ERRORS", error.response.data.errors);
+            });
+    },
+
+    async deleteMediaAction(context, payload) {
+        let router = payload.router;
+
+        await deleteMediaApi(payload.mediaId)
+            .then((res) => {
                 if (res.status == 200) {
                     router.push(`/admin-vue/media`);
                 }

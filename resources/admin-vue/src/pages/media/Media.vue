@@ -26,22 +26,26 @@
                 </div>
             </div>
         </div>
-        <!-- Examples -->
     </div>
 </template>
 
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router';
+import PaginationComponent from '../../components/PaginationComponent.vue';
 export default {
     name: 'CreateMedia',
+    components: {
+        PaginationComponent
+    },
     setup() {
         const store = useStore();
         store.dispatch('media/getListMediaAction');
         const listMedia = computed(() => store.state.media.listMedia);
 
         return {
-            listMedia
+            listMedia,
         }
     }
 }

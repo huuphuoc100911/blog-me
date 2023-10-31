@@ -4,6 +4,7 @@ namespace App\Services\Api;
 
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -57,8 +58,6 @@ class MediaService extends BaseService
 
     public function updateOrCreateMedia($inputs)
     {
-        Log::info($inputs);
-
         try {
             $media = null;
 
@@ -104,5 +103,25 @@ class MediaService extends BaseService
     public function getMedia($id)
     {
         return $this->model->findOrFail($id);
+    }
+
+    public function deleteMedia($id)
+    {
+        try {
+            $media = Media::whereId($id)->first();
+
+            Storage::delete($media->url_image);
+            $this->model->find($id)->delete();
+
+            return [
+                'status' => Response::HTTP_OK,
+            ];
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return [
+                'status' => Response::HTTP_FORBIDDEN,
+            ];
+        }
     }
 }

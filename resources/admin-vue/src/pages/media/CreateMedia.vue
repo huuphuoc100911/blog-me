@@ -64,7 +64,7 @@
                                 <p class="text-danger" v-if="errors && errors.is_active">{{
                                     errors.is_active[0] }}</p>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>

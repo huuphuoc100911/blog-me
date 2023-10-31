@@ -67,7 +67,8 @@
                                 <p class="text-danger" v-if="errors && errors.is_active">{{
                                     errors.is_active[0] }}</p>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger mx-3" @click="deleteMedia(mediaUpdate.id)">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -132,13 +133,17 @@ export default {
             store.dispatch('media/updateOrCreateMediaAction', { data, router });
         }
 
-
+        function deleteMedia(mediaId) {
+            confirm('Bạn có chắc chắn muốn xóa media không?')
+            store.dispatch('media/deleteMediaAction', { mediaId, router });
+        }
 
         return {
             image,
             errors,
             listCategory,
             mediaUpdate,
+            deleteMedia,
             chooseImage,
             updateMedia,
         }

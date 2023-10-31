@@ -41,8 +41,6 @@ class MediaController extends BaseController
 
     public function postMedia(MediaCreateRequest $request)
     {
-        Log::info($request->all());
-
         $data = [
             'title' => $request->title,
             'category_id' => $request->category_id,
@@ -59,6 +57,13 @@ class MediaController extends BaseController
     public function getMedia($id)
     {
         $media = $this->mediaService->getMedia($id);
+
+        return new MediaResource($media);
+    }
+
+    public function deleteMedia($id)
+    {
+        $media = $this->mediaService->deleteMedia($id);
 
         return new MediaResource($media);
     }
