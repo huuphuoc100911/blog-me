@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\Staff\Uppercase;
+use Illuminate\Support\Str;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class MediaRequest extends FormRequest
@@ -24,7 +27,7 @@ class MediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => ['required', new Uppercase],
             'url_image' => $this->_method === 'PATCH' ? '' : 'required',
             'description' => 'required',
         ];
@@ -33,16 +36,24 @@ class MediaRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title' => 'title',
-            'url_image' => 'image',
-            'description' => 'description',
+            'title' => 'Tiêu đề',
+            'url_image' => 'Hình ảnh',
+            'description' => 'Mô tả',
         ];
     }
 
     public function messages()
     {
         return [
+            'required' => ':attribute bắt buộc phải nhập',
             'url_image.required' => 'Please upload a thumbnail',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->title),
+        ]);
     }
 }

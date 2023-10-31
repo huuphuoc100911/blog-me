@@ -48,7 +48,6 @@ if (!function_exists('handleOrderWhereBy')) {
     }
 }
 
-
 if (!function_exists('create_slug')) {
     function create_slug($string)
     {

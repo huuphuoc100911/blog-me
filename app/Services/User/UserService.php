@@ -168,13 +168,36 @@ class UserService extends BaseService
             ->groupBy('categories.id', 'categories.title')
             ->get();
 
-        $mediaByDay = Media::selectRaw('DAY(created_at) as c, COUNT(id) as amount')
-            ->groupByRaw('DAY(created_at)')
-            // ->havingRaw('DAY(created_at) > 10')
-            ->orderByDesc('DAY(created_at)', 'desc')
-            ->get();
+        // $mediaByDay = Media::selectRaw('DAY(created_at) as c, COUNT(id) as amount')
+        //     ->groupByRaw('DAY(created_at)')
+        //     // ->havingRaw('DAY(created_at) > 10')
+        //     ->orderByDesc('DAY(created_at)', 'desc')
+        //     ->get();
 
-        dd($mediaByDay);
+        $a = 10;
+
+        $users = DB::table('medias')
+            // ->select('medias.id as media_id', 'categories.id as category_id', 'medias.title as media_title', 'medias.description as media_description')
+            // ->join('categories', 'categories.id', '=', 'medias.category_id')
+            // ->where('id', '<', 10)
+            // ->where(function ($query) use ($a) {
+            //     $query->where('id', '>', $a)
+            //         ->orWhere('id', '<', $a);
+            // })
+            // ->select(DB::raw('count(medias.category_id) as category_count'), 'categories.title as category_title')
+            // ->having('category_count', '>', 1)
+            // ->groupBy('medias.category_id', 'categories.title')
+
+            // ->selectRaw('count(medias.category_id) as category_count, categories.title as category_title')
+            // ->havingRaw('count(medias.category_id) > 1')
+
+            // ->where('category_id', '=', function ($query) {
+            //     $query->select('id')->from('categories')->where('id', 1);
+            // })
+
+            // ->where('medias.title', 'like', '%ai%')
+            ->get();
+        dd($users);
 
         return [
             'userCount' => $userCount,

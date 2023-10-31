@@ -30,6 +30,7 @@ class MediaController extends Controller
 
     public function store(MediaRequest $request)
     {
+        dd($request->all());
         if ($this->mediaService->mediaCreate($request->all())) {
             return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
         }
