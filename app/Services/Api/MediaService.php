@@ -57,20 +57,37 @@ class MediaService extends BaseService
 
     public function updateOrCreateMedia($inputs)
     {
+        Log::info($inputs);
+
         try {
-            $path = Storage::put('admin/media', $inputs['url_image']);
+            $media = null;
+
+            if ($inputs['method'] == 'PUT') {
+                $media = $this->model->findOrFail($inputs['media_id']);
+                $path = $media->url_image;
+                if ($inputs['url_image']) {
+                    Storage::delete($path);
+
+                    $path = Storage::put('admin/media', $inputs['url_image']);
+                }
+            } else {
+                $path = Storage::put('admin/media', $inputs['url_image']);
+            }
+
             $mediaHasMaxPriority = $this->model->orderByDesc('id')->first();
 
             $data = [
-                'category_id' => $inputs['category'],
+                'category_id' => $inputs['category_id'],
                 'title' => $inputs['title'],
                 'description' => $inputs['description'],
                 'url_image' => $path,
                 'priority' => $mediaHasMaxPriority ? $mediaHasMaxPriority->priority + 1 : 1,
-                'is_active' => $inputs['status'],
+                'is_active' => $inputs['is_active'],
             ];
 
-            $this->model->create($data);
+            $this->model->updateOrCreate([
+                'id' => $media ? $media->id : null
+            ], $data);
 
             return [
                 'status' => Response::HTTP_OK,
@@ -82,5 +99,10 @@ class MediaService extends BaseService
                 'status' => Response::HTTP_FORBIDDEN,
             ];
         }
+    }
+
+    public function getMedia($id)
+    {
+        return $this->model->findOrFail($id);
     }
 }

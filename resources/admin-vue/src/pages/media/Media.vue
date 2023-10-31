@@ -19,7 +19,9 @@
                         <p class="card-text">
                             {{ media.description }}
                         </p>
-                        <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+                        <router-link :to="{ name: 'media-edit', params: { id: media.id } }" :media="media">
+                            <div class="btn btn-outline-primary">Xem chi tiết</div>
+                        </router-link>
                     </div>
                 </div>
             </div>

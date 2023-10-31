@@ -15,9 +15,9 @@ class MediaCreateRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
-            'status' => 'required',
+            'is_active' => 'required',
         ];
     }
 
@@ -25,9 +25,9 @@ class MediaCreateRequest extends FormRequest
     {
         return [
             'title' => 'title',
-            'category' => 'category',
+            'category_id' => 'category_id',
             'description' => 'description',
-            'status' => 'status',
+            'is_active' => 'status',
         ];
     }
 }
