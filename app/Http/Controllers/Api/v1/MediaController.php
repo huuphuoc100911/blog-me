@@ -41,14 +41,25 @@ class MediaController extends BaseController
 
     public function postMedia(MediaCreateRequest $request)
     {
+        Log::info($request->all());
+
         $data = [
             'title' => $request->title,
-            'category' => $request->category,
+            'category_id' => $request->category_id,
             'url_image' => $request->url_image,
             'description' => $request->description,
-            'status' => $request->status,
+            'is_active' => $request->is_active,
+            'method' => $request->method ?? null,
+            'media_id' => $request->media_id ?? null,
         ];
 
         return $this->mediaService->updateOrCreateMedia($data);
+    }
+
+    public function getMedia($id)
+    {
+        $media = $this->mediaService->getMedia($id);
+
+        return new MediaResource($media);
     }
 }

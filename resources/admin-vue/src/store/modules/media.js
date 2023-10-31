@@ -1,15 +1,19 @@
-import { getListMediaApi, postMediaApi } from "../../api/media";
+import { getListMediaApi, getMediaApi, postMediaApi } from "../../api/media";
 
 const state = () => {
     return {
         listMedia: {},
         errors: {},
+        mediaUpdate: {},
     };
 };
 
 const mutations = {
     setListMediaMutation(state, payload) {
         state.listMedia = payload;
+    },
+    setMediaMutation(state, payload) {
+        state.mediaUpdate = payload;
     },
     ADD_ERRORS(state, payload) {
         state.errors = payload;
@@ -22,6 +26,11 @@ const actions = {
         context.commit("setListMediaMutation", data);
     },
 
+    async getMediaAction(context, payload) {
+        const data = await getMediaApi(payload);
+        context.commit("setMediaMutation", data.data);
+    },
+
     async updateOrCreateMediaAction(context, payload) {
         let router = payload.router;
         await postMediaApi(payload.data)
@@ -32,6 +41,7 @@ const actions = {
                 }
             })
             .catch((error) => {
+                console.log("loi");
                 context.commit("ADD_ERRORS", error.response.data.errors);
             });
     },

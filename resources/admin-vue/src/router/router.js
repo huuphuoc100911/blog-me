@@ -1,6 +1,7 @@
 import Layout from "../components/base/TheBody.vue";
 import Home from "../pages/Home.vue";
 import CreateMedia from "../pages/media/CreateMedia.vue";
+import EditMedia from "../pages/media/EditMedia.vue";
 import Media from "../pages/media/Media.vue";
 import SignIn from "../pages/auth/SignIn.vue";
 
@@ -23,6 +24,11 @@ const routes = [
                 path: "media/create",
                 name: "media-create",
                 component: CreateMedia,
+            },
+            {
+                path: "media/:id/edit",
+                name: "media-edit",
+                component: EditMedia,
             },
             { path: "*", redirec: "/" },
         ],
