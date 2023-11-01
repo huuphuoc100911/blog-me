@@ -25,6 +25,8 @@
                     </div>
                 </div>
             </div>
+            <PaginationComponent v-if="listMedia.meta && listMedia.meta.last_page > 1" :pagination="listMedia.meta"
+                :offset="3" @paginate="getMedia(listMedia.meta)" />
         </div>
     </div>
 </template>
@@ -33,7 +35,7 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
-import PaginationComponent from '../../components/PaginationComponent.vue';
+import PaginationComponent from '../PaginationComponent.vue';
 export default {
     name: 'CreateMedia',
     components: {
@@ -41,11 +43,16 @@ export default {
     },
     setup() {
         const store = useStore();
-        store.dispatch('media/getListMediaAction');
+        store.dispatch('media/getListMediaAction', { page: 1 });
         const listMedia = computed(() => store.state.media.listMedia);
+
+        function getMedia(pagination) {
+            store.dispatch("media/getListMediaAction", { page: pagination.current_page || 1 });
+        }
 
         return {
             listMedia,
+            getMedia
         }
     }
 }

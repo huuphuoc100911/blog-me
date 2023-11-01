@@ -1,7 +1,7 @@
 import axiosAPI from ".";
 
-export const getListMediaApi = () => {
-    return axiosAPI.get("api/v1/admin-vue/media");
+export const getListMediaApi = (response) => {
+    return axiosAPI.get(`api/v1/admin-vue/media?page=${response.page}`);
 };
 
 export const postMediaApi = (data) => {
