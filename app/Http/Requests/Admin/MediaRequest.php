@@ -27,7 +27,7 @@ class MediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required'],
+            'title' => ['required', $this->_method === 'PATCH' ? new Uppercase(request()->media_id) : new Uppercase('')],
             'url_image' => $this->_method === 'PATCH' ? '' : 'required',
             'description' => 'required',
         ];
@@ -46,7 +46,7 @@ class MediaRequest extends FormRequest
     {
         return [
             'required' => ':attribute bắt buộc phải nhập',
-            'url_image.required' => 'Please upload a thumbnail',
+            'url_image.required' => 'Vui lòng upload hình ảnh',
         ];
     }
 

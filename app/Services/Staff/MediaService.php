@@ -21,27 +21,38 @@ class MediaService extends BaseService
         $limit = $limit ?? config('common.default_per_page');
 
         $query = $this->model
-            ->whereNull('deleted_at')
-            ->orderBy('priority');
+            ->whereNull('deleted_at');
+
         if (isset($filters['category'])) {
             $query->where('category_id', $filters['category']);;
         }
 
         if (isset($filters['search'])) {
             $query->where('title', 'like', "%{$filters['search']}%")
+                ->orWhere('description', 'like', "%{$filters['search']}%")
                 ->orWhereHas('category', function ($subQuery) use ($filters) {
                     $subQuery->where('title', 'like', "%{$filters['search']}%");
                 });
         }
 
-        return $this->filterPaginate(
-            $query,
-            $limit,
-            $filters,
-            $sorts,
-            $filterable,
-            $select
-        );
+        // $sortType = $filters['sort_type'] ?? 'asc';
+
+        if (isset($filters['sort_type']) && isset($filters['sort_by'])) {
+            $query->orderBy($filters['sort_by'], $filters['sort_type']);
+        }
+
+        $query->orderByDesc('updated_at');
+
+        return $query->paginate($limit)->withQueryString();
+
+        // return $this->filterPaginate(
+        //     $query,
+        //     $limit,
+        //     $filters,
+        //     $sorts,
+        //     $filterable,
+        //     $select
+        // );
     }
 
     public function getListMediaCategory($categoryId, $filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])

@@ -2,26 +2,6 @@
 @section('page-title', __('lang.admin.medias.index'))
 @push('styles')
     <style>
-        .btn-cat-del {
-            margin-left: 10px;
-        }
-
-        .btn-cat-del-2 {
-            margin-right: 20px;
-            margin-left: 10px;
-        }
-
-        .cat-header {
-            justify-content: space-between;
-        }
-
-        .card-cat-img {
-            height: 500px;
-        }
-
-        .cat-info {
-            height: 450px;
-        }
     </style>
 @endpush
 @section('content')
@@ -88,11 +68,22 @@
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
-                            <th scope="col">Tiêu đề</th>
+                            <th scope="col"><a class="sort-table"
+                                    href="?sort_by=title&sort_type={{ $sortType }}">Tiêu đề<i
+                                        class="bx bx-{{ request()->sort_by == 'title' ? $sortClass : null }}-arrow-alt"></i></a>
+                            </th>
                             <th scope="col">Hình ảnh</th>
-                            <th scope="col">Mô tả</th>
+                            <th scope="col">Danh mục</th>
+                            <th scope="col"><a class="sort-table"
+                                    href="?sort_by=description&sort_type={{ $sortType }}">Mô
+                                    tả<i
+                                        class="bx bx-{{ request()->sort_by == 'description' ? $sortClass : null }}-arrow-alt"></i></a>
+                            </th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col">Ngày cập nhật</th>
+                            <th scope="col"><a class="sort-table" style="width: 200px"
+                                    href="?sort_by=updated_at&sort_type={{ $sortType }}">Ngày cập nhật<i
+                                        class="bx bx-{{ request()->sort_by == 'updated_at' ? $sortClass : null }}-arrow-alt"></i></a>
+                            </th>
                             <th scope="col">Hoạt động</th>
                         </tr>
                     </thead>
@@ -103,15 +94,16 @@
                                 <td>
                                     <img src="{{ $media->image_url }}" style="width: 100px; height: 100px" />
                                 </td>
+                                <td>{{ $media->category->title }}</td>
                                 <td>{{ $media->description }}</td>
                                 <td>
                                     @if ($media->is_active)
-                                        <p class="btn btn-success">Active</p>
+                                        <span class="badge bg-success">Active</span>
                                     @else
-                                        <p class="btn btn-danger">Inactive</p>
+                                        <span class="badge bg-danger">Inactive</span>
                                     @endif
                                 </td>
-                                <td>{{ $media->created_at }}</td>
+                                <td>{{ $media->updated_at }}</td>
                                 <td>
                                     @if (auth('staff')->user()->id === $media->staff_id)
                                         <div class="d-flex justify-content-end">
@@ -136,7 +128,9 @@
 
                             </tr>
                         @empty
-                            <div class="text-center w-100 mt-5">{{ __('lang.no_record') }}</div>
+                            <div class="text-center w-100">
+                                <h4 class="text-danger">{{ __('lang.no_record') }}</h4>
+                            </div>
                         @endforelse
                     </tbody>
                 </table>

@@ -13,8 +13,12 @@ class Uppercase implements Rule
      *
      * @return void
      */
-    public function __construct()
+
+    public $mediaId;
+
+    public function __construct($mediaId = null)
     {
+        $this->mediaId = $mediaId;
     }
 
     /**
@@ -26,7 +30,7 @@ class Uppercase implements Rule
      */
     public function passes($attribute, $value)
     {
-        $medias = Media::select('title')->get();
+        $medias = Media::where('id', '!=', $this->mediaId)->select('title')->get();
         $checkTitle = true;
         foreach ($medias as $media) {
             if ($value == $media->title) {

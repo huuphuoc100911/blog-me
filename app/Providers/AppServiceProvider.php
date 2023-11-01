@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\InfoCompany;
 use App\Services\User\UserService;
+use App\View\Components\Alert;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
