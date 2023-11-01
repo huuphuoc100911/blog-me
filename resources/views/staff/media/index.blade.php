@@ -17,29 +17,7 @@
                         Media</button></a>
             </div>
 
-            @if (session('create_success'))
-                <div class="alert alert-success">
-                    {{ session('create_success') }}
-                </div>
-            @endif
-
-            @if (session('update_success'))
-                <div class="alert alert-success mx-3">
-                    {{ session('update_success') }}
-                </div>
-            @endif
-
-            @if (session('delete_success'))
-                <div class="alert alert-success">
-                    {{ session('delete_success') }}
-                </div>
-            @endif
-
-            @if (session('delete_fail'))
-                <div class="alert alert-danger mx-3">
-                    {{ session('delete_fail') }}
-                </div>
-            @endif
+            @include('layouts.notice')
 
             <!-- Examples -->
             <div class="row mb-5">

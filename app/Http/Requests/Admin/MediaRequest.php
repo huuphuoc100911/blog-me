@@ -27,7 +27,7 @@ class MediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', new Uppercase],
+            'title' => ['required'],
             'url_image' => $this->_method === 'PATCH' ? '' : 'required',
             'description' => 'required',
         ];

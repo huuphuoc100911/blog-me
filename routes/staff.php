@@ -6,6 +6,7 @@ use App\Http\Controllers\Staff\Auth\RegisterController;
 use App\Http\Controllers\Staff\Auth\ResetPasswordController;
 use App\Http\Controllers\Staff\ContactController;
 use App\Http\Controllers\Staff\DashboardController;
+use App\Http\Controllers\Staff\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,5 +39,6 @@ Route::group(['middleware' =>  ['auth.staff']], function () {
     Route::resource('blog-category', 'BlogCategoryController');
     Route::resource('info-staff', 'InfoStaffController');
     Route::resource('media', 'MediaController');
+    Route::get('media-table', [MediaController::class, 'mediaTable'])->name('media-table.index');
     Route::resource('blog', 'BlogController');
 });

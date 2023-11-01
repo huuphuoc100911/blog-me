@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
+use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
@@ -21,6 +22,14 @@ class MediaController extends Controller
         return view('staff.media.index', compact('medias'));
     }
 
+    public function mediaTable(Request $request)
+    {
+        $medias = $this->mediaService->getListMedia($request->all());
+        $categories = $this->categoryService->getListCategoryPluck();
+
+        return view('staff.media-table.index', compact('medias', 'categories'));
+    }
+
     public function create()
     {
         $categories = $this->categoryService->getListCategoryPluck();
@@ -30,7 +39,6 @@ class MediaController extends Controller
 
     public function store(MediaRequest $request)
     {
-        dd($request->all());
         if ($this->mediaService->mediaCreate($request->all())) {
             return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
         }
