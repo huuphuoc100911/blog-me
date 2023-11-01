@@ -33,6 +33,7 @@
                     @endif
                     <div class="card-body">
                         {!! Form::open(['method' => 'PATCH', 'route' => ['staff.media.update', $media->id], 'files' => true]) !!}
+                        {{ Form::hidden('media_id', $media->id) }}
                         <div class="mb-3">
                             {{ Form::label('title', 'Title', ['class' => 'form-label']) }}
                             {{ Form::text('title', $media->title, ['class' => 'form-control input-width-50', 'placeholder' => 'Enter your title']) }}

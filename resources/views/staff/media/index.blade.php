@@ -17,7 +17,7 @@
                         Media</button></a>
             </div>
 
-            @include('layouts.notice')
+            <x-alert />
 
             <!-- Examples -->
             <div class="row mb-5">

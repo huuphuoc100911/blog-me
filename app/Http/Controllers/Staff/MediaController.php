@@ -26,8 +26,19 @@ class MediaController extends Controller
     {
         $medias = $this->mediaService->getListMedia($request->all());
         $categories = $this->categoryService->getListCategoryPluck();
+        $sortTypeUrl = isset($request->sort_type) ? $request->sort_type : 'desc';
 
-        return view('staff.media-table.index', compact('medias', 'categories'));
+        if ($sortTypeUrl == 'asc') {
+            $sortType = 'desc';
+            $sortClass = 'up';
+        } else {
+            $sortType = 'asc';
+            $sortClass = 'down';
+        }
+
+        // dd($sortType);
+
+        return view('staff.media-table.index', compact('medias', 'categories', 'sortType', 'sortClass'));
     }
 
     public function create()

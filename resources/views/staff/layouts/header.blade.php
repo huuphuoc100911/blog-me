@@ -54,69 +54,6 @@
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
-    <style>
-      .ml-1 {
-            margin-left: .25rem
-        }
-
-        .mt-2 {
-            margin-top: .5rem
-        }
-
-        .mr-2 {
-            margin-right: .5rem
-        }
-
-        .ml-2 {
-            margin-left: .5rem
-        }
-
-        .mt-4 {
-            margin-top: 1rem
-        }
-
-        .ml-4 {
-            margin-left: 1rem
-        }
-
-        .mt-8 {
-            margin-top: 2rem
-        }
-
-        .ml-12 {
-            margin-left: 3rem
-        }
-      .btn-cat-del {
-          margin-left: 10px;
-      }
-
-      .btn-cat-del-2 {
-          margin-right: 20px;
-          margin-left: 10px;
-      }
-
-      .cat-header {
-          justify-content: space-between;
-      }
-
-      .card-cat-img {
-          height: 500px;
-      }
-
-      .cat-info {
-          height: 450px;
-      }
-
-      .notify-danger {
-          position: fixed;
-          top: 100px;
-          right: 100px;
-      }
-
-      .hidden-danger {
-          display: none;
-      }
-  </style>
     @stack('styles')
 
     <!-- Page CSS -->
