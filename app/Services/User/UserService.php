@@ -4,7 +4,9 @@ namespace App\Services\User;
 
 use App\Enums\BlogStatus;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Category;
+use App\Models\CommentBlog;
 use App\Models\InfoCompany;
 use App\Models\Media;
 use App\Models\Staff;
@@ -27,7 +29,9 @@ class UserService extends BaseService
         InfoCompany $infoCompany,
         Blog $blog,
         Category $category,
-        Media $media
+        Media $media,
+        BlogCategory $blogCategory,
+        CommentBlog $commentBlog
     ) {
         $this->model = $model;
         $this->staff = $staff;
@@ -35,6 +39,8 @@ class UserService extends BaseService
         $this->blog = $blog;
         $this->category = $category;
         $this->media = $media;
+        $this->blogCategory = $blogCategory;
+        $this->commentBlog = $commentBlog;
     }
 
     public function registerUser($inputs)
@@ -203,5 +209,16 @@ class UserService extends BaseService
             'userCount' => $userCount,
             'categoryMedia' => $categoryMedia,
         ];
+    }
+
+    public function testRelationship()
+    {
+        $blog = $this->blog->find(9);
+
+        $users = $blog->users;
+        foreach ($users as $user) {
+            echo $user->pivot->created_at . '<br/>';
+        }
+        // dd($users);
     }
 }

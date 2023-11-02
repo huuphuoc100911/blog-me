@@ -44,6 +44,16 @@ class Blog extends Model
         return $this->hasMany(CommentBlog::class, 'blog_id', 'id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'comment_blogs',
+            'blog_id',
+            'user_id'
+        )->withPivot('created_at', 'comment');
+    }
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', BlogStatus::ACTIVE);
