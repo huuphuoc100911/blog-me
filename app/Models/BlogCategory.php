@@ -27,4 +27,16 @@ class BlogCategory extends Model
     {
         return $this->belongsTo(Staff::class, 'staff_id');
     }
+
+    public function comment()
+    {
+        return $this->hasManyThrough(
+            CommentBlog::class, //Model muốn liên kết
+            Blog::class,   // Model trung gian.
+            'category_id', // Khóa ngoại của bảng trung gian
+            'blog_id', // khoá ngoại của bảng đích
+            'id', // Khóa chính cảu bảng nguồn
+            'id' // khóa chính của bảng trung gian
+        );
+    }
 }

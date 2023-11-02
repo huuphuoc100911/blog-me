@@ -143,4 +143,12 @@ class HomeController extends Controller
 
         return view('user.test-query', compact('data'));
     }
+
+    public function testRelationship()
+    {
+        $data = $this->userService->testRelationship();
+        // dd($data);
+
+        // return view('user.test-query', compact('data'));
+    }
 }

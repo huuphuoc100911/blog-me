@@ -61,3 +61,4 @@ Route::get('/stripe/index', [StripeController::class, 'index'])->name('stripe.in
 Route::post('/stripe/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
 Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
 Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-query');
+Route::get('/test-relationship', [HomeController::class, 'testRelationship'])->name('test-relationship');
