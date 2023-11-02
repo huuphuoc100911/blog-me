@@ -15,29 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CustomerSeeder::class);
+        $this->call(TestSeeder::class);
 
-        DB::table('staffs')->insert([
-            [
-                'name' => 'Staff',
-                'email' => 'staff@gmail.com',
-                'password' => bcrypt('123456'),
-            ]
-        ]);
-
-        DB::table('admins')->insert([
-            [
-                'name' => 'Admin',
-                'email' => 'admin@gmail.com',
-                'password' => bcrypt('123456'),
-            ]
-        ]);
-
-        DB::table('users')->insert([
-            [
-                'name' => 'User',
-                'email' => 'user@gmail.com',
-                'password' => bcrypt('123456'),
-            ]
-        ]);
+        $this->call(AccountSeeder::class);
     }
 }
