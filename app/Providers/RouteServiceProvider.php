@@ -17,7 +17,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
+    public const ADMIN = '/admin/dashboard';
+    public const STAFF = '/staff/dashboard';
+    public const CUSTOMER = '/customer';
+
     protected $namespace = 'App\Http\Controllers';
 
     public function boot()
@@ -34,6 +38,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdminRoutes();
 
         $this->mapStaffRoutes();
+
+        $this->mapCustomerRoutes();
 
         $this->mapVueRoutes();
 
@@ -72,6 +78,16 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace . '\Staff')
             ->group(base_path('routes/staff.php'));
     }
+
+    protected function mapCustomerRoutes()
+    {
+        Route::prefix('customer')
+            ->middleware('web')
+            ->as('customer.')
+            ->namespace($this->namespace . '\Customer')
+            ->group(base_path('routes/customer.php'));
+    }
+
 
     protected function mapVueRoutes()
     {

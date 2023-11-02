@@ -16,6 +16,7 @@ class CustomerFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'password' => bcrypt(12345678),
             'address' => $this->faker->address(),
             'phone_number' => $this->faker->phoneNumber(),
             'city' => $this->faker->city(),

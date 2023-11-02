@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ResetPasswordStaffRequest extends Notification
+class ResetPasswordCustomerRequest extends Notification
 {
     use Queueable;
     protected $token;
@@ -40,12 +40,12 @@ class ResetPasswordStaffRequest extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('staff/reset-password/?token=' . $this->token);
+        $url = url('customer/reset-password/?token=' . $this->token);
 
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', url($url))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->line('Bạn nhận được email này vì chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.')
+            ->action('Đổi mật khẩu', url($url))
+            ->line('Nếu bạn không yêu cầu đặt lại mật khẩu thì không cần thực hiện thêm hành động nào.');
     }
 
     /**
