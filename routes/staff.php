@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('login', [LoginController::class, 'login'])->middleware('guest:staff')->name('login');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::get('register', [RegisterController::class, 'register'])->middleware('guest:staff')->name('register');
 Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendMail'])->name('send-mail');

@@ -15,6 +15,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.3",
         "munafio/chatify": "^1.6",
         "nesbot/carbon": "^2.62",

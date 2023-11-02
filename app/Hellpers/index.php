@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Customer;
+
 if (!function_exists('handleOrderPlanWhereBy')) {
     function handleOrderPlanWhereBy($viewData, $checkOrderPlan = null, $getKeyColumn = null)
     {
@@ -90,4 +93,9 @@ if (!function_exists('create_slug')) {
         $string = strtolower($string);
         return $string;
     }
+}
+
+function isCustomerActive($email)
+{
+    return Customer::where('email', $email)->isActive()->count();
 }
