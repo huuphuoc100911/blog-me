@@ -174,23 +174,48 @@
               </a>
             </li>
             
-            <li class="menu-item {{ \Request::segment(2) == 'media' ? 'active' : '' }}">
+            <li class="menu-item {{ \Request::segment(2) == 'media' && \Request::segment(3) == '' ? 'active' : '' }}">
               <a href="{{ route('staff.media.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-image"></i>
                 <div data-i18n="Analytics">Media</div>
               </a>
             </li>
-            <li class="menu-item {{ \Request::segment(2) == 'media-table' ? 'active' : '' }}">
-              <a href="{{ route('staff.media-table.index') }}" class="menu-link">
+            <li class="menu-item {{ \Request::segment(2) == 'media-table' || (\Request::segment(2) == 'media' && \Request::segment(3) != '') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-image"></i>
-                <div data-i18n="Analytics">Media Table</div>
+                <div data-i18n="Form Layouts">Hình ảnh</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('staff.media-table.index') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Danh sách</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{ route('staff.media.create') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Thêm mới</div>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
               <a href="{{ route('staff.blog.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Analytics">Blog</div>
               </a>
+            </li>
+            <li class="menu-item {{ \Request::segment(2) == 'group' ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Form Layouts">Nhóm người dùng</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('staff.group.index') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Danh sách</div>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'list-suggest-category' ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">

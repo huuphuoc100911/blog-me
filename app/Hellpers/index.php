@@ -99,3 +99,17 @@ function isCustomerActive($email)
 {
     return Customer::where('email', $email)->isActive()->count();
 }
+
+function isRolePermission($dataArr, $moduleName, $role = 'view')
+{
+    if (!empty($dataArr)) {
+        if (!empty($dataArr[$moduleName])) {
+            $roleArr = $dataArr[$moduleName];
+            if (in_array($role, $roleArr)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
