@@ -51,7 +51,7 @@ class MediaController extends Controller
     public function store(MediaRequest $request)
     {
         if ($this->mediaService->mediaCreate($request->all())) {
-            return redirect()->route('staff.media.index')->with('create_success', __('messages.create_success'));
+            return redirect()->route('staff.media-table.index')->with('create_success', __('messages.create_success'));
         }
 
         return redirect()->back()->with('create_fail',  __('messages.create_fail'));
@@ -92,7 +92,7 @@ class MediaController extends Controller
     public function update(MediaRequest $request, $mediaId)
     {
         if ($this->mediaService->mediaUpdate($request->all(), $mediaId)) {
-            return redirect()->route('staff.media.index')->with('update_success',  __('messages.update_success'));
+            return redirect()->route('staff.media-table.index')->with('update_success',  __('messages.update_success'));
         }
 
         return redirect()->back()->with('update_fail',  __('messages.update_fail'));

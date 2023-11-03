@@ -15,8 +15,8 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-1">Hình ảnh</h4>
-                {{-- <a href="{{ route('admin.media.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Media</button></a> --}}
+                <a href="{{ route('staff.media.create') }}" class="pt-3"><button class="btn btn-success">Add
+                        Media</button></a>
             </div>
             <div class="mb-5">
                 <form class="d-flex row" action="{{ route('staff.media-table.index') }}">
