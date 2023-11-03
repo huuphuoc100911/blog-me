@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRole;
 use App\Models\Media;
 use App\Models\Staff;
 use App\Models\User;
@@ -19,7 +20,8 @@ class Media2Policy
      */
     public function viewAny(Staff $staff)
     {
-        return true;
+
+        return $staff->role = UserRole::STAFF;
     }
 
     /**

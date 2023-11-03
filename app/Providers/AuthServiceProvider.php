@@ -32,8 +32,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('medias.add', [MediaPolicy::class, 'add']);
-        Gate::define('medias.edit', [MediaPolicy::class, 'edit']);
-        Gate::define('medias.delete', [MediaPolicy::class, 'delete']);
+        Gate::define('staff.medias.add', [MediaPolicy::class, 'add']);
+        Gate::define('staff.medias.edit', [MediaPolicy::class, 'edit']);
+        Gate::define('staff.medias.delete', [MediaPolicy::class, 'delete']);
     }
 }

@@ -108,11 +108,11 @@
                                 <td>{{ $media->updated_at }}</td>
                                 <td>
                                     <div class="d-flex justify-content-end">
-                                        @can('medias.edit', $media->id)
+                                        @can('staff.medias.edit', $media->id)
                                             <a href="{{ route('staff.media.edit', $media->id) }}"
                                                 class="btn btn-primary">Edit</a>
                                         @endcan
-                                        @can('medias.delete', $media->id)
+                                        @can('staff.medias.delete', $media->id)
                                             <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
                                                 style="display: inline-block;"
                                                 onsubmit="return confirm('Do you want to delete it?')">
