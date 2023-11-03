@@ -15,8 +15,10 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-1">Hình ảnh</h4>
-                <a href="{{ route('staff.media.create') }}" class="pt-3"><button class="btn btn-success">Add
-                        Media</button></a>
+                @can('medias.add')
+                    <a href="{{ route('staff.media.create') }}" class="pt-3"><button class="btn btn-success">Add
+                            Media</button></a>
+                @endcan
             </div>
             <div class="mb-5">
                 <form class="d-flex row" action="{{ route('staff.media-table.index') }}">
@@ -105,7 +107,22 @@
                                 </td>
                                 <td>{{ $media->updated_at }}</td>
                                 <td>
-                                    @if (auth('staff')->user()->id === $media->staff_id)
+                                    <div class="d-flex justify-content-end">
+                                        @can('medias.edit', $media->id)
+                                            <a href="{{ route('staff.media.edit', $media->id) }}"
+                                                class="btn btn-primary">Edit</a>
+                                        @endcan
+                                        @can('medias.delete', $media->id)
+                                            <form action="{{ route('staff.media.destroy', $media->id) }}" method="post"
+                                                style="display: inline-block;"
+                                                onsubmit="return confirm('Do you want to delete it?')">
+                                                <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                                @method('delete')
+                                                @csrf
+                                            </form>
+                                        @endcan
+                                    </div>
+                                    {{-- @if (auth('staff')->user()->id === $media->staff_id)
                                         <div class="d-flex justify-content-end">
                                             <a href="{{ route('staff.media.edit', $media->id) }}"
                                                 class="btn btn-primary">Edit</a>
@@ -123,7 +140,7 @@
                                                 style="margin-right: 20px">Edit</button>
                                             <button class="error-access btn btn-danger">Delete</button>
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </td>
 
                             </tr>

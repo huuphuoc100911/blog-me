@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
+use App\Models\Media;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MediaController extends Controller
 {
@@ -24,21 +27,25 @@ class MediaController extends Controller
 
     public function mediaTable(Request $request)
     {
-        $medias = $this->mediaService->getListMedia($request->all());
-        $categories = $this->categoryService->getListCategoryPluck();
-        $sortTypeUrl = isset($request->sort_type) ? $request->sort_type : 'desc';
+        $staff = Auth::guard('staff')->user();
 
-        if ($sortTypeUrl == 'asc') {
-            $sortType = 'desc';
-            $sortClass = 'up';
+        if ($staff->can('viewAny', Media::class)) {
+            $medias = $this->mediaService->getListMedia($request->all());
+            $categories = $this->categoryService->getListCategoryPluck();
+            $sortTypeUrl = isset($request->sort_type) ? $request->sort_type : 'desc';
+
+            if ($sortTypeUrl == 'asc') {
+                $sortType = 'desc';
+                $sortClass = 'up';
+            } else {
+                $sortType = 'asc';
+                $sortClass = 'down';
+            }
+
+            return view('staff.media-table.index', compact('medias', 'categories', 'sortType', 'sortClass'));
         } else {
-            $sortType = 'asc';
-            $sortClass = 'down';
+            abort(403);
         }
-
-        // dd($sortType);
-
-        return view('staff.media-table.index', compact('medias', 'categories', 'sortType', 'sortClass'));
     }
 
     public function create()
@@ -76,10 +83,20 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
+        $staff = Auth::guard('staff')->user();
         $media = $this->mediaService->getMedia($id);
-        $categories = $this->categoryService->getListCategoryPluck();
 
-        return view("staff.media.edit", compact('media', 'categories'));
+        if ($staff->can('view', $media)) {
+            $categories = $this->categoryService->getListCategoryPluck();
+
+            return view("staff.media.edit", compact('media', 'categories'));
+        } else {
+            abort(403);
+        }
+
+        // if ($this->authorize('medias.edit', $id)) {
+        //     $media = $this->mediaService->getMedia($id);
+        // }
     }
 
     /**

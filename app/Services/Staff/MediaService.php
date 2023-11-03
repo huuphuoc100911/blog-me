@@ -5,6 +5,7 @@ namespace App\Services\Staff;
 use App\Models\Media;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MediaService extends BaseService
@@ -87,6 +88,7 @@ class MediaService extends BaseService
         $data = [
             'category_id' => $inputs['category_id'],
             'title' => $inputs['title'],
+            'staff_id' => Auth::guard('staff')->user()->id,
             'description' => $inputs['description'],
             'url_image' => $path,
             'priority' => $mediaHasMaxPriority ? $mediaHasMaxPriority->priority + 1 : 1,
