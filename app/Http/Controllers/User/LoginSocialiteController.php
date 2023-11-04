@@ -43,14 +43,7 @@ class LoginSocialiteController extends Controller
 
                 Mail::to($userExist->email)->send(new SendPassword($dataMail));
 
-                $credentials = [
-                    'email' => $userExist->email,
-                    'password' => $randomString,
-                ];
-
-                if (Auth::guard()->attempt($credentials)) {
-                    $request->session()->regenerate();
-
+                if (Auth::loginUsingId($userExist->id)) {
                     return redirect()->intended('/');
                 }
 
@@ -84,6 +77,22 @@ class LoginSocialiteController extends Controller
                     return redirect()->intended('/');
                 }
             }
+        } catch (Exception $e) {
+            Log::error($e);
+        }
+    }
+
+    public function redirectToGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleGithubCallback(Request $request)
+    {
+        try {
+            $user = Socialite::driver('github')->user();
+
+            // return redirect()->intended('/');
         } catch (Exception $e) {
             Log::error($e);
         }
