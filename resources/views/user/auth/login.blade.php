@@ -136,6 +136,10 @@
                                     <button type="submit" class="btn btn-info extaccnav" name="provider" value="Google"
                                         title="Sử dụng tài khoản Google">Google</button>
                                 </a>
+                                <a href="{{ route('login-by-twitter') }}">
+                                    <button type="submit" class="btn btn-secondary extaccnav" name="provider" value="Twitter"
+                                        title="Sử dụng tài khoản Google">Twitter</button>
+                                </a>
                             </div>
                             <div class="splt"></div>
                         </div>

@@ -32,6 +32,7 @@ class User extends Authenticatable
         'is_active',
         'google_id',
         'facebook_id',
+        'twitter_id',
         'password_socialite',
         'province_id',
         'district_id',

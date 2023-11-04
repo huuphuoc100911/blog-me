@@ -8,6 +8,7 @@ use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\LoginFbController;
 use App\Http\Controllers\User\LoginGoogleController;
+use App\Http\Controllers\User\LoginSocialiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,9 @@ Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleC
 //login facebook
 Route::get('auth/facebook', [LoginFbController::class, 'redirectToFacebook'])->name('login-by-facebook');
 Route::get('auth/facebook/callback', [LoginFbController::class, 'handleFacebookCallback']);
+//login twitter
+Route::get('auth/twitter', [LoginSocialiteController::class, 'redirectToTwitter'])->name('login-by-twitter');
+Route::get('auth/twitter/callback', [LoginSocialiteController::class, 'handleTwitterCallback']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/info-account', [HomeController::class, 'infoAccount'])->name('info-account');
