@@ -2,13 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Media;
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-class MediaPolicy
+class BlogPolicy
 {
     use HandlesAuthorization;
 
@@ -17,11 +16,6 @@ class MediaPolicy
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
-
     public function view($account = null)
     {
         $account = Auth::guard('staff')->user();
@@ -30,7 +24,7 @@ class MediaPolicy
             return true;
         }
 
-        return checkIsRoleIsset($account->group->permissions, 'medias', 'view');
+        return checkIsRoleIsset($account->group->permissions, 'blogs', 'view');
     }
 
     public function add($account = null)
@@ -41,32 +35,32 @@ class MediaPolicy
             return true;
         }
 
-        return checkIsRoleIsset($account->group->permissions, 'medias', 'add');
+        return checkIsRoleIsset($account->group->permissions, 'blogs', 'add');
     }
 
-    public function edit($account = null, $mediaId)
+    public function edit($account = null, $id)
     {
         $account = Auth::guard('staff')->user();
 
         if (!isset($account)) {
             return false;
         } else {
-            $media = Media::find($mediaId);
+            $blog = Blog::find($id);
 
-            return ($account->id == $media->staff_id) && checkIsRoleIsset($account->group->permissions, 'medias', 'edit');
+            return ($account->id == $blog->staff_id) && checkIsRoleIsset($account->group->permissions, 'blogs', 'edit');
         }
     }
 
-    public function delete($account = null, $mediaId)
+    public function delete($account = null, $id)
     {
         $account = Auth::guard('staff')->user();
 
         if (!isset($account)) {
             return false;
         } else {
-            $media = Media::find($mediaId);
+            $blog = Blog::find($id);
 
-            return ($account->id == $media->staff_id) && checkIsRoleIsset($account->group->permissions, 'medias', 'delete');
+            return ($account->id == $blog->staff_id) && checkIsRoleIsset($account->group->permissions, 'blogs', 'delete');
         }
     }
 }

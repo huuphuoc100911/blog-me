@@ -12,4 +12,9 @@ class Group extends Model
     protected $fillable = [
         'permissions',
     ];
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class, 'role', 'id');
+    }
 }

@@ -2,13 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Media;
+use App\Models\BlogCategory;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-class MediaPolicy
+class BlogCategroyPolicy
 {
     use HandlesAuthorization;
 
@@ -30,7 +29,7 @@ class MediaPolicy
             return true;
         }
 
-        return checkIsRoleIsset($account->group->permissions, 'medias', 'view');
+        return checkIsRoleIsset($account->group->permissions, 'blog_categories', 'view');
     }
 
     public function add($account = null)
@@ -41,32 +40,32 @@ class MediaPolicy
             return true;
         }
 
-        return checkIsRoleIsset($account->group->permissions, 'medias', 'add');
+        return checkIsRoleIsset($account->group->permissions, 'blog_categories', 'add');
     }
 
-    public function edit($account = null, $mediaId)
+    public function edit($account = null, $id)
     {
         $account = Auth::guard('staff')->user();
 
         if (!isset($account)) {
             return false;
         } else {
-            $media = Media::find($mediaId);
+            $blogCategories = BlogCategory::find($id);
 
-            return ($account->id == $media->staff_id) && checkIsRoleIsset($account->group->permissions, 'medias', 'edit');
+            return ($account->id == $blogCategories->staff_id) && checkIsRoleIsset($account->group->permissions, 'blog_categories', 'edit');
         }
     }
 
-    public function delete($account = null, $mediaId)
+    public function delete($account = null, $id)
     {
         $account = Auth::guard('staff')->user();
 
         if (!isset($account)) {
             return false;
         } else {
-            $media = Media::find($mediaId);
+            $blogCategories = BlogCategory::find($id);
 
-            return ($account->id == $media->staff_id) && checkIsRoleIsset($account->group->permissions, 'medias', 'delete');
+            return ($account->id == $blogCategories->staff_id) && checkIsRoleIsset($account->group->permissions, 'blog_categories', 'delete');
         }
     }
 }

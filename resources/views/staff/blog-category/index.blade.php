@@ -45,8 +45,10 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Blog Category</h4>
-                <a href="{{ route('staff.blog-category.create') }}" class="pt-3"><button class="btn btn-success">Add Blog
-                        Category</button></a>
+                @can('staff.blog_categories.add')
+                    <a href="{{ route('staff.blog-category.create') }}" class="pt-3"><button class="btn btn-success">Add Blog
+                            Category</button></a>
+                @endcan
             </div>
 
             @if (session('create_success'))
@@ -100,12 +102,11 @@
                                 <div class="row">
                                     <div class="col-sm-9"></div>
                                     <div class="col-sm-2">
-                                        @if (auth('staff')->user()->id === $category->staff_id)
+                                        @can('staff.blog_categories.edit', $category->id)
                                             <a href="{{ route('staff.blog-category.edit', $category->id) }}"
                                                 class="btn btn-primary">Edit</a>
-                                        @else
-                                            <button class="error-access btn btn-primary">Edit</button>
-                                        @endif
+                                        @endcan
+                                        {{-- <button class="error-access btn btn-primary">Edit</button> --}}
                                     </div>
                                 </div>
                             </div>

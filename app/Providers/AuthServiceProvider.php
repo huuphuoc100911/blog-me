@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
-use App\Models\Media;
+use App\Models\Module;
 use App\Models\Staff;
-use App\Models\User;
-use App\Policies\Media2Policy;
+use App\Policies\BlogCategroyPolicy;
+use App\Policies\BlogPolicy;
+use App\Policies\GroupPolicy;
 use App\Policies\MediaPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -32,8 +34,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('staff.medias.view', [MediaPolicy::class, 'view']);
         Gate::define('staff.medias.add', [MediaPolicy::class, 'add']);
         Gate::define('staff.medias.edit', [MediaPolicy::class, 'edit']);
         Gate::define('staff.medias.delete', [MediaPolicy::class, 'delete']);
+
+        Gate::define('staff.blogs.view', [BlogPolicy::class, 'view']);
+        Gate::define('staff.blogs.add', [BlogPolicy::class, 'add']);
+        Gate::define('staff.blogs.edit', [BlogPolicy::class, 'edit']);
+        Gate::define('staff.blogs.delete', [BlogPolicy::class, 'delete']);
+
+        Gate::define('staff.blog_categories.view', [BlogCategroyPolicy::class, 'view']);
+        Gate::define('staff.blog_categories.add', [BlogCategroyPolicy::class, 'add']);
+        Gate::define('staff.blog_categories.edit', [BlogCategroyPolicy::class, 'edit']);
+        Gate::define('staff.blog_categories.delete', [BlogCategroyPolicy::class, 'delete']);
+
+        Gate::define('staff.groups.permission', [GroupPolicy::class, 'permission']);
     }
 }
