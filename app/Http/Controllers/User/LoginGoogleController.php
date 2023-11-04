@@ -28,26 +28,24 @@ class LoginGoogleController extends Controller
             $userExist = User::where('email', $user->email)->first();
 
             if ($userExist) {
-                if (!isset($userExist->password_socialite)) {
-                    $randomString = Str::random(8);
+                $randomString = Str::random(8);
 
-                    $userExist->update([
-                        'password_socialite' => $randomString,
-                        'password' => bcrypt($randomString)
-                    ]);
+                $userExist->update([
+                    // 'password_socialite' => $randomString,
+                    'password' => bcrypt($randomString)
+                ]);
 
-                    $dataMail = [
-                        'name' => $userExist->name,
-                        'email' => $userExist->email,
-                        'password' => $randomString
-                    ];
+                $dataMail = [
+                    'name' => $userExist->name,
+                    'email' => $userExist->email,
+                    'password' => $randomString
+                ];
 
-                    Mail::to($userExist->email)->send(new SendPassword($dataMail));
-                }
+                Mail::to($userExist->email)->send(new SendPassword($dataMail));
 
                 $credentials = [
                     'email' => $userExist->email,
-                    'password' => $userExist->password_socialite,
+                    'password' => $randomString,
                 ];
 
                 if (Auth::guard()->attempt($credentials)) {
@@ -65,12 +63,11 @@ class LoginGoogleController extends Controller
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'password' => bcrypt($randomString),
-                    'password_socialite' => $randomString
                 ]);
 
                 $credentials = [
                     'email' => $newUser->email,
-                    'password' => $newUser->password_socialite
+                    'password' => $randomString
                 ];
 
                 $dataMail = [
