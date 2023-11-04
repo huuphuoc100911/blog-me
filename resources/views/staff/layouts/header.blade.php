@@ -191,19 +191,36 @@
                     <div data-i18n="Vertical Form">Danh sách</div>
                   </a>
                 </li>
+                @can('staff.medias.add') 
                 <li class="menu-item">
                   <a href="{{ route('staff.media.create') }}" class="menu-link">
                     <div data-i18n="Vertical Form">Thêm mới</div>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
-            <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active' : '' }}">
-              <a href="{{ route('staff.blog.index') }}" class="menu-link">
+            <li class="menu-item {{ \Request::segment(2) == 'blog' ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Analytics">Blog</div>
+                <div data-i18n="Form Layouts">Blog</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('staff.blog.index') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Danh sách</div>
+                  </a>
+                </li>
+                @can('staff.blogs.add') 
+                <li class="menu-item">
+                  <a href="{{ route('staff.blog.create') }}" class="menu-link">
+                    <div data-i18n="Vertical Form">Thêm mới</div>
+                  </a>
+                </li>
+                @endcan
+              </ul>
             </li>
+            @can('staff.groups.permission')
             <li class="menu-item {{ \Request::segment(2) == 'group' ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
@@ -217,6 +234,7 @@
                 </li>
               </ul>
             </li>
+            @endcan
             <li class="menu-item {{ \Request::segment(2) == 'list-suggest-category' ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>

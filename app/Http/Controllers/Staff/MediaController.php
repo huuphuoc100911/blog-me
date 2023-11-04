@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\MediaRequest;
 use App\Models\Media;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
+use Illuminate\Contracts\Auth\Access\Gate as AccessGate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -29,7 +30,7 @@ class MediaController extends Controller
     {
         $staff = Auth::guard('staff')->user();
 
-        if ($staff->can('viewAny', Media::class)) {
+        if ($this->authorize('staff.medias.view')) {
             $medias = $this->mediaService->getListMedia($request->all());
             $categories = $this->categoryService->getListCategoryPluck();
             $sortTypeUrl = isset($request->sort_type) ? $request->sort_type : 'desc';
@@ -43,25 +44,27 @@ class MediaController extends Controller
             }
 
             return view('staff.media-table.index', compact('medias', 'categories', 'sortType', 'sortClass'));
-        } else {
-            abort(403);
         }
     }
 
     public function create()
     {
-        $categories = $this->categoryService->getListCategoryPluck();
+        if ($this->authorize('staff.medias.add')) {
+            $categories = $this->categoryService->getListCategoryPluck();
 
-        return view('staff.media.create', compact('categories'));
+            return view('staff.media.create', compact('categories'));
+        }
     }
 
     public function store(MediaRequest $request)
     {
-        if ($this->mediaService->mediaCreate($request->all())) {
-            return redirect()->route('staff.media-table.index')->with('create_success', __('messages.create_success'));
-        }
+        if ($this->authorize('staff.medias.add')) {
+            if ($this->mediaService->mediaCreate($request->all())) {
+                return redirect()->route('staff.media-table.index')->with('create_success', __('messages.create_success'));
+            }
 
-        return redirect()->back()->with('create_fail',  __('messages.create_fail'));
+            return redirect()->back()->with('create_fail',  __('messages.create_fail'));
+        }
     }
 
     /**
@@ -86,17 +89,11 @@ class MediaController extends Controller
         $staff = Auth::guard('staff')->user();
         $media = $this->mediaService->getMedia($id);
 
-        if ($staff->can('view', $media)) {
+        if ($this->authorize('staff.medias.edit', $id)) {
             $categories = $this->categoryService->getListCategoryPluck();
 
             return view("staff.media.edit", compact('media', 'categories'));
-        } else {
-            abort(403);
         }
-
-        // if ($this->authorize('medias.edit', $id)) {
-        //     $media = $this->mediaService->getMedia($id);
-        // }
     }
 
     /**

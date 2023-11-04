@@ -13,9 +13,11 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-4 sss"><span class="text-muted fw-light">Forms /</span> Blogs</h4>
-                <a href="{{ route('staff.blog.create') }}" class="pt-3">
-                    <button class="btn btn-success">Add Blog</button>
-                </a>
+                @can('staff.blogs.add')
+                    <a href="{{ route('staff.blog.create') }}" class="pt-3">
+                        <button class="btn btn-success">Add Blog</button>
+                    </a>
+                @endcan
             </div>
 
             @if (session('create_success'))
@@ -68,7 +70,21 @@
                                         bởi {{ $blog->staff->name }}
                                     </small>
                                 </p>
-                                @if (auth('staff')->user()->id === $blog->staff_id)
+                                <div class="d-flex justify-content-end">
+                                    @can('staff.blogs.edit', $blog->id)
+                                        <a href="{{ route('staff.blog.edit', $blog->id) }}" class="btn btn-primary">Edit</a>
+                                    @endcan
+                                    @can('staff.blogs.delete', $blog->id)
+                                        <form action="{{ route('staff.blog.destroy', $blog->id) }}" method="post"
+                                            style="display: inline-block;"
+                                            onsubmit="return confirm('Do you want to delete it?')">
+                                            <button type="submit" class="btn btn-danger btn-cat-del-2">Delete</button>
+                                            @method('delete')
+                                            @csrf
+                                        </form>
+                                    @endcan
+                                </div>
+                                {{-- @if (auth('staff')->user()->id === $blog->staff_id)
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('staff.blog.edit', $blog->id) }}"
                                             class="btn btn-primary">Edit</a>
@@ -85,7 +101,7 @@
                                         <span class="error-access btn btn-primary">Edit</span>
                                         <span class="error-access btn btn-danger btn-cat-del-2">Delete</span>
                                     </div>
-                                @endif
+                                @endif --}}
 
                             </div>
                         </div>

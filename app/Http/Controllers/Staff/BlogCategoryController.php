@@ -21,6 +21,8 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('staff.blog_categories.view');
+
         $blogCategories = $this->blogCategoryService->getListBlogCategory();
 
         return view('staff.blog-category.index', compact('blogCategories'));
@@ -33,6 +35,8 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('staff.blog_categories.add');
+
         return view('staff.blog-category.create');
     }
 
@@ -44,6 +48,8 @@ class BlogCategoryController extends Controller
      */
     public function store(BlogCategoryRequest $request)
     {
+        $this->authorize('staff.blog_categories.add');
+
         if ($this->blogCategoryService->blogCategoryCreate($request->all())) {
             return redirect()->route('staff.blog-category.index')->with('create_success', __('messages.create_success'));
         }
@@ -70,6 +76,8 @@ class BlogCategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('staff.blog_categories.edit', $id);
+
         $blogCategory = $this->blogCategoryService->getBlogCategory($id);
 
         return view('staff.blog-category.edit', compact('blogCategory'));
@@ -84,6 +92,8 @@ class BlogCategoryController extends Controller
      */
     public function update(BlogCategoryRequest $request, BlogCategory $blogCategory)
     {
+        $this->authorize('staff.blog_categories.edit', $id);
+
         if ($this->blogCategoryService->blogCategoryUpdate($request->all(), $blogCategory)) {
             return redirect()->route('staff.blog-category.index')->with('update_success', __('messages.update_success'));
         }

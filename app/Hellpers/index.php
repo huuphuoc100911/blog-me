@@ -113,3 +113,16 @@ function isRolePermission($dataArr, $moduleName, $role = 'view')
 
     return false;
 }
+
+function checkIsRoleIsset($dataArr, $moduleName, $role = 'view')
+{
+    $roleArr = json_decode($dataArr, true);
+
+    if (!empty($roleArr[$moduleName])) {
+        if (in_array($role, $roleArr[$moduleName])) {
+            return true;
+        }
+    }
+
+    return false;
+}

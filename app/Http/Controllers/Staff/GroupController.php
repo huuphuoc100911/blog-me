@@ -36,12 +36,14 @@ class GroupController extends Controller
             'edit' => 'Sửa',
             'delete' => 'Xóa',
         ];
-        if (!empty($group->permissions)) {
-            $roleGroup = json_decode($group->permissions, true);
+
+        $roleJson = $group->permissions;
+
+        if (!empty($roleJson)) {
+            $roleGroup = json_decode($roleJson, true);
         } else {
             $roleGroup = [];
         }
-        // dd($roleGroup);
 
         return view('staff.group.permission', compact('group', 'modules', 'roleListArr', 'roleGroup'));
     }

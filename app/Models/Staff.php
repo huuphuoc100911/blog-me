@@ -71,6 +71,11 @@ class Staff extends Authenticatable
         return $this->hasMany(Category::class, 'staff_id', 'id');
     }
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'role', 'id');
+    }
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', AccountStatus::ACTIVE);

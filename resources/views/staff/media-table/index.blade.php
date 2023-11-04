@@ -15,7 +15,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="d-flex cat-header">
                 <h4 class="fw-bold py-3 mb-1">Hình ảnh</h4>
-                @can('medias.add')
+                @can('staff.medias.add')
                     <a href="{{ route('staff.media.create') }}" class="pt-3"><button class="btn btn-success">Add
                             Media</button></a>
                 @endcan
