@@ -32,7 +32,7 @@ class CustomerController extends Controller
             $customers->where($conditions);
         }
 
-        $customers = $customers->get();
+        $customers = $customers->paginate(10);
 
         return [
             'status' => Response::HTTP_OK,
