@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\v1\MediaController;
+use App\Http\Controllers\Api\v2\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,5 +50,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/{id}/edit', [MediaController::class, 'getMedia'])->name('edit');
             Route::delete('/{id}', [MediaController::class, 'deleteMedia'])->name('delete');
         });
+    });
+});
+
+Route::prefix('v2')->group(function () {
+    Route::prefix('customer')->name('customer')->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name('v2.index');
+        Route::get('/{customer}', [CustomerController::class, 'show'])->name('v2.show');
+        Route::post('/', [CustomerController::class, 'store'])->name('v2.store');
+        Route::put('/{customer}', [CustomerController::class, 'update'])->name('v2.update');
+        Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('v2.delete');
     });
 });
