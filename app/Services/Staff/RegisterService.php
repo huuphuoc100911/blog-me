@@ -23,13 +23,15 @@ class RegisterService extends BaseService
         DB::beginTransaction();
 
         try {
-            $this->user->create([
-                'name' => $inputs['name'],
-                'email' => $inputs['email'],
-                'is_active' => AccountStatus::ACTIVE,
-                'password' => bcrypt($inputs['password']),
-                'role' => UserRole::STAFF
-            ]);
+            if (!$this->user->where('email', $inputs['email'])->first()) {
+                $this->user->create([
+                    'name' => $inputs['name'],
+                    'email' => $inputs['email'],
+                    'is_active' => AccountStatus::ACTIVE,
+                    'password' => bcrypt($inputs['password']),
+                    'role' => UserRole::STAFF
+                ]);
+            }
 
             $this->model->create([
                 'name' => $inputs['name'],

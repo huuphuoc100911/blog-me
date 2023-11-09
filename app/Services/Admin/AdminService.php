@@ -8,6 +8,7 @@ use App\Jobs\QueueSendEmailStaff;
 use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -105,7 +106,8 @@ class AdminService extends BaseService
             $staffs = $this->staff->isActive()
                 ->isStaff()->get();
 
-            QueueSendEmailStaff::dispatch($staffs)->onQueue('emails');
+            $job = (new QueueSendEmailStaff($staffs))->delay(Carbon::now()->addSeconds(15));
+            dispatch($job);
 
             return true;
         } catch (Exception $e) {
