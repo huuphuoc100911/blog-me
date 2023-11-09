@@ -26,3 +26,5 @@ mix.copyDirectory("resources/css/style-chat.css", "public/css/style-chat.css");
 
 mix.js("resources/vue/src/main.js", "public/js");
 mix.js("resources/admin-vue/src/main-admin.js", "public/js");
+
+mix.less("resources/less/style-less.less", "public/css");
