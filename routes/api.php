@@ -55,7 +55,7 @@ Route::prefix('v1')->group(function () {
 });
 
 Route::prefix('v2')->group(function () {
-    Route::prefix('customer')->middleware('auth:sanctum')->name('customer.')->group(function () {
+    Route::prefix('customer')->middleware('auth:api')->name('customer.')->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name('v2.index');
         Route::get('/{customer}', [CustomerController::class, 'show'])->name('v2.show');
         Route::post('/', [CustomerController::class, 'store'])->name('v2.store');
@@ -66,4 +66,8 @@ Route::prefix('v2')->group(function () {
     Route::get('/token', [V2AuthController::class, 'getToken'])->middleware('auth:sanctum');
     Route::post('login', [V2AuthController::class, 'login']);
     Route::post('refresh-token', [V2AuthController::class, 'refreshToken']);
+
+    Route::post('login-passport', [V2AuthController::class, 'loginPassport']);
+    Route::post('logout-passport', [V2AuthController::class, 'logoutPassport'])->middleware('auth:api');
+    Route::get('passport-token', [V2AuthController::class, 'passportToken']);
 });
