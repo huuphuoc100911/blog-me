@@ -17,8 +17,6 @@ class LoginFbController extends Controller
 {
     public function redirectToFacebook()
     {
-        Log::info(1322222222222);
-
         return Socialite::driver('facebook')->redirect();
     }
 
