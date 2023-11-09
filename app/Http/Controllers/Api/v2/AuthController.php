@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Laravel\Passport\Client;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
@@ -78,5 +80,89 @@ class AuthController extends Controller
                 ];
             }
         }
+    }
+
+    public function loginPassport(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $checkLogin = Auth::guard('customer')->attempt(['email' => $email, 'password' => $password]);
+
+        if ($checkLogin) {
+            // $client = Client::where('personal_access_client', 1)->first();
+
+            // if ($client) {
+            //     $clientId = $client->id;
+            //     $clientSecret = $client->secret;
+
+            //     return Http::asForm()->post('http://passport-app.test/oauth/token', [
+            //         'grant_type' => 'password',
+            //         'client_id' => $clientId,
+            //         'client_secret' => $clientSecret,
+            //         'username' => $email,
+            //         'password' => $password,
+            //         'scope' => '',
+            //     ]);
+            // }
+
+
+
+            $customer = Auth::guard('customer')->user();
+
+            $tokenResult = $customer->createToken('auth-api-passport');
+
+            //Thiết lập expired
+            $token = $tokenResult->token;
+            $token->expired_at = Carbon::now()->addMinutes(60);
+            $expired = Carbon::parse($token->expired_at)->toDateTimeString();
+
+            // Trả về access_token
+            $accessToken = $tokenResult->accessToken;
+
+            return [
+                'status' => Response::HTTP_OK,
+                'accessToken' => $accessToken,
+                'expired' => $expired
+            ];
+        } else {
+            return [
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'title' => 'Unauthorized'
+            ];
+        }
+    }
+
+    public function logoutPassport()
+    {
+        $customer = Auth::user();
+
+        // Xóa access_token
+        $customer->token()->revoke();
+
+        return [
+            'status' => Response::HTTP_OK,
+            'title' => 'Logout',
+        ];
+    }
+
+    public function passportToken()
+    {
+        $customer = Customer::findOrFail(3);
+
+        $tokenResult = $customer->createToken('auth_api');
+
+        //Thiết lập expired
+        $token = $tokenResult->token;
+        $token->expired_at = Carbon::now()->addMinutes(60);
+        $expired = Carbon::parse($token->expired_at)->toDateTimeString();
+
+        // Trả về access_token
+        $accessToken = $tokenResult->accessToken;
+
+        return [
+            'accessToken' => $accessToken,
+            'expired' => $expired
+        ];
     }
 }
