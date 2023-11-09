@@ -12,6 +12,7 @@ use App\Services\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Session;
@@ -34,6 +35,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        // Cache::put('domain', 'localhost', 600);
+        // Cache::get('domain');
         $medias = $this->mediaService->getListMedia();
         $categories = $this->categoryService->getListCategory();
 
