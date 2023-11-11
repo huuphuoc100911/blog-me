@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserProfileRequest;
+use App\Models\InfoCompany;
 use App\Services\User\AddressService;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
@@ -39,8 +40,10 @@ class HomeController extends Controller
         // Cache::get('domain');
         $medias = $this->mediaService->getListMedia();
         $categories = $this->categoryService->getListCategory();
+        $infoCompany = InfoCompany::findOrFail(1);
 
-        return view('user.index', compact('medias', 'categories'));
+
+        return view('user.index', compact('medias', 'categories', 'infoCompany'));
     }
 
     public function about()

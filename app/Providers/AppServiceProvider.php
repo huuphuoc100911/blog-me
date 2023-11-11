@@ -28,10 +28,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $infoCompany = InfoCompany::findOrFail(1);
-
-        View::share([
-            'infoCompanyShare' => $infoCompany,
-        ]);
     }
 }

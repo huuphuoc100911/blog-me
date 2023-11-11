@@ -9,8 +9,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="hs-text">
-                                <h2>{{ $infoCompanyShare->name }}</h2>
-                                <p>{{ $infoCompanyShare->description }}</p>
+                                <h2>{{ $infoCompany->name }}</h2>
+                                <p>{{ $infoCompany->description }}</p>
                                 <a href="{{ route('contact') }}" class="primary-btn">{{ __('lang.contact_us') }}</a>
                             </div>
                         </div>
@@ -22,8 +22,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="hs-text">
-                                <h2>{{ $infoCompanyShare->name }}</h2>
-                                <p>{{ $infoCompanyShare->description }}</p>
+                                <h2>{{ $infoCompany->name }}</h2>
+                                <p>{{ $infoCompany->description }}</p>
                                 <a href="#" class="primary-btn">{{ __('lang.contact_us') }}</a>
                             </div>
                         </div>

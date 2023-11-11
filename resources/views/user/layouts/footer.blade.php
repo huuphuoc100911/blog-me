@@ -1,4 +1,7 @@
     <!-- Footer Section Begin -->
+    @php
+        $infoCompany = \App\Models\InfoCompany::findOrFail(1);
+    @endphp
     <footer class="footer-section">
         <div class="container">
             <div class="row">
@@ -9,7 +12,7 @@
                                 <img src="/assets/user/img/f-logo.png" alt="">
                             </a>
                         </div>
-                        <p>{{ $infoCompanyShare->description }}</p>
+                        <p>{{ $infoCompany->description }}</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
