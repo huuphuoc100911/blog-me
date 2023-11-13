@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use DB;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +37,6 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        Log::info('testDemoCrobJob');
+        Log::info(Carbon::now()->format('Y-m-d H:i:s') . ' - testDemoCrobJob');
     }
 }
