@@ -7,6 +7,7 @@ use App\Http\Requests\Staff\BlogCategoryRequest;
 use App\Models\BlogCategory;
 use App\Services\Staff\BlogCategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlogCategoryController extends Controller
 {
@@ -92,7 +93,7 @@ class BlogCategoryController extends Controller
      */
     public function update(BlogCategoryRequest $request, BlogCategory $blogCategory)
     {
-        $this->authorize('staff.blog_categories.edit', $id);
+        $this->authorize('staff.blog_categories.edit', $blogCategory->id);
 
         if ($this->blogCategoryService->blogCategoryUpdate($request->all(), $blogCategory)) {
             return redirect()->route('staff.blog-category.index')->with('update_success', __('messages.update_success'));
