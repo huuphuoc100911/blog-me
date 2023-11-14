@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaRequest;
 use App\Models\Media;
+use App\Repositories\Media\MediaRepository;
 use App\Services\Admin\CategoryService;
 use App\Services\Staff\MediaService;
 use Illuminate\Contracts\Auth\Access\Gate as AccessGate;
@@ -14,14 +15,19 @@ use Illuminate\Support\Facades\Gate;
 
 class MediaController extends Controller
 {
-    public function __construct(MediaService $mediaService, CategoryService $categoryService)
+    protected $mediaRepo;
+
+    public function __construct(MediaService $mediaService, CategoryService $categoryService, MediaRepository $mediaRepo)
     {
         $this->mediaService = $mediaService;
         $this->categoryService = $categoryService;
+        $this->mediaRepo = $mediaRepo;
     }
+
     public function index()
     {
-        $medias = $this->mediaService->getListMedia();
+        // $medias = $this->mediaService->getListMedia();
+        $medias = $this->mediaRepo->getMediaPaginate();
 
         return view('staff.media.index', compact('medias'));
     }
