@@ -4,8 +4,8 @@ namespace Modules;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Modules\User\src\Commands\TestCommand;
-use Modules\User\src\Http\Middlewares\DemoMiddleware;
+use Modules\CStudent\src\Commands\TestCommand;
+use Modules\CStudent\src\Http\Middlewares\DemoMiddleware;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -31,6 +31,10 @@ class ModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $modules = $this->getModule();
+
+        $this->app->singleton(
+            CStudentRepository::class,
+        );
 
         if (!empty($modules)) {
             //Config

@@ -12,7 +12,7 @@ class ModuleInit extends Command
      *
      * @var string
      */
-    protected $signature = 'module:init {name}';
+    protected $signature = 'make:module {name}';
 
     /**
      * The console command description.
@@ -142,6 +142,40 @@ class ModuleInit extends Command
 
                 if (!File::exists($modelFolder)) {
                     File::makeDirectory($modelFolder, 0755, true, true);
+
+                    //Tạo file model.php
+                    $modelFile = base_path('modules/' . $name . '/src/Models/' . $name . '.php');
+
+                    if (!File::exists($modelFile)) {
+                        File::put($modelFile, "");
+                    }
+                }
+
+                //repositories
+                $repositoriesFolder = base_path('modules/' . $name . '/src/Repositories');
+
+                if (!File::exists($repositoriesFolder)) {
+                    File::makeDirectory($repositoriesFolder, 0755, true, true);
+
+                    //Tạo file moduleRepository.php
+                    $moduleRepositoryFile = base_path('modules/' . $name . '/src/Repositories/' . $name . 'Repository.php');
+
+                    if (!File::exists($moduleRepositoryFile)) {
+                        $moduleRepositoryFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepository.txt'));
+                        $moduleRepositoryFileContent = str_replace('{module}', $name, $moduleRepositoryFileContent);
+
+                        File::put($moduleRepositoryFile, $moduleRepositoryFileContent);
+                    }
+
+                    //Tạo file moduleRepositoryInterface.php
+                    $moduleRepositoryInterfaceFile = base_path('modules/' . $name . '/src/Repositories/' . $name . 'RepositoryInterface.php');
+
+                    if (!File::exists($moduleRepositoryInterfaceFile)) {
+                        $moduleRepositoryInterfaceFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepositoryInterface.txt'));
+                        $moduleRepositoryInterfaceFileContent = str_replace('{module}', $name, $moduleRepositoryInterfaceFileContent);
+
+                        File::put($moduleRepositoryInterfaceFile, $moduleRepositoryInterfaceFileContent);
+                    }
                 }
             }
 
