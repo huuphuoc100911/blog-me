@@ -3,7 +3,7 @@
 namespace Modules\CManager\src\Repositories;
 
 use App\Repositories\BaseRepository;
-use Modules\Manager\src\Repositories\ManagerRepositoryInterface;
+use Modules\CManager\src\Repositories\CManagerRepositoryInterface;
 
 class CManagerRepository extends BaseRepository implements CManagerRepositoryInterface
 {
