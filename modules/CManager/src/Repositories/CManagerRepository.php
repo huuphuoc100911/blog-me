@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Manager;
+namespace Modules\CManager\src\Repositories;
 
 use App\Repositories\BaseRepository;
 use Modules\Manager\src\Repositories\ManagerRepositoryInterface;
 
-class ManagerRepository extends BaseRepository implements ManagerRepositoryInterface
+class CManagerRepository extends BaseRepository implements CManagerRepositoryInterface
 {
     public function getModel()
     {
