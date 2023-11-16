@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\User\src\Commands;
+namespace Modules\CStudent\src\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
