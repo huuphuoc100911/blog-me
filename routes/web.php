@@ -33,9 +33,6 @@ Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])-
 Route::put('reset-password', [ResetPasswordController::class, 'changePassword'])->name('change-password');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/test-manager', function () {
-    return view('manager.index');
-})->name('manager-index');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog-detail/{slug}/{id}', [HomeController::class, 'blogDetail'])->name('blog-detail');
