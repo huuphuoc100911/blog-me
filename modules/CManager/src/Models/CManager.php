@@ -20,6 +20,7 @@ class CManager extends Authenticatable
         'name',
         'email',
         'password',
+        'group_id'
     ];
 
     /**
