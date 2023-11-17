@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="data-table" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Tên</th>
@@ -43,6 +43,9 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="d-flex justify-content-center demo-inline-spacing">
+                {{ $managers->links('vendor.pagination.custom-pagination') }}
             </div>
         </div>
     </div>

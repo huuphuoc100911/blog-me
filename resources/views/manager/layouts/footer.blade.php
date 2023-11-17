@@ -49,12 +49,8 @@
 <!-- Custom scripts for all pages-->
 <script src="/assets/manager/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="/assets/manager/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/assets/manager/js/demo/chart-area-demo.js"></script>
-<script src="/assets/manager/js/demo/chart-pie-demo.js"></script>
+{{-- <script src="/assets/manager/js/custom.js"></script> --}}
+{{-- <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> --}}
 
 </body>
 

@@ -14,7 +14,7 @@ class CManagerRepository extends BaseRepository implements CManagerRepositoryInt
         return CManager::class;
     }
 
-    public function getCManagers($limit = 20)
+    public function getCManagers($limit = 1)
     {
         $limit = $limit ?? config('common.default_per_page');
 
