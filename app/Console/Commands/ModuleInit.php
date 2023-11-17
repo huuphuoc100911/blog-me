@@ -52,6 +52,15 @@ class ModuleInit extends Command
 
             if (!File::exists($configFolder)) {
                 File::makeDirectory($configFolder, 0755, true, true);
+
+                //Tạo file common.php
+                $commonFile = base_path('modules/' . $name . '/configs/common.php');
+
+                if (!File::exists($commonFile)) {
+                    $commonFileContent = file_get_contents(app_path('Console/Commands/Templates/common.txt'));
+
+                    File::put($commonFile, $commonFileContent);
+                }
             }
 
             //helper
