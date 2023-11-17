@@ -4,6 +4,7 @@ namespace Modules;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Modules\CManager\src\Repositories\CManagerRepository;
 use Modules\CStudent\src\Commands\TestCommand;
 use Modules\CStudent\src\Http\Middlewares\DemoMiddleware;
 
