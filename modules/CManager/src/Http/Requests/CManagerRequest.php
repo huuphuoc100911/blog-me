@@ -23,7 +23,9 @@ class CManagerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $id = $this->route()->manager;
+
+        $rules = [
             'name' => 'required',
             'email' => 'required|email|unique:c_managers,email',
             'password' => 'required|min:6',
@@ -33,6 +35,17 @@ class CManagerRequest extends FormRequest
                 }
             }],
         ];
+
+        if ($id) {
+            $rules['email'] = 'required|email|unique:c_managers,email,' . $id;
+            if ($this->password) {
+                $rules['password'] = 'min:6';
+            } else {
+                unset($rules['password']);
+            }
+        }
+
+        return $rules;
     }
 
     public function messages()

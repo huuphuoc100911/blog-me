@@ -35,8 +35,10 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function update($id, $attributes = [])
     {
-        if ($this->model->find($id)) {
-            return $this->model->update($id, $attributes);
+        $result = $this->model->find($id);
+
+        if ($result) {
+            return $result->update($attributes);
         }
 
         return false;

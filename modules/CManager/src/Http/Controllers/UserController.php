@@ -4,6 +4,7 @@ namespace Modules\CManager\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\CManager\src\Http\Requests\CManagerRequest;
+use Modules\CManager\src\Models\CManager;
 use Modules\CManager\src\Repositories\CManagerRepository;
 
 class UserController extends Controller
@@ -38,6 +39,32 @@ class UserController extends Controller
             'password' => bcrypt($inputs['password']),
         ]);
 
-        return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.success'));
+        return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.create.success'));
+    }
+
+    public function edit($id)
+    {
+        $manager = $this->cManagerRepository->find($id);
+
+        if (!$manager) {
+            return abort(404);
+        }
+
+        return view('CManager::edit', compact('manager'));
+    }
+
+    public function update(CManagerRequest $request, $id)
+    {
+        $inputs = $request->except('_token', 'password');
+
+        if ($request->password) {
+            $inputs['password'] = bcrypt($request->password);
+        }
+
+        if ($this->cManagerRepository->update($id, $inputs)) {
+            return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.update.success'));
+        }
+
+        return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.update.failure'));
     }
 }
