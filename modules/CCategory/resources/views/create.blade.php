@@ -11,7 +11,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="name">Tên</label>
-                    <input type="text" id="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') }}" placeholder="Nhập tên" name="name" />
+                    <input type="text" id="name" class="slug-origin form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') }}" placeholder="Nhập tên" name="name" />
                     @error('name')
                     <span class="text-danger" role="alert">
                         <p>{{ $message }}</p>
@@ -25,7 +25,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="slug">Slug</label>
-                    <input type="text" id="slug" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" value="{{ old('slug') }}" placeholder="Nhập slug" name="slug" />
+                    <input type="text" id="slug" class="slug-render form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" value="{{ old('slug') }}" placeholder="Nhập slug...." name="slug" />
                     @error('slug')
                     <span class="text-danger" role="alert">
                         <p>{{ $message }}</p>
@@ -57,3 +57,8 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+</script>
+@endpush
