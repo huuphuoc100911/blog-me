@@ -65,6 +65,15 @@ class UserController extends Controller
             return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.update.success'));
         }
 
-        return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.update.failure'));
+        return redirect()->route('manager.user.index')->with('msg_fail', __('CManager::messages.update.failure'));
+    }
+
+    public function delete($id)
+    {
+        if ($this->cManagerRepository->delete($id)) {
+            return back()->with('msg', __('CManager::messages.delete.success'));
+        }
+
+        return back()->with('msg_fail', __('CManager::messages.delete.failure'));
     }
 }

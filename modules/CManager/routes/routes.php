@@ -10,6 +10,7 @@ Route::group(['namespace' => 'Modules\CManager\src\Http\Controllers', 'middlewar
             Route::post('/create', 'UserController@store')->name('manager.user.store');
             Route::get('/edit/{manager}', 'UserController@edit')->name('manager.user.edit');
             Route::post('/edit/{manager}', 'UserController@update')->name('manager.user.update');
+            Route::post('delete/{manager}', 'UserController@delete')->name('manager.user.delete');
         });
     });
 });

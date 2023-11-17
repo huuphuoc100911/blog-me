@@ -42,15 +42,16 @@
 <!-- Bootstrap core JavaScript-->
 <script src="/assets/manager/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/scripts.js"></script>
+
 
 <!-- Core plugin JavaScript-->
 <script src="/assets/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/assets/manager/js/sb-admin-2.min.js"></script>
-
-{{-- <script src="/assets/manager/js/custom.js"></script> --}}
-{{-- <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@stack('scripts')
 
 </body>
 
