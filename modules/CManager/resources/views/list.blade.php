@@ -37,7 +37,7 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->group_id }}</td>
                             <td>{{ $manager->created_at }}</td>
-                            <td><a href="" class="btn btn-info">Sửa</a></td>
+                            <td><a href="{{ route('manager.user.edit', $manager) }}" class="btn btn-info">Sửa</a></td>
                             <td><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         @endforeach
