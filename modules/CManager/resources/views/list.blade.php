@@ -8,6 +8,10 @@
 
     <a href="{{ route('manager.user.create') }}" class="m-2 btn btn-info">Thêm mới</a>
 
+    @if (session('msg'))
+        <div class="alert alert-success">{{ session('msg') }}</div>
+    @endif
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
