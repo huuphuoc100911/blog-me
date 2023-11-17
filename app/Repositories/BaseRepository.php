@@ -46,8 +46,10 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function delete($id)
     {
-        if ($this->model->find($id)) {
-            return $this->model->delete($id);
+        $result = $this->model->find($id);
+
+        if ($result) {
+            return $result->delete();
         }
 
         return false;

@@ -9,7 +9,11 @@
     <a href="{{ route('manager.user.create') }}" class="m-2 btn btn-info">Thêm mới</a>
 
     @if (session('msg'))
-        <div class="alert alert-success">{{ session('msg') }}</div>
+    <div class="alert alert-success">{{ session('msg') }}</div>
+    @endif
+
+    @if (session('msg_fail'))
+    <div class="alert alert-danger">{{ session('msg_fail') }}</div>
     @endif
 
     <!-- DataTales Example -->
@@ -19,7 +23,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="data-table" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Tên</th>
@@ -38,7 +42,7 @@
                             <td>{{ $manager->group_id }}</td>
                             <td>{{ $manager->created_at }}</td>
                             <td><a href="{{ route('manager.user.edit', $manager) }}" class="btn btn-info">Sửa</a></td>
-                            <td><a href="" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="{{ route('manager.user.delete', $manager) }}" class="btn btn-danger delete-action">Xóa</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -49,6 +53,6 @@
             </div>
         </div>
     </div>
-
 </div>
+@include('layouts.delete-form')
 @endsection
