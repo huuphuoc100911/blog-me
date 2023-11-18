@@ -42,7 +42,8 @@
             "database/factories"
         ],            
         "files": [
-            "app/Hellpers/index.php"
+            "app/Hellpers/index.php",
+            "modules/"
         ]
     },
     "autoload-dev": {
