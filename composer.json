@@ -43,7 +43,7 @@
         ],            
         "files": [
             "app/Hellpers/index.php",
-            "modules/"
+            "modules/CCategory/helpers/functions.php"
         ]
     },
     "autoload-dev": {
