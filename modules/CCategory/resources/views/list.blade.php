@@ -36,11 +36,11 @@
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
-                            <td>{{ $category->updated_at }}</td>
-                            <td><a href="{{ route('manager.categories.edit', $category) }}" class="btn btn-info">Sửa</a></td>
-                            <td><a href="{{ route('manager.categories.delete', $category) }}" class="btn btn-danger delete-action">Xóa</a></td>
+                            <td>{{ $category['name'] }}</td>
+                            <td>{{ $category['slug'] }}</td>
+                            <td>{{ convertDateTime($category['updated_at']) }}</td>
+                            <td><a href="{{ route('manager.categories.edit', $category['id']) }}" class="btn btn-info">Sửa</a></td>
+                            <td><a href="{{ route('manager.categories.delete', $category['id']) }}" class="btn btn-danger delete-action">Xóa</a></td>
                         </tr>
                         @endforeach
                     </tbody>

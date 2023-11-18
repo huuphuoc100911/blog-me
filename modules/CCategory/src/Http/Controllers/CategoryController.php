@@ -17,14 +17,41 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->cCategoryRepo->getCategories();
+        $categories = $this->cCategoryRepo->getTreeCategories()->toArray();
+        $categories = $this->getCategoriesTable($categories);
+        $categories = $this->cCategoryRepo->paginate($categories);
+        // dd($categories);
 
         return view('CCategory::list', compact('categories'));
     }
 
+    public function getCategoriesTable($categories, $char = '', &$result = [])
+    {
+        if (!empty($categories)) {
+            foreach ($categories as $category) {
+                $result[] = [
+                    'id' => $category['id'],
+                    'name' => $char . $category['name'],
+                    'slug' => $category['slug'],
+                    'parent_id' => $category['parent_id'],
+                    'created_at' => $category['created_at'],
+                    'updated_at' => $category['updated_at'],
+                ];
+
+                if (!empty($category['sub_categories'])) {
+                    $this->getCategoriesTable($category['sub_categories'], $char . '--', $result);
+                }
+            }
+        }
+
+        return $result;
+    }
+
     public function create()
     {
-        return view('CCategory::create');
+        $categories = $this->cCategoryRepo->getAllCategories();
+
+        return view('CCategory::create', compact('categories'));
     }
 
     public function store(CCategoryRequest $request)
@@ -39,8 +66,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->cCategoryRepo->find($id);
+        $categories = $this->cCategoryRepo->getAllCategories();
 
-        return view('CCategory::edit', compact('category'));
+        return view('CCategory::edit', compact('category', 'categories'));
     }
 
     public function update(CCategoryRequest $request, $id)

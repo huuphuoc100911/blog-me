@@ -2,6 +2,10 @@
 
 namespace App\Repositories;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+
 abstract class BaseRepository implements RepositoryInterface
 {
     protected $model;
@@ -53,5 +57,25 @@ abstract class BaseRepository implements RepositoryInterface
         }
 
         return false;
+    }
+
+    public function paginate($items, $perPage = 20)
+    {
+        // Convert array to Laravel collection
+        $collection = new Collection($items);
+
+        // Get the current page from the query string or default to 1
+        $page = request()->has('page') ? request()->query('page') : 1;
+
+        // Paginate the collection
+        $paginatedData = $collection->slice(($page - 1) * $perPage, $perPage)->all();
+
+        return new LengthAwarePaginator(
+            $paginatedData,
+            count($collection),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
     }
 }

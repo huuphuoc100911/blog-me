@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Customer;
+use Carbon\Carbon;
 
 if (!function_exists('handleOrderPlanWhereBy')) {
     function handleOrderPlanWhereBy($viewData, $checkOrderPlan = null, $getKeyColumn = null)
@@ -98,6 +99,11 @@ if (!function_exists('create_slug')) {
 function isCustomerActive($email)
 {
     return Customer::where('email', $email)->isActive()->count();
+}
+
+function convertDateTime($date)
+{
+    return Carbon::parse($date)->format('Y-m-d H:i:s');
 }
 
 function isRolePermission($dataArr, $moduleName, $role = 'view')

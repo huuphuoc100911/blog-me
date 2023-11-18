@@ -40,7 +40,7 @@
                     <label for="parent_id">Danh mục cha</label>
                     <select name="parent_id" id="parent_id" class="form-control {{ $errors->has('parent_id') ? 'is-invalid' : '' }}" value="{{ old('parent_id') }}">
                         <option value="0">Không</option>
-                        <option value="1">Manager</option>
+                        {{ getCategories($categories, old('parent_id')) }}
                     </select>
                     @error('parent_id')
                     <span class="text-danger" role="alert">
