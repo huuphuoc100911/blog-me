@@ -7,4 +7,6 @@ use App\Repositories\RepositoryInterface;
 interface CCategoryRepositoryInterface extends RepositoryInterface
 {
     public function getCategories();
+
+    public function getAllCategories();
 }

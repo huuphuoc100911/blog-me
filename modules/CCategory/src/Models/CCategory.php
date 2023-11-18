@@ -15,4 +15,14 @@ class CCategory extends Model
         'slug',
         'parent_id',
     ];
+
+    public function children()
+    {
+        return $this->hasMany(CCategory::class, 'parent_id', 'id');
+    }
+
+    public function subCategories()
+    {
+        return $this->children()->with('subCategories');
+    }
 }

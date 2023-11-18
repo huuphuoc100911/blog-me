@@ -19,4 +19,14 @@ class CCategoryRepository extends BaseRepository implements CCategoryRepositoryI
 
         return $this->model->orderByDesc('updated_at')->paginate($limit);
     }
+
+    public function getAllCategories()
+    {
+        return $this->model->orderByDesc('updated_at')->get();
+    }
+
+    public function getTreeCategories()
+    {
+        return $this->model->with('subCategories')->where('parent_id', 0)->get();
+    }
 }
