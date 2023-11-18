@@ -48,9 +48,9 @@ class CCategoryRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => __('validation.attributes.name'),
-            'slug' => __('validation.attributes.slug'),
-            'parent_id' => __('validation.attributes.parent_id')
+            'name' => __('validation.attributes.users.name'),
+            'slug' => __('validation.attributes.users.slug'),
+            'parent_id' => __('validation.attributes.users.parent_id')
         ];
     }
 }
