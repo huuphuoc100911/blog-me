@@ -29,4 +29,9 @@ class CCategoryRepository extends BaseRepository implements CCategoryRepositoryI
     {
         return $this->model->with('subCategories')->where('parent_id', 0)->get();
     }
+
+    public function getAllCategoryPluck()
+    {
+        return $this->model->orderByDesc('updated_at')->pluck('name', 'id');
+    }
 }

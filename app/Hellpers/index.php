@@ -149,3 +149,13 @@ function getCategories($categories, $old = '', $parentId = 0, $char = '')
         }
     }
 }
+
+function generateRandomString($string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+{
+    return '#' . substr(str_shuffle($string), 0, 6);
+}
+
+function formatPrice($price)
+{
+    return number_format($price, 0, ',', '.');
+}

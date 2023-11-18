@@ -158,20 +158,37 @@ return [
     |
     */
 
-    'attributes' => [],
     'required' => ':attribute bắt buộc phải nhập',
     'email' => ':attribute không đúng định dạng',
     'unique' => ':attribute đã tồn tại',
     'min' => ':attribute phải ít nhất :min ký tự',
+    'max' => ':attribute phải ít hơn :max ký tự',
     'integer' => ':attribute phải là số',
     'select' => ':attribute bắt buộc phải chọn',
     'attributes' => [
-        'name' => 'Tên',
-        'slug' => 'Tên viết tắt',
-        'email' => 'Email',
-        'password' => 'Mật khẩu',
-        'group_id' => 'Nhóm người dùng',
-        'parent_id' => 'Danh mục cha',
+        'users' => [
+            'name' => 'Tên',
+            'slug' => 'Tên viết tắt',
+            'email' => 'Email',
+            'password' => 'Mật khẩu',
+            'group_id' => 'Nhóm người dùng',
+            'parent_id' => 'Danh mục cha',
+        ],
+        'courses' => [
+            'name' => 'Tên',
+            'slug' => 'Tên viết tắt',
+            'description' => 'Nội dung',
+            'category_id' => 'Danh mục',
+            'teacher_id' => 'Giảng viên',
+            'thumbnail' => 'Ảnh đại diện',
+            'price' => 'Giá khóa học',
+            'sale_price' => 'Giá khuyến mãi',
+            'code' => 'Mã khóa học',
+            'is_document' => 'Tài liệu đính kèm',
+            'supports' => 'Hỗ trợ',
+            'status' => 'Trạng thái',
+        ]
+
     ]
 
 ];
