@@ -55,7 +55,7 @@
                                 @if ($course->status == 1)
                                 <span class="badge badge-success">Đã ra mắt</span>
                                 @else
-                                <span class="badge badge-danger">Chưa ra mắt</span>
+                                <span class="badge badge-warning">Chưa ra mắt</span>
                                 @endif
                             </td>
                             <td>{{ $course->created_at }}</td>
