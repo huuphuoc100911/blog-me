@@ -89,7 +89,9 @@
                 </span>
                 @enderror
             </div>
-            <div class="col-12 image-preview"></div>
+            <div class="col-12 image-preview">
+                <img src="{{ $teacher->avatar_url }}" class="image-teachers" alt="">
+            </div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary col-1 m-3">Lưu lại</button>
