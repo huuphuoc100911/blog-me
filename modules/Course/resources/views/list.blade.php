@@ -28,6 +28,7 @@
                         <tr>
                             <th>Tên</th>
                             <th>Hình ảnh</th>
+                            <th width="15%">Danh mục</th>
                             <th>Nội dung</th>
                             <th>Giá</th>
                             <th>Hỗ trợ</th>
@@ -42,6 +43,11 @@
                         <tr>
                             <td>{{ $course->name }}</td>
                             <td><img src="{{ $course->thumbnail_url }}" class="image-viewer" alt=""></td>
+                            <td>
+                                @foreach ($course->categories as $category)
+                                    <p><b>{{ $category->name }}</b></p>
+                                @endforeach
+                            </td>
                             <td>{!! $course->description !!}</td>
                             <td>{{ formatPrice($course->price) }} VND</td>
                             <td>{!! $course->supports !!}</td>
@@ -57,7 +63,7 @@
                             <td><a href="{{ route('manager.courses.delete', $course) }}" class="btn btn-danger delete-action">Xóa</a></td>
                         </tr>
                         @empty
-                            <p>Không có khóa học vào. Vui lòng <a href="{{ route('manager.courses.create') }}" class="btn btn-info">thêm mới</a></p>
+                        <p>Không có khóa học vào. Vui lòng <a href="{{ route('manager.courses.create') }}" class="btn btn-info">thêm mới</a></p>
                         @endforelse
                     </tbody>
                 </table>
