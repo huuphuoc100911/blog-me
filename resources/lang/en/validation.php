@@ -187,6 +187,7 @@ return [
             'is_document' => 'Tài liệu đính kèm',
             'supports' => 'Hỗ trợ',
             'status' => 'Trạng thái',
+            'categories' => 'Danh mục'
         ]
 
     ]

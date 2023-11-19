@@ -5,6 +5,7 @@ namespace Modules\CCategory\src\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Course\src\Models\Course;
 
 class CCategory extends Model
 {
@@ -24,5 +25,10 @@ class CCategory extends Model
     public function subCategories()
     {
         return $this->children()->with('subCategories');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'categories_courses');
     }
 }
