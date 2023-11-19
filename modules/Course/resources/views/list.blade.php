@@ -28,8 +28,8 @@
                         <tr>
                             <th>Tên</th>
                             <th>Hình ảnh</th>
-                            <th width="15%">Danh mục</th>
-                            <th>Nội dung</th>
+                            <th width="13%">Danh mục</th>
+                            <th width="25%">Nội dung</th>
                             <th>Giá</th>
                             <th>Hỗ trợ</th>
                             <th>Trạng thái</th>
