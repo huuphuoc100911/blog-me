@@ -39,13 +39,9 @@ class CourseRequest extends FormRequest
                     $fail(__('validation.select'));
                 }
             }],
-            'thumbnail' => 'required',
-            'price' => 'required|integer',
-            'sale_price' => 'required|integer',
+            'thumbnail' => $id ? '' : 'required',
             'code' => 'required|max:255|unique:c_courses,code,' . $id,
-            'is_document' => 'required|integer',
             'supports' => 'required',
-            'status' => 'required|integer',
         ];
 
         return $rules;

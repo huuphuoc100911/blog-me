@@ -75,4 +75,9 @@ $(document).ready(function () {
         }
         isChangeSlug = true;
     });
+
+    // formatNumberInput = $(".format-number-input");
+    // formatNumberInput.keyup(function (e) {
+    //     formatNumberInput.val(formatMoneyInputValue(e.target.value));
+    // });
 });

@@ -20,6 +20,12 @@
   <!-- Custom styles for this template-->
   <link href="/assets/manager/css/sb-admin-2.min.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .image-viewer {
+        width: auto;
+        height: 200px;
+      }
+  </style>
   @stack('styles')
 </head>
 

@@ -14,7 +14,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Thêm khóa học</h1>
     </div>
-    <form action="{{ route('manager.courses.store') }}" method="post" class="ml-3">
+    <form action="{{ route('manager.courses.store') }}" method="post" enctype="multipart/form-data" class="ml-3">
         @csrf
         <div class="row">
             <div class="col-4">
@@ -99,7 +99,7 @@
                 <div class="mb-3">
                     <label for="price">Giá khóa học</label>
                     <input type="text" name="price" id="price"
-                        class="form-control number-format {{ $errors->has('price') ? 'is-invalid' : '' }}"
+                        class="format-number-input form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
                         value="{{ old('price') }}" placeholder="Nhập giá" />
                     @error('price')
                     <span class="text-danger" role="alert">
@@ -111,8 +111,8 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="sale_price">Giá khuyến mãi</label>
-                    <input type="number" name="sale_price" id="sale_price"
-                        class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
+                    <input type="text" name="sale_price" id="sale_price"
+                        class="format-number-input form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
                         value="{{ old('sale_price') }}" placeholder="Nhập khuyến mãi" />
                     @error('sale_price')
                     <span class="text-danger" role="alert">
@@ -186,26 +186,18 @@
         </div>
         <div class="row align-items-end">
             <div class="col-6">
-                <label for="is_document">Ảnh đại diện</label>
-                <input type="text" name="thumbnail" id="thumbnail"
-                    class="form-control {{ $errors->has('thumbnail') ? 'is-invalid' : '' }}"
-                    value="{{ old('thumbnail') }}" placeholder="Ảnh đại diện..." />
+                <label for="thumbnail" class="btn btn-primary">Cập nhật hình
+                    nền</label>
+                <input type="file" name="thumbnail" style="display:none" id="thumbnail"/>
                 @error('thumbnail')
                 <span class="text-danger" role="alert">
                     <p>{{ $message }}</p>
                 </span>
                 @enderror
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Chọn ảnh
-                </button>
-            </div>
-            <div class="col-4">
-                <img src="/storage/staff/qR0tAFo3JqIsp2FVZeNHP4uwoZ0wMCwrJ6dtWFU1.jpg" alt="" class="image-courses">
-            </div>
+            <div class="col-12 image-preview"></div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <button type="submit" class="btn btn-primary col-1 m-3">Lưu lại</button>
             <a href="{{ route('manager.courses.index') }}" class="btn btn-danger col-1 m-3">Hủy</a>
         </div>
@@ -214,4 +206,28 @@
 @endsection
 @push('scripts')
 <script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script type="text/javascript">
+$(function() {
+            $("#thumbnail").change(showPreviewImage);
+        })
+
+        function showPreviewImage(e) {
+            $('.image-preview').html('');
+            var $input = $(this);
+            var inputFiles = this.files;
+            if (inputFiles == undefined || inputFiles.length == 0) return;
+            var inputFile = inputFiles[0];
+
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                let base64data = event.target.result;
+                let html_append = `<img src="${base64data}" class="image-courses my-3" />`;
+                $('.image-preview').append(html_append);
+            };
+            reader.onerror = function(event) {
+                alert("I AM ERROR: " + event.target.error.code);
+            };
+            reader.readAsDataURL(inputFile);
+        }
+</script>
 @endpush

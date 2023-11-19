@@ -9,7 +9,7 @@ Route::group(['namespace' => 'Modules\Course\src\Http\Controllers', 'middleware'
             Route::get('/create', 'CourseController@create')->name('create');
             Route::post('/create', 'CourseController@store')->name('store');
             Route::get('/edit/{course}', 'CourseController@edit')->name('edit');
-            Route::post('/edit/{course}', 'CourseController@update')->name('update');
+            Route::put('/edit/{course}', 'CourseController@update')->name('update');
             Route::post('delete/{course}', 'CourseController@delete')->name('delete');
         });
     });

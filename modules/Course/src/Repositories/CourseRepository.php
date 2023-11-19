@@ -3,7 +3,7 @@
 namespace Modules\Course\src\Repositories;
 
 use App\Repositories\BaseRepository;
-use Modules\CCategory\src\Models\CCategory;
+use Illuminate\Support\Facades\Storage;
 use Modules\Course\src\Models\Course;
 use Modules\Course\src\Repositories\CourseRepositoryInterface;
 
@@ -19,5 +19,16 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         $limit = $limit ?? config('common.default_per_page');
 
         return $this->model->paginate($limit);
+    }
+
+    public function uploadAvatar($image, $id = null)
+    {
+        if ($id) {
+            $course = $this->find($id);
+
+            Storage::delete($course->thumbnail);
+        }
+
+        return Storage::put('manager/courses', $image);
     }
 }

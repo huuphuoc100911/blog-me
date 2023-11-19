@@ -34,7 +34,13 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-        if ($this->courseRepository->create($request->all())) {
+        $inputs = $request->all();
+
+        if ($request->thumbnail) {
+            $inputs['thumbnail'] = $this->courseRepository->uploadAvatar($request->thumbnail);
+        }
+
+        if ($this->courseRepository->create($inputs)) {
             return redirect()->route('manager.courses.index')->with('msg', __('messages.create.success'));
         }
 
@@ -51,7 +57,15 @@ class CourseController extends Controller
 
     public function update(CourseRequest $request, $id)
     {
-        if ($this->courseRepository->update($id, $request->all())) {
+        $inputs = $request->except('_token');
+
+        if ($inputs['thumbnail']) {
+            $inputs['thumbnail'] = $this->courseRepository->uploadAvatar($inputs['thumbnail'], $id);
+        } else {
+            $inputs = $request->except('_token', 'thumbnail');
+        }
+
+        if ($this->courseRepository->update($id, $inputs)) {
             return redirect()->route('manager.courses.index')->with('msg', __('messages.update.success'));
         }
 

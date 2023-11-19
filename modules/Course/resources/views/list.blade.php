@@ -28,6 +28,7 @@
                         <tr>
                             <th>Tên</th>
                             <th>Danh mục</th>
+                            <th>Hình ảnh</th>
                             <th>Nội dung</th>
                             <th>Giá</th>
                             <th>Hỗ trợ</th>
@@ -42,6 +43,7 @@
                         <tr>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->ccategory->name }}</td>
+                            <td><img src="{{ $course->thumbnail_url }}" class="image-viewer" alt=""></td>
                             <td>{!! $course->description !!}</td>
                             <td>{{ formatPrice($course->price) }} VND</td>
                             <td>{!! $course->supports !!}</td>

@@ -5,6 +5,7 @@ namespace Modules\Course\src\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Modules\CCategory\src\Models\CCategory;
 
 class Course extends Model
@@ -32,5 +33,10 @@ class Course extends Model
     public function ccategory()
     {
         return $this->belongsTo(CCategory::class, 'category_id');
+    }
+
+    public function getThumbnailUrlAttribute()
+    {
+        return $this->thumbnail ? Storage::url($this->thumbnail) : '';
     }
 }
