@@ -188,7 +188,14 @@ return [
             'supports' => 'Hỗ trợ',
             'status' => 'Trạng thái',
             'categories' => 'Danh mục'
-        ]
+        ],
+        'teachers' => [
+            'name' => 'Tên',
+            'slug' => 'Tên viết tắt',
+            'avatar' => 'Ảnh đại diện',
+            'description' => 'Nội dung',
+            'exp' => 'Kinh nghiệm',
+        ],
 
     ]
 

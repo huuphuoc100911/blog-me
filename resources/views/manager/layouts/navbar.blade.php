@@ -40,6 +40,7 @@
                 <a class="collapse-item" href="{{ route('manager.user.index') }}">User</a>
                 <a class="collapse-item" href="{{ route('manager.categories.index') }}">Danh mục</a>
                 <a class="collapse-item" href="{{ route('manager.courses.index') }}">Khóa học</a>
+                <a class="collapse-item" href="{{ route('manager.teachers.index') }}">Giảng viên</a>
             </div>
         </div>
     </li>
