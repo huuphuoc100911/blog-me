@@ -29,19 +29,17 @@ class CourseRequest extends FormRequest
             'name' => 'required',
             'slug' => 'required|min:6|unique:c_courses,slug,' . $id,
             'description' => 'required',
-            'category_id' => ['required', 'integer', function ($attribute, $value, $fail) {
+            'teacher_id' => ['required', 'integer', function ($attributes, $value, $fail) {
                 if ($value == 0) {
                     $fail(__('validation.select'));
                 }
             }],
-            'teacher_id' => ['required', 'integer', function ($attribute, $value, $fail) {
-                if ($value == 0) {
-                    $fail(__('validation.select'));
-                }
-            }],
+            'price' => 'required',
+            'sale_price' => 'required',
             'thumbnail' => $id ? '' : 'required',
             'code' => 'required|max:255|unique:c_courses,code,' . $id,
             'supports' => 'required',
+            'categories' =>  'required',
         ];
 
         return $rules;

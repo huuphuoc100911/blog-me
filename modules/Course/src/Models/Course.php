@@ -18,7 +18,6 @@ class Course extends Model
         'name',
         'slug',
         'teacher_id',
-        'category_id',
         'description',
         'thumbnail',
         'price',
@@ -30,13 +29,13 @@ class Course extends Model
         'status'
     ];
 
-    public function ccategory()
-    {
-        return $this->belongsTo(CCategory::class, 'category_id');
-    }
-
     public function getThumbnailUrlAttribute()
     {
         return $this->thumbnail ? Storage::url($this->thumbnail) : '';
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(CCategory::class, 'categories_courses', 'course_id', 'category_id');
     }
 }

@@ -7,6 +7,11 @@
         height: 200px;
     }
 
+    .list-category {
+        max-height: 250px;
+        overflow-y: auto
+    }
+
 </style>
 @section('content')
 <div class="container-fluid">
@@ -52,23 +57,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="category_id">Danh mục bài giảng</label>
-                    <select name="category_id" id="category_id" class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}" value="{{ old('category_id') }}">
-                        <option value="0">Chọn danh mục</option>
-                        @foreach ($categories as $key => $category)
-                        <option value="{{ $key }}" {{ (old('category_id') ?? $course->category_id) == $key ? 'selected'
-                            : '' }}>{{ $category }}</option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                    <span class="text-danger" role="alert">
-                        <p>{{ $message }}</p>
-                    </span>
-                    @enderror
-                </div>
-            </div>
             <div class="col-6">
                 <div class="mb-3">
                     <label for="teacher_id">Giảng viên</label>
@@ -161,6 +149,21 @@
                         </option>
                     </select>
                     @error('status')
+                    <span class="text-danger" role="alert">
+                        <p>{{ $message }}</p>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="font-weight-bold" for="">Chuyên mục</label>
+                    <div class="list-category">
+                        {{ getCategoriesCheckbox($categoriesMany, old('categories') ?? $categoryIds) }}
+                    </div>
+                    @error('categories')
                     <span class="text-danger" role="alert">
                         <p>{{ $message }}</p>
                     </span>
