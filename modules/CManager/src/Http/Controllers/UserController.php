@@ -39,7 +39,7 @@ class UserController extends Controller
             'password' => bcrypt($inputs['password']),
         ]);
 
-        return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.create.success'));
+        return redirect()->route('manager.users.index')->with('msg', __('CManager::messages.create.success'));
     }
 
     public function edit($id)
@@ -62,10 +62,10 @@ class UserController extends Controller
         }
 
         if ($this->cManagerRepository->update($id, $inputs)) {
-            return redirect()->route('manager.user.index')->with('msg', __('CManager::messages.update.success'));
+            return redirect()->route('manager.users.index')->with('msg', __('CManager::messages.update.success'));
         }
 
-        return redirect()->route('manager.user.index')->with('msg_fail', __('CManager::messages.update.failure'));
+        return redirect()->route('manager.users.index')->with('msg_fail', __('CManager::messages.update.failure'));
     }
 
     public function delete($id)

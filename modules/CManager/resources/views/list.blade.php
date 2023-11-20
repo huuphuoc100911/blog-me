@@ -6,7 +6,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Danh sách người dùng</h1>
 
-    <a href="{{ route('manager.user.create') }}" class="m-2 btn btn-info">Thêm mới</a>
+    <a href="{{ route('manager.users.create') }}" class="m-2 btn btn-info">Thêm mới</a>
 
     @if (session('msg'))
     <div class="alert alert-success">{{ session('msg') }}</div>
@@ -41,8 +41,8 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->group_id }}</td>
                             <td>{{ $manager->created_at }}</td>
-                            <td><a href="{{ route('manager.user.edit', $manager) }}" class="btn btn-info">Sửa</a></td>
-                            <td><a href="{{ route('manager.user.delete', $manager) }}" class="btn btn-danger delete-action">Xóa</a></td>
+                            <td><a href="{{ route('manager.users.edit', $manager) }}" class="btn btn-info">Sửa</a></td>
+                            <td><a href="{{ route('manager.users.delete', $manager) }}" class="btn btn-danger delete-action">Xóa</a></td>
                         </tr>
                         @endforeach
                     </tbody>

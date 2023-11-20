@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Sửa người dùng</h1>
     </div>
-    <form action="{{ route('manager.user.update', $manager) }}" method="post" class="ml-3">
+    <form action="{{ route('manager.users.update', $manager) }}" method="post" class="ml-3">
         @csrf
         <div class="row">
             <div class="col-6">
@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary col-1 m-3">Lưu lại</button>
-            <a href="{{ route('manager.user.index') }}" class="btn btn-danger col-1 m-3">Hủy</a>
+            <a href="{{ route('manager.users.index') }}" class="btn btn-danger col-1 m-3">Hủy</a>
         </div>
     </form>
 </div>
