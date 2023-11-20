@@ -3,6 +3,8 @@
 namespace Modules\CCategory\src\Repositories;
 
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Modules\CCategory\src\Models\CCategory;
 use Modules\CCategory\src\Repositories\CCategoryRepositoryInterface;
 
@@ -33,5 +35,33 @@ class CCategoryRepository extends BaseRepository implements CCategoryRepositoryI
     public function getAllCategoryPluck()
     {
         return $this->model->orderByDesc('updated_at')->pluck('name', 'id');
+    }
+
+    public function deleteCategoryCourse($categoryId)
+    {
+        DB::beginTransaction();
+
+        try {
+            $category = $this->find($categoryId);
+            $subCategory = $this->model->where('parent_id', $categoryId)->get();
+
+            $category->courses()->detach();
+            $this->delete($categoryId);
+
+            if ($subCategory) {
+                foreach ($subCategory as $category) {
+                    $this->deleteCategoryCourse($category->id);
+                }
+            }
+
+            DB::commit();
+
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error($th);
+
+            return false;
+        }
     }
 }

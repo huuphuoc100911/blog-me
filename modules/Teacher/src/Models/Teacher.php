@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Modules\Course\src\Models\Course;
 
 class Teacher extends Model
 {
@@ -24,5 +25,10 @@ class Teacher extends Model
     public function getAvatarUrlAttribute()
     {
         return $this->avatar ? Storage::url($this->avatar) : '';
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
     }
 }

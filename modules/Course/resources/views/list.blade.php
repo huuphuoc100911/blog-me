@@ -30,6 +30,7 @@
                             <th>Hình ảnh</th>
                             <th width="13%">Danh mục</th>
                             <th width="25%">Nội dung</th>
+                            <th>Giảng viên</th>
                             <th>Giá</th>
                             <th>Hỗ trợ</th>
                             <th>Trạng thái</th>
@@ -49,6 +50,7 @@
                                 @endforeach
                             </td>
                             <td>{!! $course->description !!}</td>
+                            <td>{{ $course->teacher->name }}</td>
                             <td>{{ formatPrice($course->price) }} VND</td>
                             <td>{!! $course->supports !!}</td>
                             <td>

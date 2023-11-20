@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Modules\CCategory\src\Models\CCategory;
+use Modules\Teacher\src\Models\Teacher;
 
 class Course extends Model
 {
@@ -37,5 +38,10 @@ class Course extends Model
     public function categories()
     {
         return $this->belongsToMany(CCategory::class, 'categories_courses', 'course_id', 'category_id');
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
     }
 }

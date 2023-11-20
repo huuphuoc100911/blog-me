@@ -7,16 +7,22 @@ use Carbon\Carbon;
 use Modules\CCategory\src\Repositories\CCategoryRepository;
 use Modules\Course\src\Http\Requests\CourseRequest;
 use Modules\Course\src\Repositories\CourseRepository;
+use Modules\Teacher\src\Repositories\TeacherRepository;
 
 class CourseController extends Controller
 {
     protected $courseRepository;
     protected $ccategoryRepository;
+    protected $teacherRepository;
 
-    public function __construct(CourseRepository $courseRepository, CCategoryRepository $ccategoryRepository)
-    {
+    public function __construct(
+        CourseRepository $courseRepository,
+        CCategoryRepository $ccategoryRepository,
+        TeacherRepository $teacherRepository,
+    ) {
         $this->courseRepository = $courseRepository;
         $this->ccategoryRepository = $ccategoryRepository;
+        $this->teacherRepository = $teacherRepository;
     }
 
     public function index()
@@ -29,8 +35,9 @@ class CourseController extends Controller
     public function create()
     {
         $categoriesMany = $this->ccategoryRepository->getAllCategories();
+        $teachers = $this->teacherRepository->getAllTeachersPluck();
 
-        return view('Course::create', compact('categoriesMany'));
+        return view('Course::create', compact('categoriesMany', 'teachers'));
     }
 
     public function store(CourseRequest $request)
@@ -55,6 +62,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = $this->courseRepository->find($id);
+        $teachers = $this->teacherRepository->getAllTeachersPluck();
 
         // Lấy ra các category_id của khóa học 
         $categoryIds = $this->courseRepository->getRelatedCategory($course);
@@ -62,7 +70,7 @@ class CourseController extends Controller
         // Hiển thị tất cả danh mục
         $categoriesMany = $this->ccategoryRepository->getAllCategories();
 
-        return view('Course::edit', compact('course', 'categoriesMany', 'categoryIds'));
+        return view('Course::edit', compact('course', 'categoriesMany', 'categoryIds', 'teachers'));
     }
 
     public function update(CourseRequest $request, $id)

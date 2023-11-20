@@ -4,6 +4,8 @@ namespace Modules\Course\src\Repositories;
 
 use App\Repositories\BaseRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Modules\Course\src\Models\Course;
 use Modules\Course\src\Repositories\CourseRepositoryInterface;
@@ -36,8 +38,30 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
 
     public function deleteCategoriesCourses($course)
     {
-        //Sync xóa hết rồi insert lại
         return $course->categories()->detach();
+    }
+
+    public function deleteCourses($courses)
+    {
+        DB::beginTransaction();
+
+        try {
+            foreach ($courses as $course) {
+                $this->deleteCategoriesCourses($course);
+                $this->uploadAvatar(null, $course->id);
+
+                $course->delete();
+            }
+
+            DB::commit();
+
+            return true;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error($th);
+
+            return false;
+        }
     }
 
     public function getRelatedCategory($course)
