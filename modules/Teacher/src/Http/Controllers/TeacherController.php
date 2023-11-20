@@ -3,16 +3,22 @@
 namespace Modules\Teacher\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Modules\Course\src\Repositories\CourseRepository;
 use Modules\Teacher\src\Http\Requests\TeacherRequest;
 use Modules\Teacher\src\Repositories\TeacherRepository;
 
 class TeacherController extends Controller
 {
     protected $teacherRepository;
+    protected $courseRepository;
 
-    public function __construct(TeacherRepository $teacherRepository)
-    {
+    public function __construct(
+        TeacherRepository $teacherRepository,
+        CourseRepository $courseRepository,
+
+    ) {
         $this->teacherRepository = $teacherRepository;
+        $this->courseRepository = $courseRepository;
     }
 
     public function index()
@@ -68,6 +74,9 @@ class TeacherController extends Controller
 
     public function delete($id)
     {
+        $teacher = $this->teacherRepository->find($id);
+        $this->courseRepository->deleteCourses($teacher->courses);
+
         $this->teacherRepository->uploadAvatar(null, $id);
 
         if ($this->teacherRepository->delete($id)) {

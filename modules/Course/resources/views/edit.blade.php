@@ -62,10 +62,9 @@
                     <label for="teacher_id">Giảng viên</label>
                     <select name="teacher_id" id="teacher_id" class="form-control {{ $errors->has('teacher_id') ? 'is-invalid' : '' }}" value="{{ old('teacher_id') }}">
                         <option value="0">Chọn giảng viên</option>
-                        <option value="1" {{ (old('teacher_id') ?? $course->teacher_id) == 1 ? 'selected' : '' }}>Tạ
-                            Hoàng An</option>
-                        <option value="2" {{ (old('teacher_id') ?? $course->teacher_id) == 2 ? 'selected' : '' }}>Đặng
-                            Hoàng Sơn</option>
+                        @foreach ($teachers as $id => $teacher)
+                            <option value="{{ $id }}" {{ (old('teacher_id') ?? $course->teacher_id) == $id ? 'selected' : '' }}>{{ $teacher }}</option>
+                        @endforeach
                     </select>
                     @error('teacher_id')
                     <span class="text-danger" role="alert">

@@ -21,6 +21,11 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         return $this->model->paginate($limit);
     }
 
+    public function getAllTeachersPluck()
+    {
+        return $this->model->pluck('name', 'id');
+    }
+
     public function uploadAvatar($avatar, $id = null)
     {
         if ($id) {

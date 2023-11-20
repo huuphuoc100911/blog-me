@@ -82,7 +82,7 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        if ($this->cCategoryRepo->delete($id)) {
+        if ($this->cCategoryRepo->deleteCategoryCourse($id)) {
             return redirect()->route('manager.categories.index')->with('msg', __('messages.delete.success'));
         }
 

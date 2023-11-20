@@ -67,11 +67,11 @@
                 <div class="mb-3">
                     <label for="teacher_id">Giảng viên</label>
                     <select name="teacher_id" id="teacher_id"
-                        class="form-control {{ $errors->has('teacher_id') ? 'is-invalid' : '' }}"
-                        value="{{ old('teacher_id') }}">
+                        class="form-control {{ $errors->has('teacher_id') ? 'is-invalid' : '' }}">
                         <option value="0">Chọn giảng viên</option>
-                        <option value="1">Tạ Hoàng An</option>
-                        <option value="2">Đặng Hoàng Sơn</option>
+                        @foreach ($teachers as $id => $teacher)
+                            <option value="{{ $id }}" {{ old('teacher_id') == $id ? 'selected' : null }}>{{ $teacher }}</option>
+                        @endforeach
                     </select>
                     @error('teacher_id')
                     <span class="text-danger" role="alert">
