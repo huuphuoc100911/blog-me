@@ -3,6 +3,7 @@
 namespace Modules;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\CCategory\src\Repositories\CCategoryRepository;
 use Modules\CCategory\src\Repositories\CCategoryRepositoryInterface;
@@ -140,13 +141,15 @@ class ModuleServiceProvider extends ServiceProvider
 
     private function registerRoutes()
     {
-        $routePath = __DIR__ . '/routes';
+        Route::middleware('web')->group(function () {
+            $routePath = __DIR__ . '/routes';
 
-        $routeFiles = array_map('basename', File::allFiles($routePath));
+            $routeFiles = array_map('basename', File::allFiles($routePath));
 
-        foreach ($routeFiles as $route) {
-            $this->loadRoutesFrom($routePath . '/' . $route);
-        }
+            foreach ($routeFiles as $route) {
+                $this->loadRoutesFrom($routePath . '/' . $route);
+            }
+        });
     }
 
     private function registerMiddlewares()

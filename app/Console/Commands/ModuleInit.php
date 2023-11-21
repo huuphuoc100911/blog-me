@@ -70,13 +70,6 @@ class ModuleInit extends Command
                 File::makeDirectory($helperFolder, 0755, true, true);
             }
 
-            //migration
-            $migrationFolder = base_path('modules/' . $name . '/migrations');
-
-            if (!File::exists($migrationFolder)) {
-                File::makeDirectory($migrationFolder, 0755, true, true);
-            }
-
             //resources
             $resourcesFolder = base_path('modules/' . $name . '/resources');
 
@@ -130,34 +123,6 @@ class ModuleInit extends Command
 
                 if (!File::exists($httpFolder)) {
                     File::makeDirectory($httpFolder, 0755, true, true);
-
-                    //controller
-                    $controllerFolder = base_path('modules/' . $name . '/src/Http/Controllers');
-
-                    if (!File::exists($controllerFolder)) {
-                        File::makeDirectory($controllerFolder, 0755, true, true);
-                    }
-
-                    //middleware
-                    $middlewareFolder = base_path('modules/' . $name . '/src/Http/Middlewares');
-
-                    if (!File::exists($middlewareFolder)) {
-                        File::makeDirectory($middlewareFolder, 0755, true, true);
-                    }
-                }
-
-                //models
-                $modelFolder = base_path('modules/' . $name . '/src/Models');
-
-                if (!File::exists($modelFolder)) {
-                    File::makeDirectory($modelFolder, 0755, true, true);
-
-                    //Tạo file model.php
-                    $modelFile = base_path('modules/' . $name . '/src/Models/' . $name . '.php');
-
-                    if (!File::exists($modelFile)) {
-                        File::put($modelFile, "");
-                    }
                 }
 
                 //repositories
