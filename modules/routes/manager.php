@@ -6,6 +6,7 @@ use Modules\CCategory\src\Http\Controllers\CategoryController;
 use Modules\CManager\src\Http\Controllers\UserController;
 use Modules\Course\src\Http\Controllers\CourseController;
 use Modules\Dashboard\src\Http\Controllers\DashboardController;
+use Modules\Lesson\src\Http\Controllers\LessonController;
 use Modules\Teacher\src\Http\Controllers\TeacherController;
 
 Route::prefix('manager')->name('manager.')->group(function () {
@@ -52,6 +53,15 @@ Route::group(['middleware' => 'auth.manager'], function () {
             Route::get('/edit/{teacher}', [TeacherController::class, 'edit'])->name('edit');
             Route::put('/edit/{teacher}', [TeacherController::class, 'update'])->name('update');
             Route::post('delete/{teacher}', [TeacherController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('lessons')->name('lessons.')->group(function () {
+            Route::get('/{courseId}', [LessonController::class, 'show'])->name('show');
+            Route::get('/create', [LessonController::class, 'create'])->name('create');
+            Route::post('/create', [LessonController::class, 'store'])->name('store');
+            Route::get('/edit/{lesson}', [LessonController::class, 'edit'])->name('edit');
+            Route::put('/edit/{lesson}', [LessonController::class, 'update'])->name('update');
+            Route::post('delete/{lesson}', [LessonController::class, 'delete'])->name('delete');
         });
     });
 });

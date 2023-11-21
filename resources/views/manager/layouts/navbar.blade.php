@@ -39,13 +39,14 @@
     'title' => 'Chuyên mục',
     ])
 
-@include('manager.layouts.menu', [
+    @include('manager.layouts.menu', [
     'icon' => 'book',
     'name' => 'courses',
     'title' => 'Khóa học',
+    'includes' => ['/manager/lessons/*']
     ])
 
-@include('manager.layouts.menu', [
+    @include('manager.layouts.menu', [
     'icon' => 'male',
     'name' => 'teachers',
     'title' => 'Giảng viên',
@@ -61,8 +62,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-            aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Pages</span>
         </a>

@@ -176,3 +176,21 @@ function formatPrice($price)
 {
     return number_format($price, 0, ',', '.');
 }
+
+function isRouteActive($routeList)
+{
+    if (!empty($routeList)) {
+        foreach ($routeList as $route) {
+            if (request()->is(trim($route, '/'))) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+function activeSideBar($name, $routeList)
+{
+    return request()->is('manager/' . $name . '/*') || request()->is('manager/' . $name) || isRouteActive($includes ?? []) || isRouteActive($routeList);
+}
