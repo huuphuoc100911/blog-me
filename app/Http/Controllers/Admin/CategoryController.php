@@ -38,7 +38,13 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        if ($this->categoryService->createCategory($request->all())) {
+        $inputs = $request->except('_token');
+
+        $inputs['url_image'] = $this->categoryService->uploadFile($inputs['url_image'], 'admin/category');
+        $inputs['admin_id'] = auth('admin')->user()->id;
+        $inputs['priority'] = $this->categoryService->getCategoryMaxPriority();
+
+        if ($this->categoryService->createModel($inputs)) {
             return redirect()->route('admin.category.index')->with('create_success', __('messages.create_success'));
         }
 
@@ -47,14 +53,23 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = $this->categoryService->getCategory($id);
+        $category = $this->categoryService->findModel($id);
 
         return view('admin.category.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, Category $category)
     {
-        if ($this->categoryService->updateCategory($request->all(), $category)) {
+        $inputs = $request->except('_token');
+
+        if (isset($inputs['url_image']) && $inputs['url_image']) {
+            $inputs['url_image'] = $this->categoryService->uploadFile($inputs['url_image'], 'admin/category', $category->url_image);
+        } else {
+            $inputs['url_image'] = $category->url_image;
+        }
+        $inputs['admin_id'] = auth('admin')->user()->id;
+
+        if ($this->categoryService->updateModel($inputs, $category)) {
             return redirect()->route('admin.category.index')->with('update_success',  __('messages.update_success'));
         }
 

@@ -67,10 +67,10 @@ class MediaService extends BaseService
         );
     }
 
-    public function getMedia($id)
-    {
-        return $this->model->findOrFail($id);
-    }
+    // public function getMedia($id)
+    // {
+    //     return $this->model->findOrFail($id);
+    // }
 
     public function mediaCreate($inputs)
     {

@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Enums\CategoryStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'admin_id',
@@ -20,7 +21,6 @@ class Category extends Model
         'priority',
         'is_active',
         'is_accept',
-        'deleted_at'
     ];
 
     public function getImageUrlAttribute()

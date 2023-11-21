@@ -72,7 +72,7 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
-        $media = $this->mediaService->getMedia($id);
+        $media = $this->mediaService->findModel($id);
         $categories = $this->categoryService->getListCategoryPluck();
 
         return view("admin.media.edit", compact('media', 'categories'));
