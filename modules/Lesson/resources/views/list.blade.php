@@ -1,12 +1,13 @@
 @extends('manager.layouts.layout')
-@section('page-title', 'Quản lý khóa học')
+@section('page-title', 'Quản lý bài giảng')
 @section('content')
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Danh sách khóa học</h1>
+    <h1 class="h3 mb-2 text-gray-800">Bài giảng: {{ $course->name }}</h1>
 
-    <a href="{{ route('manager.courses.create') }}" class="m-2 btn btn-info">Thêm mới</a>
+    <a href="{{ route('manager.courses.index') }}" class="m-2 btn btn-primary">Quay lại khóa học</a>
+    <a href="{{ route('manager.lessons.create') }}" class="m-2 btn btn-info">Thêm mới</a>
 
     @if (session('msg'))
     <div class="alert alert-success">{{ session('msg') }}</div>
@@ -19,7 +20,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Khóa học</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Bài giảng</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,45 +36,43 @@
                             <th>Hỗ trợ</th>
                             <th>Trạng thái</th>
                             <th>Thời gian</th>
-                            <th>Xem bài giảng</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($courses as $course)
+                        {{-- @forelse ($lessons as $lesson)
                         <tr>
-                            <td>{{ $course->name }}</td>
-                            <td><img src="{{ $course->thumbnail_url }}" class="image-viewer" alt=""></td>
+                            <td>{{ $lesson->name }}</td>
+                            <td><img src="{{ $lesson->thumbnail_url }}" class="image-viewer" alt=""></td>
                             <td>
-                                @foreach ($course->categories as $category)
+                                @foreach ($lesson->categories as $category)
                                     <p><b>{{ $category->name }}</b></p>
                                 @endforeach
                             </td>
-                            <td>{!! $course->description !!}</td>
-                            <td>{{ $course->teacher->name }}</td>
-                            <td>{{ formatPrice($course->price) }} VND</td>
-                            <td>{!! $course->supports !!}</td>
+                            <td>{!! $lesson->description !!}</td>
+                            <td>{{ $lesson->teacher->name }}</td>
+                            <td>{{ formatPrice($lesson->price) }} VND</td>
+                            <td>{!! $lesson->supports !!}</td>
                             <td>
-                                @if ($course->status == 1)
+                                @if ($lesson->status == 1)
                                 <span class="badge badge-success">Đã ra mắt</span>
                                 @else
                                 <span class="badge badge-warning">Chưa ra mắt</span>
                                 @endif
                             </td>
-                            <td>{{ $course->created_at }}</td>
-                            <td><a href="{{ route('manager.lessons.show', $course) }}" class="btn btn-secondary">Xem bài giảng</a></td>
-                            <td><a href="{{ route('manager.courses.edit', $course) }}" class="btn btn-info">Sửa</a></td>
-                            <td><a href="{{ route('manager.courses.delete', $course) }}" class="btn btn-danger delete-action">Xóa</a></td>
+                            <td>{{ $lesson->created_at }}</td>
+                            <td><a href="{{ route('manager.lessons.edit', $lesson) }}" class="btn btn-info">Sửa</a></td>
+                            <td><a href="{{ route('manager.lessons.delete', $lesson) }}" class="btn btn-danger delete-action">Xóa</a></td>
                         </tr>
                         @empty
-                        <p>Không có khóa học vào. Vui lòng <a href="{{ route('manager.courses.create') }}" class="btn btn-info">thêm mới</a></p>
-                        @endforelse
+                        <p>Không có bài giảng vào. Vui lòng <a href="{{ route('manager.lessons.create') }}" class="btn btn-info">thêm mới</a></p>
+                        @endforelse --}}
                     </tbody>
                 </table>
             </div>
             <div class="d-flex justify-content-center demo-inline-spacing">
-                {{ $courses->links('vendor.pagination.custom-pagination') }}
+                {{-- {{ $lessons->links('vendor.pagination.custom-pagination') }} --}}
             </div>
         </div>
     </div>
