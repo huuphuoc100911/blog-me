@@ -44,7 +44,8 @@ class ModuleServiceProvider extends ServiceProvider
             $this->commands($this->commands);
         }
 
-        $this->loadRoutesFrom(__DIR__ . "/routes/routes.php");
+        // $this->loadRoutesFrom(__DIR__ . "/routes/manager.php");
+        $this->registerRoutes();
     }
 
     private function getModule()
@@ -97,6 +98,17 @@ class ModuleServiceProvider extends ServiceProvider
             $alias = basename($config, '.php');
 
             $this->mergeConfigFrom($configPath . '/' . $config, $alias);
+        }
+    }
+
+    private function registerRoutes()
+    {
+        $routePath = __DIR__ . '/routes';
+
+        $routeFiles = array_map('basename', File::allFiles($routePath));
+
+        foreach ($routeFiles as $route) {
+            $this->loadRoutesFrom($routePath . '/' . $route);
         }
     }
 
