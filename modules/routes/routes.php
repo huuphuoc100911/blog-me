@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Modules\CCategory\src\Http\Controllers\CategoryController;
 use Modules\CManager\src\Http\Controllers\UserController;

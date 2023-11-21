@@ -79,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
             ->as('manager.')
             ->middleware('web')
             ->namespace('Modules\Auth\src\Http\Controllers\Manager')
-            ->group(base_path('Modules/Auth/routes/routes.php'));
+            ->group(base_path('Modules/routes/routes.php'));
     }
 
     protected function mapStaffRoutes()

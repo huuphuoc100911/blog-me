@@ -99,18 +99,18 @@ class ModuleInit extends Command
             }
 
             //routes
-            $routesFolder = base_path('modules/' . $name . '/routes');
+            // $routesFolder = base_path('modules/' . $name . '/routes');
 
-            if (!File::exists($routesFolder)) {
-                File::makeDirectory($routesFolder, 0755, true, true);
+            // if (!File::exists($routesFolder)) {
+            //     File::makeDirectory($routesFolder, 0755, true, true);
 
-                //Tạo file routes.php
-                $routesFile = base_path('modules/' . $name . '/routes/routes.php');
+            //     //Tạo file routes.php
+            //     $routesFile = base_path('modules/' . $name . '/routes/routes.php');
 
-                if (!File::exists($routesFile)) {
-                    File::put($routesFile, "<?php \n use Illuminate\Support\Facades\Route;");
-                }
-            }
+            //     if (!File::exists($routesFile)) {
+            //         File::put($routesFile, "<?php \n use Illuminate\Support\Facades\Route;");
+            //     }
+            // }
 
             //src
             $srcFolder = base_path('modules/' . $name . '/src');

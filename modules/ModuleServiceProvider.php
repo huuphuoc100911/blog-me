@@ -32,7 +32,9 @@ class ModuleServiceProvider extends ServiceProvider
         if (!empty($modules)) {
             //Config
             foreach ($modules as $module) {
-                $this->registerConfig($module);
+                if ($module != 'routes') {
+                    $this->registerConfig($module);
+                }
             }
 
             //Middleware
@@ -41,6 +43,8 @@ class ModuleServiceProvider extends ServiceProvider
             //Command
             $this->commands($this->commands);
         }
+
+        $this->loadRoutesFrom(__DIR__ . "/routes/routes.php");
     }
 
     private function getModule()
@@ -52,10 +56,10 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $modulePath = __DIR__ . "/$module";
 
-        //Khai báo routes
-        if (File::exists($modulePath . '/routes/routes.php')) {
-            $this->loadRoutesFrom($modulePath . "/routes/routes.php");
-        }
+        // Khai báo routes
+        // if (File::exists($modulePath . '/routes/routes.php')) {
+        //     $this->loadRoutesFrom($modulePath . "/routes/routes.php");
+        // }
 
         //Khai báo migrations
         if (File::exists($modulePath . '/migrations')) {
