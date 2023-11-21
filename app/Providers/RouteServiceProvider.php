@@ -21,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = '/admin/dashboard';
     public const STAFF = '/staff/dashboard';
     public const CUSTOMER = '/customer';
+    public const MANAGER = '/manager';
 
     protected $namespace = 'App\Http\Controllers';
 
@@ -36,6 +37,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminRoutes();
+
+        $this->mapManagerRoutes();
 
         $this->mapStaffRoutes();
 
@@ -68,6 +71,15 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapManagerRoutes()
+    {
+        Route::prefix('manager')
+            ->as('manager.')
+            ->middleware('web')
+            ->namespace('Modules\Auth\src\Http\Controllers\Manager')
+            ->group(base_path('Modules/Auth/routes/routes.php'));
     }
 
     protected function mapStaffRoutes()

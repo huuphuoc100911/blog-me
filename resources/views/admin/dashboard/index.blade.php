@@ -5,7 +5,9 @@
 @endpush
 @section('content')
     <!-- Content -->
-
+    @php
+        dd(Auth::guard('admin'), Auth::guard('manager'));
+    @endphp
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Total Revenue -->

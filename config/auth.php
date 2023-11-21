@@ -40,12 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
+        'manager' => [
+            'driver' => 'session',
+            'provider' => 'managers',
+        ],
         'staff' => [
             'driver' => 'session',
             'provider' => 'staffs',
@@ -98,6 +100,10 @@ return [
         'staffs' => [
             'driver' => 'eloquent',
             'model' => App\Models\Staff::class,
+        ],
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => Modules\CManager\src\Models\CManager::class,
         ],
 
         'users' => [

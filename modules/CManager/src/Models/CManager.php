@@ -30,8 +30,7 @@ class CManager extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        // 'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
     /**
