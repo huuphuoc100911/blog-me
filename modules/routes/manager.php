@@ -41,7 +41,7 @@ Route::group(['namespace' => 'Modules\Auth\src\Http\Controllers', 'middleware' =
                 Route::get('/create', [CourseController::class, 'create'])->name('create');
                 Route::post('/create', [CourseController::class, 'store'])->name('store');
                 Route::get('/edit/{course}', [CourseController::class, 'edit'])->name('edit');
-                Route::post('/edit/{course}', [CourseController::class, 'update'])->name('update');
+                Route::put('/edit/{course}', [CourseController::class, 'update'])->name('update');
                 Route::post('delete/{course}', [CourseController::class, 'delete'])->name('delete');
             });
 
@@ -50,7 +50,7 @@ Route::group(['namespace' => 'Modules\Auth\src\Http\Controllers', 'middleware' =
                 Route::get('/create', [TeacherController::class, 'create'])->name('create');
                 Route::post('/create', [TeacherController::class, 'store'])->name('store');
                 Route::get('/edit/{teacher}', [TeacherController::class, 'edit'])->name('edit');
-                Route::post('/edit/{teacher}', [TeacherController::class, 'update'])->name('update');
+                Route::put('/edit/{teacher}', [TeacherController::class, 'update'])->name('update');
                 Route::post('delete/{teacher}', [TeacherController::class, 'delete'])->name('delete');
             });
         });

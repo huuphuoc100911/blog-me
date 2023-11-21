@@ -4,10 +4,10 @@ namespace Modules\Course\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Modules\CCategory\src\Repositories\CCategoryRepository;
+use Modules\CCategory\src\Repositories\CCategoryRepositoryInterface;
 use Modules\Course\src\Http\Requests\CourseRequest;
-use Modules\Course\src\Repositories\CourseRepository;
-use Modules\Teacher\src\Repositories\TeacherRepository;
+use Modules\Course\src\Repositories\CourseRepositoryInterface;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 
 class CourseController extends Controller
 {
@@ -16,9 +16,9 @@ class CourseController extends Controller
     protected $teacherRepository;
 
     public function __construct(
-        CourseRepository $courseRepository,
-        CCategoryRepository $ccategoryRepository,
-        TeacherRepository $teacherRepository,
+        CourseRepositoryInterface $courseRepository,
+        CCategoryRepositoryInterface $ccategoryRepository,
+        TeacherRepositoryInterface $teacherRepository,
     ) {
         $this->courseRepository = $courseRepository;
         $this->ccategoryRepository = $ccategoryRepository;

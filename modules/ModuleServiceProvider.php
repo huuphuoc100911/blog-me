@@ -4,7 +4,15 @@ namespace Modules;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Modules\CCategory\src\Repositories\CCategoryRepository;
+use Modules\CCategory\src\Repositories\CCategoryRepositoryInterface;
+use Modules\CManager\src\Repositories\CManagerRepository;
+use Modules\CManager\src\Repositories\CManagerRepositoryInterface;
+use Modules\Course\src\Repositories\CourseRepository;
+use Modules\Course\src\Repositories\CourseRepositoryInterface;
 use Modules\CStudent\src\Http\Middlewares\DemoMiddleware;
+use Modules\Teacher\src\Repositories\TeacherRepository;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -43,6 +51,8 @@ class ModuleServiceProvider extends ServiceProvider
             //Command
             $this->commands($this->commands);
         }
+
+        $this->bindingRepositories();
 
         // $this->loadRoutesFrom(__DIR__ . "/routes/manager.php");
         $this->registerRoutes();
@@ -86,6 +96,33 @@ class ModuleServiceProvider extends ServiceProvider
                 require $helper->getPathName();
             }
         }
+    }
+
+    private function bindingRepositories()
+    {
+        //User manager repositories
+        $this->app->singleton(
+            CManagerRepositoryInterface::class,
+            CManagerRepository::class
+        );
+
+        //Categories repositories
+        $this->app->singleton(
+            CCategoryRepositoryInterface::class,
+            CCategoryRepository::class
+        );
+
+        //Course repositories
+        $this->app->singleton(
+            CourseRepositoryInterface::class,
+            CourseRepository::class
+        );
+
+        //Teacher repositories
+        $this->app->singleton(
+            TeacherRepositoryInterface::class,
+            TeacherRepository::class
+        );
     }
 
     private function registerConfig($module)

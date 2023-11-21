@@ -3,9 +3,9 @@
 namespace Modules\Teacher\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Modules\Course\src\Repositories\CourseRepository;
+use Modules\Course\src\Repositories\CourseRepositoryInterface;
 use Modules\Teacher\src\Http\Requests\TeacherRequest;
-use Modules\Teacher\src\Repositories\TeacherRepository;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 
 class TeacherController extends Controller
 {
@@ -13,8 +13,8 @@ class TeacherController extends Controller
     protected $courseRepository;
 
     public function __construct(
-        TeacherRepository $teacherRepository,
-        CourseRepository $courseRepository,
+        TeacherRepositoryInterface $teacherRepository,
+        CourseRepositoryInterface $courseRepository,
 
     ) {
         $this->teacherRepository = $teacherRepository;

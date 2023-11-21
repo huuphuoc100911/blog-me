@@ -78,7 +78,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('manager')
             ->as('manager.')
             ->middleware('web')
-            ->namespace('Modules\Auth\src\Http\Controllers\Manager')
             ->group(base_path('Modules/routes/manager.php'));
     }
 

@@ -4,14 +4,13 @@ namespace Modules\CManager\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\CManager\src\Http\Requests\CManagerRequest;
-use Modules\CManager\src\Models\CManager;
-use Modules\CManager\src\Repositories\CManagerRepository;
+use Modules\CManager\src\Repositories\CManagerRepositoryInterface;
 
 class UserController extends Controller
 {
     protected $cManagerRepository;
 
-    public function __construct(CManagerRepository $cManagerRepository)
+    public function __construct(CManagerRepositoryInterface $cManagerRepository)
     {
         $this->cManagerRepository = $cManagerRepository;
     }
