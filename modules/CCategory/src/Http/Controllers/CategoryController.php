@@ -4,13 +4,13 @@ namespace Modules\CCategory\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\CCategory\src\Http\Requests\CCategoryRequest;
-use Modules\CCategory\src\Repositories\CCategoryRepository;
+use Modules\CCategory\src\Repositories\CCategoryRepositoryInterface;
 
 class CategoryController extends Controller
 {
     protected $cCategoryRepo;
 
-    public function __construct(CCategoryRepository $cCategoryRepo)
+    public function __construct(CCategoryRepositoryInterface $cCategoryRepo)
     {
         $this->cCategoryRepo = $cCategoryRepo;
     }
