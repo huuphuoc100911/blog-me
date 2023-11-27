@@ -94,6 +94,12 @@
                             @csrf
                             <button type="submit" class="site-btn">Thanh toán VNPay</button>
                         </form>
+                        <br>
+
+                        <form action="{{ route('momo-payment') }}" method="post">
+                            @csrf
+                            <button type="submit" class="site-btn">Thanh toán Momo</button>
+                        </form>
                     </div>
                 </div>
             </div>
