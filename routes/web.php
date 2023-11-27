@@ -9,6 +9,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\LoginFbController;
 use App\Http\Controllers\User\LoginGoogleController;
 use App\Http\Controllers\User\LoginSocialiteController;
+use App\Http\Controllers\User\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,3 +72,5 @@ Route::post('/stripe/checkout', [StripeController::class, 'checkout'])->name('st
 Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
 Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-query');
 Route::get('/test-relationship', [HomeController::class, 'testRelationship'])->name('test-relationship');
+Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-query');
+Route::post('vn-payment', [PaymentController::class, 'vnpayPayment'])->name('vn-payment');
