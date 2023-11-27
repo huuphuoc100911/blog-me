@@ -74,3 +74,4 @@ Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-quer
 Route::get('/test-relationship', [HomeController::class, 'testRelationship'])->name('test-relationship');
 Route::get('/test-query', [HomeController::class, 'testQuery'])->name('test-query');
 Route::post('vn-payment', [PaymentController::class, 'vnpayPayment'])->name('vn-payment');
+Route::post('momo-payment', [PaymentController::class, 'momoPayment'])->name('momo-payment');
