@@ -79,6 +79,21 @@
                             <input type="text" placeholder="Email" name="email">
                             <button type="submit" class="site-btn">Submit</button>
                         </form>
+                        <br>
+                        @if (request()->vnp_ResponseCode === '00')
+                            <p>
+                                <span class="alert alert-success">Thanh toán thành công</span>
+                            </p>
+                        @elseif( request()->vnp_ResponseCode && request()->vnp_ResponseCode !== '00')
+                        <p>
+                            <span class="alert alert-danger">Thanh toán thất bại</span>
+                        </p>
+                        @endif
+                            
+                        <form action="{{ route('vn-payment') }}" method="post">
+                            @csrf
+                            <button type="submit" class="site-btn">Thanh toán VNPay</button>
+                        </form>
                     </div>
                 </div>
             </div>
