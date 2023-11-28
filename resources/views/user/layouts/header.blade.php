@@ -12,6 +12,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/assets/user/css/bootstrap.min.css" type="text/css">

@@ -37,6 +37,13 @@ return [
     'status' => 'Trạng thái',
     'enter_name' => 'Nhập tên',
     'enter_description' => 'Nhập mô tả',
+    'errors' => [
+        '404' => [
+            'title' => 'Không tìm thấy trang',
+            'description' => 'Rất tiếc, trang bạn tìm kiếm không tồn tại trên trang web của chúng tôi! Có thể truy cập trang chủ của chúng tôi hoặc thử sử dụng tìm kiếm?',
+            'button' => 'Trở về trang chủ',
+        ]
+    ],
     'admin' => [
         'admin' => 'Quản trị viên',
         'homes' => [

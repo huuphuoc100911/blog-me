@@ -37,6 +37,13 @@ return [
     'status' => 'Status',
     'enter_name' => 'Enter a name',
     'enter_description' => 'Enter a description',
+    'errors' => [
+        '404' => [
+            'title' => 'Page Not Found',
+            'description' => 'We’re sorry, the page you have looked for does not exist in our website! Maybe go to our home page or try to use a search?',
+            'button' => 'Go Back To Home',
+        ]
+    ],
     'admin' => [
         'admin' => 'Admin',
         'homes' => [
