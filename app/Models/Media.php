@@ -22,6 +22,7 @@ class Media extends Model
         'url_image',
         'description',
         'priority',
+        'video_url',
         'is_active',
         'is_favorite',
         'deleted_at'
@@ -30,6 +31,11 @@ class Media extends Model
     public function getImageUrlAttribute()
     {
         return $this->url_image ? Storage::url($this->url_image) : '';
+    }
+
+    public function getUrlVideoAttribute()
+    {
+        return $this->video_url ? Storage::url($this->video_url) : '';
     }
 
     public function category()

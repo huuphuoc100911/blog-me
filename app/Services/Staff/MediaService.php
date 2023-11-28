@@ -115,6 +115,12 @@ class MediaService extends BaseService
             Storage::delete($media->url_image);
         }
 
+        if (isset($inputs['video_url'])) {
+            $path = Storage::put('video', $inputs['video_url']);
+            $data['video_url'] = $path;
+            Storage::delete($media->video_url);
+        }
+
         return $media->update($data);
     }
 
