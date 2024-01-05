@@ -19,7 +19,10 @@ class ApiController extends BaseController
     {
         $listStaff = $this->apiService->getListStaff();
 
-        return StaffResource::collection($listStaff);
+        return response()->json([
+            'code' => Response::HTTP_OK,
+            'data' => StaffResource::collection($listStaff)
+        ]);
     }
 
     public function getInfoCompany()
