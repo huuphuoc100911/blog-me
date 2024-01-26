@@ -30,7 +30,7 @@ class UserController extends Controller
 
         $pdf = PDF::loadView('admin.user.pdf', $data);
 
-        return $pdf->download('tuts_notes.pdf');
+        return $pdf->download('users.pdf');
     }
 
     public function changeStatusStaff(Request $request)
