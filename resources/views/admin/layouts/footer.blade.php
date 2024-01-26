@@ -48,6 +48,7 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 @stack('scripts')
+@livewireScripts
 </body>
 
 </html>

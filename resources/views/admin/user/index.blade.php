@@ -106,6 +106,7 @@
                 </div>
             </form>
             <!--/ Basic Bootstrap Table -->
+            @livewire('search')
         </div>
         <!-- / Content -->
     @endsection
