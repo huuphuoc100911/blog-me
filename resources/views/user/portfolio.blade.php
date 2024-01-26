@@ -47,6 +47,9 @@
                                     <h4>{{ $media->category->title }}</h4>
                                     <span>{{ $media->title }}</span>
                                 </div>
+                                <div class="download-image">
+                                    <a href="{{ route('downloadImage', $media->id) }}" class="btn btn-success">Download</a>
+                                </div>
                             </div>
                         @endforeach
                     </div>

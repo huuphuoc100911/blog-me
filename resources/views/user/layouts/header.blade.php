@@ -37,6 +37,12 @@
         .active-language {
             color: #00ff37;
         }
+        .download-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
     </style>
 </head>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserProfileRequest;
 use App\Models\InfoCompany;
+use App\Models\Media;
 use App\Services\User\AddressService;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Session;
@@ -157,5 +159,10 @@ class HomeController extends Controller
         // dd($data);
 
         // return view('user.test-query', compact('data'));
+    }
+
+    public function downloadImage($id)
+    {
+        return response()->download(public_path((Media::findOrFail($id)->imageUrl)));
     }
 }

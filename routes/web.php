@@ -40,6 +40,7 @@ Route::get('/blog-detail/{slug}/{id}', [HomeController::class, 'blogDetail'])->n
 Route::get('/service', [HomeController::class, 'service'])->name('service');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
+Route::get('portfolio/{id}', [HomeController::class, 'downloadImage'])->name('downloadImage');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/send-email', [HomeController::class, 'sendEmail'])->name('send-email');
 //login google
