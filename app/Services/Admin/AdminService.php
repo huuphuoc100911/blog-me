@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Log;
 use Nexmo\Client\Credentials\Basic;
 use Nexmo\Client;
 use Nexmo\Client\Exception\Request as NexmoExceptionRequest;
+use Twilio\Rest\Client as TwilioClient;
+
 
 class AdminService extends BaseService
 {
@@ -119,22 +121,41 @@ class AdminService extends BaseService
 
     public function send($phoneNumber, $content, $from = null)
     {
-        $basic = new Basic(env('NEXMO_API_KEY'), env('NEXMO_API_SECRET'));
-        $client = new Client($basic);
 
-        try {
-            $client->message()->send([
-                'to' => $phoneNumber,
-                'from' => $from ?? env('NEXMO_FROM_SEND'),
-                'text' => $content,
-            ]);
+        // Find your Account SID and Auth Token at twilio.com/console
+        // and set the environment variables. See http://twil.io/secure
+        $sid = env("TWILIO_SID");
+        $token = env("TWILIO_TOKEN");
+        $senderNumber = env("TWILIO_PHONE");
+        $twilio = new TwilioClient($sid, $token);
 
-            return true;
-        } catch (NexmoExceptionRequest $e) {
-            Log::error($e); //Nexmo error
-        }
+        $message = $twilio->messages
+            ->create(
+                $phoneNumber, // to
+                [
+                    "body" => $content,
+                    "from" => $senderNumber
+                ]
+            );
 
-        throw new \Exception('Nexmo send sms code error', 200);
+        return true;
+
+        // $basic = new Basic(env('NEXMO_API_KEY'), env('NEXMO_API_SECRET'));
+        // $client = new Client($basic);
+
+        // try {
+        //     $client->message()->send([
+        //         'to' => $phoneNumber,
+        //         'from' => $from ?? env('NEXMO_FROM_SEND'),
+        //         'text' => $content,
+        //     ]);
+
+        //     return true;
+        // } catch (NexmoExceptionRequest $e) {
+        //     Log::error($e); //Nexmo error
+        // }
+
+        // throw new \Exception('Nexmo send sms code error', 200);
     }
 
     public function generateSmsCode($length = 6)

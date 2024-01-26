@@ -95,9 +95,9 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('admin.send-sms') }}" method="get">
-                                            <button class="btn btn-success">Send SMS</button>
-                                        </form>
+                                        <a href="{{ route('admin.send-sms') }}" class="btn btn-success">
+                                            Send SMS
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
