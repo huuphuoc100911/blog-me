@@ -65,7 +65,7 @@ class UserController extends Controller
         $activeCode = $this->adminService->generateSmsCode();
         $content = "Your activate code is: $activeCode";
 
-        if ($this->adminService->send('+84799130624', $content, null)) {
+        if ($this->adminService->send('+84357789210', $content, null)) {
             return redirect()->back()->with('send_email_success', __('messages.send_email_success'));
         } else {
             return redirect()->back()->with('send_email_fail', __('messages.send_email_fail'));
