@@ -13,9 +13,17 @@ class Search extends Component
     public function render()
     {
         Log::info($this->search);
+        Log::info('132132');
 
         return view('livewire.search', [
             'users' => User::where('name', 'like', '%' . $this->search . '%')->get(),
         ]);
+    }
+
+    public function handleClick()
+    {
+        $this->search = "Hu";
+
+        Log::info('Click here');
     }
 }
