@@ -178,6 +178,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Modules\ModuleServiceProvider::class,
+        Kreait\Laravel\Firebase\ServiceProvider::class,
 
 
     ],
