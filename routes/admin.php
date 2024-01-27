@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\PusherController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::resource('media', 'Admin\MediaController');
     Route::resource('user', 'Admin\UserController');
     Route::resource('info-company', 'Admin\InfoCompanyController');
+    Route::get('student', [StudentController::class, 'index'])->name('student.index');
     Route::get('change-status-staff', [UserController::class, 'changeStatusStaff'])->name('staff.change-status-staff');
     Route::get('change-status-media', [MediaController::class, 'changeStatusMedia'])->name('media.change-status-media');
     Route::get('change-status-blog', [BlogController::class, 'changeStatusBlog'])->name('blog.change-status-blog');

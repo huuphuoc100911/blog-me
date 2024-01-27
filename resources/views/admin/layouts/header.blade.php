@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="/assets/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css">
+
     <style>
       .btn-cat-del {
           margin-left: 10px;
@@ -241,6 +242,12 @@
               <a href="{{ route('admin.blog.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Analytics">{{ __('lang.admin.blogs.index') }}</div>
+              </a>
+            </li>
+            <li class="menu-item {{ \Request::segment(2) == 'student' ? 'active' : '' }}">
+              <a href="{{ route('admin.student.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-image"></i>
+                <div data-i18n="Analytics">Student</div>
               </a>
             </li>
             <li class="menu-item {{ \Request::segment(2) == 'user' ? 'active' : '' }}">
