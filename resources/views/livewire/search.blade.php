@@ -1,5 +1,9 @@
 <div class="list-user-livewire row">
-    <input wire:model="search" type="text" class="form-control col-4" placeholder="Search users..." />
+    <div class="col-4">
+        <input wire:model="search" type="text" class="form-control" placeholder="Search users..." />
+    </div>
+
+    <button class="col-4 btn btn-success" wire:click="handleClick">Click Wire</button>
 
     <table class="table col-12">
         <thead>
