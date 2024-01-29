@@ -44,12 +44,12 @@ Route::prefix('v1')->group(function () {
             Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
                 Route::get('/', [MediaController::class, 'getListMedia'])->name('index');
             });
-        });
-        Route::group(['prefix' => 'media', 'as' => 'media.'], function () {
-            Route::get('/', [MediaController::class, 'getListMedia'])->name('index');
-            Route::post('/', [MediaController::class, 'postMedia'])->name('store');
-            Route::get('/{id}/edit', [MediaController::class, 'getMedia'])->name('edit');
-            Route::delete('/{id}', [MediaController::class, 'deleteMedia'])->name('delete');
+            Route::group(['prefix' => 'media', 'as' => 'media.'], function () {
+                Route::get('/', [MediaController::class, 'getListMedia'])->name('index');
+                Route::post('/', [MediaController::class, 'postMedia'])->name('store');
+                Route::get('/{id}/edit', [MediaController::class, 'getMedia'])->name('edit');
+                Route::delete('/{id}', [MediaController::class, 'deleteMedia'])->name('delete');
+            });
         });
     });
 });
