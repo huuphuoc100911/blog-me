@@ -3,18 +3,24 @@
 namespace App\Services\Staff;
 
 use App\Models\Blog;
+use App\Services\BaseService as ServicesBaseService;
 use App\Services\Helper\FilterTrait;
 use App\Services\Staff\BaseService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
-class BlogService extends BaseService
+class BlogService extends ServicesBaseService
 {
     use FilterTrait;
 
-    public function __construct(Blog $model)
+    // public function __construct(Blog $model)
+    // {
+    //     $this->model = $model;
+    // }
+
+    public function getModel()
     {
-        $this->model = $model;
+        return Blog::class;
     }
 
     public function getListBlogs($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
@@ -37,7 +43,7 @@ class BlogService extends BaseService
 
     public function getBlog($blogId)
     {
-        return $this->model->findOrFail($blogId);
+        return $this->find($blogId);
     }
 
     public function blogCreate($inputs)

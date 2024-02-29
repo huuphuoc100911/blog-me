@@ -4,7 +4,7 @@ namespace App\Services\User;
 
 use App\Enums\MediaStatus;
 use App\Models\Media;
-// use App\Services\BaseService;
+use App\Services\BaseService;
 use App\Services\Helper\FilterTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -13,15 +13,15 @@ class MediaService extends BaseService
 {
     use FilterTrait;
 
-    public function __construct(Media $model)
-    {
-        $this->model = $model;
-    }
-
-    // public function getModel()
+    // public function __construct(Media $model)
     // {
-    //     return Media::class;
+    //     $this->model = $model;
     // }
+
+    public function getModel()
+    {
+        return Media::class;
+    }
 
     public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 10, $select = ['*'], $filterable = [])
     {

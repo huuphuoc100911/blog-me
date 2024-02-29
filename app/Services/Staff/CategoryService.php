@@ -5,17 +5,22 @@ namespace App\Services\Staff;
 use App\Enums\CategoryAccept;
 use App\Enums\CategoryStatus;
 use App\Models\Category;
+use App\Services\BaseService;
 use App\Services\Helper\FilterTrait;
-use App\Services\Staff\BaseService;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends BaseService
 {
     use FilterTrait;
 
-    public function __construct(Category $model)
+    // public function __construct(Category $model)
+    // {
+    //     $this->model = $model;
+    // }
+
+    public function getModel()
     {
-        $this->model = $model;
+        return Category::class;
     }
 
     public function getListCategory($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])

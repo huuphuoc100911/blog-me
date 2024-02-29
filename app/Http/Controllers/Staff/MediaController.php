@@ -93,7 +93,7 @@ class MediaController extends Controller
     public function edit($id)
     {
         $staff = Auth::guard('staff')->user();
-        $media = $this->mediaService->getMedia($id);
+        $media = $this->mediaService->find($id);
 
         if ($this->authorize('staff.medias.edit', $id)) {
             $categories = $this->categoryService->getListCategoryPluck();

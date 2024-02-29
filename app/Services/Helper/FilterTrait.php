@@ -70,6 +70,23 @@ trait FilterTrait
         return new LengthAwarePaginator($results, $total, $total ?: 1, 1);
     }
 
+    public function filterPaginate2(
+        $query,
+        $limit = null
+    ) {
+        $validDirections = ['ASC', 'DESC'];
+
+        if ($limit) {
+            $getQuery = clone $query;
+            return $query->paginate($limit);
+        }
+
+        $results = $query->get();
+        $total = $results->count();
+
+        return new LengthAwarePaginator($results, $total, $total ?: 1, 1);
+    }
+
     public function paginate($items, $limit = null, $page = null, $options = [])
     {
         $options['path'] = url()->current();
