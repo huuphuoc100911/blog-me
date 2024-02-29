@@ -28,8 +28,6 @@ class MediaService extends BaseService
     public function getListMedia($filters = [], $sorts = [], $relations = [], $limit = 20, $select = ['*'], $filterable = [])
     {
         $limit = $limit ?? config('common.default_per_page');
-        $test = $this->model->first();
-        dd($test);
 
         $query = $this->model
             ->whereNull('deleted_at');
