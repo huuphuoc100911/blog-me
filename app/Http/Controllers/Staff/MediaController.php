@@ -26,8 +26,8 @@ class MediaController extends Controller
 
     public function index()
     {
-        // $medias = $this->mediaService->getListMedia();
-        $medias = $this->mediaRepo->getMediaPaginate();
+        $medias = $this->mediaService->getListMedia();
+        // $medias = $this->mediaRepo->getMediaPaginate();
 
         return view('staff.media.index', compact('medias'));
     }
