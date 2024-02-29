@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\Api\Admin\MediaCreateRequest;
 use App\Http\Resources\MediaResource;
 use App\Models\Media;
 use App\Services\Api\MediaService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +24,7 @@ class MediaController extends BaseController
     {
         $medias = $this->mediaService->getListMedia();
 
-        return MediaResource::collection($medias);
+        return $this->respondWithSuccess(MediaResource::collection($medias), Response::HTTP_OK);
     }
 
     public function getListMediaOfCategory($catgoryId)
@@ -58,13 +60,21 @@ class MediaController extends BaseController
     {
         $media = $this->mediaService->getMedia($id);
 
-        return new MediaResource($media);
+        if ($media) {
+            return $this->respondWithSuccess(new MediaResource($media), Response::HTTP_OK);
+        }
+
+        return $this->respondWithError("Data not found", Response::HTTP_BAD_REQUEST);
     }
 
     public function deleteMedia($id)
     {
         $media = $this->mediaService->deleteMedia($id);
 
-        return new MediaResource($media);
+        if ($media) {
+            return $this->respondWithSuccess(new MediaResource($media), Response::HTTP_OK);
+        }
+
+        return $this->respondWithError("Data not found", Response::HTTP_BAD_REQUEST);
     }
 }
