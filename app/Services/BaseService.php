@@ -21,12 +21,12 @@ abstract class BaseService implements ServiceInterface
 
     public function getAll()
     {
-        return $this->model->limit(1)->get();
+        return $this->model->get();
     }
 
     public function find($id)
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
     public function create($attributes = [])
@@ -34,9 +34,9 @@ abstract class BaseService implements ServiceInterface
         return $this->model->create($attributes);
     }
 
-    public function update($id, $attributes = [])
+    public function update($attributes = [], $id)
     {
-        $result = $this->model->find($id);
+        $result = $this->model->findOrFail($id);
 
         if ($result) {
             return $result->update($attributes);
@@ -47,7 +47,7 @@ abstract class BaseService implements ServiceInterface
 
     public function delete($id)
     {
-        $result = $this->model->find($id);
+        $result = $this->model->findOrFail($id);
 
         if ($result) {
             return $result->delete();
