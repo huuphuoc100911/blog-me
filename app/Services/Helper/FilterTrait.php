@@ -47,18 +47,6 @@ trait FilterTrait
         }
 
         if ($limit) {
-            if ($check) {
-                $getQuery = clone $query;
-                $query = handleOrderWhereBy($query->get(), $check, $getKeyColumn);
-                return $this->paginate($query, $limit);
-            }
-
-            if (!empty($checkOrderPlan)) {
-                $getQuery = clone $query;
-                $query = handleOrderPlanWhereBy($query->get(), $checkOrderPlan, $getKeyColumn);
-                return $this->paginate($query, $limit);
-            }
-
             $getQuery = clone $query;
             return $query->paginate($limit, $columns);
         }
