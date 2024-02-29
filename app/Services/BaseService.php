@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Storage;
 
 abstract class BaseService implements ServiceInterface
 {
@@ -54,5 +55,18 @@ abstract class BaseService implements ServiceInterface
         }
 
         return false;
+    }
+
+    public function handleUploadStorage($folder, $file = null, $delFile = null)
+    {
+        if ($delFile) {
+            Storage::delete($delFile);
+        }
+
+        if ($file) {
+            return Storage::put($folder, $file);
+        }
+
+        return true;
     }
 }

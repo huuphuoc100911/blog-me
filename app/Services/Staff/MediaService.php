@@ -93,7 +93,8 @@ class MediaService extends BaseService
         DB::beginTransaction();
 
         try {
-            $path = Storage::put('admin/media', $inputs['url_image']);
+            // $path = Storage::put('admin/media', $inputs['url_image']);
+            $path = $this->handleUploadStorage('admin/media', $inputs['url_image']);
             $mediaHasMaxPriority = $this->model->orderByDesc('id')->first();
 
             $data = [
@@ -134,15 +135,13 @@ class MediaService extends BaseService
             ];
 
             if (isset($inputs['url_image'])) {
-                $path = Storage::put('admin/media', $inputs['url_image']);
+                $path = $this->handleUploadStorage('admin/media', $inputs['url_image'], $media->url_image);
                 $data['url_image'] = $path;
-                Storage::delete($media->url_image);
             }
 
             if (isset($inputs['video_url'])) {
-                $path = Storage::put('video', $inputs['video_url']);
+                $path = $this->handleUploadStorage('video', $inputs['video_url'], $media->video_url);
                 $data['video_url'] = $path;
-                Storage::delete($media->video_url);
             }
 
             $this->update($data, $mediaId);
